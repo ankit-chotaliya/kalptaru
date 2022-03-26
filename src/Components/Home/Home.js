@@ -13,9 +13,9 @@ function Home() {
                 <div className="row">
                     <div className="col-md-2"></div>
                     <div className="col-md-8">
-                        <div className="title-home mt-5 mb-4 ml-5">Order Status</div>
-                        <div className="row">
-                            <div className="col-md-4 col-xs-6 boxcenter-home">
+                        <div className="title-home mt-5 ml-5">Order Status</div>
+                        <div className="row contentaround-home">
+                            <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-home">
                                 <div className="card box-home ">
                                     <div className="card-body">
                                         <img className="logo-home" src={newOrder} alt="New Order" />
@@ -23,7 +23,7 @@ function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4 col-xs-6 boxcenter-home">
+                            <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-home">
                                 <div className="card box-home ">
                                     <div className="card-body">
                                         <img className="logo-home" src={editOrder} alt="Edit Order" />
@@ -31,7 +31,7 @@ function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4 boxcenter-home">
+                            <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-home">
                                 <div className="card box-home ">
                                     <div className="card-body">
                                         <img className="logo-home" src={trackOrder} alt="Track Order" />
@@ -39,9 +39,7 @@ function Home() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="row boxrow-home">
-                            <div className="col-md-4 boxcenter-home">
+                            <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-home">
                                 <div className="card box-home ">
                                     <div className="card-body">
                                         <img className="logo-home" src={completedOrders} alt="New Order" />
@@ -49,7 +47,7 @@ function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4 boxcenter-home">
+                            <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-home">
                                 <div className="card box-home ">
                                     <div className="card-body">
                                         <img className="logo-home" src={sendReminder} alt="Edit Order" />
@@ -57,7 +55,7 @@ function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4 boxcenter-home">
+                            <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-home">
                                 <div className="card box-home ">
                                     <div className="card-body">
                                         <img className="logo-home" src={urgentOrders} alt="Track Order" />

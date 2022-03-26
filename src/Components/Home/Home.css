@@ -6,6 +6,10 @@ body{
 {
     background-color: var(--bgcolor);
 }
+.contentaround-home
+{
+    justify-content: space-around !important;
+}
 .title-home
 {
     color:black;
@@ -27,6 +31,7 @@ body{
     background-color:#DEFFD1 !important;
     border:0 !important;
     padding: 1.5rem!important;
+    margin-top:10%;
 }
 .boxrow-home
 {
@@ -48,7 +53,7 @@ body{
         margin-left: 0 !important;
     }
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1023px) {
     .logo-home
     {
         width:35px;
@@ -64,5 +69,61 @@ body{
         padding:0 !important;
         padding-top: 1.5rem !important;
         height:160px;
+    }
+  }
+  @media screen and (max-width: 540px) {
+    .box-home
+    {
+        width:11rem !important;
+        height:140px;
+    }
+    .boxcenter-home
+    {
+        width: auto !important;
+        max-width: fit-content !important;
+        margin-bottom: 2%;
+    }
+    .boxrow-home
+    {
+        margin-top: 0 !important;
+    }
+  }
+  @media screen and (max-width: 427px) {
+    .logo-home
+    {
+        width:25px;
+        height:25px;
+    }
+    .box-home
+    {
+        width:11rem !important;
+        height:140px;
+    }
+    .boxcenter-home
+    {
+        width: auto !important;
+        max-width: fit-content !important;
+        margin-bottom: 2%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .boxrow-home
+    {
+        margin-top: 0 !important;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .box-home
+    {
+        width:10rem !important;
+        height:140px;
+    }
+  }
+  @media screen and (max-width: 360px) {
+    .box-home
+    {
+        width:8rem !important;
+        height:140px;
     }
   }
