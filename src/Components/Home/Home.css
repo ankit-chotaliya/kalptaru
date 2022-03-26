@@ -22,7 +22,7 @@ body{
     width: 200px !important;
     height:180px;
     text-align: center;
-    background-color:#DEFFD1 !important;
+    background-color:var(--lightGreen) !important;
     border:0 !important;
     padding:20px 20px;
     margin-right:30px;
