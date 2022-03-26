@@ -6,16 +6,11 @@ body{
 {
     background-color: var(--bgcolor);
 }
-.contentaround-home
-{
-    justify-content: space-around !important;
-}
 .title-home
 {
     color:black;
     font-weight: 300;
     font-size:25px;
-    margin-left: 3.5rem !important
 }
 .boxcenter-home
 {
@@ -25,7 +20,7 @@ body{
 }
 .box-home
 {
-    width: 200px !important;
+    width: 19rem !important;
     height:180px;
     text-align: center;
     background-color:#DEFFD1 !important;
@@ -87,6 +82,10 @@ body{
     {
         margin-top: 0 !important;
     }
+    .contentaround-home
+    {
+        justify-content: space-around !important;
+    }
   }
   @media screen and (max-width: 427px) {
     .logo-home
@@ -98,6 +97,10 @@ body{
     {
         width:11rem !important;
         height:140px;
+    }
+    .contentaround-home
+    {
+        justify-content: space-around !important;
     }
     .boxcenter-home
     {
@@ -119,11 +122,19 @@ body{
         width:10rem !important;
         height:140px;
     }
+    .contentaround-home
+    {
+        justify-content: space-around !important;
+    }
   }
   @media screen and (max-width: 360px) {
     .box-home
     {
         width:8rem !important;
         height:140px;
+    }
+    .contentaround-home
+    {
+        justify-content: space-around !important;
     }
   }
