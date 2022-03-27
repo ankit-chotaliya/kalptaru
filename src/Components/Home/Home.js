@@ -5,7 +5,7 @@ import trackOrder from "./icons/search.png";
 import completedOrders from "./icons/clipboard.png";
 import sendReminder from "./icons/notification.png";
 import urgentOrders from "./icons/exclamation-mark.png";
-import "./Home1.css";
+import "./Home.css";
 function Home() {
   return (
     <>
@@ -94,4 +94,4 @@ function Home() {
   );
 }
 
-export default Home1;
+export default Home;
