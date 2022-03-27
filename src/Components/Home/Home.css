@@ -9,7 +9,7 @@ body {
   color: black;
   font-weight: 300;
   font-size: 25px;
-  margin-left: 17px;
+  margin-left: 2.5rem !important;
 }
 .boxcenter-home {
   display: flex;
@@ -38,7 +38,7 @@ body {
 }
 @media screen and (max-width: 1025px) {
   .title-home {
-    margin-left: 2px !important;
+    margin-left: 0% !important;
   }
 }
 @media screen and (max-width: 1023px) {
@@ -64,13 +64,9 @@ body {
   .boxcenter-home {
     width: auto !important;
     max-width: fit-content !important;
-    margin-bottom: 2%;
   }
   .boxrow-home {
     margin-top: 0 !important;
-  }
-  .contentaround-home {
-    justify-content: space-around !important;
   }
 }
 @media screen and (max-width: 427px) {
@@ -78,12 +74,12 @@ body {
     width: 35px;
     height: 35px;
   }
+  .row {
+    padding: 0rem;
+  }
   .box-home {
     width: 11rem !important;
     height: 140px;
-  }
-  .contentaround-home {
-    justify-content: space-around !important;
   }
   .boxcenter-home {
     width: auto !important;
@@ -92,29 +88,56 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
   .boxrow-home {
     margin-top: 0 !important;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 426px) {
   .box-home {
     width: 10rem !important;
     height: 140px;
+    margin-left: 2rem;
+    margin-right: 0rem;
   }
-  .contentaround-home {
-    justify-content: space-around !important;
+  .title-home {
+    margin-left: 5% !important;
   }
-  row {
-    --bs-gutter-x: 1.2rem;
+  .row {
+    margin-left: 3rem;
   }
 }
-@media screen and (max-width: 360px) {
+
+@media screen and (max-width: 392px) {
   .box-home {
-    width: 8rem !important;
+    width: 10rem !important;
     height: 140px;
+    margin-left: 1.2rem;
+    margin-right: 0rem;
   }
-  .contentaround-home {
-    justify-content: space-around !important;
+  .title-home {
+    margin-left: 3% !important;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1rem;
+    margin-right: 0rem;
+  }
+  .title-home {
+    margin-left: 1% !important;
+  }
+}
+@media screen and (max-width: 325px) {
+  .box-home {
+    width: 9rem !important;
+    height: 140px;
+    margin-left: 0.7rem;
+    margin-right: 0rem;
   }
 }
