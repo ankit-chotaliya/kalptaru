@@ -1,140 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
-body{
-	font-family: 'Montserrat', sans-serif !important;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
+body {
+  font-family: "Montserrat", sans-serif !important;
 }
-.bg-home
-{
-    background-color: var(--bgcolor);
+.bg-home {
+  background-color: var(--bgcolor);
 }
-.title-home
-{
-    color:black;
-    font-weight: 300;
-    font-size:25px;
+.title-home {
+  color: black;
+  font-weight: 300;
+  font-size: 25px;
+  margin-left: 17px;
 }
-.boxcenter-home
-{
+.boxcenter-home {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.box-home {
+  width: 14rem !important;
+  height: 180px;
+  text-align: center;
+  background-color: #deffd1 !important;
+  border: 0 !important;
+  padding: 1.5rem !important;
+  margin-top: 10%;
+}
+.boxrow-home {
+  margin-top: 50px !important;
+}
+.logo-home {
+  width: 45px;
+  height: 45px;
+}
+.boxname-home {
+  margin-top: 20px;
+  font-size: 20px;
+}
+@media screen and (max-width: 1025px) {
+  .title-home {
+    margin-left: 2px !important;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .logo-home {
+    width: 35px;
+    height: 35px;
+  }
+  .boxname-home {
+    margin-left: 0 !important;
+    font-size: 15px;
+  }
+  .box-home {
+    padding: 0 !important;
+    padding-top: 1.5rem !important;
+    height: 160px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .box-home {
+    width: 11rem !important;
+    height: 140px;
+  }
+  .boxcenter-home {
+    width: auto !important;
+    max-width: fit-content !important;
+    margin-bottom: 2%;
+  }
+  .boxrow-home {
+    margin-top: 0 !important;
+  }
+  .contentaround-home {
+    justify-content: space-around !important;
+  }
+}
+@media screen and (max-width: 427px) {
+  .logo-home {
+    width: 35px;
+    height: 35px;
+  }
+  .box-home {
+    width: 11rem !important;
+    height: 140px;
+  }
+  .contentaround-home {
+    justify-content: space-around !important;
+  }
+  .boxcenter-home {
+    width: auto !important;
+    max-width: fit-content !important;
+    margin-bottom: 2%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+  }
+  .boxrow-home {
+    margin-top: 0 !important;
+  }
 }
-.box-home
-{
-    width: 19rem !important;
-    height:180px;
-    text-align: center;
-    background-color:#DEFFD1 !important;
-    border:0 !important;
-    padding: 1.5rem!important;
-    margin-top:10%;
+@media screen and (max-width: 400px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+  }
+  .contentaround-home {
+    justify-content: space-around !important;
+  }
 }
-.boxrow-home
-{
-    margin-top: 50px !important;
+@media screen and (max-width: 360px) {
+  .box-home {
+    width: 8rem !important;
+    height: 140px;
+  }
+  .contentaround-home {
+    justify-content: space-around !important;
+  }
 }
-.logo-home
-{
-    width:45px;
-    height:45px;
-}
-.boxname-home
-{
-    margin-top:20px;
-    font-size:20px;
-}
-@media screen and (max-width: 1025px) {
-	.title-home
-    {
-        margin-left: 0 !important;
-    }
-  }
-  @media screen and (max-width: 1023px) {
-    .logo-home
-    {
-        width:35px;
-        height:35px;
-    }
-	.boxname-home
-    {
-        margin-left: 0 !important;
-        font-size:15px;
-    }
-    .box-home
-    {
-        padding:0 !important;
-        padding-top: 1.5rem !important;
-        height:160px;
-    }
-  }
-  @media screen and (max-width: 540px) {
-    .box-home
-    {
-        width:11rem !important;
-        height:140px;
-    }
-    .boxcenter-home
-    {
-        width: auto !important;
-        max-width: fit-content !important;
-        margin-bottom: 2%;
-    }
-    .boxrow-home
-    {
-        margin-top: 0 !important;
-    }
-    .contentaround-home
-    {
-        justify-content: space-around !important;
-    }
-  }
-  @media screen and (max-width: 427px) {
-    .logo-home
-    {
-        width:25px;
-        height:25px;
-    }
-    .box-home
-    {
-        width:11rem !important;
-        height:140px;
-    }
-    .contentaround-home
-    {
-        justify-content: space-around !important;
-    }
-    .boxcenter-home
-    {
-        width: auto !important;
-        max-width: fit-content !important;
-        margin-bottom: 2%;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-    .boxrow-home
-    {
-        margin-top: 0 !important;
-    }
-  }
-  @media screen and (max-width: 400px) {
-    .box-home
-    {
-        width:10rem !important;
-        height:140px;
-    }
-    .contentaround-home
-    {
-        justify-content: space-around !important;
-    }
-  }
-  @media screen and (max-width: 360px) {
-    .box-home
-    {
-        width:8rem !important;
-        height:140px;
-    }
-    .contentaround-home
-    {
-        justify-content: space-around !important;
-    }
-  }
