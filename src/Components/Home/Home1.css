@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
+body {
+  font-family: "Montserrat", sans-serif !important;
+}
+.bg-home {
+  background-color: var(--bgcolor);
+}
+.title-home {
+  color: black;
+  font-weight: 300;
+  font-size: 25px;
+  margin-left: 2.5rem !important;
+}
+.boxcenter-home {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.box-home {
+  width: 14rem !important;
+  height: 180px;
+  text-align: center;
+  background-color: #deffd1 !important;
+  border: 0 !important;
+  padding: 1.5rem !important;
+  margin-top: 10%;
+}
+.boxrow-home {
+  margin-top: 50px !important;
+}
+.logo-home {
+  width: 45px;
+  height: 45px;
+}
+.boxname-home {
+  margin-top: 20px;
+  font-size: 20px;
+}
+@media screen and (max-width: 1025px) {
+  .title-home {
+    margin-left: 0% !important;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .logo-home {
+    width: 35px;
+    height: 35px;
+  }
+  .boxname-home {
+    margin-left: 0 !important;
+    font-size: 15px;
+  }
+  .box-home {
+    padding: 0 !important;
+    padding-top: 1.5rem !important;
+    height: 160px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .box-home {
+    width: 11rem !important;
+    height: 140px;
+  }
+  .boxcenter-home {
+    width: auto !important;
+    max-width: fit-content !important;
+  }
+  .boxrow-home {
+    margin-top: 0 !important;
+  }
+}
+@media screen and (max-width: 427px) {
+  .logo-home {
+    width: 35px;
+    height: 35px;
+  }
+  .row {
+    padding: 0rem;
+  }
+  .box-home {
+    width: 11rem !important;
+    height: 140px;
+  }
+  .boxcenter-home {
+    width: auto !important;
+    max-width: fit-content !important;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .boxrow-home {
+    margin-top: 0 !important;
+  }
+}
+@media screen and (max-width: 426px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 2rem;
+    margin-right: 0rem;
+  }
+  .title-home {
+    margin-left: 5% !important;
+  }
+  .row {
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 392px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1.2rem;
+    margin-right: 0rem;
+  }
+  .title-home {
+    margin-left: 3% !important;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1rem;
+    margin-right: 0rem;
+  }
+  .title-home {
+    margin-left: 1% !important;
+  }
+}
+@media screen and (max-width: 325px) {
+  .box-home {
+    width: 9rem !important;
+    height: 140px;
+    margin-left: 0.7rem;
+    margin-right: 0rem;
+  }
+}
