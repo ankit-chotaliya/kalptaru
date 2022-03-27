@@ -105,6 +105,9 @@ body {
   .contentaround-home {
     justify-content: space-around !important;
   }
+  row {
+    --bs-gutter-x: 1.2rem;
+  }
 }
 @media screen and (max-width: 360px) {
   .box-home {
