@@ -9,7 +9,7 @@ body {
   color: black;
   font-weight: 300;
   font-size: 25px;
-  margin-left: 2.5rem !important;
+  margin-left: 2rem !important;
 }
 .boxcenter-home {
   display: flex;
@@ -36,6 +36,9 @@ body {
   margin-top: 20px;
   font-size: 20px;
 }
+.colcenter-home{
+  
+}
 @media screen and (max-width: 1025px) {
   .title-home {
     margin-left: 0% !important;
@@ -48,7 +51,7 @@ body {
   }
   .boxname-home {
     margin-left: 0 !important;
-    font-size: 15px;
+    font-size: 18px;
   }
   .box-home {
     padding: 0 !important;
@@ -60,6 +63,10 @@ body {
   .box-home {
     width: 11rem !important;
     height: 140px;
+  }
+  .boxname-home {
+    margin-left: 0 !important;
+    font-size: 15px;
   }
   .boxcenter-home {
     width: auto !important;
@@ -103,22 +110,25 @@ body {
     margin-right: 0rem;
   }
   .title-home {
-    margin-left: 5% !important;
+    margin-left: 4% !important;
   }
   .row {
     margin-left: 3rem;
   }
 }
-
-@media screen and (max-width: 392px) {
+@media screen and (max-width: 395px) {
   .box-home {
     width: 10rem !important;
     height: 140px;
     margin-left: 1.2rem;
     margin-right: 0rem;
   }
+  .boxcenter-home
+  {
+    --bs-gutter-x: 1rem !important;
+  }
   .title-home {
-    margin-left: 3% !important;
+    margin-left: 1% !important;
   }
 }
 
@@ -130,8 +140,24 @@ body {
     margin-right: 0rem;
   }
   .title-home {
-    margin-left: 1% !important;
+    margin-left: 0% !important;
   }
+}
+@media screen and (max-width: 361px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1rem;
+    margin-right: 0rem;
+  }
+  .title-home {
+    margin-left: 0% !important;
+  }
+  .colcenter-home
+  {
+    --bs-gutter-x: 1rem !important;
+  }
+  
 }
 @media screen and (max-width: 325px) {
   .box-home {
@@ -139,5 +165,8 @@ body {
     height: 140px;
     margin-left: 0.7rem;
     margin-right: 0rem;
+  }
+  .title-home {
+    margin-left: 0% !important;
   }
 }

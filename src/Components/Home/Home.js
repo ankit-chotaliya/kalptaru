@@ -12,7 +12,7 @@ function Home() {
       <div className="container-fluid bg-home">
         <div className="row">
           <div className="col-md-2"></div>
-          <div className="col-md-8">
+          <div className="col-md-8 colcenter-home">
             <div className="title-home mt-5">Order Status</div>
             <div className="row contentaround-home">
               <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-home">
