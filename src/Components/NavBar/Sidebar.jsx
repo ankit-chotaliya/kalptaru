@@ -14,7 +14,7 @@ export const SidebarData = [
   },
   {
     title: 'Edit Order',
-    path: '/Edit Order',
+    path: '/EditOrder',
     icon: <BiIcons.BiEdit />,
     cName: 'nav-text'
   },

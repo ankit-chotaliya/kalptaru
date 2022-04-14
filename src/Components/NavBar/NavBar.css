@@ -31,7 +31,7 @@
 .nav-menu {
   background-color: #DEFFD1;
   width: 262px;
-  height: 1180px;
+  height: 1368px;
   display: flex;
   justify-content: center;
   position: fixed;
@@ -79,11 +79,7 @@
   border-radius: 0px;
   color: white  !important;
 }
-/* .logout-text a:hover{
-  background-color: #00a651;
-  border-radius: 0px;
-  color: white  !important;
-} */
+
 .nav_logotext{
   font-family: 'Gilroy-SemiBold';
   font-size: 24px;
@@ -121,4 +117,25 @@ span {
 
 .nav_icon{
   font-size: 22px;
+}
+
+@media (max-width: 767px) and (min-width: 360px){
+
+  #navMenu{
+    background-color: #DEFFD1;
+  width: 350px;
+  height: 1368px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+
+  }
+
+  #navMenu.active {
+    left: 0;
+    transition: 350ms;
+  }
 }
