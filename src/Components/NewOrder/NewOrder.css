@@ -1,6 +1,6 @@
 .no-heading{
     height: auto;
-    width: 200px;
+    width: 400px;
     /* left: 328px; */
     /* top: 160px; */
     border-radius: nullpx;
@@ -11,7 +11,9 @@
     text-align: left;
     font-weight: bold;
 }
-
+.no-modal{
+    width: auto;
+}
 .no-main{
     margin-top: auto;
     transition: all 0.3s linear 1s;

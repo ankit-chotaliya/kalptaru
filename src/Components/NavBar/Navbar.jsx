@@ -5,7 +5,7 @@ import * as FiIcons from 'react-icons/fi';
 import * as IoIcons from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './Sidebar';
-import './Navbar.css';
+import './NavBar.css';
 import logo from './logo.png';
 import { IconContext } from 'react-icons';
 
