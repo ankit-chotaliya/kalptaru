@@ -1,12 +1,15 @@
 import React from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './Components/Navbar/Navbar';
+import Navbar from './Components/NavBar/Navbar';
 import NewOrder from './Components/NewOrder/NewOrder';
 import Test from './Components/Test/Test';
 import NotFound from './Components/NotFound/NotFound';
 import Home from './Components/Home/Home';
+import AddClient from './Components/AddClient/AddClient';
+
 import Editorder from './Components/EditOrder/editOrder';
+
 
 const App = () => {
   return (
@@ -19,6 +22,7 @@ const App = () => {
         <Route path="/create" exact element={<NewOrder/>}/>
         <Route path="/EditOrder" exact element={<Editorder/>}/>
         <Route path="/home" exact element={<Home/>}/>
+        <Route path="/modal" exact element={<AddClient/>}/>
       </Routes>
 
     </>
