@@ -8,8 +8,8 @@ body {
 .title-home {
   color: black;
   font-weight: 300;
-  font-size: 25px;
-  margin-left: 2rem !important;
+  font-size: 35px;
+  margin-left: 0.7rem !important;
 }
 .boxcenter-home {
   display: flex;
@@ -17,8 +17,8 @@ body {
   justify-content: space-around;
 }
 .box-home {
-  width: 14rem !important;
-  height: 180px;
+  width: 18rem !important;
+  height: 250px;
   text-align: center;
   background-color: #deffd1 !important;
   border: 0 !important;
@@ -29,19 +29,45 @@ body {
   margin-top: 50px !important;
 }
 .logo-home {
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
+}
+.box-body
+{
+  margin-top:1.5rem;
 }
 .boxname-home {
-  margin-top: 20px;
-  font-size: 20px;
+  margin-top: 25px;
+  font-size: 25px;
 }
-.colcenter-home{
-  
+.parent_box-home {
+  margin-left:1rem;
+}
+@media screen and (max-width: 1500px) {
+  .title-home { 
+    margin-left:0% !important;
+  }
 }
 @media screen and (max-width: 1025px) {
-  .title-home {
+  .title-home { 
     margin-left: 0% !important;
+    font-size: 25px;
+  } 
+  .logo-home {
+    width: 45px;
+    height: 45px;
+  }
+  .boxname-home {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+  .box-body
+  {
+    margin-top:0%;
+  }
+  .box-home {
+    width: 15rem !important;
+    height: 180px;
   }
 }
 @media screen and (max-width: 1023px) {
@@ -77,6 +103,9 @@ body {
   }
 }
 @media screen and (max-width: 427px) {
+  .parent_box-home {
+    margin-left:0%;
+  }
   .logo-home {
     width: 35px;
     height: 35px;
@@ -110,13 +139,16 @@ body {
     margin-right: 0rem;
   }
   .title-home {
-    margin-left: 4% !important;
+    margin-left: 4.5% !important;
   }
   .row {
     margin-left: 3rem;
   }
+  .parent_box-home {
+    margin-left:0rem;
+  }
 }
-@media screen and (max-width: 395px) {
+@media screen and (max-width: 400px) {
   .box-home {
     width: 10rem !important;
     height: 140px;
@@ -128,7 +160,10 @@ body {
     --bs-gutter-x: 1rem !important;
   }
   .title-home {
-    margin-left: 1% !important;
+    margin-left: 1.5% !important;
+  }
+  .parent_box-home {
+    margin-left:0.3rem;
   }
 }
 
@@ -151,11 +186,14 @@ body {
     margin-right: 0rem;
   }
   .title-home {
-    margin-left: 0% !important;
+    margin-left: 0.5% !important;
   }
   .colcenter-home
   {
     --bs-gutter-x: 1rem !important;
+  }
+  .parent_box-home {
+    margin-left:0rem;
   }
   
 }
@@ -165,6 +203,10 @@ body {
     height: 140px;
     margin-left: 0.7rem;
     margin-right: 0rem;
+  }
+  .parent_box-home
+  {
+    margin-left: 0.3rem;
   }
   .title-home {
     margin-left: 0% !important;
