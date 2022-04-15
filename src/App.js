@@ -8,15 +8,19 @@ import NotFound from './Components/NotFound/NotFound';
 import Home from './Components/Home/Home';
 import AddClient from './Components/AddClient/AddClient';
 
+import Editorder from './Components/EditOrder/editOrder';
+
+
 const App = () => {
   return (
     <>
 
       <Routes>
-        <Route exact path="/navbar" element={<Navbar />} />
+      <Route exact path="/navbar" element={<Navbar />} />
         <Route path="/" exact element={<Test/>}/>
         <Route path='*' exact element={<NotFound/>}/>
         <Route path="/create" exact element={<NewOrder/>}/>
+        <Route path="/EditOrder" exact element={<Editorder/>}/>
         <Route path="/home" exact element={<Home/>}/>
         <Route path="/modal" exact element={<AddClient/>}/>
       </Routes>
