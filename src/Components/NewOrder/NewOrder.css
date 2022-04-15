@@ -1,6 +1,6 @@
 .no-heading{
     height: auto;
-    width: 400px;
+    /* width: 400px; */
     /* left: 328px; */
     /* top: 160px; */
     border-radius: nullpx;
@@ -119,6 +119,7 @@ content: '✖';
     height: 44px !important;
 }
 .no-browse-text{
+    margin-left: 0 !important;
     cursor: pointer !important;
     margin-top: 5px !important;
     height: 44px !important;
@@ -165,6 +166,13 @@ content: '✖';
     font-weight: bold;
     border-bottom: 1px solid #ced4da;
 }
+@media only screen and (max-width: 900px) {
+
+    .no-browse{
+        font-size: 1rem;
+    }
+  
+  }
 @media only screen and (max-width: 600px) {
     .no-main{
         padding: 0 !important;
@@ -174,5 +182,12 @@ content: '✖';
     }
     .no-add-btn{
         margin-left: 15px !important;
+    }
+    .no-order-type + label{
+        width:130px !important;
+        height: 44px !important;
+    }
+    .no-heading{
+        margin-left: 25px;
     }
   }
