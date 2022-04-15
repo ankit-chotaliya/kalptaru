@@ -10,6 +10,8 @@ import Home from './Components/Home/Home';
 import AddClient from './Components/AddClient/AddClient';
 import Editorder from './Components/EditOrder/editOrder';
 import ConfirmOrder from './Components/ConfirmOrder/ConfirmOrder';
+import ModalButton from './Components/Helper/ModalButton/ModalButton';
+import Settings from './Components/Settings/Settings';
 
 
 const App = () => {
@@ -24,7 +26,9 @@ const App = () => {
         <Route path="/orderConfirm" exact element={<ConfirmOrder show={false}/>}/>
         <Route path="/EditOrder" exact element={<Editorder/>}/>
         <Route path="/home" exact element={<Home/>}/>
-        <Route path="/modal" exact element={<AddClient/>}/>
+        <Route path="/settings" exact element={<Settings/>}/>
+        <Route path="/modal" exact element={<ModalButton/>}/>
+        
       </Routes>
 
     </>

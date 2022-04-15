@@ -59,7 +59,7 @@ function Navbar() {
                   <p className='nav_logotext'>Shree Kalptaru</p>
                 </div>
         </div>
-        <nav ref = {click} className={sidebar ? 'nav-menu active' : 'nav-menu'} id="navMenu">
+        <nav ref = {click} className={sidebar ? 'nav-menu active' : 'nav-menu'} id="navMenu" style={{zIndex:999}}>
           <ul className='nav-menu-items' onClick={showSidebar}>
             <li className='navbar-toggle'>
               <Link to='#' className='menu-bars'>
