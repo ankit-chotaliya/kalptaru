@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './NewOrder.css'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import NewOrderComponent from './NewOrderComponent'
-
+import NavBar from '../NavBar/NavBar'
 /*track
   test={}
   [{
@@ -120,7 +120,7 @@ const NewOrder = () => {
   const handleAddMore=(e)=>{
     e.preventDefault();
     if(karigar=="" || pCategory=="" || melting=="" || refNum=="" || qty=="" || weightFrom=="" || weightTo=="" || dDate=="" || priority=="" || huid=="" || oType==""){
-      alert("All the Information Required!")
+      alert("All the Information Required 1!")
       return;
     }
     setFData(fData=>[...fData,{
@@ -177,7 +177,7 @@ const NewOrder = () => {
   const handleSubmit=(e)=>{
     e.preventDefault();
     if(karigar=="" || pCategory=="" || melting=="" || refNum=="" || qty=="" || weightFrom=="" || weightTo=="" || dDate=="" || priority=="" || huid=="" || oType==""){
-      alert("All the Information Required!")
+      alert("All the Information Required 2!")
       return;
     }
     setFData(fData=>[...fData,{
@@ -212,7 +212,8 @@ const NewOrder = () => {
   }
   return (
     <>
-    
+        <NavBar/>
+       
         <div className='container no-main no-border'>
             <div className='no-heading'>
               <AiOutlineArrowLeft/> New Order

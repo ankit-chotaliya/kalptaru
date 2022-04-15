@@ -1,16 +1,30 @@
 import React, { useState } from 'react'
 import {AiOutlineUpload} from 'react-icons/ai'
 import {ImAttachment} from 'react-icons/im'
+import AddClient from '../AddClient/AddClient';
+import AddKarigar from '../AddKarigar/AddKarigar';
 const NewOrderComponent = (props) => {
     const [imglen,setImglen]=useState(0);
-
+    const [addClientModal,setAddClientModal]=useState(false);
+    const [addKarigarModal,setAddKarigarModal]=useState(false);
     const handleimgchange=(e)=>{
         setImglen(e.target.files.length);
         props.handleimg(e);
     }
+
+    const handleClient=(e)=>{
+        e.preventDefault();
+        setAddClientModal(true);
+    }
+
+    const handleAddKarigar=(e)=>{
+        e.preventDefault();
+        setAddKarigarModal(true);
+    }
     return (
 
     <>
+
     <div className='row'>
         <div className={props.number==1?'col-md-12 mt-4 no-order-number':'col-md-12 mt-4 no-order-number mt-5'}>
         Order #{props.number}
@@ -26,7 +40,11 @@ const NewOrderComponent = (props) => {
             <option value="2">Two</option>
             <option value="3">Three</option>
             </select>
-            <button className='no-add-btn'> Add </button>
+            <button className='no-add-btn' onClick={handleClient}> Add </button>
+            <AddClient
+            show={addClientModal}
+            onHide={() => setAddClientModal(false)}
+            />
         </div>
         </div>:null}
         
@@ -39,7 +57,11 @@ const NewOrderComponent = (props) => {
             <option value="2">Two</option>
             <option value="3">Three</option>
             </select>
-            <button className='no-add-btn'> Add </button>
+            <button className='no-add-btn' onClick={handleAddKarigar}> Add </button>
+            <AddKarigar
+            show={addKarigarModal}
+            onHide={() => setAddKarigarModal(false)}
+            />
         </div>
         </div>
     </div>
