@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Modal,Button} from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import './AddClient.css';
 const AddClient = (props) => {
   const [clientID,setClientID]=useState("");
   const [clientName,setClientName]=useState("");

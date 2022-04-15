@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Modal,Button} from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import './AddKarigar.css';
 const AddKarigar = (props) => {
     const [karigarID,setKarigarID]=useState("");
     const [karigarName,setKarigarName]=useState("");
