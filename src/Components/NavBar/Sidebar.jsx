@@ -8,37 +8,37 @@ import * as BsIcons from 'react-icons/bs';
 export const SidebarData = [
   {
     title: 'New Order',
-    path: '/',
+    path: '/New Order',
     icon: <GrIcons.GrAddCircle />,
     cName: 'nav-text'
   },
   {
     title: 'Edit Order',
-    path: '/reports',
+    path: '/EditOrder',
     icon: <BiIcons.BiEdit />,
     cName: 'nav-text'
   },
   {
     title: 'Track Order',
-    path: '/products',
+    path: '/Track Order',
     icon: <AiIcons.AiOutlineFileSearch />,
     cName: 'nav-text'
   },
   {
     title: 'Send Reminder',
-    path: '/team',
+    path: '/Send Reminder',
     icon: <MdIcons.MdOutlineNotificationAdd />,
     cName: 'nav-text'
   },
   {
     title: 'Completed Orders',
-    path: '/messages',
+    path: '/Completed Orders',
     icon: <AiIcons.AiOutlineFileDone/>,
     cName: 'nav-text'
   },
   {
     title: 'Urgent Orders',
-    path: '/support',
+    path: '/Urgent Orders',
     icon: <BsIcons.BsExclamationCircle />,
     cName: 'nav-text'
   }
