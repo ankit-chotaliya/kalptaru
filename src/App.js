@@ -5,6 +5,7 @@ import NewOrder from './Components/NewOrder/NewOrder'
 import Test from './Components/Test/Test'
 import NotFound from './Components/NotFound/NotFound'
 import Home from './Components/Home/Home'
+import EditOrder2 from './Components/EditOrder/EditOrder2'
 const App = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const App = () => {
         <Route path='*' exact element={<NotFound/>}/>
         <Route path="/create" exact element={<NewOrder/>}/>
         <Route path="/home" exact element={<Home/>}/>
+        <Route path="/editorder2" exact element={<EditOrder2/>}/>
       </Routes>
     </>
   )
