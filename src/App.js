@@ -12,14 +12,8 @@ import Editorder from './Components/EditOrder/editOrder';
 import ConfirmOrder from './Components/ConfirmOrder/ConfirmOrder';
 import ModalButton from './Components/Helper/ModalButton/ModalButton';
 import Settings from './Components/Settings/Settings';
+import EditOrder2 from './Components/EditOrder/editOrder2';
 
-
-import {Route, Routes} from 'react-router-dom'
-import NewOrder from './Components/NewOrder/NewOrder'
-import Test from './Components/Test/Test'
-import NotFound from './Components/NotFound/NotFound'
-import Home from './Components/Home/Home'
-import EditOrder2 from './Components/EditOrder/EditOrder2'
 const App = () => {
   return (
     <>
@@ -27,7 +21,6 @@ const App = () => {
       <Routes>
       <Route exact path="/navbar" element={<Navbar />} />
         <Route path="/" exact element={<Test/>}/>
-        
         <Route path='*' exact element={<NotFound/>}/>
         <Route path="/create" exact element={<NewOrder/>}/>
         <Route path="/orderConfirm" exact element={<ConfirmOrder show={false}/>}/>
@@ -35,8 +28,7 @@ const App = () => {
         <Route path="/home" exact element={<Home/>}/>
         <Route path="/settings" exact element={<Settings/>}/>
         <Route path="/modal" exact element={<ModalButton/>}/>
-
-        <Route path="/editorder2" exact element={<EditOrder2/>}/>
+        <Route path="/editOrder2" exact element={<EditOrder2/>}/>
       </Routes>
     </>
   )

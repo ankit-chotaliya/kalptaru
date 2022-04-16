@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
+
+body {
+    font-family: "Montserrat", sans-serif !important;
+}
+
+.editbackbtn {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#backbtn {
+    color: black;
+    height: 28px;
+    width: 28px;
+    top: 24px;
+    left: 24px;
+    margin: 2px;
+}
+
+.editorder-text {
+    font-family: cursive;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: left;
+    color: #1F1F1F;
+    margin: 0 !important;
+}
+
+#deleteicon {
+    height: 25px;
+    width: 25px;
+}
+
+.editicons {
+    position: absolute;
+    right: 18%;
+}
+
+.clienttitle {
+
+    font-weight: 600;
+    font-size: 22px;
+}
