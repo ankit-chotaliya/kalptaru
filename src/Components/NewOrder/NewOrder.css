@@ -1,3 +1,193 @@
 .no-heading{
-    color: blue;
+    height: auto;
+    /* width: 400px; */
+    /* left: 328px; */
+    /* top: 160px; */
+    border-radius: nullpx;
+    font-family:cursive;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-weight: bold;
 }
+.no-modal{
+    width: auto;
+}
+.no-main{
+    margin-top: auto;
+    transition: all 0.3s linear 1s;
+    padding: 4rem !important;
+}
+.no-form{
+    padding: 0 33px;
+}
+.no-select{
+    width: 80% !important;
+    margin-top: 5px !important;
+    height: 44px !important;
+    border-radius: 0px !important;
+}
+.no-add-btn{
+    width: 79px;
+    margin-top: 5px !important;
+    margin-left: auto !important;
+    height: 44px !important;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    background-color: var(--darkGreen);
+    color: var(--bgColor);
+}
+.no-select-full-row{
+    margin-top: 5px !important;
+    height: 44px !important;
+    border-radius: 0px !important;
+}
+.no-input{
+    border: none !important;
+    border-bottom: 0.3px solid var(--textColor) !important;
+    margin-top: 5px !important;
+    height: 44px !important;
+    border-radius: 0px !important;
+}
+.no-input[type="text"]:focus,
+.no-input[type="password"]:focus,
+.no-input[type="datetime"]:focus,
+.no-input[type="datetime-local"]:focus,
+.no-input[type="month"]:focus,
+.no-input[type="time"]:focus,
+.no-input[type="week"]:focus,
+.no-input[type="number"]:focus,
+.no-input[type="email"]:focus,
+.no-input[type="url"]:focus,
+.no-input[type="search"]:focus,
+.no-input[type="tel"]:focus,
+.no-input[type="color"]:focus{
+    box-shadow: none !important;
+}
+.no-validity{
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+.no-validity::after {
+    padding-left: 25px;
+  }
+  
+.no-select[type="date"]:valid + .no-validity::after {
+content: '✓';
+} 
+.no-select[type="date"]:invalid + .no-validity::after {
+content: '✖';
+}
+
+.no-radio {
+    display: none;
+}
+.no-radio + label {
+    border: 1px solid var(--darkGreen);
+    background: var(--bgColor);
+    /* padding: 5px 8px; */
+    margin-top: 5px !important;
+    cursor: pointer;
+    border-radius: 0 !important;
+    width: 64px !important;
+    height: 44px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 25px;
+}
+.form-check{
+    padding-left: 0 !important;
+}
+.no-radio:not(:checked) + label:hover {
+    box-shadow: 0px 1px 3px;
+}
+.no-radio + label:active,
+.no-radio:checked + label {
+    box-shadow: 0px 0px 3px var(--darkGreen);
+    background: var(--darkGreen);
+    color: var(--bgColor);
+}
+.no-checkbtn-text::placeholder{
+    text-align: center;
+}
+.no-order-type + label{
+    width:148px !important;
+    height: 44px !important;
+}
+.no-browse-text{
+    margin-left: 0 !important;
+    cursor: pointer !important;
+    margin-top: 5px !important;
+    height: 44px !important;
+    border: 1px solid #ced4da;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.no-browse{
+    font-size: 1.5rem;
+    position:absolute;
+    height: 44px !important;
+    opacity: 0;
+}
+.no-browse-icon{
+    font-size: 1.5rem;
+    margin-left: 10px;    
+}
+.no-add-more{
+    outline: line;
+    border: none;
+    border-radius: 0% !important;
+    color: var(--darkGreen);
+    border: 2px solid var(--darkGreen);
+    width: 100%;
+    height: 44px;
+    background-color: transparent;
+    font-weight: bold;
+}
+.no-sub-btn{
+    outline: line;
+    border: none;
+    border-radius: 0% !important;
+    color: var(--bgColor);
+    border: 2px solid var(--darkGreen);
+    width: 100%;
+    height: 44px;
+    background-color: var(--darkGreen);
+    font-weight: bold;
+}
+.no-order-number{
+    font-weight: bold;
+    border-bottom: 1px solid #ced4da;
+}
+@media only screen and (max-width: 900px) {
+
+    .no-browse{
+        font-size: 1rem;
+    }
+  
+  }
+@media only screen and (max-width: 600px) {
+    .no-main{
+        padding: 0 !important;
+    }
+    .no-browse{
+        width: 70%;
+    }
+    .no-add-btn{
+        margin-left: 15px !important;
+    }
+    .no-order-type + label{
+        width:130px !important;
+        height: 44px !important;
+    }
+    .no-heading{
+        margin-left: 25px;
+    }
+  }

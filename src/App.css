@@ -7,12 +7,16 @@ BG : FFFFFF
 */
 :root{
     --darkGreen:#00A651;
-    --lightGreen:#8de26c;
+    --lightGreen:#91f16b;
+    --lightGreen2:#deffd1;
     --navColor:#F9F9FF;
     --textColor:#1f1f1f;
     --bgColor:#ffffff;
+    --redColor:#d70000;
 }
-
+body::-webkit-scrollbar {
+    display: none;
+  }
 /* how to use?
     property-name:var(--darkGreen);
 */
