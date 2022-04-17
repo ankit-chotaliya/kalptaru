@@ -28,9 +28,6 @@
     cursor: pointer;
     transition: all 0.3s linear 0.5s;
 }
-.lv-icon:hover{
-    
-}
 
 @media only screen and (max-width: 600px) {
     .lv-list{

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ModalHelper from '../Modal/ModalHelper';
 import {FiRefreshCw} from 'react-icons/fi'
+import {RiDeleteBin6Line} from 'react-icons/ri'
 import repeatImg from './repeat.png'
 const ModalButton = () => {
     const [modalReply,setModalReply]=useState(false);
@@ -23,7 +24,7 @@ const ModalButton = () => {
         <ModalHelper
             show={viewModal}
             onHide={() => setViewModal(false)}
-            icon={repeatImg}
+            icon={<RiDeleteBin6Line/>}
             text="Are you sure you want to repeat this order?"
             onReply={handleModalReply}
         />  
