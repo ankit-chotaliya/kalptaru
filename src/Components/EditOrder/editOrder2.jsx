@@ -9,16 +9,57 @@ import ring from "./ring.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-function editOrder2() {
 
+
+
+function editOrder2() {
 
     const config = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024, // width to change options
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    initialSlide: 1
+                }
+            }
+        ]
     };
+    console.log(config);
+    if (window.innerWidth < 600) {
+        const config = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        };
+        console.log("hello");
+    }
+    else {
+        const config = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 1
+        };
+    }
     const products = [
         {
             img: ring,
@@ -41,7 +82,8 @@ function editOrder2() {
             title: 'Ring5',
         }
     ]
-
+    console.log(window.innerHeight);
+    console.log(window.innerWidth);
     return (
         <>
             <Navbar />
@@ -49,7 +91,7 @@ function editOrder2() {
             <div className="container-fluid ">
                 <div className="row">
                     <div className="col-md-2"></div>
-                    <div className='col-md-8'>
+                    <div className='col-md-8 mb-5'>
                         <div className=" mt-4 editbackbtn d-flex " id='editbackbtn'>
 
                             <Link to='../Home'>
@@ -59,22 +101,24 @@ function editOrder2() {
                             <p className='editicons'><HiOutlineTrash id='deleteicon' /> &nbsp; <VscEdit id='deleteicon' /></p>
 
                         </div>
-                        <div className='clientdetails mt-5 mx-5'>
+                        <div className='clientdetails mt-5'>
                             <p className='clienttitle'>Client Details</p>
                             <div className='table-responsive-md clientdata'>
                                 <table>
-                                    <tr>
-                                        <td className='twidth'>Client Name:</td>
-                                        <td className='twidth'>Harsh Panchal</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='twidth'>Phone no:</td>
-                                        <td className='twidth'>123456789</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='twidth'>Email Id:</td>
-                                        <td className='twidth'>personal@gmail.com</td>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td className='twidth'>Name:</td>
+                                            <td className='twidth'>Harsh Panchal</td>
+                                        </tr>
+                                        <tr>
+                                            <td className='twidth'>Phone no:</td>
+                                            <td className='twidth'>123456789</td>
+                                        </tr>
+                                        <tr>
+                                            <td className='twidth'>Email Id:</td>
+                                            <td className='twidth'>personalabcd@gmail.com</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <hr />
@@ -151,4 +195,4 @@ function editOrder2() {
     )
 }
 
-export default editOrder2
+export default editOrder2;

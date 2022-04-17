@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from '../NavBar/Navbar';
 import newOrder from "./icons/plus.png";
 import editOrder from "./icons/edit.png";
 import trackOrder from "./icons/search.png";
@@ -9,10 +10,11 @@ import "./Home.css";
 function Home() {
   return (
     <>
+    <Navbar />
       <div className="container-fluid bg-home">
         <div className="row">
           <div className="col-md-2"></div>
-          <div className="col-md-8 colcenter-home">
+          <div className="col-md-8 colcenter-home mb-5">
             <div className="parent_box-home"> <div className="title-home mt-5">Order Status</div></div>
             <div className="parent_box-home">
               <div className="row contentaround-home ">
