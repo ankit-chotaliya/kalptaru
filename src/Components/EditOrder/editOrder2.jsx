@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
 import { HiOutlineTrash } from "react-icons/hi";
 import { VscEdit } from "react-icons/vsc";
-import { GrPrevious, GrNext } from "react-icons/gr";
 import ring from "./ring.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
