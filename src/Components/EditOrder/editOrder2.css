@@ -46,15 +46,16 @@ body {
     font-size: 22px;
 }
 
-.twidth{
+.twidth {
     width: 50%;
 }
+
 .bwidth {
-    width:57%;
+    width: 57%;
 }
 
 .slider {
-    margin:20px 0px;
+    margin: 20px 0px;
 }
 
 .cb-centermode {
@@ -95,4 +96,28 @@ body {
 
 .slick-slide *:focus {
     outline: none;
+}
+
+@media screen and (max-width: 325px) {
+    .slick-slide img {
+        height: auto !important;
+        width: 60px !important;
+    }
+
+    #backbtn {
+        height: 20px !important;
+        width: 20px !important;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .slick-slide img {
+        height: auto !important;
+        width: 70px !important;
+    }
+
+    #backbtn {
+        height: 20px !important;
+        width: 20px !important;
+    }
 }

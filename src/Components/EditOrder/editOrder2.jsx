@@ -143,11 +143,6 @@ function editOrder2() {
                                     </tr>
                                 </table>
                             </div>
-
-
-
-
-
                         </div>
                     </div>
                     <div className="col-md-2"></div>
