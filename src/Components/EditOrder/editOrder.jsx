@@ -1,44 +1,59 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../NavBar/Navbar';
-import { BiArrowBack } from "react-icons/bi";
+import React from 'react'
+import Navbar from '../NavBar/Navbar'
+import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { FiEdit2 } from 'react-icons/fi'
 import './editOrder.css';
-import { editData } from './editData';
-
+import ListView from '../Helper/ListView/ListView';
 function editOrder() {
   return (
     <>
-      <Navbar />
-      <div style={{'width':'160px'}} className=" mt-4 editbackbtn d-flex " id='editbackbtn'>
-        <Link to='../Home'>
-          <BiArrowBack id='backbtn'/>
-        </Link>
-        <p className='editorder-text' id='editorder-text' >Edit Order</p>
-      </div>
+    <Navbar/>
+        <div className='container no-main no-border pageview'>
+            <div className='no-heading'>
+              <AiOutlineArrowLeft/> Edit Order
+            </div>
 
-      <div className='container' id="container">
-        <ui className='editorder-data' id="editorder-data">
-          {editData.map((item, index) => {
-            return (
-              <li key={index} className={item.cName} id="editOrder">
-                <div id='clientdiv'>
-                  Client Name:
-                  <text id='cname'>{item.cname}</text>
-                </div>
-                <div id='refnodiv'>
-                  Ref No:
-                  <text  id='rno'>{item.rno}</text>
-                </div>
-                <div id='editicon'><Link style={{ color: 'black' }} to={'#'}>{item.icon}</Link></div>
-                <hr style={{ 'marginTop': '30px', 'zIndex':'0' }}></hr>
-              </li>
-            );
-          })}
-        </ui>
-      </div>
+            <div className='eo-container mt-4'>
+                <ListView
+                property1="Client Name: "
+                property2="Ref No: "
+                value1="Parth Goti"
+                value2="1234"
+                icon={<FiEdit2/>}
+                />
+                <ListView
+                property1="Client Name: "
+                property2="Ref No: "
+                value1="Parth Goti"
+                value2="1234"
+                icon={<FiEdit2/>}
+                />
+                <ListView
+                property1="Client Name: "
+                property2="Ref No: "
+                value1="Parth Goti"
+                value2="1234"
+                icon={<FiEdit2/>}
+                />
+                <ListView
+                property1="Client Name: "
+                property2="Ref No: "
+                value1="Parth Goti"
+                value2="1234"
+                icon={<FiEdit2/>}
+                />
+                <ListView
+                property1="Client Name: "
+                property2="Ref No: "
+                value1="Parth Goti"
+                value2="1234"
+                icon={<FiEdit2/>}
+                />
+            </div>
 
-    </>
+        </div>
+        </>
   )
 }
 
-export default editOrder;
+export default editOrder
