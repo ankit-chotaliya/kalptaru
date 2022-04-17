@@ -18,7 +18,7 @@ body::-webkit-scrollbar {
     display: none;
   }
 .pageview{
-    margin-top: 10px !important;
+    
     width: 70% !important;
 }
 
@@ -26,6 +26,7 @@ body::-webkit-scrollbar {
 @media only screen and (max-width: 600px){
     .pageview {
         width: 100% !important;
+        margin-top: 10px !important;
     }
 }
 /* how to use?

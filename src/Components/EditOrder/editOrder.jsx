@@ -12,7 +12,7 @@ function editOrder() {
             <div className='no-heading'>
               <AiOutlineArrowLeft/> Edit Order
             </div>
-            
+
             <div className='eo-container mt-4'>
                 <ListView
                 property1="Client Name: "
@@ -50,7 +50,7 @@ function editOrder() {
                 icon={<FiEdit2/>}
                 />
             </div>
-           
+
         </div>
         </>
   )
