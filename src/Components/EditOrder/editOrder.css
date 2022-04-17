@@ -1,0 +1,6 @@
+.eo-container{
+    width: auto;
+    height: auto;
+    position: relative;
+    transition: all 0.3s linear 0.5s;
+}

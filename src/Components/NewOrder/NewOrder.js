@@ -214,7 +214,7 @@ const NewOrder = () => {
     <>
         <NavBar/>
        
-        <div className='container no-main no-border'>
+        <div className='container no-main no-border pageview'>
             <div className='no-heading'>
               <AiOutlineArrowLeft/> New Order
             </div>

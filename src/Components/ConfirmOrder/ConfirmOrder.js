@@ -55,7 +55,7 @@ const ConfirmOrder = () => {
   return (
     <>
         <Navbar/>
-        <div className='container no-main no-border'>
+        <div className='container no-main no-border pageview'>
             <div className='no-heading'>
               <AiOutlineArrowLeft/> Order Confirm
             </div>
