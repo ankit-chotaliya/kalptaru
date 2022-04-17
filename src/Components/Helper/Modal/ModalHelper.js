@@ -13,7 +13,7 @@ const ModalHelper = (props) => {
         <Modal.Body className='mh-modal'>
             <div className='mh-container'>
                 <div className='mh-icon'>
-                    <img src={props.icon}/>
+                    {props.icon}
                 </div>
                 <div className='mh-title'>
                     {props.text}
