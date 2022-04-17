@@ -18,6 +18,7 @@ body::-webkit-scrollbar {
     display: none;
   }
 .pageview{
+    margin-top: 10px !important;
     width: 70% !important;
 }
 
