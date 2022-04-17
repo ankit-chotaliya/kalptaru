@@ -2,6 +2,7 @@
 @import url("https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css");
 @import url("https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css");
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+
 body {
     font-family: "Montserrat", sans-serif !important;
 }
@@ -36,7 +37,7 @@ body {
 
 .editicons {
     position: absolute;
-    right: 18%;
+    right: 7%;
 }
 
 .clienttitle {
@@ -45,26 +46,53 @@ body {
     font-size: 22px;
 }
 
-td {
+.twidth{
     width: 50%;
 }
-
-
-
-
-/* ------------------------------------------------- */
-
-.slider
-{
-    margin:40px 0px;
+.bwidth {
+    width:57%;
 }
-.img-slider {
-    width:22%;
-    margin:5px;
-    border-radius: 5px;
+
+.slider {
+    margin:20px 0px;
 }
-.btn-slider
-{
-    border:none;
-    background-color:white;
+
+.cb-centermode {
+    margin-bottom: 20px;
+    display: block;
+}
+
+.cb-centermode input {
+    margin-right: 7px;
+}
+
+
+.img-card {
+    border-radius: 4px;
+    color: #666;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.img-card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.img {
+    width: 300px;
+    object-fit: cover;
+}
+
+
+.slick-slide>div {
+    margin: 0 10px;
+}
+
+.slick-list {
+    margin: 0 -10px;
+}
+
+.slick-slide *:focus {
+    outline: none;
 }

@@ -5,57 +5,48 @@ import { Link } from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
 import { HiOutlineTrash } from "react-icons/hi";
 import { VscEdit } from "react-icons/vsc";
-import {GrPrevious, GrNext} from "react-icons/gr";
+import { GrPrevious, GrNext } from "react-icons/gr";
 import ring from "./ring.jpg";
-import { Helmet } from "react-helmet";
-import $ from 'jquery';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 function editOrder2() {
 
 
-    $(document).ready(function () {
-
-        $('.items').slick({
-            dots: true,
-            infinite: true,
-            speed: 800,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-
-            ]
-        });
-    });
+    const config = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+    };
+    const products = [
+        {
+            img: ring,
+            title: 'Ring1',
+        },
+        {
+            img: ring,
+            title: 'Ring2',
+        },
+        {
+            img: ring,
+            title: 'Ring3',
+        },
+        {
+            img: ring,
+            title: 'Ring4',
+        },
+        {
+            img: ring,
+            title: 'Ring5',
+        }
+    ]
 
     return (
         <>
             <Navbar />
-            <Helmet>
-            </Helmet>
+
             <div className="container-fluid ">
                 <div className="row">
                     <div className="col-md-2"></div>
@@ -74,16 +65,16 @@ function editOrder2() {
                             <div className='table-responsive-md clientdata'>
                                 <table>
                                     <tr>
-                                        <td>Client Name:</td>
-                                        <td>Harsh Panchal</td>
+                                        <td className='twidth'>Client Name:</td>
+                                        <td className='twidth'>Harsh Panchal</td>
                                     </tr>
                                     <tr>
-                                        <td>Phone no:</td>
-                                        <td>123456789</td>
+                                        <td className='twidth'>Phone no:</td>
+                                        <td className='twidth'>123456789</td>
                                     </tr>
                                     <tr>
-                                        <td>Email Id:</td>
-                                        <td>personal@gmail.com</td>
+                                        <td className='twidth'>Email Id:</td>
+                                        <td className='twidth'>personal@gmail.com</td>
                                     </tr>
                                 </table>
                             </div>
@@ -91,26 +82,24 @@ function editOrder2() {
 
                             <p className='clienttitle'>Order Details</p>
 
-
                             <div className='slider'>
-                            <button className='btn-slider'><GrPrevious></GrPrevious></button>
-                            <img className='img-slider' src={ring}></img>
-                            <img className='img-slider' src={ring}></img>
-                            <img className='img-slider' src={ring}></img>
-                            <img className='img-slider' src={ring}></img>
-                            <button className='btn-slider'><GrNext></GrNext></button>
-                            
+                                <Slider {...config}>
+                                    {products.map((x, i) => {
+                                        return <div key="{i}" className="img-card">
+                                            <img className="img" src={x.img} />
+                                        </div>
+                                    })}
+                                </Slider>
                             </div>
-                        
 
 
 
 
-                            <div className='table-responsive-md clientdata'>
+                            <div className='table-responsive-md mt-5 clientdata'>
                                 <table>
                                     <tr>
-                                        <td>Order No:</td>
-                                        <td>12</td>
+                                        <td className='bwidth'>Order No:</td>
+                                        <td className='bwidth'>12</td>
                                     </tr>
                                     <tr>
                                         <td>Order Date:</td>
