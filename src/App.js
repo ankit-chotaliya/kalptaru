@@ -9,9 +9,11 @@ import NotFound from './Components/NotFound/NotFound';
 import Home from './Components/Home/Home';
 import AddClient from './Components/AddClient/AddClient';
 import Editorder from './Components/EditOrder/editOrder';
+import SendReminder from "./Components/SendReminder/SendReminder";
 import ConfirmOrder from './Components/ConfirmOrder/ConfirmOrder';
 import ModalButton from './Components/Helper/ModalButton/ModalButton';
 import Settings from './Components/Settings/Settings';
+import CompletedOrder from './Components/CompletedOrder/CompletedOrder';
 
 
 const App = () => {
@@ -28,6 +30,8 @@ const App = () => {
         <Route path="/home" exact element={<Home/>}/>
         <Route path="/settings" exact element={<Settings/>}/>
         <Route path="/modal" exact element={<ModalButton/>}/>
+        <Route path="/sendreminder" exact element={<SendReminder/>}/>
+        <Route path="/completedorder" exact element={<CompletedOrder/>}/>
         
       </Routes>
 
