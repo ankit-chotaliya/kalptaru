@@ -1,6 +1,7 @@
 import React from 'react'
 import {Modal} from 'react-bootstrap'
 import './ModalHelper.css'
+
 const ModalHelper = (props) => {
   return (
     <Modal

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ModalHelper from '../Modal/ModalHelper';
-import {FiRefreshCw} from 'react-icons/fi'
+import {FiRefreshCw} from 'react-icons/fi';
 import repeatImg from './repeat.png'
 const ModalButton = () => {
     const [modalReply,setModalReply]=useState(false);

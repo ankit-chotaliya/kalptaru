@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './editOrder2.css'
 import Navbar from '../NavBar/Navbar';
+import ModalHelper from '../Helper/ModalButton/ModalButton'
 import { Link } from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
 import { HiOutlineTrash } from "react-icons/hi";
@@ -13,6 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 function editOrder2() {
+    
 
     const config = {
         dots: true,
@@ -106,7 +108,10 @@ function editOrder2() {
                                 <BiArrowBack id='backbtn' />
                             </Link>
                             <p className='editorder-text' id='editorder-text' > &nbsp; Edit Order</p>
-                            <p className='editicons'><HiOutlineTrash id='deleteicon' /> &nbsp; <VscEdit id='deleteicon' /></p>
+                            <p className='editicons'><HiOutlineTrash id='deleteicon' /> &nbsp;
+                              <VscEdit id='deleteicon' />
+                             </p>
+                             
 
                         </div>
                         <div className='clientdetails mt-5'>
