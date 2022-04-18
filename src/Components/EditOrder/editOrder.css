@@ -4,3 +4,16 @@
     position: relative;
     transition: all 0.3s linear 0.5s;
 }
+
+@media only screen and (max-width: 600px) {
+    .eof-up-btn{
+        position: fixed !important;
+        overflow: scroll !important;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+    }
+    .eof-mob{
+        margin-bottom: 10%;
+    }
+  }
