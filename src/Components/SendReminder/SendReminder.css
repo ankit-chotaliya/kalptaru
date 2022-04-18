@@ -5,22 +5,24 @@
     align-items: center;
     margin-top: 2px;
     /* border: 1px solid rebeccapurple; */
+    margin-right: 20px;
 }
 
-#container {
+/* #container {
     padding-top: 20px !important;
-}
+} */
 
 .sr-btn{
     outline: none;
     border-radius: 8px;
     align-items: center;
-    height: 44px;
     background: transparent;
     font-family: none;
     border: none;
     background-color: #F9F9FF;
-    margin-left: 15px;
+    width: 96px;
+    height: 44px;
+    /* margin-left: 15px; */
 }
 .sr-btn:hover{
     background-color: var(--lightGreen2);
@@ -33,46 +35,45 @@
     font-family:cursive;
     display: flex;
     align-items: center;
-    width: 100%;
     font-size: 24px;
     line-height: 28px;
     letter-spacing: 0em;
     text-align: left;
     font-weight: bold;
 }
-
+.sr-btn-bt{
+    margin: 0 10px;
+}
 
 @media only screen and (max-width: 280px) {
         .sr-btns{
             width: 90% !important;
             margin-top: 25px !important;
+            justify-content: space-between;
+            font-size: 1rem;
         }
-
-        #container {
-            padding: 5px !important;
+        .sr-btn{
+            width: 80px;
         }
   }
-@media only screen and (max-width: 600px) {
-
-    #container {
-        padding: 5px !important;
+@media only screen and (max-width: 1170px) {
+    .sr-btn-bt{
+        margin: 0 0;
     }
     .sr-heading{
         flex-direction: column;
     }
     .sr-btns {
         margin-top: 25px !important;
-        width: fit-content !important;
+        /* border: 2px solid red; */
+        width: 100% !important;
+        justify-content: space-between;
     }
     .sr-editorder{
         width: 100% !important;
     }
   }
-@media only screen and (max-width: 1120px) {
-
-    #container {
-        padding: 5px !important;
-    }
+/* @media only screen and (max-width: 1170px) {
     .sr-editorder {
         width: 40% ;
     } 
@@ -80,3 +81,11 @@
         width: 60%;
     }
   }
+  @media only screen and (max-width: 920px) {
+    .sr-editorder {
+        width: 60% ;
+    } 
+    .sr-btns{
+        width: 40%;
+    }
+  } */
