@@ -8,15 +8,15 @@ function CompletedOrder() {
   return (
     <>
     <Navbar/>
-        <div className='container no-main no-border pageview' id="container">
-            <div className='co-heading'>
-            <div className='co-editorder'>
+        <div className='container no-main no-border pageview'>
+            <div className='cmt-o-heading no-heading'>
+            <div className='cmt-o-editorder'>
               <AiOutlineArrowLeft/> Completed Order
               </div>
-              <div className='co-btns'>
-              <button className='co-btn'>Urgent</button>
-              <button className='co-btn'>Fast</button>
-              <button className='co-btn'>Normal</button>
+              <div className='cmt-o-btns'>
+              <button className='cmt-o-btn'>Urgent</button>
+              <button className='cmt-o-btn cmt-o-btn-bt'>Fast</button>
+              <button className='cmt-o-btn'>Normal</button>
               </div>
             </div>
             
