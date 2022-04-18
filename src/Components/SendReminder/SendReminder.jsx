@@ -55,13 +55,7 @@ function SendReminder() {
                 value2="1234"
                 icon={<FiSend/>}
                 />
-                <ListView
-                property1="Client Name: "
-                property2="Ref No: "
-                value1="Parth Goti"
-                value2="1234"
-                icon={<FiSend/>}
-                />
+                
             </div>
 
         </div>
