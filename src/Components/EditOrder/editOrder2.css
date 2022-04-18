@@ -7,11 +7,11 @@ body {
     font-family: "Montserrat", sans-serif !important;
 }
 
-.clientdetails
-{
-    margin-left:3rem;
-    margin-right:3rem;
+.clientdetails {
+    margin-left: 3rem;
+    margin-right: 3rem;
 }
+
 .editbackbtn {
     margin-left: 0px;
     width: 100%;
@@ -50,6 +50,7 @@ body {
     font-weight: 600;
     font-size: 22px;
 }
+
 .table td.fit {
     white-space: nowrap;
     width: 20%;
@@ -57,6 +58,11 @@ body {
 
 .bwidth {
     width: 57%;
+}
+
+
+.twidth {
+    width: 175px;
 }
 
 .slider {
@@ -103,37 +109,14 @@ body {
     outline: none;
 }
 
-@media screen and (max-width: 325px) {
+@media screen and (max-width: 850px) {
     .slick-slide img {
-        height: auto !important;
-        width: 200px ;
-    }
-
-    #backbtn {
-        height: 20px !important;
-        width: 20px !important;
-    }
-    .clientdetails {
-        margin-right: 0.5rem !important;
-        margin-left: 0.5rem !important;
+        height: 150px !important;
+        width: auto !important;
     }
 }
 
-@media screen and (max-width: 380px) {
-    .slick-slide img {
-        height: auto !important;
-        width: 300px ;
-    }
 
-    #backbtn {
-        height: 20px !important;
-        width: 20px !important;
-    }
-    .clientdetails {
-        margin-right:1rem !important;
-        margin-left:1rem !important;
-    }
-}
 @media screen and (max-width: 450px) {
     .slick-slide img {
         height: auto !important;
@@ -144,8 +127,44 @@ body {
         height: 20px !important;
         width: 20px !important;
     }
+
     .clientdetails {
         margin-right: 2rem;
         margin-left: 2rem;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .slick-slide img {
+        height: auto !important;
+        width: 300px;
+    }
+
+    #backbtn {
+        height: 20px !important;
+        width: 20px !important;
+    }
+
+    .clientdetails {
+        margin-right: 1rem !important;
+        margin-left: 1rem !important;
+    }
+}
+
+
+@media screen and (max-width: 325px) {
+    .slick-slide img {
+        height: auto !important;
+        width: 200px;
+    }
+
+    #backbtn {
+        height: 20px !important;
+        width: 20px !important;
+    }
+
+    .clientdetails {
+        margin-right: 0.5rem !important;
+        margin-left: 0.5rem !important;
     }
 }

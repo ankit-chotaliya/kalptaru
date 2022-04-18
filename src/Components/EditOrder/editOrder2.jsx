@@ -31,6 +31,14 @@ function editOrder2() {
                 }
             },
             {
+                breakpoint: 950,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    initialSlide: 1
+                }
+            },
+            {
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 1,
