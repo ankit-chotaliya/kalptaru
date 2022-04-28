@@ -2,9 +2,9 @@ import React,{useState} from 'react'
 import Navbar from '../NavBar/Navbar'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import ModalHelper from '../Helper/Modal/ModalHelper';
-import { FiRepeat } from 'react-icons/fi'
 import './CompletedOrder.css';
 import ListView from '../Helper/ListView/ListView';
+import {FiRepeat} from 'react-icons/fi'
 function CompletedOrder() {
   const [viewModal,setViewModal]=useState(false);
   const handleModalReply=(e)=>{

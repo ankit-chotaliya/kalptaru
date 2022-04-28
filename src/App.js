@@ -32,7 +32,7 @@ const App = () => {
         <Route path="/settings" exact element={<Settings/>}/>
         <Route path="/modal" exact element={<ModalButton/>}/>
         <Route path="/sendreminder" exact element={<SendReminder/>}/>
-        <Route path="/completedorder" exact element={<CompletedOrder/>}/>
+        <Route path="/CompletedOrders" exact element={<CompletedOrder/>}/>
         
       </Routes>
 
