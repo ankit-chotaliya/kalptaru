@@ -1,10 +1,26 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Navbar from '../NavBar/Navbar'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
-import { FiRepeat } from 'react-icons/fi'
+import ModalHelper from '../Helper/Modal/ModalHelper';
 import './CompletedOrder.css';
 import ListView from '../Helper/ListView/ListView';
+import {FiRepeat} from 'react-icons/fi'
 function CompletedOrder() {
+  const [viewModal,setViewModal]=useState(false);
+  const handleModalReply=(e)=>{
+    const reply=e.target.value;
+    console.log(reply);
+    if(reply == "true"){
+        alert("updated successfully!");
+    }else{
+        alert("Not Updated!");
+    }
+    setViewModal(false);
+}
+  const hadnleUpdateOrder=(e)=>{
+    e.preventDefault();
+    setViewModal(true);
+}
   return (
     <>
     <Navbar/>
@@ -26,44 +42,45 @@ function CompletedOrder() {
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiRepeat/>}
+                icon={<FiRepeat onClick={hadnleUpdateOrder}/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiRepeat/>}
+                icon={<FiRepeat onClick={hadnleUpdateOrder}/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiRepeat/>}
+                icon={<FiRepeat onClick={hadnleUpdateOrder}/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiRepeat/>}
+                icon={<FiRepeat onClick={hadnleUpdateOrder}/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiRepeat/>}
+                icon={<FiRepeat onClick={hadnleUpdateOrder}/>}
                 />
-                <ListView
-                property1="Client Name: "
-                property2="Ref No: "
-                value1="Parth Goti"
-                value2="1234"
-                icon={<FiRepeat/>}
-                />
+               
             </div>
+            <ModalHelper
+                    show={viewModal}
+                    onHide={() => setViewModal(false)}
+                    icon={<FiRepeat onClick={hadnleUpdateOrder}/>}
+                    text="Are you sure you want to Delete this Order?"
+                    onReply={handleModalReply}
+              />
         </div>
         </>
   )

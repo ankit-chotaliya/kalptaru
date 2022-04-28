@@ -1,53 +1,255 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
-body{
-	font-family: 'Montserrat', sans-serif !important;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif !important;
 }
-.bg-home
-{
-    background-color: var(--bgcolor);
-    width: 60%;
-    height: 500px !important;
-    margin: 0px 20% !important;
+
+.bg-home {
+  background-color: var(--bgcolor);
 }
-.title-home
-{
-    color:black;
-    font-weight: 100;
-    margin-top:7%;
-    font-size:25px;
-    margin-bottom:2%;
+
+.title-home {
+  color: black;
+  font-weight: 300;
+  font-size: 35px;
+  margin-left: 0.7rem !important;
 }
-.box-home
-{
-    width: 200px !important;
-    height:180px;
-    text-align: center;
-    background-color:var(--lightGreen) !important;
-    border:0 !important;
-    padding:20px 20px;
-    margin-right:30px;
+
+.boxcenter-home {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.boxrow-home
-{
-    margin-top: 50px !important;
+
+.box-home {
+  width: 18rem !important;
+  height: 250px;
+  text-align: center;
+  background-color: #deffd1 !important;
+  border: 0 !important;
+  padding: 1.5rem !important;
+  margin-top: 10%;
 }
-.newOrderlogo-home
-{
-    width:45px;
-    height:45px;
+
+.boxrow-home {
+  margin-top: 50px !important;
 }
-.editOrderlogo-home
-{
-    width:45px;
-    height:45px;
+
+.logo-home {
+  width: 55px;
+  height: 55px;
 }
-.trackOrderlogo-home
-{
-    width:45px;
-    height:45px;
+
+.box-body {
+  margin-top: 1.5rem;
 }
-.boxname-home
-{
-    margin-top:20px;
-    font-size:20px;
+
+.boxname-home {
+  margin-top: 25px;
+  font-size: 25px;
+}
+
+.parent_box-home {
+  margin-left: 1rem;
+}
+
+@media screen and (max-width: 1500px) {
+  .title-home {
+    margin-left: 0% !important;
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .title-home {
+    margin-left: 0% !important;
+    font-size: 25px;
+  }
+
+  .logo-home {
+    width: 45px;
+    height: 45px;
+  }
+
+  .boxname-home {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .box-body {
+    margin-top: 0%;
+  }
+
+  .box-home {
+    width: 15rem !important;
+    height: 180px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .logo-home {
+    width: 35px;
+    height: 35px;
+  }
+
+  .boxname-home {
+    margin-left: 0 !important;
+    font-size: 18px;
+  }
+
+  .box-home {
+    padding: 0 !important;
+    padding-top: 1.5rem !important;
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .box-home {
+    width: 11rem !important;
+    height: 140px;
+  }
+
+  .boxname-home {
+    margin-left: 0 !important;
+    font-size: 15px;
+  }
+
+  .boxcenter-home {
+    width: auto !important;
+    max-width: fit-content !important;
+  }
+
+  .boxrow-home {
+    margin-top: 0 !important;
+  }
+}
+
+@media screen and (max-width: 427px) {
+  .parent_box-home {
+    margin-left: 0%;
+  }
+
+  .logo-home {
+    width: 35px;
+    height: 35px;
+  }
+
+  .row {
+    padding: 0rem;
+  }
+
+  .box-home {
+    width: 11rem !important;
+    height: 140px;
+  }
+
+  .boxcenter-home {
+    width: auto !important;
+    max-width: fit-content !important;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .boxrow-home {
+    margin-top: 0 !important;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 2rem;
+    margin-right: 0rem;
+  }
+
+  .title-home {
+    margin-left: 4.5% !important;
+  }
+
+  .row {
+    margin-left: 3rem;
+  }
+
+  .parent_box-home {
+    margin-left: 0rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1.2rem;
+    margin-right: 0rem;
+  }
+
+  .boxcenter-home {
+    --bs-gutter-x: 1rem !important;
+  }
+
+  .title-home {
+    margin-left: 1.5% !important;
+  }
+
+  .parent_box-home {
+    margin-left: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1rem;
+    margin-right: 0rem;
+  }
+
+  .title-home {
+    margin-left: 0% !important;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .box-home {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1rem;
+    margin-right: 0rem;
+  }
+
+  .title-home {
+    margin-left: 0.5% !important;
+  }
+
+  .colcenter-home {
+    --bs-gutter-x: 1rem !important;
+  }
+
+  .parent_box-home {
+    margin-left: 0rem;
+  }
+
+}
+
+@media screen and (max-width: 325px) {
+  .box-home {
+    width: 9rem !important;
+    height: 140px;
+    margin-left: 0.7rem;
+    margin-right: 0rem;
+  }
+
+  .parent_box-home {
+    margin-left: 0.3rem;
+  }
+
+  .title-home {
+    margin-left: 0% !important;
+  }
 }
