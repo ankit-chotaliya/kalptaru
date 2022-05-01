@@ -53,7 +53,7 @@
     transition: all 0.1s linear 0.1s;
 }
 .os-card:hover{
-    border: 2px solid var(--textColor);
+    border: 2px solid #a3a3a3;
 }
 .os-card-img{
     margin: 5px;

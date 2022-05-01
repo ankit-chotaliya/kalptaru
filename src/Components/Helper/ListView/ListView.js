@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import './ListView.css';
 const ListView = (props) => {
+
+    const navigate=useNavigate();
   return (
     <>
     <div className='lv-list pb-2 pt-2'>

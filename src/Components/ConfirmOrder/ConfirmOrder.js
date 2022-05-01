@@ -1,11 +1,13 @@
 import React from 'react'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import {BsWhatsapp} from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../NavBar/Navbar'
 import './ConfirmOrder.css'
 import coImg from './orderConfirmFinal.png'
 import testPDF from './test.pdf'
 const ConfirmOrder = () => {
+    const navigate=useNavigate();
     const canonical = document.querySelector("link[rel=canonical]");
     let url = canonical ? canonical.href : document.location.href;
     const title="Name";
@@ -57,7 +59,7 @@ const ConfirmOrder = () => {
         <Navbar/>
         <div className='container no-main no-border pageview'>
             <div className='no-heading'>
-              <AiOutlineArrowLeft/> Order Confirm
+              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>{navigate('/')}}/> Order Confirm
             </div>
             
             <div className='co-container mt-4'>

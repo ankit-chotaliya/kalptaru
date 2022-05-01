@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {AiOutlineArrowLeft,AiFillFilter} from 'react-icons/ai'
 import {BiSort} from 'react-icons/bi'
 import {GiCardExchange} from 'react-icons/gi'
-import { FiEdit2 } from 'react-icons/fi'
+import { FiEdit2,FiFilter } from 'react-icons/fi'
 import Navbar from '../NavBar/Navbar'
 import './OrderStatus.css'
 import ringimg from './ring.jpg'
@@ -76,7 +76,7 @@ const OrderStatus = () => {
             <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Order Status
             </div>
             <div className='eo2-btns'>
-            <button className='eo2-btn'><AiFillFilter /></button>
+            <button className='eo2-btn'><FiFilter /></button>
             <button className='eo2-btn'><BiSort /></button>
             </div>
             </div>

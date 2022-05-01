@@ -1,0 +1,38 @@
+.st-mobile{
+    width: 322px;
+    margin: 0 auto;
+    text-align: left !important;
+}
+.st-mobile label{
+    width: 100%;
+}
+.st-mob-input{
+    border: none !important;
+    width: 90%;
+    height: 44px;
+    text-indent: 10px;
+    border-radius: 0px !important;
+    outline: none;
+}
+.st-mob-input[type="text"]:focus,.st-mob-input[type="password"]:focus{
+    box-shadow: none !important;
+}
+
+.st-mob-input::placeholder{
+    text-indent: 10px;
+}
+.st-mob-icon{
+    height: 44px;
+    color: var(--textColor);
+    font-size: 1.5rem;
+    
+}
+.st-mob-sub{
+    border: 1px solid var(--textColor);
+}
+
+@media only screen and (max-width: 300px){
+    .st-mobile {
+        width: 250px;
+    }
+}

@@ -100,11 +100,11 @@ function EditOrder2() {
 
                     <div className='eo2-heading no-heading'>
                     <div className='eo2-editorder'>
-                    <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Edit Order
+                    <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Order View
                     </div>
                     <div className='eo2-btns'>
                     <button className='eo2-btn'><HiOutlineTrash id='deleteicon' /></button>
-                    <button className='eo2-btn'><VscEdit id='deleteicon' /></button>
+                    <button className='eo2-btn'><VscEdit id='deleteicon' onClick={()=>{navigate("/EditOrderForm")}}/></button>
                     </div>
                     </div>
 
