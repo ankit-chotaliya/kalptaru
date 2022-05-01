@@ -5,7 +5,9 @@ import ModalHelper from '../Helper/Modal/ModalHelper';
 import './CompletedOrder.css';
 import ListView from '../Helper/ListView/ListView';
 import {FiRepeat} from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom';
 function CompletedOrder() {
+  const navigate=useNavigate();
   const [viewModal,setViewModal]=useState(false);
   const handleModalReply=(e)=>{
     const reply=e.target.value;
@@ -27,7 +29,7 @@ function CompletedOrder() {
         <div className='container no-main no-border pageview'>
             <div className='cmt-o-heading no-heading'>
             <div className='cmt-o-editorder'>
-              <AiOutlineArrowLeft/> Completed Order
+              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Completed Order
               </div>
               <div className='cmt-o-btns'>
               <button className='cmt-o-btn'>Urgent</button>

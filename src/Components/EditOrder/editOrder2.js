@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 import './editOrder2.css'
 import Navbar from '../NavBar/Navbar';
 import ModalHelper from '../Helper/ModalButton/ModalButton'
-import { Link } from 'react-router-dom';
-import { BiArrowBack } from "react-icons/bi";
+import { useNavigate } from 'react-router-dom';
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import { HiOutlineTrash } from "react-icons/hi";
 import { VscEdit } from "react-icons/vsc";
@@ -13,7 +12,7 @@ import Slider from "react-slick";
 
 
 function EditOrder2() {
-    
+    const navigate=useNavigate();
 
     const config = {
         dots: true,
@@ -101,7 +100,7 @@ function EditOrder2() {
 
                     <div className='eo2-heading no-heading'>
                     <div className='eo2-editorder'>
-                    <AiOutlineArrowLeft/> Edit Order
+                    <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Edit Order
                     </div>
                     <div className='eo2-btns'>
                     <button className='eo2-btn'><HiOutlineTrash id='deleteicon' /></button>

@@ -5,14 +5,16 @@ import {RiEqualizerLine} from 'react-icons/ri'
 import { FiEdit2 } from 'react-icons/fi'
 import './TrackOrder.css';
 import ListView from '../Helper/ListView/ListView';
+import { useNavigate } from 'react-router-dom'
 function TrackOrder() {
+  const navigate=useNavigate();
   return (
     <>
     <Navbar/>
         <div className='container no-main no-border pageview'>
             <div className='to-heading no-heading'>
               <div className='to-editorder'>
-              <AiOutlineArrowLeft/> Track Order
+              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Track Order
               </div>
               <div className='to-btns'>
               <button className='to-btn'>Urgent</button>
