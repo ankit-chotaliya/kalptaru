@@ -9,14 +9,14 @@ function TrackOrder() {
   return (
     <>
     <Navbar/>
-        <div className='container pageview'>
-            <div className='to-heading'>
-            <div className='to-editorder'>
+        <div className='container no-main no-border pageview'>
+            <div className='to-heading no-heading'>
+              <div className='to-editorder'>
               <AiOutlineArrowLeft/> Track Order
               </div>
               <div className='to-btns'>
               <button className='to-btn'>Urgent</button>
-              <button className='to-btn'>Fast</button>
+              <button className='to-btn to-btn-bt'>Fast</button>
               <button className='to-btn'>Normal</button>
               </div>
             </div>
@@ -24,7 +24,7 @@ function TrackOrder() {
             <div className='to-editorder2'>
              This Week
               </div>
-              <div className='to-btns'>
+              <div className='to-more-btn'>
               <RiEqualizerLine style={{cursor:'pointer'}}/>
               <div className='to-moretext'>More</div>
               </div>
@@ -76,16 +76,16 @@ function TrackOrder() {
             </div>
 
         </div>
-        <div className='container pageview'>
-            <div className='to-heading2'>
-            <div className='to-editorder2'>
-             This Month
-              </div>
-              <div className='to-btns'>
-              <RiEqualizerLine/>
-              <div className='to-moretext'>More</div>
-              </div>
+        <div className='container no-main no-border pageview'>
+          <div className='to-heading2 mt-4'>
+          <div className='to-editorder2'>
+          This Week
             </div>
+            <div className='to-more-btn'>
+            <RiEqualizerLine style={{cursor:'pointer'}}/>
+            <div className='to-moretext'>More</div>
+            </div>
+          </div>
 
             <div className='eo-container mt-4'>
                 <ListView

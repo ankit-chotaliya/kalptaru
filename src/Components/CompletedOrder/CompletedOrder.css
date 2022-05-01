@@ -4,13 +4,8 @@
     justify-content: flex-end;
     align-items: center;
     margin-top: 2px;
-    /* border: 1px solid rebeccapurple; */
     margin-right: 20px;
 }
-
-/* #container {
-    padding-top: 20px !important;
-} */
 
 .cmt-o-btn{
     outline: none;
@@ -22,7 +17,6 @@
     background-color: #F9F9FF;
     width: 96px;
     height: 44px;
-    /* margin-left: 15px; */
 }
 .cmt-o-btn:hover{
     background-color: var(--lightGreen2);
