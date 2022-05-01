@@ -12,6 +12,7 @@ import EditOrder2 from './Components/EditOrder/editOrder2';
 import EditOrderForm from './Components/EditOrder/EditOrderForm';
 import SendReminder from "./Components/SendReminder/SendReminder";
 import ConfirmOrder from './Components/ConfirmOrder/ConfirmOrder';
+import TrackOrder from './Components/TrackOrder/TrackOrder';
 import ModalButton from './Components/Helper/ModalButton/ModalButton';
 import Settings from './Components/Settings/Settings';
 import CompletedOrder from './Components/CompletedOrder/CompletedOrder';
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/home" exact element={<Home/>}/>
         <Route path="/settings" exact element={<Settings/>}/>
         <Route path="/modal" exact element={<ModalButton/>}/>
+        <Route path="/Trackorder" exact element={<TrackOrder/>}/>
         <Route path="/sendreminder" exact element={<SendReminder/>}/>
         <Route path="/CompletedOrders" exact element={<CompletedOrder/>}/>
         <Route path="/EditOrder2" exact element={<EditOrder2/>}/>
