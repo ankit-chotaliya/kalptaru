@@ -1,11 +1,13 @@
 import React,{useState} from 'react'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import {GrDocumentUpdate} from 'react-icons/gr'
+import { useNavigate } from 'react-router-dom';
 import ModalHelper from '../Helper/Modal/ModalHelper';
 import NavBar from '../NavBar/Navbar'
 import EditOrderFormHelper from './EditOrderFormHelper';
 
 const EditOrderForm = () => {
+    const navigate=useNavigate();
     const [client,setClient]=useState("");
     const [karigar,setKarigar]=useState("");
     const [pCategory,setPCategory]=useState("");
@@ -83,7 +85,7 @@ const EditOrderForm = () => {
         <NavBar/>
         <div className='container no-main no-border pageview'>
             <div className='no-heading'>
-              <AiOutlineArrowLeft/> Edit Order
+              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Edit Order
             </div>
             
             <div className='no-form'>

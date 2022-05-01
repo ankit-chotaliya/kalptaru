@@ -1,0 +1,68 @@
+.page-section {
+    background-image: url(./NotFound.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.page-section .content-detail {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.page-section .content-detail .global-title {
+    display: block;
+    color: var(--darkGreen);
+    font-size: 150px;
+    font-weight: 800;
+}
+
+.page-section .content-detail .sub-title, .page-section .content-detail .detail-text {
+    display: block;
+    color: var(--lightGreen);
+    text-align: center;
+}
+.page-section .content-detail .back-btn .btn {
+    padding: 8px 15px;
+    color: var(--darkGreen);
+    border: 1px solid var(--darkGreen);
+    border-radius: 30px;
+    font-size: 14px;
+}
+.back-btn:hover .btn:hover{
+    background-color: var(--darkGreen);
+    color: white;
+    transition: all 0.3s linear 0.2s;
+}
+.global-title span {
+    animation: animateblur 1s linear forwards;
+}
+.global-title span:nth-child(1) {
+    animation-delay: 1s;
+}
+.global-title span:nth-child(2) {
+    animation-delay: 2s;
+}
+.global-title span:nth-child(3) {
+    animation-delay: 3s;
+}
+@keyframes animateblur {
+    0% {
+      opacity: 0;
+      filter: blur(10px); }
+    100% {
+      opacity: 1;
+      filter: blur(0px); } 
+}
+@media (max-width: 480px){
+    .page-section .content-detail {
+        padding: 0 15px;
+    }
+}
+@media (max-width: 768px){
+    .page-section .content-detail {
+        padding: 0 15px;
+    }
+}

@@ -4,14 +4,16 @@ import {AiOutlineArrowLeft} from 'react-icons/ai'
 import { FiSend } from 'react-icons/fi'
 import './SendReminder.css';
 import ListView from '../Helper/ListView/ListView';
+import { useNavigate } from 'react-router-dom';
 function SendReminder() {
+  const navigate=useNavigate();
   return (
     <>
     <Navbar/>
         <div className='container no-main no-border pageview'>
             <div className='sr-heading no-heading'>
             <div className='sr-editorder'>
-              <AiOutlineArrowLeft/> Send Reminder
+              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Send Reminder
               </div>
               <div className='sr-btns'>
               <button className='sr-btn'>Urgent</button>

@@ -5,8 +5,10 @@ import './Settings.css';
 import Navbar from '../NavBar/Navbar';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
+    const navigate=useNavigate();
     const [mobileNo,setMobileNo]=useState("1234567890");
     const [password,setPassWord]=useState("Abc@2022");
     const [showPassword,setShowPassWord]=useState(false);
@@ -32,7 +34,7 @@ const Settings = () => {
     <Navbar/>
         <div className='container no-main no-border pageview'>
             <div className='no-heading'>
-              <AiOutlineArrowLeft/> Settings
+              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Settings
             </div>
             
             <div className='co-container mt-4'>
