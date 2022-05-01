@@ -36,6 +36,7 @@ const App = () => {
         <Route path="/Trackorder" exact element={<TrackOrder/>}/>
         <Route path="/sendreminder" exact element={<SendReminder/>}/>
         <Route path="/CompletedOrders" exact element={<CompletedOrder/>}/>
+        <Route path="/Trackorder" exact element={<TrackOrder/>}/>
         <Route path="/EditOrder2" exact element={<EditOrder2/>}/>
       </Routes>
 
