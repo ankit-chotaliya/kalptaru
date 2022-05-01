@@ -15,6 +15,11 @@ import ModalButton from './Components/Helper/ModalButton/ModalButton';
 import Settings from './Components/Settings/Settings';
 import CompletedOrder from './Components/CompletedOrder/CompletedOrder';
 import OrderStatus from './Components/OrderStatus/OrderStatus';
+import LogIn from './Components/Signin/Login';
+import Register from './Components/Signup/Register';
+import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
+import OTPverify from './Components/OTPverify/OTPverify';
+import ChangePassword from './Components/ChangePassword/ChangePassword';
 
 
 const App = () => {
@@ -33,8 +38,13 @@ const App = () => {
         <Route path="/SendReminder" exact element={<SendReminder/>}/>
         <Route path="/CompletedOrders" exact element={<CompletedOrder/>}/>
         <Route path="/TrackOrder" exact element={<TrackOrder/>}/>
-        <Route path="/EditOrder2" exact element={<EditOrder2/>}/>
+        <Route path="/OrderView" exact element={<EditOrder2/>}/>
         <Route path="/OrderStatus" exact element={<OrderStatus/>}/>
+        <Route path="/Login" exact element={<LogIn/>}/>
+        <Route path="/Register" exact element={<Register/>}/>
+        <Route path="/ForgotPassword" exact element={<ForgotPassword/>}/>
+        <Route path="/OTPverify" exact element={<OTPverify/>}/>
+        <Route path="/ChangePassword" exact element={<ChangePassword/>}/>
       </Routes>
 
     </>

@@ -1,8 +1,30 @@
 import React from 'react'
-import {GiCardExchange} from 'react-icons/gi'
+import {RiExchangeBoxLine} from 'react-icons/ri'
 import { FiEdit2 } from 'react-icons/fi'
 import ringimg from '../../OrderStatus/ring.jpg'
+import { useState } from 'react'
+import ModalHelper from '../Modal/ModalHelper'
+import { useNavigate } from 'react-router-dom'
 const OrderStatusCard = (props) => {
+    const navigate=useNavigate();
+    const [viewModal,setViewModal]=useState(false);
+  const handleModalReply=(e)=>{
+    const reply=e.target.value;
+    console.log(reply);
+    if(reply == "true"){
+        alert("updated successfully!");
+    }else{
+        alert("Not Updated!");
+    }
+    setViewModal(false);
+}
+  const hadnleUpdateOrder=(e)=>{
+    e.preventDefault();
+    setViewModal(true);
+}
+const handleopenEditForm=()=>{
+    navigate('/OrderView');
+}
   return (
     <>
                     <div className='os-card mb-3'>
@@ -15,8 +37,8 @@ const OrderStatusCard = (props) => {
                                 Order NO:1
                                 </div>
                                 <div className='os-card-btns'>
-                                    <GiCardExchange className='os-card-btn'/>
-                                    <FiEdit2 className='os-card-btn'/>
+                                    <RiExchangeBoxLine className='os-card-btn' onClick={hadnleUpdateOrder}/>
+                                    <FiEdit2 className='os-card-btn' onClick={handleopenEditForm}/>
                                 </div>
                             </div>
                             <div className='os-card-detail-desc'>
@@ -31,6 +53,13 @@ const OrderStatusCard = (props) => {
                             </div>
                         </div>
                     </div>
+                    <ModalHelper
+                    show={viewModal}
+                    onHide={() => setViewModal(false)}
+                    icon={<RiExchangeBoxLine onClick={hadnleUpdateOrder}/>}
+                    text="Are you sure you want to Change the Status?"
+                    onReply={handleModalReply}
+                    />
     </>
   )
 }

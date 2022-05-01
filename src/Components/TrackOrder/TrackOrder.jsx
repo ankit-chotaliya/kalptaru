@@ -76,10 +76,7 @@ function TrackOrder() {
                 icon={<FiEdit2/>}
                 />
             </div>
-
-        </div>
-        <div className='container no-main no-border pageview'>
-          <div className='to-heading2 mt-4'>
+            <div className='to-heading2 mt-5'>
           <div className='to-editorder2'>
           This Week
             </div>
@@ -133,8 +130,8 @@ function TrackOrder() {
                 icon={<FiEdit2/>}
                 />
             </div>
-
         </div>
+
         </>
   )
 }

@@ -212,6 +212,10 @@ const NewOrder = () => {
     console.log(fData[1].melting);
     
   }
+
+  const handleSubmit2=()=>{
+    navigate('/orderConfirm');
+  }
   return (
     <>
         <NavBar/>
@@ -229,7 +233,7 @@ const NewOrder = () => {
                   <button className='no-add-more' onClick={handleAddMore}>Add More</button>
                   </div>
                   <div className='col-md-6 col-sm-6 mt-4'>
-                  <button type="submit" className='no-sub-btn' onClick={handleSubmit}>Submit Order</button>
+                  <button type="submit" className='no-sub-btn' onClick={handleSubmit2}>Submit Order</button>
                   </div>
                   {console.log(fData)}
                 </div>
