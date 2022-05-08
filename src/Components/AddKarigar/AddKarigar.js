@@ -8,6 +8,8 @@ const AddKarigar = (props) => {
     const [karigarCountry,setKarigarCountry]=useState("");
     const [karigarState,setKarigarState]=useState("");
     const [karigarCity,setKarigarCity]=useState("");
+    const [karigarEmail,setKarigarEmail]=useState("");
+    const [karigarMobile,setKarigarMobile]=useState("");
     const [karigarPincode,setKarigarPincode]=useState("");
 
     const AddKarigarSubmit=(e)=>{
@@ -18,6 +20,8 @@ const AddKarigar = (props) => {
         console.log(karigarCountry);
         console.log(karigarState);
         console.log(karigarCity);
+        console.log(karigarEmail);
+        console.log(karigarMobile);
         console.log(karigarPincode);
         props.onHide();
     }
@@ -65,6 +69,32 @@ const AddKarigar = (props) => {
                     </div>
                 </div>
             </div>
+            <div className=' row'>
+              <div className="col-md-6 col-sm-12 mt-4">
+              <label >Karigar Email</label>
+                  <div className='d-flex justify-content-start'>
+                  <input 
+                  type="text" 
+                  className="form-control no-input" 
+                  placeholder='Email Address'
+                  value={karigarEmail}
+                  onChange={(e)=>{setKarigarEmail(e.target.value)}}
+                  />
+                  </div>
+              </div>
+              <div className="col-md-6 col-sm-12 mt-4">
+              <label >Karigar Mobile No.</label>
+                  <div className='d-flex justify-content-start'>
+                  <input 
+                  type="text" 
+                  className="form-control no-input" 
+                  placeholder='Mobile Number'
+                  value={karigarMobile}
+                  onChange={(e)=>{setKarigarMobile(e.target.value)}}
+                  />
+                  </div>
+              </div>
+          </div>
             <div className=' row'>
                 <div className="col-md-6 col-sm-12 mt-4">
                 <label htmlFor="ref-num">Country</label>

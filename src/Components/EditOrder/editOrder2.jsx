@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './editOrder2.css'
 import Navbar from '../NavBar/Navbar';
 import { Link } from 'react-router-dom';
@@ -9,10 +9,22 @@ import ring from "./ring.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import ModalHelper from '../Helper/Modal/ModalHelper';
 
 
 function editOrder2() {
+
+    const [viewModal, setViewModal] = useState(false);
+    const handleModalReply = (e) => {
+        const reply = e.target.value;
+        console.log(reply);
+        if (reply == "true") {
+            alert("updated successfully!");
+        } else {
+            alert("Not Updated!");
+        }
+        setViewModal(false);
+    }
 
     const config = {
         dots: true,
@@ -92,6 +104,12 @@ function editOrder2() {
     ]
     console.log(window.innerHeight);
     console.log(window.innerWidth);
+
+    const hadnleUpdateOrder = (e) => {
+        e.preventDefault();
+        setViewModal(true);
+    }
+
     return (
         <>
             <Navbar />
@@ -106,7 +124,7 @@ function editOrder2() {
                                 <BiArrowBack id='backbtn' />
                             </Link>
                             <p className='editorder-text' id='editorder-text' > &nbsp; Edit Order</p>
-                            <p className='editicons'><HiOutlineTrash id='deleteicon' /> &nbsp; <VscEdit id='deleteicon' /></p>
+                            <p className='editicons'><HiOutlineTrash id='deleteicon' onClick={hadnleUpdateOrder} /> &nbsp; <VscEdit id='deleteicon' /></p>
 
                         </div>
                         <div className='clientdetails mt-5'>
@@ -199,6 +217,13 @@ function editOrder2() {
                     <div className="col-md-2"></div>
                 </div>
             </div>
+            <ModalHelper
+                show={viewModal}
+                onHide={() => setViewModal(false)}
+                icon={<HiOutlineTrash onClick={hadnleUpdateOrder} />}
+                text="Are you sure you want to Delete this Order?"
+                onReply={handleModalReply}
+            />
         </>
     )
 }
