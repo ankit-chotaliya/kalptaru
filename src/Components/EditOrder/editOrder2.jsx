@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './editOrder2.css'
 import Navbar from '../NavBar/Navbar';
+import ModalHelper from '../Helper/ModalButton/ModalButton'
 import { Link } from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
 import { HiOutlineTrash } from "react-icons/hi";
@@ -13,6 +14,7 @@ import ModalHelper from '../Helper/Modal/ModalHelper';
 
 
 function editOrder2() {
+    
 
     const [viewModal, setViewModal] = useState(false);
     const handleModalReply = (e) => {
