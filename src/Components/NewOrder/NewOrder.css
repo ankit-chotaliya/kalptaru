@@ -18,6 +18,7 @@
     margin-top: auto;
     transition: all 0.3s linear 1s;
     padding: 4rem !important;
+    animation: animateblur 0.5s linear forwards;
 }
 .no-form{
     padding: 0 33px;
@@ -166,6 +167,16 @@ content: '✖';
     font-weight: bold;
     border-bottom: 1px solid #ced4da;
 }
+
+@keyframes animateblur {
+    0% {
+      opacity: 0;
+      filter: blur(10px); }
+    100% {
+      opacity: 1;
+      filter: blur(0px); } 
+  }
+  
 @media only screen and (max-width: 900px) {
 
     .no-browse{

@@ -7,12 +7,14 @@ body {
 .bg-home {
   background-color: var(--bgcolor);
 }
-
+.colcenter-home{
+  animation: animateblur 0.5s linear forwards;
+}
 .title-home {
   color: black;
   font-weight: 300;
   font-size: 35px;
-  margin-left: 0.7rem !important;
+  margin-left: 2rem !important;
 }
 
 .boxcenter-home {
@@ -51,6 +53,15 @@ body {
 
 .parent_box-home {
   margin-left: 1rem;
+}
+
+@keyframes animateblur {
+  0% {
+    opacity: 0;
+    filter: blur(10px); }
+  100% {
+    opacity: 1;
+    filter: blur(0px); } 
 }
 
 @media screen and (max-width: 1500px) {

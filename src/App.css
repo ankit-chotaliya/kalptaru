@@ -17,6 +17,24 @@ BG : FFFFFF
 body::-webkit-scrollbar {
     display: none;
   }
+.pageview{
+    
+    width: 70% !important;
+}
+.link-style{
+    color: var(--textColor);
+    text-decoration: none;
+}
+.link-style:hover{
+    color: var(--textColor);
+    text-decoration: none;
+}
+@media only screen and (max-width: 600px){
+    .pageview {
+        width: 100% !important;
+        margin-top: 10px !important;
+    }
+}
 /* how to use?
     property-name:var(--darkGreen);
 */

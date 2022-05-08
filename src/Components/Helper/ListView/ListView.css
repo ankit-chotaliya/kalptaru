@@ -1,0 +1,43 @@
+.lv-list{
+    display: flex;
+    /* margin-right: 10px; */
+    border-bottom: 1px solid var(--textColor);
+    transition: all 0.3s linear 0.5s;
+}
+.lv-property{
+    margin-left: 10px;
+    color: var(--textColor);
+    width: 30% !important;
+    transition: all 0.3s linear 0.5s;
+}
+
+.lv-value{
+    color: var(--textColor);
+    font-weight: bold;
+    width: 60% !important;
+    transition: all 0.3s linear 0.5s;
+}
+
+.lv-icon{
+    width: 10% !important;
+    text-align: right !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s linear 0.5s;
+}
+
+@media only screen and (max-width: 600px) {
+    .lv-list{
+        margin: 0 15px;
+    }
+    .lv-property{
+        width: 35% !important;
+    }
+    .lv-value{
+        width: 55% !important;
+    }
+    
+  }

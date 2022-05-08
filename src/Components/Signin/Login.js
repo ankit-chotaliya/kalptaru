@@ -1,28 +1,22 @@
 import React, { useState } from 'react'
 import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
-import './Settings.css';
+import './Login.css';
 import Navbar from '../NavBar/Navbar';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Settings = () => {
+const LogIn = () => {
     const navigate=useNavigate();
-    const [mobileNo,setMobileNo]=useState("1234567890");
-    const [password,setPassWord]=useState("Abc@2022");
+    const [mobileNo,setMobileNo]=useState("");
+    const [password,setPassWord]=useState("");
     const [showPassword,setShowPassWord]=useState(false);
-    const [addClientModal,setAddClientModal]=useState(false);
-    const [addKarigarModal,setAddKarigarModal]=useState(false);
-
-    const handleClient=(e)=>{
+   
+    const handleLogin=(e)=>{
         e.preventDefault();
-        setAddClientModal(true);
-    }
-
-    const handleAddKarigar=(e)=>{
-        e.preventDefault();
-        setAddKarigarModal(true);
+        alert("Login Successfull!");
+        navigate("/");
     }
 
     const handlepassword=(e)=>{
@@ -34,7 +28,7 @@ const Settings = () => {
     <Navbar/>
         <div className='container no-main no-border pageview'>
             <div className='no-heading'>
-              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Settings
+              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate("/")}/> Log In
             </div>
             
             <div className='co-container mt-4'>
@@ -69,25 +63,20 @@ const Settings = () => {
                     />
                     <FiEdit3 className='st-mob-icon'/>
                     </div>
-                </div>
+                    <span style={{marginLeft:"0",marginTop:"10px"}}>
+                    <Link to="/ForgotPassword">Forgot Password?</Link>
+                    </span>
+                    </div>
                 <div className='co-customer-share mt-4'>
                   
-                   <button className='co-share-btn' onClick={handleClient}>
-                        Add Client
+                   <button className='co-share-btn' onClick={handleLogin}>
+                        Log in
                    </button>
-                   <AddClient
-                    show={addClientModal}
-                    onHide={() => setAddClientModal(false)}
-                    />
                 </div>
                 <div className='co-karigar-share mt-4'>
-                    <button className='co-share-btn' onClick={handleAddKarigar}>
-                        Add Karigar
+                    <button className='co-share-btn' onClick={()=>{navigate("/Register")}}>
+                        Don't have an Account?
                    </button>
-                   <AddKarigar
-                    show={addKarigarModal}
-                    onHide={() => setAddKarigarModal(false)}
-                    />
                 </div>
             </div>
            
@@ -96,4 +85,4 @@ const Settings = () => {
   )
 }
 
-export default Settings
+export default LogIn

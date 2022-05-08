@@ -1,17 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
 @import url("https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css");
 @import url("https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css");
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 
-body {
-    font-family: "Montserrat", sans-serif !important;
+.eo2-container{
+    width: auto;
+    height: auto;
+    position: relative;
+    transition: all 0.3s linear 0.5s;
+    animation: animateblur 0.5s linear forwards;
 }
-
-.clientdetails {
-    margin-left: 3rem;
-    margin-right: 3rem;
+.eo2-heading{
+    height: auto;
+    font-family:cursive;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-weight: bold;
 }
-
+.eo2-editorder{
+    width: 100%;
+}
+.eo2-btns{
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.eo2-btn{
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s linear 0.5s;
+}
 .editbackbtn {
     margin-left: 0px;
     width: 100%;
@@ -108,7 +132,22 @@ body {
 .slick-slide *:focus {
     outline: none;
 }
-
+@keyframes animateblur {
+    0% {
+      opacity: 0;
+      filter: blur(10px); }
+    100% {
+      opacity: 1;
+      filter: blur(0px); } 
+  }
+@media only screen and (max-width: 600px){
+    .eo2-container{
+        width: 90%;
+        margin-left: 23px;
+        align-items: center;
+        overflow: hidden;
+    }
+} 
 @media screen and (max-width: 850px) {
     .slick-slide img {
         height: 150px !important;

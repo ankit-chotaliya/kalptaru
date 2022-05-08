@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './NewOrder.css'
+import {useNavigate} from 'react-router-dom'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import NewOrderComponent from './NewOrderComponent'
 import NavBar from '../NavBar/Navbar'
@@ -22,6 +23,7 @@ order:[
 ]
 */
 const NewOrder = () => {
+  const navigate=useNavigate();
   //form-variables
   const [fData,setFData]=useState([{
     client:"",
@@ -210,13 +212,17 @@ const NewOrder = () => {
     console.log(fData[1].melting);
     
   }
+
+  const handleSubmit2=()=>{
+    navigate('/orderConfirm');
+  }
   return (
     <>
         <NavBar/>
        
-        <div className='container no-main no-border'>
+        <div className='container no-main no-border pageview'>
             <div className='no-heading'>
-              <AiOutlineArrowLeft/> New Order
+              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> New Order
             </div>
             
             <div className='no-form'>
@@ -227,7 +233,7 @@ const NewOrder = () => {
                   <button className='no-add-more' onClick={handleAddMore}>Add More</button>
                   </div>
                   <div className='col-md-6 col-sm-6 mt-4'>
-                  <button type="submit" className='no-sub-btn' onClick={handleSubmit}>Submit Order</button>
+                  <button type="submit" className='no-sub-btn' onClick={handleSubmit2}>Submit Order</button>
                   </div>
                   {console.log(fData)}
                 </div>
