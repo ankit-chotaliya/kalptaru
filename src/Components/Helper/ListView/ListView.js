@@ -4,6 +4,11 @@ import './ListView.css';
 const ListView = (props) => {
 
     const navigate=useNavigate();
+
+    const handleiconclick=()=>{
+        console.log('icon clicked')
+    }
+
   return (
     <>
     <div className='lv-list pb-2 pt-2'>
@@ -23,7 +28,7 @@ const ListView = (props) => {
             {props.value2}
         </div>
         </div>
-        <div className='lv-icon'>
+        <div className='lv-icon' onClick={handleiconclick}>
             {props.icon}
         </div>
     </div>

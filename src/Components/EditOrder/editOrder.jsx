@@ -7,6 +7,10 @@ import ListView from '../Helper/ListView/ListView';
 import { useNavigate } from 'react-router-dom';
 const EditOrder=()=> {
   const navigate=useNavigate();
+
+const handleopenEditForm=()=>{
+    navigate('/EditOrderForm');
+}
   return (
     <>
     <Navbar/>
@@ -21,35 +25,35 @@ const EditOrder=()=> {
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiEdit2 onClick={handleopenEditForm}/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiEdit2 onClick={handleopenEditForm}/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiEdit2 onClick={handleopenEditForm}/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiEdit2 onClick={handleopenEditForm}/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiEdit2 onClick={handleopenEditForm}/>}
                 />
             </div>
 

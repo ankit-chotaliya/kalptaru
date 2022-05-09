@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './editOrder2.css'
 import Navbar from '../NavBar/Navbar';
-import ModalHelper from '../Helper/ModalButton/ModalButton'
+import ModalHelper from '../Helper/Modal/ModalHelper';
 import { useNavigate } from 'react-router-dom';
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import { HiOutlineTrash } from "react-icons/hi";
@@ -10,9 +10,21 @@ import ring from "./ring.jpg";
 import Slider from "react-slick";
 
 
-
 function EditOrder2() {
     const navigate=useNavigate();
+
+    const [viewModal, setViewModal] = useState(false);
+    const handleModalReply = (e) => {
+        const reply = e.target.value;
+        console.log(reply);
+        if (reply == "true") {
+            alert("deleted successfully!");
+        } else {
+            alert("Not Updated!");
+        }
+        setViewModal(false);
+    }
+
 
     const config = {
         dots: true,
@@ -48,7 +60,7 @@ function EditOrder2() {
             }
         ]
     };
-    console.log(config);
+    // console.log(config);
     if (window.innerWidth < 600) {
         const config = {
             dots: true,
@@ -57,7 +69,7 @@ function EditOrder2() {
             slidesToShow: 1,
             slidesToScroll: 1
         };
-        console.log("hello");
+        // console.log("hello");
     }
     else {
         const config = {
@@ -90,8 +102,13 @@ function EditOrder2() {
             title: 'Ring5',
         }
     ]
-    console.log(window.innerHeight);
-    console.log(window.innerWidth);
+
+    const hadnleUpdateOrder = (e) => {
+        console.log(" hii ")
+        e.preventDefault();
+        setViewModal(true);
+    }
+
     return (
         <>
             <Navbar />
@@ -103,10 +120,19 @@ function EditOrder2() {
                     <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Order View
                     </div>
                     <div className='eo2-btns'>
-                    <button className='eo2-btn'><HiOutlineTrash id='deleteicon' /></button>
+                    <button className='eo2-btn'><HiOutlineTrash id='deleteicon' onClick={hadnleUpdateOrder} /></button>
                     <button className='eo2-btn'><VscEdit id='deleteicon' onClick={()=>{navigate("/EditOrderForm")}}/></button>
                     </div>
                     </div>
+
+                    <ModalHelper
+                        show={viewModal}
+                        onHide={() => setViewModal(false)}
+                        icon={<HiOutlineTrash onClick={hadnleUpdateOrder} />}
+                        text="Are you sure you want to delete this Order?"
+                        onReply={handleModalReply}
+                    />
+
 
                     <div className='eo2-container mt-4'>
                         <p className='clienttitle'>Client Details</p>
@@ -141,9 +167,6 @@ function EditOrder2() {
                                 })}
                             </Slider>
                         </div>
-
-
-
 
                         <div className='table-responsive-md mt-5 clientdata'>
                             <table>
@@ -196,6 +219,7 @@ function EditOrder2() {
                     </div>
                     
             </div>
+
           
         </>
     )
