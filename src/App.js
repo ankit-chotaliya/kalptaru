@@ -46,7 +46,6 @@ const App = () => {
         <Route path="/OTPverify" exact element={<OTPverify/>}/>
         <Route path="/ChangePassword" exact element={<ChangePassword/>}/>
       </Routes>
-
     </>
   )
 }

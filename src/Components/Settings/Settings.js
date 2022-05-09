@@ -29,6 +29,10 @@ const Settings = () => {
         setShowPassWord(true);
         setPassWord(e.target.value);
     }
+    
+    const handlePasswordChange = ()=>{
+        console.log(" password change")
+    }
   return (
     <>
     <Navbar/>
@@ -43,6 +47,7 @@ const Settings = () => {
                     <br/>
                     <div className='st-mob-sub'>
                     <input 
+                    disabled
                     type="text"
                     className='st-mob-input'
                     placeholder='Mobile Number'
@@ -69,6 +74,12 @@ const Settings = () => {
                     />
                     <FiEdit3 className='st-mob-icon'/>
                     </div>
+                </div>
+                <div className='co-customer-share mt-4'>
+                  
+                   <button className='co-share-btn' onClick={handlePasswordChange}>
+                        Submit
+                   </button>
                 </div>
                 <div className='co-customer-share mt-4'>
                   

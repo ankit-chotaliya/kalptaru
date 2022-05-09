@@ -31,7 +31,7 @@ const handleopenEditForm=()=>{
                         <div className='os-card-img'>
                             <img src={ringimg}/>
                         </div>
-                        <div className='os-card-detail'>
+                        <div className='os-card-detail mx-2'>
                             <div className='os-card-detail-title'>
                                 <div className='os-card-orderno'>
                                 Order NO:1
