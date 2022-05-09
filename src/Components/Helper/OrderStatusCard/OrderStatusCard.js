@@ -31,7 +31,7 @@ const handleopenEditForm=()=>{
                         <div className='os-card-img'>
                             <img src={ringimg}/>
                         </div>
-                        <div className='os-card-detail'>
+                        <div className='os-card-detail mx-2'>
                             <div className='os-card-detail-title'>
                                 <div className='os-card-orderno'>
                                 Order NO:1
@@ -45,10 +45,9 @@ const handleopenEditForm=()=>{
                                  <div className='os-card-label'>
                                     {props.label}
                                  </div>
-                                 <div className='os-card-info'>
+                                 <div className='os-card-info mt-2'>
                                     <span>Client Name: ABCDE</span>
                                     <span>Placed By: Sakshi Jain</span>
-                                    <span>Description: ajsdakjsdn oaisjdansd ahsdasdo aihsdahsdib ahsdasdj hasjdasdkl</span>
                                  </div>    
                             </div>
                         </div>

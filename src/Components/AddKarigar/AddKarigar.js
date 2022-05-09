@@ -8,6 +8,8 @@ const AddKarigar = (props) => {
     const [karigarCountry,setKarigarCountry]=useState("");
     const [karigarState,setKarigarState]=useState("");
     const [karigarCity,setKarigarCity]=useState("");
+    // const [karigarEmail,setKarigarEmail]=useState("");
+    // const [karigarMobile,setKarigarMobile]=useState("");
     const [karigarPincode,setKarigarPincode]=useState("");
     const [karigarEmail,setKarigarEmail]=useState("");
     const [karigarMobile,setKarigarMobile]=useState("");
@@ -20,6 +22,8 @@ const AddKarigar = (props) => {
         console.log(karigarCountry);
         console.log(karigarState);
         console.log(karigarCity);
+        console.log(karigarEmail);
+        console.log(karigarMobile);
         console.log(karigarPincode);
         props.onHide();
     }
@@ -69,7 +73,7 @@ const AddKarigar = (props) => {
             </div>
             <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >Karigar Email (Optional)</label>
+              <label >Karigar Email</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
