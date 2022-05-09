@@ -7,6 +7,12 @@ import * as BsIcons from 'react-icons/bs';
 
 export const SidebarData = [
   {
+    title: 'Home',
+    path: '/',
+    icon: <AiIcons.AiOutlineHome />,
+    cName: 'nav-text'
+  },
+  {
     title: 'New Order',
     path: '/create',
     icon: <GrIcons.GrAddCircle />,

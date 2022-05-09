@@ -1,0 +1,130 @@
+.os-container{
+    width: auto;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s linear 1s;
+    animation: animateblur 0.5s linear forwards;
+}
+.os-status-header{
+    color: var(--textColor);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+.os-status-menus::-webkit-scrollbar {
+    display: none;
+  }
+.os-status-menus{
+    width: 100%;
+    overflow: scroll;
+    margin-left: 10px;
+}
+.os-status-menus span{
+    margin-left: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+.os-status-menus span li{
+    white-space: nowrap;
+    border: 2px solid var(--darkGreen);
+    padding: 5px;
+    margin-right: 5px;
+    font-weight: lighter;
+    cursor: pointer;
+    transition: all 0.2s linear 0.1s;
+}
+.os-status-menus span li:hover{
+    background-color: var(--darkGreen);
+    color: var(--bgColor);
+}
+.os-link-active{
+    background-color: var(--darkGreen);
+    color: var(--bgColor);
+}
+.os-card{
+    border: 2px solid var(--navColor);
+    width: 100%;
+    height: 144px;
+    display: flex;
+    /* justify-content: ; */
+    overflow: hidden;
+    transition: all 0.1s linear 0.1s;
+}
+.os-card:hover{
+    border: 2px solid #a3a3a3;
+}
+.os-card-img{
+    margin: 5px;
+}
+.os-card-img img{
+    width: 200px;
+    height: auto;
+}
+.os-card-detail{
+    width: 100%;
+}
+.os-card-detail-title{
+
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.os-card-orderno{
+    width: 50%;
+    text-transform: uppercase;
+    
+}
+.os-card-btns{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.os-card-btn{
+    margin: 10px;
+    cursor: pointer;
+}
+.os-card-label{
+    background-color: var(--darkGreen);
+    width: 150px;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    align-items: center;
+}
+.os-card-info{
+    display: flex;
+    flex-direction: column;
+}
+.os-card-info span{
+    margin-left: 0;
+}
+@keyframes animateblur {
+    0% {
+      opacity: 0;
+      filter: blur(10px); }
+    100% {
+      opacity: 1;
+      filter: blur(0px); } 
+}
+@media only screen and (max-width: 600px){
+    .os-status-header{
+        padding: 0 20px;
+    }
+    .os-container{
+        padding: 0 20px;
+    }
+    .os-card-img img{
+        width: 100px;
+        height: 130px;
+    }
+    .os-card-orderno{
+        font-size: 1rem;
+    }
+}

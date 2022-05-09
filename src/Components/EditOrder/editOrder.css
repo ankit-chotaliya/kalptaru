@@ -3,4 +3,25 @@
     height: auto;
     position: relative;
     transition: all 0.3s linear 0.5s;
+    animation: animateblur 0.5s linear forwards;
 }
+@keyframes animateblur {
+    0% {
+      opacity: 0;
+      filter: blur(10px); }
+    100% {
+      opacity: 1;
+      filter: blur(0px); } 
+  }
+@media only screen and (max-width: 600px) {
+    .eof-up-btn{
+        position: fixed !important;
+        overflow: scroll !important;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+    }
+    .eof-mob{
+        margin-bottom: 10%;
+    }
+  }

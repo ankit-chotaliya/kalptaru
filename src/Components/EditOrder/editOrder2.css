@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css");
+@import url("https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css");
+
+.eo2-container{
+    width: auto;
+    height: auto;
+    position: relative;
+    transition: all 0.3s linear 0.5s;
+    animation: animateblur 0.5s linear forwards;
+}
+.eo2-heading{
+    height: auto;
+    font-family:cursive;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-weight: bold;
+}
+.eo2-editorder{
+    width: 100%;
+}
+.eo2-btns{
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.eo2-btn{
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s linear 0.5s;
+}
+.editbackbtn {
+    margin-left: 0px;
+    width: 100%;
+}
+
+#backbtn {
+    color: black;
+    height: 28px;
+    width: 28px;
+    top: 24px;
+    left: 24px;
+    margin: 2px;
+}
+
+.editorder-text {
+    font-family: cursive;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: left;
+    color: #1F1F1F;
+    margin: 0 !important;
+}
+
+#deleteicon {
+    height: 25px;
+    width: 25px;
+}
+
+.editicons {
+    position: absolute;
+    right: 7%;
+}
+
+.clienttitle {
+
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.table td.fit {
+    white-space: nowrap;
+    width: 20%;
+}
+
+.bwidth {
+    width: 57%;
+}
+
+
+.twidth {
+    width: 175px;
+}
+
+.slider {
+    margin: 20px 0px;
+}
+
+.cb-centermode {
+    margin-bottom: 20px;
+    display: block;
+}
+
+.cb-centermode input {
+    margin-right: 7px;
+}
+
+
+.img-card {
+    border-radius: 4px;
+    color: #666;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.img-card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.img {
+    width: 300px;
+    object-fit: cover;
+}
+
+
+.slick-slide>div {
+    margin: 0 10px;
+}
+
+.slick-list {
+    margin: 0 -10px;
+}
+
+.slick-slide *:focus {
+    outline: none;
+}
+@keyframes animateblur {
+    0% {
+      opacity: 0;
+      filter: blur(10px); }
+    100% {
+      opacity: 1;
+      filter: blur(0px); } 
+  }
+@media only screen and (max-width: 600px){
+    .eo2-container{
+        width: 90%;
+        margin-left: 23px;
+        align-items: center;
+        overflow: hidden;
+    }
+} 
+@media screen and (max-width: 850px) {
+    .slick-slide img {
+        height: 150px !important;
+        width: auto !important;
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    .slick-slide img {
+        height: auto !important;
+        width: 400px !important;
+    }
+
+    #backbtn {
+        height: 20px !important;
+        width: 20px !important;
+    }
+
+    .clientdetails {
+        margin-right: 2rem;
+        margin-left: 2rem;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .slick-slide img {
+        height: auto !important;
+        width: 300px;
+    }
+
+    #backbtn {
+        height: 20px !important;
+        width: 20px !important;
+    }
+
+    .clientdetails {
+        margin-right: 1rem !important;
+        margin-left: 1rem !important;
+    }
+}
+
+
+@media screen and (max-width: 325px) {
+    .slick-slide img {
+        height: auto !important;
+        width: 200px;
+    }
+
+    #backbtn {
+        height: 20px !important;
+        width: 20px !important;
+    }
+
+    .clientdetails {
+        margin-right: 0.5rem !important;
+        margin-left: 0.5rem !important;
+    }
+}

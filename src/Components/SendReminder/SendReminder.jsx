@@ -1,56 +1,63 @@
 import React from 'react'
 import Navbar from '../NavBar/Navbar'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
-import { FiEdit2 } from 'react-icons/fi'
-import './editOrder.css';
+import { FiSend } from 'react-icons/fi'
+import './SendReminder.css';
 import ListView from '../Helper/ListView/ListView';
 import { useNavigate } from 'react-router-dom';
-const EditOrder=()=> {
+function SendReminder() {
   const navigate=useNavigate();
   return (
     <>
     <Navbar/>
         <div className='container no-main no-border pageview'>
-            <div className='no-heading'>
-              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Edit Order
+            <div className='sr-heading no-heading'>
+            <div className='sr-editorder'>
+              <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Send Reminder
+              </div>
+              <div className='sr-btns'>
+              <button className='sr-btn'>Urgent</button>
+              <button className='sr-btn sr-btn-bt'>Fast</button>
+              <button className='sr-btn'>Normal</button>
+              </div>
             </div>
-
             <div className='eo-container mt-4'>
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiSend/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiSend/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiSend/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiSend/>}
                 />
                 <ListView
                 property1="Client Name: "
                 property2="Ref No: "
                 value1="Parth Goti"
                 value2="1234"
-                icon={<FiEdit2/>}
+                icon={<FiSend/>}
                 />
+                
             </div>
 
         </div>
@@ -58,4 +65,4 @@ const EditOrder=()=> {
   )
 }
 
-export default EditOrder
+export default SendReminder
