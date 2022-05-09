@@ -11,8 +11,6 @@ const AddKarigar = (props) => {
     const [karigarEmail,setKarigarEmail]=useState("");
     const [karigarMobile,setKarigarMobile]=useState("");
     const [karigarPincode,setKarigarPincode]=useState("");
-    const [karigarEmail,setKarigarEmail]=useState("");
-    const [karigarMobile,setKarigarMobile]=useState("");
 
     const AddKarigarSubmit=(e)=>{
         e.preventDefault();
@@ -73,11 +71,7 @@ const AddKarigar = (props) => {
             </div>
             <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
-<<<<<<< HEAD
-              <label >Karigar Email (Optional)</label>
-=======
               <label >Karigar Email</label>
->>>>>>> 4637631b01de96f1ebac6ca8d5362e833808758d
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
