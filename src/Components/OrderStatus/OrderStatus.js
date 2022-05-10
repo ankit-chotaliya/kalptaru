@@ -15,7 +15,7 @@ const OrderStatus = () => {
     const [newOrder,setnewOrder]=useState(true);
     const [inProcess,setinProcess]=useState(false);
     const [delivered,setDelivered]=useState(false);
-    const [pending,setPending]=useState(false);
+    const [DeliveryPending,setDeliveryPending]=useState(false);
     const [kComplete,setkComplete]=useState(false);
     const [oReady,setoReady]=useState(false);
 
@@ -23,7 +23,7 @@ const OrderStatus = () => {
         setnewOrder(true);
         setinProcess(false);
         setDelivered(false);
-        setPending(false);
+        setDeliveryPending(false);
         setkComplete(false);
         setoReady(false);
     }
@@ -31,7 +31,7 @@ const OrderStatus = () => {
         setnewOrder(false);
         setinProcess(true);
         setDelivered(false);
-        setPending(false);
+        setDeliveryPending(false);
         setkComplete(false);
         setoReady(false);
     }
@@ -39,7 +39,7 @@ const OrderStatus = () => {
         setnewOrder(false);
         setinProcess(false);
         setDelivered(false);
-        setPending(false);
+        setDeliveryPending(false);
         setkComplete(true);
         setoReady(false);
     }
@@ -47,15 +47,15 @@ const OrderStatus = () => {
         setnewOrder(false);
         setinProcess(false);
         setDelivered(false);
-        setPending(false);
+        setDeliveryPending(false);
         setkComplete(false);
         setoReady(true);
     }
-    const pendingclick=()=>{
+    const DeliveryPendingclick=()=>{
         setnewOrder(false);
         setinProcess(false);
         setDelivered(false);
-        setPending(true);
+        setDeliveryPending(true);
         setkComplete(false);
         setoReady(false);
     }
@@ -63,7 +63,7 @@ const OrderStatus = () => {
         setnewOrder(false);
         setinProcess(false);
         setDelivered(true);
-        setPending(false);
+        setDeliveryPending(false);
         setkComplete(false);
         setoReady(false);
     }
@@ -89,7 +89,7 @@ const OrderStatus = () => {
                         <li className={inProcess?'os-link-active':null} onClick={inProcessclick}>In process</li>
                         <li className={kComplete?'os-link-active':null} onClick={kCompleteclick}>Karigar Completed</li>
                         <li className={oReady?'os-link-active':null} onClick={oReadyclick}>Order Ready</li>
-                        <li className={pending?'os-link-active':null}  onClick={pendingclick}>Pending</li>
+                        <li className={DeliveryPending?'os-link-active':null}  onClick={DeliveryPendingclick}>Delivery Pending</li>
                         <li className={delivered?'os-link-active':null} onClick={deliveredclick}>Delivered</li>
                     </span>
                 </div>
@@ -121,10 +121,10 @@ const OrderStatus = () => {
         </div>:null
             }
             {
-                pending?<div className='os-container mt-3'>
-                <OrderStatusCard label="Pending"/>
-                <OrderStatusCard label="Pending"/>
-                <OrderStatusCard label="Pending"/>
+                DeliveryPending?<div className='os-container mt-3'>
+                <OrderStatusCard label="Delivery Pending"/>
+                <OrderStatusCard label="Delivery Pending"/>
+                <OrderStatusCard label="Delivery Pending"/>
         </div>:null
             }
             {

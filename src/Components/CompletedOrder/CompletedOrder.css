@@ -1,5 +1,5 @@
 .cmt-o-btns{
-    width: 70%;
+    width: 67%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -22,7 +22,7 @@
     background-color: var(--lightGreen2);
 }
 .cmt-o-editorder{
-    width: 30%;
+    width: 33%;
 }
 .cmt-o-heading{
     height: auto;

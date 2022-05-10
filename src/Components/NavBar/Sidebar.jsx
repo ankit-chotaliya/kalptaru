@@ -37,7 +37,7 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Completed Orders',
+    title: 'Completed Delivery',
     path: '/CompletedOrders',
     icon: <AiIcons.AiOutlineFileDone/>,
     cName: 'nav-text'
