@@ -8,9 +8,11 @@ const AddKarigar = (props) => {
     const [karigarCountry,setKarigarCountry]=useState("");
     const [karigarState,setKarigarState]=useState("");
     const [karigarCity,setKarigarCity]=useState("");
+    // const [karigarEmail,setKarigarEmail]=useState("");
+    // const [karigarMobile,setKarigarMobile]=useState("");
+    const [karigarPincode,setKarigarPincode]=useState("");
     const [karigarEmail,setKarigarEmail]=useState("");
     const [karigarMobile,setKarigarMobile]=useState("");
-    const [karigarPincode,setKarigarPincode]=useState("");
 
     const AddKarigarSubmit=(e)=>{
         e.preventDefault();

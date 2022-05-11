@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import './Settings.css';
@@ -9,12 +9,17 @@ import { useNavigate } from 'react-router-dom';
 
 const Settings = () => {
     const navigate=useNavigate();
+    //react-hook
     const [mobileNo,setMobileNo]=useState("1234567890");
     const [password,setPassWord]=useState("Abc@2022");
     const [showPassword,setShowPassWord]=useState(false);
     const [addClientModal,setAddClientModal]=useState(false);
     const [addKarigarModal,setAddKarigarModal]=useState(false);
 
+
+      useEffect(()=>{
+           console.log("hii"); 
+        },[]);
     const handleClient=(e)=>{
         e.preventDefault();
         setAddClientModal(true);

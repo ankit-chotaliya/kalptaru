@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import './Login.css';
@@ -7,22 +7,55 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
+import { login } from '../../actions/user.action';
+import { useSelector } from 'react-redux';
+import ToastHelper from '../Helper/ToastHelper/ToastHelper';
 const LogIn = () => {
     const navigate=useNavigate();
     const [mobileNo,setMobileNo]=useState("");
     const [password,setPassWord]=useState("");
     const [showPassword,setShowPassWord]=useState(false);
-   
+    const [showToast,setShowToast]=useState(false);
+    const [msgToast,setmsgToast]=useState("asdasd");
+    const [bgToast,setbgToast]=useState("danger");
+    const [idToast,setidToast]=useState(1);
+    const delayToast=3000;
+    const dispatch=useDispatch();
+    const user=useSelector(state=>state.user)
     const handleLogin=(e)=>{
         e.preventDefault();
-        alert("Login Successfull!");
-        navigate("/");
+        const dataObj={
+            contact:mobileNo,
+            password:password
+        }
+        dispatch(login(dataObj));
+        if(user.success){
+            setShowToast(true);
+            setmsgToast("Login Success");
+            setbgToast('success');
+            setidToast(idToast=>idToast+1);
+            // navigate("/");
+        }else{
+            setShowToast(true);
+            setmsgToast("Wrong Credentials");
+            setbgToast('danger');
+            setidToast(idToast=>idToast+1);
+        }
+        
     }
-
     const handlepassword=(e)=>{
         setShowPassWord(true);
         setPassWord(e.target.value);
     }
+    const fn=()=>{
+        return (<ToastHelper key={idToast} msg={msgToast} delay={delayToast} bg={bgToast}/>);
+    }
+    // useEffect(()=>{
+    //     if(user.loading==true){
+    //         return <p>{user.msg}</p>
+    //     }
+    // },[user])
   return (
     <>
     <Navbar/>
@@ -79,8 +112,13 @@ const LogIn = () => {
                    </button>
                 </div>
             </div>
-           
+            
         </div>
+            <p>{idToast}</p>
+        {
+            showToast?fn():null
+        }
+        
     </>
   )
 }
