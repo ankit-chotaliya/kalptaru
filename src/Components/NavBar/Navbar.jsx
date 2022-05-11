@@ -22,7 +22,7 @@ function Navbar() {
 
       let mayBeHandler = (Event) => {
 
-        if(!click.current.contains(Event.target))
+        if(click.current && !click.current.contains(Event.target))
         {
           handler();
         }
@@ -66,7 +66,7 @@ function Navbar() {
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
-            <hr className='first_hr' style={{ 'margin-top': '15px'}}></hr>
+            <hr className='first_hr' style={{ 'marginTop': '15px'}}></hr>
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>

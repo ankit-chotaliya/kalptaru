@@ -9,11 +9,24 @@ import sendReminder from "./icons/notification.png";
 import urgentOrders from "./icons/exclamation-mark.png";
 import orderStatus from  "./icons/status.png"
 import "./Home.css";
+import { useSelector } from "react-redux";
 function Home() {
-  
+  const order=useSelector(state=>state.order);
+  if(order.loading){
+    return <p>Request running</p>
+  }
   return (
     <>
     <Navbar />
+      {
+        order.data.orders && order.data.orders.map((ele,index)=>{
+          return <div key={ele._id}>
+            <p>Id-{index} {ele._id}</p>
+            <br/>
+            <p>Category-{index} {ele.orderCategory}</p>
+          </div>
+        })
+      }
       <div className="container-fluid bg-home">
         <div className="row">
           <div className="col-md-2"></div>
