@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from '../NavBar/Navbar';
 import newOrder from "./icons/plus.png";
 import editOrder from "./icons/edit.png";
@@ -10,8 +10,15 @@ import urgentOrders from "./icons/exclamation-mark.png";
 import orderStatus from  "./icons/status.png"
 import "./Home.css";
 import { useSelector } from "react-redux";
+import { getAllOrders } from "../../actions";
+import { useDispatch } from "react-redux";
 function Home() {
   const order=useSelector(state=>state.order);
+  const karigar=useSelector(state=>state.karigar);
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    dispatch(getAllOrders());
+  },[])
   if(order.loading){
     return <p>Request running</p>
   }
@@ -24,6 +31,15 @@ function Home() {
             <p>Id-{index} {ele._id}</p>
             <br/>
             <p>Category-{index} {ele.orderCategory}</p>
+          </div>
+        })
+      }
+      {
+        karigar.data.karigar && karigar.data.karigar.map((ele,index)=>{
+          return <div key={ele._id}>
+            <p>Id-{index} {ele._id}</p>
+            <br/>
+            <p>Karigar-Name-{index} {ele.karigar_name}</p>
           </div>
         })
       }

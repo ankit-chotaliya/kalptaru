@@ -25,15 +25,7 @@ import { getAllOrders } from './actions';
 
 
 const App = () => {
-  const dispatch=useDispatch();
-
-  // useEffect(()=>{
-
-  // },[]);
-
-  useEffect(() => {
-    dispatch(getAllOrders());
-  }, [])
+  
   
   return (
     <>

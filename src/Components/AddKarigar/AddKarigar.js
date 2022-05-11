@@ -1,19 +1,28 @@
 import React, { useState } from 'react'
 import {Modal,Button} from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Addkarigar } from '../../actions/karigar.action';
 import './AddKarigar.css';
+import ToastHelper from '../Helper/ToastHelper/ToastHelper';
 const AddKarigar = (props) => {
     const [karigarID,setKarigarID]=useState("");
     const [karigarName,setKarigarName]=useState("");
     const [karigarCountry,setKarigarCountry]=useState("");
     const [karigarState,setKarigarState]=useState("");
     const [karigarCity,setKarigarCity]=useState("");
-    // const [karigarEmail,setKarigarEmail]=useState("");
-    // const [karigarMobile,setKarigarMobile]=useState("");
     const [karigarPincode,setKarigarPincode]=useState("");
     const [karigarEmail,setKarigarEmail]=useState("");
     const [karigarMobile,setKarigarMobile]=useState("");
-
+    const [showToast,setShowToast]=useState(false);
+    const [msgToast,setmsgToast]=useState("asdasd");
+    const [bgToast,setbgToast]=useState("danger");
+    const [idToast,setidToast]=useState(1);
+    const delayToast=3000;
+    const dispatch=useDispatch();
+    const karigar=useSelector(state=>state.karigar)
+    const user = useSelector(state=>state.user);
     const AddKarigarSubmit=(e)=>{
         e.preventDefault();
         console.log("Details Have Been Submitted");
@@ -26,7 +35,33 @@ const AddKarigar = (props) => {
         console.log(karigarMobile);
         console.log(karigarPincode);
         props.onHide();
+        
+        const dataObj={
+          karigar_name:karigarName,
+          karigar_country:karigarCountry,
+          karigar_state:karigarState,
+          karigar_city:karigarCity,
+          karigar_email:karigarEmail,
+          karigar_contact:karigarMobile,
+          karigar_pincode:karigarPincode,
+          createdby:user.data.user._id
+      }
+      dispatch(Addkarigar(dataObj))
+      if(karigar.success){
+        setShowToast(true);
+        setmsgToast("Karigar added successfully");
+        setbgToast('success');
+        setidToast(idToast=>idToast+1);
+      }else{
+        setShowToast(false);
+        setmsgToast("Something Went Wrong!");
+        setbgToast('danger');
+        setidToast(idToast=>idToast+1);
+      }
     }
+    const fn=()=>{
+      return (<ToastHelper key={idToast} msg={msgToast} delay={delayToast} bg={bgToast}/>);
+  }
   return (
     <>
     <Modal
@@ -154,9 +189,10 @@ const AddKarigar = (props) => {
             </Modal.Footer>
           </form>
         </Modal.Body>
-        
       </Modal>
-    
+      {
+          showToast?fn():null
+      }
     </>
   )
 }

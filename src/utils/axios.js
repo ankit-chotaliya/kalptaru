@@ -6,8 +6,9 @@ const axiosinstance=axios.create({
 
 axiosinstance.interceptors.request.use((req)=>{
     const {user}=store.getState();
-    if(user.token){ 
-        req.headers.Authorization=`Bearer ${user.token}` 
+    if(user.data.accesstoken){ 
+        const token=user.data.accesstoken
+        req.headers.Authorization=`Bearer ${token}` 
     }
     return req;
 })
