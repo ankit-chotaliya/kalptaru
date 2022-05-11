@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect , useRef} from 'react'
 import { AiOutlineUpload } from 'react-icons/ai'
 import { ImAttachment } from 'react-icons/im'
 import AddClient from '../AddClient/AddClient';
@@ -174,7 +174,7 @@ const NewOrderComponent = (props) => {
                         </div>
 
                         <div className="form-check">
-                            <input className="form-check-input no-radio" type="radio" name={"melting" + props.number} id={"op2" + props.number} value="22" onChange={props.handleMelting} disabled={disable} onClick={handleMeltingButton}/>
+                            <input className="form-check-input no-radio" type="radio" name={"melting" + props.number} id={"op2" + props.number} value="22" onChange={props.handleMelting} disabled={disable} onClick={handleMeltingButton} />
                             <label className="form-check-label" htmlFor={"op2" + props.number}>
                                 22
                             </label>
