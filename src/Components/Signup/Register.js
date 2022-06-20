@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import './Register.css';
 import Navbar from '../NavBar/Navbar';
+import { registration } from '../../actions/user.action';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
@@ -10,15 +12,36 @@ import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const navigate=useNavigate();
     const [mobileNo,setMobileNo]=useState("");
-    const [fullName,setFullName]=useState("");
+    const [fullname,setFullName]=useState("");
     const [password,setPassWord]=useState("");
     const [cpassword,setcPassWord]=useState("");
     const [showPassword,setShowPassWord]=useState(false);
 
+    const dispatch = useDispatch();
+    const user = useSelector(state=>state.user);
+
+    useEffect(() => {
+        if (user.success) {
+          <p>Redirecting...</p>
+          navigate("/login");
+        }
+      }, [user.success])
+
     const handleRegister=(e)=>{
         e.preventDefault();
-        alert("Registration Successfull!");
-        navigate("/");
+        const dataObj={
+            fullname:fullname,
+            contact:mobileNo,
+            password:password
+        }
+
+        dispatch(registration(dataObj)).then(()=>{
+            
+            if(user.success){
+                navigate("/login");
+                
+            }
+        })
         
     }
 
@@ -48,7 +71,7 @@ const Register = () => {
                     type="text"
                     className='st-mob-input'
                     placeholder='Full Name'
-                    value={fullName}
+                    value={fullname}
                     onChange={(e)=>{setFullName(e.target.value)}}
                     id="st-mob"
                     />

@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../NavBar/Navbar'
-import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineCloudDownload } from 'react-icons/ai'
 import { RiEqualizerLine } from 'react-icons/ri'
 import { GrFormView } from 'react-icons/gr'
 import './TrackOrder.css';
@@ -44,6 +44,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -51,6 +52,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -58,6 +60,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -65,6 +68,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -72,6 +76,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -79,6 +84,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
         </div>
         <div className='to-heading2 mt-5'>
@@ -98,6 +104,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -105,6 +112,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -112,6 +120,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -119,6 +128,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -126,6 +136,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
           <ListView
             property1="Client Name: "
@@ -133,6 +144,7 @@ function TrackOrder() {
             value1="Parth Goti"
             value2="1234"
             icon={<GrFormView onClick={handleopenEditForm} />}
+            icon1={<AiOutlineCloudDownload/>}
           />
         </div>
       </div>

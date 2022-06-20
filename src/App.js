@@ -20,6 +20,8 @@ import Register from './Components/Signup/Register';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import OTPverify from './Components/OTPverify/OTPverify';
 import ChangePassword from './Components/ChangePassword/ChangePassword';
+import AdminLogin from './Components/Admin/AdminLogin/AdminLogin';
+import AdminNavbar from './Components/Admin/AdminNavbar/AdminNavbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory, getAllOrders,getAllClient,getAllKarigar } from './actions';
 
@@ -51,6 +53,8 @@ const App = () => {
 
       <Routes>
         <Route path="/" exact element={<Home/>}/>
+        <Route path='/AdminLogin' exact element={<AdminLogin/>}/>
+        <Route path='/AdminNavbar' exact element={<AdminNavbar/>}/>
         <Route path='*' exact element={<NotFound/>}/>
         <Route path="/create" exact element={<NewOrder/>}/>
         <Route path="/orderConfirm" exact element={<ConfirmOrder show={false}/>}/>
