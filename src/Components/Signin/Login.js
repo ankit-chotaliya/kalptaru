@@ -30,6 +30,17 @@ const LogIn = () => {
       }, [user.success])
     const handleLogin=(e)=>{
         e.preventDefault();
+       
+        if(mobileNo.length<10 || mobileNo.length>10){
+            alert("Mobile No. is not valid!");
+            return;
+        }
+
+        if (!RegExp( /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/).test(password)) {
+            alert("Password is not valid");
+            return;
+        }
+
         const dataObj={
             contact:mobileNo,
             password:password

@@ -22,6 +22,8 @@ import OTPverify from './Components/OTPverify/OTPverify';
 import ChangePassword from './Components/ChangePassword/ChangePassword';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory, getAllOrders,getAllClient,getAllKarigar } from './actions';
+import Loader from './Components/Helper/Loader/Loader';
+// import Loader from './Components/Helper/Loader/Loader';
 
 
 
@@ -68,6 +70,7 @@ const App = () => {
         <Route path="/ForgotPassword" exact element={<ForgotPassword/>}/>
         <Route path="/OTPverify" exact element={<OTPverify/>}/>
         <Route path="/ChangePassword" exact element={<ChangePassword/>}/>
+        <Route path='/spin' exact element={<Loader/>}/>
       </Routes>
     </>
   )

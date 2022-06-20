@@ -17,6 +17,31 @@ const AddClient = (props) => {
   const dispatch=useDispatch();
   const AddClientSubmit=(e)=>{
       e.preventDefault();
+  
+    if(clientName=="" || !RegExp(/^[a-zA-Z ]{2,30}$/).test(clientName)){
+      alert("Client Name Incorrect");
+      return;
+    }
+
+    if (clientID=="" || !RegExp(/^[a-zA-Z ]{4,30}$/).test(clientID)) {
+      alert("Company Name Incorrect");
+      return;
+    }
+
+    if (clientEmail=="" || !RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(clientEmail)) {
+      alert("Email is not valid");
+      return;
+    }
+
+    if(clientMobile.length<10 || clientMobile.length>10){
+      alert("Mobile No. is not valid!");
+      return;
+  }
+    if(clientPincode.length<6 || clientPincode.length>6 ){
+      alert("Pincode is not valid!");
+      return;
+  }
+
     //   console.log("Details Have Been Submitted");
     //   console.log(clientID);
     //   console.log(clientName);
@@ -59,7 +84,7 @@ const AddClient = (props) => {
         <form>
         <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >client Company*:</label>
+              <label >Client Company*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -71,7 +96,7 @@ const AddClient = (props) => {
                   </div>
               </div>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >client Name*:</label>
+              <label >Client Name*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -97,7 +122,7 @@ const AddClient = (props) => {
                   </div>
               </div>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >client Mobile No.*:</label>
+              <label >Client Mobile No.*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 

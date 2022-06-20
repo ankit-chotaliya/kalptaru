@@ -4,7 +4,6 @@ import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux';
 import { createKarigar } from '../../actions';
 import './AddKarigar.css';
-import ToastHelper from '../Helper/ToastHelper/ToastHelper';
 const AddKarigar = (props) => {
     const [karigarID,setKarigarID]=useState("");
     const [karigarName,setKarigarName]=useState("");
@@ -18,6 +17,25 @@ const AddKarigar = (props) => {
     const dispatch=useDispatch();
     const AddKarigarSubmit=(e)=>{
         e.preventDefault();
+
+        if(karigarName=="" || !RegExp(/^[a-zA-Z ]{2,30}$/).test(karigarName)){
+          alert("Karigar Name Incorrect");
+          return;
+        }
+    
+        if (karigarEmail=="" || !RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(karigarEmail)) {
+          alert("Email is not valid");
+          return;
+        }
+    
+        if(karigarMobile.length<10 || karigarMobile.length>10){
+          alert("Mobile No. is not valid!");
+          return;
+      }
+        if(karigarPincode.length<6 || karigarPincode.length>6 ){
+          alert("Pincode is not valid!");
+          return;
+      }
         // console.log("Details Have Been Submitted");
         // console.log(karigarID);
         // console.log(karigarName);
@@ -38,23 +56,7 @@ const AddKarigar = (props) => {
         }
         dispatch(createKarigar(dataObj));
         props.onHide();
-        
-      dispatch(Addkarigar(dataObj))
-      if(karigar.success){
-        setShowToast(true);
-        setmsgToast("Karigar added successfully");
-        setbgToast('success');
-        setidToast(idToast=>idToast+1);
-      }else{
-        setShowToast(false);
-        setmsgToast("Something Went Wrong!");
-        setbgToast('danger');
-        setidToast(idToast=>idToast+1);
-      }
     }
-    const fn=()=>{
-      return (<ToastHelper key={idToast} msg={msgToast} delay={delayToast} bg={bgToast}/>);
-  }
   return (
     <>
     <Modal
@@ -183,10 +185,9 @@ const AddKarigar = (props) => {
             </Modal.Footer>
           </form>
         </Modal.Body>
+        
       </Modal>
-      {
-          showToast?fn():null
-      }
+    
     </>
   )
 }

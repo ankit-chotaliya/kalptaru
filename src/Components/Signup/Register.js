@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import AddClient from '../AddClient/AddClient';
-import AddKarigar from '../AddKarigar/AddKarigar';
 import './Register.css';
 import Navbar from '../NavBar/Navbar';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
@@ -17,6 +15,25 @@ const Register = () => {
 
     const handleRegister=(e)=>{
         e.preventDefault();
+        if(mobileNo.length<10 || mobileNo.length>10){
+            alert("Mobile No. is not valid!");
+            return;
+        }
+        
+        if (fullName.length<=3) {
+         alert("fullname should be proper");
+         return;
+        }
+
+        if (!RegExp( /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/).test(password)) {
+            alert("Password is not valid");
+            return;
+        }
+
+        if (cpassword!==password) {
+            alert("Confirm password should be same as Password")
+        }
+
         alert("Registration Successfull!");
         navigate("/");
         

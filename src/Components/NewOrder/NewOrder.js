@@ -139,6 +139,56 @@ const NewOrder = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault();
+    formValues.forEach(ele => {
+      if (ele.clientName=="") {
+          alert("Client Not Selected");
+          return;
+        }
+      if (ele.karigarName=="") {
+          alert("Karigar Not Selected");
+          return;
+        }
+      if (ele.category=="") {
+          alert("Category Not Selected");
+          // return;
+        }
+      if (ele.qty=="") {
+          alert("Please Enter Quantity");
+          return;
+        }
+      if (ele.weightFrom=="") {
+          alert("Please Enter weight From");
+          return;
+        }
+      if (ele.weightTo=="") {
+          alert("Please Enter weight To");
+          return;
+        }
+      if (ele.dDate=="") {
+          alert("Please Enter delivery date");
+          return;
+        }
+      if (ele.melting=="") {
+          alert("Please Select Melting Point");
+          return;
+        }
+      if (ele.priority=="") {
+          alert("Please Select Priority");
+          return;
+        }
+      if (ele.img=="") {
+          alert("Please Upload Images");
+          return;
+        }
+      if (ele.huid=="") {
+        alert("Please select HUID");
+        return;
+      }
+      if (ele.oType=="") {
+        alert("Please select HUID");
+        return;
+      }
+   });
     // if(karigar=="" || pCategory=="" || melting=="" || refNum=="" || qty=="" || weightFrom=="" || weightTo=="" || dDate=="" || priority=="" || huid=="" || oType==""){
     //   alert("All the Information Required 2!")
     //   return;

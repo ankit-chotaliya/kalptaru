@@ -81,16 +81,24 @@ const NewOrderComponent = (props) => {
 
     const handleImgShow=(i,e)=>{
         const files=e.target.files;
-        console.log(files);
+        // console.log(files);
         var htmlData="";
         Array.from(files).forEach(f=>{
             var imgsrc=URL.createObjectURL(f);
             htmlData+=`<img className="no-img" src=${imgsrc} width="150px" height="150px" style="margin:10px" alt="img"/>`
         })
+            const MAX_LENGTH = 5;
+            if (Array.from(e.target.files).length > MAX_LENGTH) {
+                e.preventDefault();
+                alert(`Cannot upload files more than ${MAX_LENGTH}`);
+                return;
+            }
+            
         const ele=document.getElementById("img "+i);
         ele.innerHTML=htmlData;
         props.handleChange(props.index,e)
     }
+
     return (
 
     <>
