@@ -55,3 +55,8 @@ export const orderConfirmConstant={
     ORDER_SET_FAILURE:"ORDER_SET_FAILURE",
     ORDER_SET_EMPTY:"ORDER_SET_EMPTY",
 }
+
+export const toastConstant={
+    TOAST_SET_MSG:"TOAST_SET_MSG",
+    TOAST_EMPTY_STATE:"TOAST_EMPTY_STATE",
+}

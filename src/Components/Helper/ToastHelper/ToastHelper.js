@@ -9,6 +9,9 @@ const ToastHelper = (props) => {
                 <Toast.Body className='text-white'>{props.msg}</Toast.Body>
             </Toast>
         </ToastContainer>
+        {
+          props.inc()
+        }
     </>
   )
 }

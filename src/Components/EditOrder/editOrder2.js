@@ -104,7 +104,7 @@ function EditOrder2() {
     ]
 
     const hadnleUpdateOrder = (e) => {
-        console.log(" hii ")
+        // console.log(" hii ")
         e.preventDefault();
         setViewModal(true);
     }

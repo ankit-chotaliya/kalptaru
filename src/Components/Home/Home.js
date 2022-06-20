@@ -26,22 +26,22 @@ function Home() {
     <>
     <Navbar />
       {
-        order.data.orders && order.data.orders.map((ele,index)=>{
-          return <div key={ele._id}>
-            <p>Id-{index} {ele._id}</p>
-            <br/>
-            <p>Category-{index} {ele.orderCategory}</p>
-          </div>
-        })
+        // order.data.orders && order.data.orders.map((ele,index)=>{
+        //   return <div key={ele._id}>
+        //     <p>Id-{index} {ele._id}</p>
+        //     <br/>
+        //     <p>Category-{index} {ele.orderCategory}</p>
+        //   </div>
+        // })
       }
       {
-        karigar.data.karigar && karigar.data.karigar.map((ele,index)=>{
-          return <div key={ele._id}>
-            <p>Id-{index} {ele._id}</p>
-            <br/>
-            <p>Karigar-Name-{index} {ele.karigar_name}</p>
-          </div>
-        })
+        // karigar.data.karigar && karigar.data.karigar.map((ele,index)=>{
+        //   return <div key={ele._id}>
+        //     <p>Id-{index} {ele._id}</p>
+        //     <br/>
+        //     <p>Karigar-Name-{index} {ele.karigar_name}</p>
+        //   </div>
+        // })
       }
       <div className="container-fluid bg-home">
         <div className="row">

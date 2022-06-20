@@ -48,8 +48,21 @@ const Register = () => {
             alert("Confirm password should be same as Password")
         }
 
-        alert("Registration Successfull!");
-        navigate("/");
+        // alert("Registration Successfull!");
+        // navigate("/");
+        const dataObj={
+            fullname:fullname,
+            contact:mobileNo,
+            password:password
+        }
+
+        dispatch(registration(dataObj)).then(()=>{
+            
+            if(user.success){
+                navigate("/login");
+                
+            }
+        })
         
     }
 

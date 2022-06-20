@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -23,58 +23,107 @@ import ChangePassword from './Components/ChangePassword/ChangePassword';
 import AdminLogin from './Components/Admin/AdminLogin/AdminLogin';
 import AdminNavbar from './Components/Admin/AdminNavbar/AdminNavbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategory, getAllOrders,getAllClient,getAllKarigar } from './actions';
+import { getAllCategory, getAllOrders,getAllClient,getAllKarigar, preLoginusingToken } from './actions';
 import Loader from './Components/Helper/Loader/Loader';
-// import Loader from './Components/Helper/Loader/Loader';
-
+import ToastHelper from './Components/Helper/ToastHelper/ToastHelper';
+import { emptyToastMsg } from './actions/toast.action';
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './utils/PrivateRoute';
 
 
 const App = () => {
   const dispatch=useDispatch();
   const user=useSelector(state=>state.user);
-  const navigate=useNavigate();
-  // useEffect(()=>{
+  const toastState=useSelector(state=>state.toast);
+  const [idToast,setidToast]=useState(1);
 
-  // },[]);
+  useEffect(()=>{
+    if(localStorage.getItem('accessToken') && !user.authenticate){
+      const token=localStorage.getItem('accessToken').split(" ")[0];
+      dispatch(preLoginusingToken({accesstoken:token}));
+    }
+  },[])
+
+  useEffect(()=>{
+    if(toastState.isset==true){
+      if(toastState.bg=="success"){
+        toast.success(toastState.msg, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      }
+      if(toastState.bg=="danger"){
+        toast.error(toastState.msg, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+      }
+      dispatch(emptyToastMsg());
+    }
+    
+  },[toastState]);
 
   useEffect(() => {
+    if(user.authenticate){
       dispatch(getAllOrders());
       dispatch(getAllClient());
       dispatch(getAllKarigar());
       dispatch(getAllCategory());
-    if(user.authenticate){
-      
-    }else{
-      
     }
-    
-  }, [user])
+  }, [user]);
   
+  // const incrementToast=()=>{
+    
+  //     setidToast(idToast+1);
+      
+  // }
+  // setInterval(emptyToast,30000);
   return (
     <>
-
+      {user.loading?<Loader/>:null}
+      {
+       <ToastContainer position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover/>
+      }
       <Routes>
-        <Route path="/" exact element={<Home/>}/>
-        <Route path='/AdminLogin' exact element={<AdminLogin/>}/>
-        <Route path='/AdminNavbar' exact element={<AdminNavbar/>}/>
-        <Route path='*' exact element={<NotFound/>}/>
-        <Route path="/create" exact element={<NewOrder/>}/>
-        <Route path="/orderConfirm" exact element={<ConfirmOrder show={false}/>}/>
-        <Route path="/EditOrder" exact element={<Editorder/>}/>
-        <Route path="/EditOrderForm" exact element={<EditOrderForm/>}/>
-        <Route path="/settings" exact element={<Settings/>}/>
+        
+        <Route path="/" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Home/></PrivateRoute>}/>
+        
+        <Route path="/create" exact element={<PrivateRoute isAuthenticated={user.authenticate}><NewOrder/></PrivateRoute>}/>
+        <Route path="/orderConfirm" exact element={<PrivateRoute isAuthenticated={user.authenticate}><ConfirmOrder show={false}/></PrivateRoute>}/>
+        <Route path="/EditOrder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Editorder/></PrivateRoute>}/>
+        <Route path="/EditOrderForm" exact element={<PrivateRoute isAuthenticated={user.authenticate}><EditOrderForm/></PrivateRoute>}/>
+        <Route path="/settings" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Settings/></PrivateRoute>}/>
         <Route path="/modal" exact element={<ModalButton/>}/>
-        <Route path="/SendReminder" exact element={<SendReminder/>}/>
-        <Route path="/CompletedOrders" exact element={<CompletedOrder/>}/>
-        <Route path="/TrackOrder" exact element={<TrackOrder/>}/>
-        <Route path="/OrderView" exact element={<EditOrder2/>}/>
-        <Route path="/OrderStatus" exact element={<OrderStatus/>}/>
+        <Route path="/SendReminder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><SendReminder/></PrivateRoute>}/>
+        <Route path="/CompletedOrders" exact element={<PrivateRoute isAuthenticated={user.authenticate}><CompletedOrder/></PrivateRoute>}/>
+        <Route path="/TrackOrder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><TrackOrder/></PrivateRoute>}/>
+        <Route path="/OrderView" exact element={<PrivateRoute isAuthenticated={user.authenticate}><EditOrder2/></PrivateRoute>}/>
+        <Route path="/OrderStatus" exact element={<PrivateRoute isAuthenticated={user.authenticate}><OrderStatus/></PrivateRoute>}/>
         <Route path="/Login" exact element={<LogIn/>}/>
         <Route path="/Register" exact element={<Register/>}/>
         <Route path="/ForgotPassword" exact element={<ForgotPassword/>}/>
         <Route path="/OTPverify" exact element={<OTPverify/>}/>
         <Route path="/ChangePassword" exact element={<ChangePassword/>}/>
-        <Route path='/spin' exact element={<Loader/>}/>
+        <Route path='*' exact element={<NotFound/>}/>
       </Routes>
     </>
   )
