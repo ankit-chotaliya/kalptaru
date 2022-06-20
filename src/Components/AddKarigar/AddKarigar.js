@@ -39,7 +39,23 @@ const AddKarigar = (props) => {
         }
         dispatch(createKarigar(dataObj));
         props.onHide();
+        
+      dispatch(Addkarigar(dataObj))
+      if(karigar.success){
+        setShowToast(true);
+        setmsgToast("Karigar added successfully");
+        setbgToast('success');
+        setidToast(idToast=>idToast+1);
+      }else{
+        setShowToast(false);
+        setmsgToast("Something Went Wrong!");
+        setbgToast('danger');
+        setidToast(idToast=>idToast+1);
+      }
     }
+    const fn=()=>{
+      return (<ToastHelper key={idToast} msg={msgToast} delay={delayToast} bg={bgToast}/>);
+  }
   return (
     <>
     <Modal
@@ -168,9 +184,11 @@ const AddKarigar = (props) => {
             </Modal.Footer>
           </form>
         </Modal.Body>
-        
+
       </Modal>
-    
+      {
+          showToast?fn():null
+      }
     </>
   )
 }
