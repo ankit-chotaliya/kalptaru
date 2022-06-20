@@ -6,6 +6,7 @@ import NewOrderComponent from './NewOrderComponent'
 import NavBar from '../NavBar/Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { createNewOrder } from '../../actions'
+import Loader from '../Helper/Loader/Loader'
 /*track
   test={}
   [{
@@ -217,7 +218,7 @@ const NewOrder = () => {
     <>
         <NavBar/>
         {
-          order.loading?<div className="loader">Loading...</div>:<div className='container no-main no-border pageview'>
+          order.loading?<Loader msg="Creating.."/>:<div className='container no-main no-border pageview'>
           <div className='no-heading'>
             <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> New Order
           </div>

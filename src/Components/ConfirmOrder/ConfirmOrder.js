@@ -12,6 +12,7 @@ import coImg from './orderConfirmFinal.png'
 const ConfirmOrder = () => {
     const navigate=useNavigate();
     const [clientBlob,setClientBlob]=useState([{}]);
+    const [count,setCount]=useState(1);
     const [karigarBlob,setKarigarBlob]=useState([{}]);
     const [clientFileObj,setClientFileObj]=useState([{}]);
     const [karigarFileObj,setKarigarFileObj]=useState([{}]);
@@ -20,11 +21,11 @@ const ConfirmOrder = () => {
     const order=useSelector(state=>state.order);
     const canonical = document.querySelector("link[rel=canonical]");
     let url = canonical ? canonical.href : document.location.href;
-    const title="Name";
-    const text="Shree Kalptaru"
+    const title="PDF For Confirm Order-Shree Kalptaru";
+    const text="Order Confirmed!"
     const shareDetails={url:"http://localhost:3000",title:title,text:text};
     useEffect(()=>{
-        if(orderConfirm.isSet){
+        if(orderConfirm.isSet && count<orderConfirm.data.length+1){
             orderConfirm.data && orderConfirm.data.map((ele,index)=>{
                 axios.get(`http://localhost:8080/uploads/pdf/karigar/${ele}_orderKarigar.pdf`,{responseType:"blob"}).then(res=>{
                     // console.log(res);
@@ -70,6 +71,8 @@ const ConfirmOrder = () => {
                     console.log("Error in file downloading Client",err);
                     alert("Pdf not exist! try again");
                 })
+
+                setCount(count+1);
             })
             // console.log("orderId",orderId);
             
@@ -134,19 +137,22 @@ const ConfirmOrder = () => {
                 </div>
                 {
                     orderConfirm.data && clientBlob.length>0 && orderConfirm.data.map((ele,index)=>{
-                        console.log(clientBlob);
+                        console.log("count",count);
+                        
+                        console.log(orderConfirm.data);
+
                         return <span key={index}>
                         <div className='co-title'>
             
                             Order #{index+1} has been Confirmed!
                         </div>
                         <div className='co-customer-share mt-2'>
-                           <button className='co-share-btn' onClick={()=>handleShare(clientFileObj[index])}>
+                           <button className='co-share-btn' onClick={()=>handleShare(clientFileObj[index+1])}>
                                 Share PDF to Client &nbsp;<BsWhatsapp/>
                            </button>
                         </div>
                         <div className='co-karigar-share mt-2'>
-                            <button className='co-share-btn' onClick={()=>handleShare(karigarFileObj[index])}>
+                            <button className='co-share-btn' onClick={()=>handleShare(karigarFileObj[index+1])}>
                                 Share PDF to Karigar &nbsp;<BsWhatsapp/>
                            </button>
                         </div>
@@ -158,12 +164,12 @@ const ConfirmOrder = () => {
                             Download PDFs!
                         </div>
                         <div className='co-customer-share mt-2'>
-                           <button className='co-share-btn' onClick={()=>handleDownload(clientBlob[index],true)}>
+                           <button className='co-share-btn' onClick={()=>handleDownload(clientBlob[index+1],true)}>
                              PDF for Client &nbsp;<AiOutlineCloudDownload/>
                            </button>
                         </div>
                         <div className='co-karigar-share mt-2'>
-                            <button className='co-share-btn' onClick={()=>handleDownload(karigarBlob[index],false)}>
+                            <button className='co-share-btn' onClick={()=>handleDownload(karigarBlob[index+1],false)}>
                              PDF for Karigar &nbsp;<AiOutlineCloudDownload/>
                            </button>
                         </div>

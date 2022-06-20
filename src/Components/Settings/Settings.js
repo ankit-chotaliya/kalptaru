@@ -20,7 +20,7 @@ const Settings = () => {
 
 
       useEffect(()=>{
-           console.log("hii"); 
+        //    console.log("hii"); 
         },[]);
   
     const handleClient=(e)=>{
