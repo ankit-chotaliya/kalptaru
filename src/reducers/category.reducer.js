@@ -1,4 +1,4 @@
-import {karigarConstant} from '../actions/constant'
+import {categoryConstant} from '../actions/constant'
 const intialState={
     loading:false,
     data:{},
@@ -7,45 +7,50 @@ const intialState={
 
 export default (state=intialState,action)=>{
     switch (action.type) {
-        case karigarConstant.GET_ALL_KARIGAR_REQ:{
+        case categoryConstant.GET_ALL_CATEGORY_REQ:{
             return {
                 ...state,
                 loading:true,
+                addsuccess:false,
                 msg:action.data
             }
         }
-        case karigarConstant.GET_ALL_KARIGAR_SUC:{
+        case categoryConstant.GET_ALL_CATEGORY_SUC:{
             return {
                 ...state,
                 loading:false,
+                addsuccess:false,
                 data:action.payload
             }
         }
-        case karigarConstant.GET_ALL_KARIGAR_FAILURE:{
+        case categoryConstant.GET_ALL_CATEGORY_FAILURE:{
             return {
                 ...state,
                 loading:false,
+                addsuccess:false,
                 err:action.payload
             }
         }
-        case karigarConstant.ADD_KARIGAR_REQ:{
+        case categoryConstant.CATEGORY_ADD_REQ:{
             return {
                 ...state,
                 loading:true,
-                msg:action.data
+                addsuccess:false,
             }
         }
-        case karigarConstant.ADD_KARIGAR_SUC:{
+        case categoryConstant.CATEGORY_ADD_SUC:{
             return {
                 ...state,
                 loading:false,
+                addsuccess:true,
                 data:action.payload
             }
         }
-        case karigarConstant.ADD_KARIGAR_FAILURE:{
+        case categoryConstant.CATEGORY_ADD_FAILURE:{
             return {
                 ...state,
                 loading:false,
+                addsuccess:false,
                 err:action.payload
             }
         }

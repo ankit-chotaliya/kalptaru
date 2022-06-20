@@ -8,6 +8,12 @@ axiosinstance.interceptors.request.use((req)=>{
     const {user}=store.getState();
     if(user.token){ 
         req.headers.Authorization=`Bearer ${user.token}` 
+    }else{
+        const istoken=localStorage.getItem("accessToken");
+        if(istoken){
+            const token=istoken.split(" ")[0];
+            req.headers.Authorization=`Bearer ${token}`
+        }
     }
     return req;
 })

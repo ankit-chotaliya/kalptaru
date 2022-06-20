@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {Modal,Button} from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux';
+import { createClient } from '../../actions';
 import './AddClient.css';
 const AddClient = (props) => {
   const [clientID,setClientID]=useState("");
@@ -11,18 +13,30 @@ const AddClient = (props) => {
   const [clientState,setClientState]=useState("");
   const [clientCity,setClientCity]=useState("");
   const [clientPincode,setClientPincode]=useState("");
-
+  const user=useSelector(state=>state.user);
+  const dispatch=useDispatch();
   const AddClientSubmit=(e)=>{
       e.preventDefault();
-      console.log("Details Have Been Submitted");
-      console.log(clientID);
-      console.log(clientName);
-      console.log(clientEmail);
-      console.log(clientMobile);
-      console.log(clientCountry);
-      console.log(clientState);
-      console.log(clientCity);
-      console.log(clientPincode);
+    //   console.log("Details Have Been Submitted");
+    //   console.log(clientID);
+    //   console.log(clientName);
+    //   console.log(clientEmail);
+    //   console.log(clientMobile);
+    //   console.log(clientCountry);
+    //   console.log(clientState);
+    //   console.log(clientCity);
+    //   console.log(clientPincode);
+      const dataObj={
+        client_company:clientID,
+        client_name:clientName,
+        client_contact:clientMobile,
+        client_city:clientCity,
+        client_state:clientState,
+        client_country:clientCountry,
+        client_pincode:clientPincode,
+        createdby:user.data.user._id
+      }
+      dispatch(createClient(dataObj));
       props.onHide();
   }
   return (
@@ -45,19 +59,19 @@ const AddClient = (props) => {
         <form>
         <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >client ID</label>
+              <label >client Company*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
                   className="form-control no-input" 
-                  placeholder='client ID'
+                  placeholder='client Company'
                   value={clientID}
                   onChange={(e)=>{setClientID(e.target.value)}}
                   />
                   </div>
               </div>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >client Name</label>
+              <label >client Name*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -71,7 +85,7 @@ const AddClient = (props) => {
           </div>
           <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >Client Email</label>
+              <label >Client Email*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -83,7 +97,7 @@ const AddClient = (props) => {
                   </div>
               </div>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >client Mobile No.</label>
+              <label >client Mobile No.*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -97,7 +111,7 @@ const AddClient = (props) => {
           </div>
           <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label htmlFor="ref-num">Country</label>
+              <label htmlFor="ref-num">Country*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -109,7 +123,7 @@ const AddClient = (props) => {
                   </div>
               </div>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label htmlFor="qty">State</label>
+              <label htmlFor="qty">State:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -123,7 +137,7 @@ const AddClient = (props) => {
           </div>
           <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label htmlFor="ref-num">City</label>
+              <label htmlFor="ref-num">City:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -135,7 +149,7 @@ const AddClient = (props) => {
                   </div>
               </div>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label htmlFor="qty">Pincode</label>
+              <label htmlFor="qty">Pincode*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="number" 
@@ -147,7 +161,10 @@ const AddClient = (props) => {
                   </div>
               </div>
           </div>
+
+          <div className='mt-4'><b>* Indicates Mandatory fields</b></div>
           <Modal.Footer>
+              
               <button className="mt-3 w-25 no-sub-btn" onClick={AddClientSubmit}>Submit</button>
           </Modal.Footer>
         </form>

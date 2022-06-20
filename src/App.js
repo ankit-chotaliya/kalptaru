@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './App.css'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import NewOrder from './Components/NewOrder/NewOrder';
 import NotFound from './Components/NotFound/NotFound';
@@ -20,20 +20,31 @@ import Register from './Components/Signup/Register';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import OTPverify from './Components/OTPverify/OTPverify';
 import ChangePassword from './Components/ChangePassword/ChangePassword';
-import { useDispatch } from 'react-redux';
-import { getAllOrders } from './actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCategory, getAllOrders,getAllClient,getAllKarigar } from './actions';
+
 
 
 const App = () => {
   const dispatch=useDispatch();
-
+  const user=useSelector(state=>state.user);
+  const navigate=useNavigate();
   // useEffect(()=>{
 
   // },[]);
 
   useEffect(() => {
-    dispatch(getAllOrders());
-  }, [])
+      dispatch(getAllOrders());
+      dispatch(getAllClient());
+      dispatch(getAllKarigar());
+      dispatch(getAllCategory());
+    if(user.authenticate){
+      
+    }else{
+      
+    }
+    
+  }, [user])
   
   return (
     <>

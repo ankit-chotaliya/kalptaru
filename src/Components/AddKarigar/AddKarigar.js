@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {Modal,Button} from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux';
+import { createKarigar } from '../../actions';
 import './AddKarigar.css';
 const AddKarigar = (props) => {
     const [karigarID,setKarigarID]=useState("");
@@ -13,18 +15,29 @@ const AddKarigar = (props) => {
     const [karigarPincode,setKarigarPincode]=useState("");
     const [karigarEmail,setKarigarEmail]=useState("");
     const [karigarMobile,setKarigarMobile]=useState("");
-
+    const user=useSelector(state=>state.user);
+    const dispatch=useDispatch();
     const AddKarigarSubmit=(e)=>{
         e.preventDefault();
-        console.log("Details Have Been Submitted");
-        console.log(karigarID);
-        console.log(karigarName);
-        console.log(karigarCountry);
-        console.log(karigarState);
-        console.log(karigarCity);
-        console.log(karigarEmail);
-        console.log(karigarMobile);
-        console.log(karigarPincode);
+        // console.log("Details Have Been Submitted");
+        // console.log(karigarID);
+        // console.log(karigarName);
+        // console.log(karigarCountry);
+        // console.log(karigarState);
+        // console.log(karigarCity);
+        // console.log(karigarEmail);
+        // console.log(karigarMobile);
+        // console.log(karigarPincode);
+        const dataObj={
+          karigar_name:karigarName,
+          karigar_contact:karigarMobile,
+          karigar_city:karigarCity,
+          karigar_state:karigarCity,
+          karigar_country:karigarCountry,
+          karigar_pincode:karigarPincode,
+          createdby:user.data.user._id
+        }
+        dispatch(createKarigar(dataObj));
         props.onHide();
     }
   return (
@@ -47,7 +60,7 @@ const AddKarigar = (props) => {
           <form>
           <div className=' row'>
                 <div className="col-md-6 col-sm-12 mt-4">
-                <label >Karigar ID</label>
+                <label >Karigar ID:</label>
                     <div className='d-flex justify-content-start'>
                     <input 
                     type="text" 
@@ -59,7 +72,7 @@ const AddKarigar = (props) => {
                     </div>
                 </div>
                 <div className="col-md-6 col-sm-12 mt-4">
-                <label >Karigar Name</label>
+                <label >Karigar Name*:</label>
                     <div className='d-flex justify-content-start'>
                     <input 
                     type="text" 
@@ -73,7 +86,7 @@ const AddKarigar = (props) => {
             </div>
             <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >Karigar Email</label>
+              <label >Karigar Email:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -85,7 +98,7 @@ const AddKarigar = (props) => {
                   </div>
               </div>
               <div className="col-md-6 col-sm-12 mt-4">
-              <label >Karigar Mobile No.</label>
+              <label >Karigar Mobile No.*:</label>
                   <div className='d-flex justify-content-start'>
                   <input 
                   type="text" 
@@ -99,7 +112,7 @@ const AddKarigar = (props) => {
           </div>
             <div className=' row'>
                 <div className="col-md-6 col-sm-12 mt-4">
-                <label htmlFor="ref-num">Country</label>
+                <label htmlFor="ref-num">Country*:</label>
                     <div className='d-flex justify-content-start'>
                     <input 
                     type="text" 
@@ -111,7 +124,7 @@ const AddKarigar = (props) => {
                     </div>
                 </div>
                 <div className="col-md-6 col-sm-12 mt-4">
-                <label htmlFor="qty">State</label>
+                <label htmlFor="qty">State*:</label>
                     <div className='d-flex justify-content-start'>
                     <input 
                     type="text" 
@@ -125,7 +138,7 @@ const AddKarigar = (props) => {
             </div>
             <div className=' row'>
                 <div className="col-md-6 col-sm-12 mt-4">
-                <label htmlFor="ref-num">City</label>
+                <label htmlFor="ref-num">City*:</label>
                     <div className='d-flex justify-content-start'>
                     <input 
                     type="text" 
@@ -137,7 +150,7 @@ const AddKarigar = (props) => {
                     </div>
                 </div>
                 <div className="col-md-6 col-sm-12 mt-4">
-                <label htmlFor="qty">Pincode</label>
+                <label htmlFor="qty">Pincode*:</label>
                     <div className='d-flex justify-content-start'>
                     <input 
                     type="number" 
@@ -149,6 +162,7 @@ const AddKarigar = (props) => {
                     </div>
                 </div>
             </div>
+            <div className='mt-4'><b>* Indicates Mandatory fields</b></div>
             <Modal.Footer>
                 <button className="mt-3 w-25 no-sub-btn" onClick={AddKarigarSubmit}>Submit</button>
             </Modal.Footer>

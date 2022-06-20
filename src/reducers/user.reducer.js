@@ -13,6 +13,8 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:true,
+                success:false,
+                authenticate:false,
             }
         }
         case userConstant.USER_LOGIN_SUC:{
@@ -20,7 +22,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 data:action.payload,
-                success:true
+                success:true,
+                authenticate:true,
             }
         }
         case userConstant.USER_LOGIN_FAILURE:{
@@ -28,7 +31,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 err:action.payload,
-                success:false
+                success:false,
+                authenticate:false,
             }
         }
         default:
