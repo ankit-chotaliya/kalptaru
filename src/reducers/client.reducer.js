@@ -11,7 +11,7 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:true,
-                msg:action.data
+                data:action.data
             }
         }
         case clientConstant.GET_ALL_CLIENT_SUC:{
@@ -22,6 +22,27 @@ export default (state=intialState,action)=>{
             }
         }
         case clientConstant.GET_ALL_CLIENT_FAILURE:{
+            return {
+                ...state,
+                loading:false,
+                err:action.payload
+            }
+        }
+        case clientConstant.ADD_CLIENT_REQ:{
+            return {
+                ...state,
+                loading:true,
+                data:action.data
+            }
+        }
+        case clientConstant.ADD_CLIENT_SUC:{
+            return {
+                ...state,
+                loading:false,
+                data:action.payload
+            }
+        }
+        case clientConstant.ADD_CLIENT_FAILURE:{
             return {
                 ...state,
                 loading:false,

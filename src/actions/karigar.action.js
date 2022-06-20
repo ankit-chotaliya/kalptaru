@@ -1,11 +1,10 @@
-import { karigarConstant } from "./constant";
-import axios from '../utils/axios';
-
+import {karigarConstant} from './constant'
+import axios from '../utils/axios'
 export const getAllKarigar=()=>{
     return async (dispatch)=>{
         dispatch({
             type:karigarConstant.GET_ALL_KARIGAR_REQ,
-            data:"Request For Data...."
+            data:"Requesting..."
         })
         axios.get('/karigar/getKarigar')
         .then(res=>{
@@ -22,24 +21,29 @@ export const getAllKarigar=()=>{
         })
     }
 }
-export const Addkarigar=(dataObj)=>{
+
+export const createKarigar=(dataObj)=>{
     return async (dispatch)=>{
         dispatch({
-            type:karigarConstant.NEW_KARIGAR_REQ,
-            data:"Request For Data...."
+            type:karigarConstant.ADD_KARIGAR_REQ,
+            data:"Please Wait..."
         })
         axios.post('/karigar/createKarigar',dataObj)
         .then(res=>{
             dispatch({
-                type:karigarConstant.NEW_KARIGAR_SUC,
+                type:karigarConstant.ADD_KARIGAR_SUC,
                 payload:res.data
             })
+            dispatch(getAllKarigar());
+            alert("Karigar Added Successfully");
+           
         })
         .catch(err=>{
             dispatch({
-                type:karigarConstant.NEW_KARIGAR_FAILURE,
-                payload:err.message
+                type:karigarConstant.ADD_KARIGAR_FAILURE,
+                payload:"Karigar Can't Add!"
             })
+            alert("Karigar Can't Added!! try Again!");
         })
     }
 }
