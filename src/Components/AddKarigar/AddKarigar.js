@@ -10,8 +10,6 @@ const AddKarigar = (props) => {
     const [karigarCountry,setKarigarCountry]=useState("");
     const [karigarState,setKarigarState]=useState("");
     const [karigarCity,setKarigarCity]=useState("");
-    // const [karigarEmail,setKarigarEmail]=useState("");
-    // const [karigarMobile,setKarigarMobile]=useState("");
     const [karigarPincode,setKarigarPincode]=useState("");
     const [karigarEmail,setKarigarEmail]=useState("");
     const [karigarMobile,setKarigarMobile]=useState("");
@@ -19,6 +17,25 @@ const AddKarigar = (props) => {
     const dispatch=useDispatch();
     const AddKarigarSubmit=(e)=>{
         e.preventDefault();
+
+        if(karigarName=="" || !RegExp(/^[a-zA-Z ]{2,30}$/).test(karigarName)){
+          alert("Karigar Name Incorrect");
+          return;
+        }
+    
+        if (karigarEmail=="" || !RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(karigarEmail)) {
+          alert("Email is not valid");
+          return;
+        }
+    
+        if(karigarMobile.length<10 || karigarMobile.length>10){
+          alert("Mobile No. is not valid!");
+          return;
+      }
+        if(karigarPincode.length<6 || karigarPincode.length>6 ){
+          alert("Pincode is not valid!");
+          return;
+      }
         // console.log("Details Have Been Submitted");
         // console.log(karigarID);
         // console.log(karigarName);

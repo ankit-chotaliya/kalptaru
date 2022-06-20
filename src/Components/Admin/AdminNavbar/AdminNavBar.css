@@ -1,0 +1,140 @@
+.navbar {
+  background-color: #f9f9ff;
+  height: 96px;
+  display: flex;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.first_hr{
+  border-top: 0px solid black;
+  margin-top: -1px;
+}
+
+.menu-bars {
+  width: 28px;
+  height: 21px;
+  left: 36px;
+  top: 37px;
+  background: none;
+  margin-left: 24px;
+  margin-top: -5px;
+}
+
+.menu-bars svg {
+  height: 25px;
+  font-size: 25px;
+}
+
+.nav-menu {
+  background-color: #DEFFD1;
+  width: 262px;
+  height: 1368px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 50px;
+  width: 237px;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+.nav_logout{
+  color: red;
+}
+
+/* :hover {
+  color: var(--hovercolor);
+} */
+.nav-text a:hover {
+  background-color: #00a651;
+  border-radius: 0px;
+  color: white  !important;
+}
+
+.nav_logotext{
+  font-family: 'Gilroy-SemiBold';
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  color: #1F1F1F;
+  margin: 0 !important;
+}
+
+.container{
+  justify-content: center !important;
+}
+
+.nav-text-red{
+  color: red;
+}
+
+.nav-menu-items {
+  width: 100%;
+  margin-left: -40px;
+}
+
+.navbar-toggle {
+  background-color: #DEFFD1;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+span {
+  margin-left: 16px;
+}
+
+.nav_icon{
+  font-size: 22px;
+}
+
+@media (max-width: 767px) and (min-width: 360px){
+
+  #navMenu{
+    background-color: #DEFFD1;
+  width: 350px;
+  height: 1368px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+
+  }
+
+  #navMenu.active {
+    left: 0;
+    transition: 350ms;
+  }
+}

@@ -20,6 +20,8 @@ import Register from './Components/Signup/Register';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import OTPverify from './Components/OTPverify/OTPverify';
 import ChangePassword from './Components/ChangePassword/ChangePassword';
+import AdminLogin from './Components/Admin/AdminLogin/AdminLogin';
+import AdminNavbar from './Components/Admin/AdminNavbar/AdminNavbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory, getAllOrders,getAllClient,getAllKarigar, preLoginusingToken } from './actions';
 import Loader from './Components/Helper/Loader/Loader';
