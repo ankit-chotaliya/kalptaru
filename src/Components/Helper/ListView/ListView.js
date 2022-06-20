@@ -29,6 +29,9 @@ const ListView = (props) => {
         </div>
         </div>
         <div className='lv-icon' onClick={handleiconclick}>
+            {props.icon1}
+        </div>
+        <div className='lv-icon' onClick={handleiconclick}>
             {props.icon}
         </div>
     </div>

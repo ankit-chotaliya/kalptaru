@@ -2,8 +2,7 @@ import {karigarConstant} from '../actions/constant'
 const intialState={
     loading:false,
     data:{},
-    err:"",
-    success:false
+    err:""
 }
 
 export default (state=intialState,action)=>{
@@ -19,7 +18,7 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:false,
-                data:action.payload,
+                data:action.payload
             }
         }
         case karigarConstant.GET_ALL_KARIGAR_FAILURE:{
