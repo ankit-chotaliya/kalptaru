@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import React, { useState } from 'react'
-=======
 import React, {useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
->>>>>>> 57146a6fb05945c81815e2d53cf868d771c42105
 import './Register.css';
 import Navbar from '../NavBar/Navbar';
 import { registration } from '../../actions/user.action';
@@ -33,13 +29,12 @@ const Register = () => {
 
     const handleRegister=(e)=>{
         e.preventDefault();
-<<<<<<< HEAD
         if(mobileNo.length<10 || mobileNo.length>10){
             alert("Mobile No. is not valid!");
             return;
         }
         
-        if (fullName.length<=3) {
+        if (fullname.length<=3) {
          alert("fullname should be proper");
          return;
         }
@@ -55,21 +50,6 @@ const Register = () => {
 
         alert("Registration Successfull!");
         navigate("/");
-=======
-        const dataObj={
-            fullname:fullname,
-            contact:mobileNo,
-            password:password
-        }
-
-        dispatch(registration(dataObj)).then(()=>{
-            
-            if(user.success){
-                navigate("/login");
-                
-            }
-        })
->>>>>>> 57146a6fb05945c81815e2d53cf868d771c42105
         
     }
 
