@@ -48,6 +48,7 @@ const NewOrder = () => {
   const category=useSelector(state=>state.category);
   const order=useSelector(state=>state.order);
   const orderConfirm=useSelector(state=>state.orderConfirm);
+  const [errFlag,seterrFlag]=useState(true);
   const dispatch=useDispatch();
 
   const handleChange=(i,e)=>{
@@ -142,54 +143,58 @@ const NewOrder = () => {
     e.preventDefault();
     formValues.forEach(ele => {
       if (ele.clientName=="") {
-          alert("Client Not Selected");
-          return;
+          // alert("Client Not Selected");
+          seterrFlag(true);
         }
       if (ele.karigarName=="") {
-          alert("Karigar Not Selected");
-          return;
+          // alert("Karigar Not Selected");
+          seterrFlag(true);
         }
       if (ele.category=="") {
-          alert("Category Not Selected");
-          // return;
+          // alert("Category Not Selected");
+          // seterrFlag(true);
         }
       if (ele.qty=="") {
-          alert("Please Enter Quantity");
-          return;
+          // alert("Please Enter Quantity");
+          seterrFlag(true);
         }
       if (ele.weightFrom=="") {
-          alert("Please Enter weight From");
-          return;
+          // alert("Please Enter weight From");
+          seterrFlag(true);
         }
       if (ele.weightTo=="") {
-          alert("Please Enter weight To");
-          return;
+          // alert("Please Enter weight To");
+          seterrFlag(true);
         }
       if (ele.dDate=="") {
-          alert("Please Enter delivery date");
-          return;
+          // alert("Please Enter delivery date");
+          seterrFlag(true);
         }
       if (ele.melting=="") {
-          alert("Please Select Melting Point");
-          return;
+          // alert("Please Select Melting Point");
+          seterrFlag(true);
         }
       if (ele.priority=="") {
-          alert("Please Select Priority");
-          return;
+          // alert("Please Select Priority");
+          seterrFlag(true);
         }
       if (ele.img=="") {
-          alert("Please Upload Images");
-          return;
+          // alert("Please Upload Images");
+          seterrFlag(true);
         }
       if (ele.huid=="") {
-        alert("Please select HUID");
-        return;
+        // alert("Please select HUID");
+        seterrFlag(true);
       }
       if (ele.oType=="") {
-        alert("Please select HUID");
-        return;
+        // alert("Please select HUID");
+        seterrFlag(true);
       }
    });
+   if(errFlag){
+    alert("All the information is required!!");
+    return;
+   }
     // if(karigar=="" || pCategory=="" || melting=="" || refNum=="" || qty=="" || weightFrom=="" || weightTo=="" || dDate=="" || priority=="" || huid=="" || oType==""){
     //   alert("All the Information Required 2!")
     //   return;
