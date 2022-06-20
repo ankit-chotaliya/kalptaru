@@ -6,9 +6,14 @@ const axiosinstance=axios.create({
 
 axiosinstance.interceptors.request.use((req)=>{
     const {user}=store.getState();
-    if(user.data.accesstoken){ 
-        const token=user.data.accesstoken
-        req.headers.Authorization=`Bearer ${token}` 
+    if(user.token){ 
+        req.headers.Authorization=`Bearer ${user.token}` 
+    }else{
+        const istoken=localStorage.getItem("accessToken");
+        if(istoken){
+            const token=istoken.split(" ")[0];
+            req.headers.Authorization=`Bearer ${token}`
+        }
     }
     return req;
 })

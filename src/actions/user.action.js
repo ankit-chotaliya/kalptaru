@@ -8,12 +8,15 @@ export const login=(dataObj)=>{
         })
         axios.post('/user/signin',dataObj)
         .then(res=>{
+            alert("Login Success");
+            localStorage.setItem("accessToken",res.data.accesstoken+" kalptaru");
             dispatch({
                 type:userConstant.USER_LOGIN_SUC,
                 payload:res.data
             })
         })
         .catch(err=>{
+            alert("Login Error");
             dispatch({
                 type:userConstant.USER_LOGIN_FAILURE,
                 payload:err.message

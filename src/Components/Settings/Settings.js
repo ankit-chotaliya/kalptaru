@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,CSSProperties } from 'react'
 import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import './Settings.css';
@@ -6,6 +6,8 @@ import Navbar from '../NavBar/Navbar';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
+import { useCSVReader } from 'react-papaparse';
+
 
 const Settings = () => {
     const navigate=useNavigate();
@@ -20,6 +22,7 @@ const Settings = () => {
       useEffect(()=>{
            console.log("hii"); 
         },[]);
+  
     const handleClient=(e)=>{
         e.preventDefault();
         setAddClientModal(true);
@@ -38,6 +41,14 @@ const Settings = () => {
     const handlePasswordChange = ()=>{
         console.log(" password change")
     }
+
+    const handleFiles = files => {
+        
+        const reader=new FileReader();
+        // reader.readAsText(files[0]);
+        console.log(reader.readAsText(files[0]));
+      }
+      
   return (
     <>
     <Navbar/>
@@ -86,6 +97,14 @@ const Settings = () => {
                         Submit
                    </button>
                 </div>
+
+                <div className='st-mobile mt-2'>
+                    <label htmlFor='st-pass'>Add karigar using csv</label>
+                    <br/>
+                    <div className='st-mob-sub'>
+
+                    </div>
+                </div>
                 <div className='co-customer-share mt-4'>
                   
                    <button className='co-share-btn' onClick={handleClient}>
@@ -96,6 +115,7 @@ const Settings = () => {
                     onHide={() => setAddClientModal(false)}
                     />
                 </div>
+                
                 <div className='co-karigar-share mt-4'>
                     <button className='co-share-btn' onClick={handleAddKarigar}>
                         Add Karigar

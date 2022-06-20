@@ -1,4 +1,4 @@
-import {clientConstant} from '../actions/constant'
+import {categoryConstant} from '../actions/constant'
 const intialState={
     loading:false,
     data:{},
@@ -7,45 +7,50 @@ const intialState={
 
 export default (state=intialState,action)=>{
     switch (action.type) {
-        case clientConstant.GET_ALL_CLIENT_REQ:{
+        case categoryConstant.GET_ALL_CATEGORY_REQ:{
             return {
                 ...state,
                 loading:true,
-                data:action.data
+                addsuccess:false,
+                msg:action.data
             }
         }
-        case clientConstant.GET_ALL_CLIENT_SUC:{
+        case categoryConstant.GET_ALL_CATEGORY_SUC:{
             return {
                 ...state,
                 loading:false,
+                addsuccess:false,
                 data:action.payload
             }
         }
-        case clientConstant.GET_ALL_CLIENT_FAILURE:{
+        case categoryConstant.GET_ALL_CATEGORY_FAILURE:{
             return {
                 ...state,
                 loading:false,
+                addsuccess:false,
                 err:action.payload
             }
         }
-        case clientConstant.ADD_CLIENT_REQ:{
+        case categoryConstant.CATEGORY_ADD_REQ:{
             return {
                 ...state,
                 loading:true,
-                data:action.data
+                addsuccess:false,
             }
         }
-        case clientConstant.ADD_CLIENT_SUC:{
+        case categoryConstant.CATEGORY_ADD_SUC:{
             return {
                 ...state,
                 loading:false,
+                addsuccess:true,
                 data:action.payload
             }
         }
-        case clientConstant.ADD_CLIENT_FAILURE:{
+        case categoryConstant.CATEGORY_ADD_FAILURE:{
             return {
                 ...state,
                 loading:false,
+                addsuccess:false,
                 err:action.payload
             }
         }

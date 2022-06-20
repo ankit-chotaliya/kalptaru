@@ -22,25 +22,35 @@ const LogIn = () => {
     const delayToast=3000;
     const dispatch=useDispatch();
     const user=useSelector(state=>state.user)
+    useEffect(() => {
+        if (user.success) {
+          <p>Redirecting...</p>
+          navigate("/");
+        }
+      }, [user.success])
     const handleLogin=(e)=>{
         e.preventDefault();
         const dataObj={
             contact:mobileNo,
             password:password
         }
-        dispatch(login(dataObj));
-        if(user.success){
-            setShowToast(true);
-            setmsgToast("Login Success");
-            setbgToast('success');
-            setidToast(idToast=>idToast+1);
-            // navigate("/");
-        }else{
-            setShowToast(true);
-            setmsgToast("Wrong Credentials");
-            setbgToast('danger');
-            setidToast(idToast=>idToast+1);
-        }
+        dispatch(login(dataObj)).then(()=>{
+            
+            if(user.success){
+                setShowToast(true);
+                setmsgToast("Login Success");
+                setbgToast('success');
+                setidToast(idToast=>idToast+1);
+                navigate("/");
+                
+            }else{
+                setShowToast(true);
+                setmsgToast("Wrong Credentials");
+                setbgToast('danger');
+                setidToast(idToast=>idToast+1);
+            }
+        })
+        
         
     }
     const handlepassword=(e)=>{
@@ -50,11 +60,6 @@ const LogIn = () => {
     const fn=()=>{
         return (<ToastHelper key={idToast} msg={msgToast} delay={delayToast} bg={bgToast}/>);
     }
-    // useEffect(()=>{
-    //     if(user.loading==true){
-    //         return <p>{user.msg}</p>
-    //     }
-    // },[user])
   return (
     <>
     <Navbar/>

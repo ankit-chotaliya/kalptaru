@@ -29,27 +29,25 @@ export default (state=intialState,action)=>{
                 err:action.payload
             }
         }
-        case karigarConstant.NEW_KARIGAR_REQ:{
-            return{
+        case karigarConstant.ADD_KARIGAR_REQ:{
+            return {
                 ...state,
                 loading:true,
+                msg:action.data
+            }
+        }
+        case karigarConstant.ADD_KARIGAR_SUC:{
+            return {
+                ...state,
+                loading:false,
                 data:action.payload
             }
         }
-        case karigarConstant.NEW_KARIGAR_SUC:{
-            return{
+        case karigarConstant.ADD_KARIGAR_FAILURE:{
+            return {
                 ...state,
                 loading:false,
-                data:action.payload,
-                success:true
-            }
-        }
-        case karigarConstant.NEW_KARIGAR_FAILURE:{
-            return{
-                ...state,
-                loading:false,
-                err:action.payload,
-                success:false
+                err:action.payload
             }
         }
         default:

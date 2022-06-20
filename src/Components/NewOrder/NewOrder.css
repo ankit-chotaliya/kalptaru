@@ -165,9 +165,21 @@ content: '✖';
 }
 .no-order-number{
     font-weight: bold;
-    border-bottom: 1px solid #ced4da;
+    font-size: 20px;
+    border-bottom: 1px solid var(--darkGreen);
 }
-
+.no-ordernum{
+    width: 90% !important;
+}
+.no-ordernum-1{
+    width: 10% !important;
+}
+.no-cancel-btn{
+    border-radius: 0% !important;
+}
+.no-img{
+    margin: 10px;
+}
 @keyframes animateblur {
     0% {
       opacity: 0;
@@ -200,5 +212,11 @@ content: '✖';
     }
     .no-heading{
         margin-left: 25px;
+    }
+    .no-ordernum{
+        width: 80% !important;
+    }
+    .no-ordernum-1{
+        width: 10% !important;
     }
   }
