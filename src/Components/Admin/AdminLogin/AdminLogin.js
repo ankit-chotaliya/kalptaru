@@ -22,36 +22,13 @@ function AdminLogin() {
     const delayToast = 3000;
     const dispatch = useDispatch();
     const user = useSelector(state => state.user)
-    useEffect(() => {
-        if (user.success) {
-            <p>Redirecting...</p>
-            navigate("/");
-        }
-    }, [user.success])
+    
     const handleLogin = (e) => {
         e.preventDefault();
         const dataObj = {
             contact: mobileNo,
             password: password
         }
-        dispatch(login(dataObj)).then(() => {
-
-            if (user.success) {
-                setShowToast(true);
-                setmsgToast("Login Success");
-                setbgToast('success');
-                setidToast(idToast => idToast + 1);
-                navigate("/");
-
-            } else {
-                setShowToast(true);
-                setmsgToast("Wrong Credentials");
-                setbgToast('danger');
-                setidToast(idToast => idToast + 1);
-            }
-        })
-
-
     }
     const handlepassword = (e) => {
         setShowPassWord(true);
