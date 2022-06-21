@@ -22,6 +22,10 @@ import OTPverify from './Components/OTPverify/OTPverify';
 import ChangePassword from './Components/ChangePassword/ChangePassword';
 import AdminLogin from './Components/Admin/AdminLogin/AdminLogin';
 import AdminNavbar from './Components/Admin/AdminNavbar/AdminNavbar';
+import AdminUsers from './Components/Admin/AdminUsers/AdminUsers';
+import AdminOrders from './Components/Admin/AdminOrders/AdminOrders';
+import AdminKarigars from './Components/Admin/AdminKarigars/AdminKarigars';
+import AdminClients from './Components/Admin/AdminClients/AdminClients';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory, getAllOrders,getAllClient,getAllKarigar, preLoginusingToken } from './actions';
 import Loader from './Components/Helper/Loader/Loader';
@@ -106,7 +110,12 @@ const App = () => {
       <Routes>
         
         <Route path="/" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Home/></PrivateRoute>}/>
-        
+        <Route path="/AdminNavbar" exact element={<AdminNavbar/>}/>
+        <Route path="/AdminLogin" exact element={<AdminLogin/>}/>
+        <Route path="/AdminUsers" exact element={<AdminUsers/>}/>
+        <Route path="/AdminOrders" exact element={<AdminOrders/>}/>
+        <Route path="/AdminKarigars" exact element={<AdminKarigars/>}/>
+        <Route path="/AdminClients" exact element={<AdminClients/>}/>
         <Route path="/create" exact element={<PrivateRoute isAuthenticated={user.authenticate}><NewOrder/></PrivateRoute>}/>
         <Route path="/orderConfirm" exact element={<PrivateRoute isAuthenticated={user.authenticate}><ConfirmOrder show={false}/></PrivateRoute>}/>
         <Route path="/EditOrder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Editorder/></PrivateRoute>}/>
