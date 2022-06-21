@@ -11,15 +11,15 @@
     outline: none;
     border-radius: 8px;
     align-items: center;
-    background: transparent;
+    /* background: transparent; */
     font-family: none;
     border: none;
-    background-color: #F9F9FF;
+    background-color:whitesmoke !important ;
     width: 96px;
     height: 44px;
 }
 .btn:hover{
-    background-color: var(--lightGreen2);
+    background-color: var(--lightGreen2) !important;
 }
 
 .to-editorder{
