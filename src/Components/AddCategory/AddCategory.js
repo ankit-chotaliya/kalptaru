@@ -18,6 +18,8 @@ const AddCategory = (props) => {
         }
         dispatch(AddCategoryData(cateObj));
         props.onHide();
+        setCategoryName("");
+        setCategoryref("");
     }
 
   return (

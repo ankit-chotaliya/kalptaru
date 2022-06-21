@@ -8,6 +8,7 @@ import AddKarigar from '../AddKarigar/AddKarigar';
 import AddCategory from '../AddCategory/AddCategory';
 import imgtest from '../EditOrder/ring.jpg';
 import { getAllCategory, getAllClient, getAllKarigar } from '../../actions';
+import { setToastMsg } from '../../actions/toast.action';
 const NewOrderComponent = (props) => {
     const [imglen,setImglen]=useState(0);
     const [addClientModal,setAddClientModal]=useState(false);
@@ -90,7 +91,8 @@ const NewOrderComponent = (props) => {
             const MAX_LENGTH = 5;
             if (Array.from(e.target.files).length > MAX_LENGTH) {
                 e.preventDefault();
-                alert(`Cannot upload files more than ${MAX_LENGTH}`);
+                // alert(`Cannot upload files more than ${MAX_LENGTH}`);
+                dispatch(setToastMsg(`Cannot upload files more than ${MAX_LENGTH}`,true))
                 return;
             }
             

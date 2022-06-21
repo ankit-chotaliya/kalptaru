@@ -1,5 +1,6 @@
 import {categoryConstant} from './constant'
 import axios from '../utils/axios'
+import { setToastMsg } from './toast.action'
 export const getAllCategory=()=>{
     return async (dispatch)=>{
         dispatch({
@@ -28,21 +29,21 @@ export const AddCategoryData=(CategoryObj)=>{
             type:categoryConstant.CATEGORY_ADD_REQ,
             data:"Please Wait..."
         })
-        axios.post('/category/createCategory',CategoryObj)
-        .then(res=>{
+        const res=await axios.post('/category/createCategory',CategoryObj)
+        if(res.status==200){
             dispatch({
                 type:categoryConstant.CATEGORY_ADD_SUC,
                 payload:res.data
             })
-            alert("Category Added Successfully");
             dispatch(getAllCategory());
-        })
-        .catch(err=>{
+            dispatch(setToastMsg("Category Added Successfully",false))
+        }else if(res.status==203){
             dispatch({
                 type:categoryConstant.CATEGORY_ADD_FAILURE,
                 payload:"Category Can't Add!"
             })
-            alert("Catagory Can't Added!! try Again!");
-        })
+            dispatch(getAllCategory());
+            dispatch(setToastMsg(res.data.message,true));
+        }
     }
 }

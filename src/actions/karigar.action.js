@@ -1,5 +1,6 @@
 import {karigarConstant} from './constant'
 import axios from '../utils/axios'
+import { setToastMsg } from './toast.action'
 export const getAllKarigar=()=>{
     return async (dispatch)=>{
         dispatch({
@@ -28,22 +29,20 @@ export const createKarigar=(dataObj)=>{
             type:karigarConstant.ADD_KARIGAR_REQ,
             data:"Please Wait..."
         })
-        axios.post('/karigar/createKarigar',dataObj)
-        .then(res=>{
+        const res=await axios.post('/karigar/createKarigar',dataObj)
+        if(res.status==200){
             dispatch({
                 type:karigarConstant.ADD_KARIGAR_SUC,
                 payload:res.data
             })
             dispatch(getAllKarigar());
-            alert("Karigar Added Successfully");
-           
-        })
-        .catch(err=>{
+            dispatch(setToastMsg("Karigar Added Successfully",false));
+        }else if(res.status==203){
             dispatch({
                 type:karigarConstant.ADD_KARIGAR_FAILURE,
                 payload:"Karigar Can't Add!"
             })
-            alert("Karigar Can't Added!! try Again!");
-        })
+            dispatch(setToastMsg(res.data.message,true));
+        }
     }
 }

@@ -49,13 +49,20 @@ const AddKarigar = (props) => {
           karigar_name:karigarName,
           karigar_contact:karigarMobile,
           karigar_city:karigarCity,
-          karigar_state:karigarCity,
+          karigar_state:karigarState,
           karigar_country:karigarCountry,
           karigar_pincode:karigarPincode,
           createdby:user.data.user._id
         }
         dispatch(createKarigar(dataObj));
         props.onHide();
+        setKarigarName("");
+        setKarigarMobile("");
+        setKarigarPincode("");
+        setKarigarState("");
+        setKarigarCountry("");
+        setKarigarCity("");
+        setKarigarEmail("");
     }
   return (
     <>
@@ -76,18 +83,7 @@ const AddKarigar = (props) => {
         <Modal.Body>
           <form>
           <div className=' row'>
-                <div className="col-md-6 col-sm-12 mt-4">
-                <label >Karigar ID:</label>
-                    <div className='d-flex justify-content-start'>
-                    <input 
-                    type="text" 
-                    className="form-control no-input" 
-                    placeholder='Karigar ID'
-                    value={karigarID}
-                    onChange={(e)=>{setKarigarID(e.target.value)}}
-                    />
-                    </div>
-                </div>
+                
                 <div className="col-md-6 col-sm-12 mt-4">
                 <label >Karigar Name*:</label>
                     <div className='d-flex justify-content-start'>

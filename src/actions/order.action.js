@@ -1,5 +1,6 @@
 import {orderConfirmConstant, orderConstant} from './constant'
 import axios from '../utils/axios'
+import { setToastMsg } from './toast.action'
 
 export const getAllOrders=()=>{
     return async (dispatch)=>{
@@ -40,6 +41,7 @@ export const createNewOrder=(dataObj)=>{
                 payload:res.data
             })
             dispatch(setOrderConfirm(res.data.data._id));
+            dispatch(setToastMsg("Order Created!",false));
             
         }else{
             // dispatch(emptyOrderConfirm());
@@ -47,7 +49,7 @@ export const createNewOrder=(dataObj)=>{
                 type:orderConstant.NEW_ORDER_FAILURE,
                 payload:"Order Can't Created!"
             })
-            
+            dispatch(setToastMsg("Try Again!",true));
         }
     }
 }

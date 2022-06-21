@@ -9,6 +9,7 @@ import { emptyOrderConfirm, getAllOrders } from '../../actions'
 import Navbar from '../NavBar/Navbar'
 import './ConfirmOrder.css'
 import coImg from './orderConfirmFinal.png'
+import noCoImg from './noCoImg.jpg'
 const ConfirmOrder = () => {
     const navigate=useNavigate();
     const [clientBlob,setClientBlob]=useState([{}]);
@@ -26,6 +27,7 @@ const ConfirmOrder = () => {
     const shareDetails={url:"http://localhost:3000",title:title,text:text};
     useEffect(()=>{
         if(orderConfirm.isSet && count<orderConfirm.data.length+1){
+
             orderConfirm.data && orderConfirm.data.map((ele,index)=>{
                 axios.get(`http://localhost:8080/uploads/pdf/karigar/${ele}_orderKarigar.pdf`,{responseType:"blob"}).then(res=>{
                     // console.log(res);
@@ -118,12 +120,22 @@ const ConfirmOrder = () => {
             saveAs(blob,"karigar.pdf");
         }
     }
+    // const noOrdersSet=()=>{
+    //     return <div>
+    //     </div>
+    // }
+    // if(!orderConfirm.isSet){
+    //     return <p className='center'>No Order has been Created Right Now!</p> 
+    // }
   return (
     <>
         <Navbar/>
         {
+            
+        }
+        {
             // console.log(clientFileObj)
-            order.loading?<div className='loader'>Loading...</div>:
+            orderConfirm.isSet?order.loading?<div className='loader'>Loading...</div>:
         <div className='container no-main no-border pageview'>
             <div className='no-heading'>
               <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>{navigate('/')}}/> Order Confirm
@@ -179,7 +191,25 @@ const ConfirmOrder = () => {
                 
             </div>
            
+        </div>:<div className='container no-main no-border pageview'>
+        <div className='no-heading'>
+          <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>{navigate('/')}}/> Order Confirm
         </div>
+        
+        <div className='co-container mt-4'>
+            
+            <div className='co-icon'>
+                
+                <img src={noCoImg}/>
+            </div>
+                 <span>
+                    <div className='co-title'>
+                        There are no Orders created right now! Please, <strong>create order</strong> first or Check into <strong>track order</strong> for previously created orders!
+                    </div>
+                </span>  
+        </div>
+       
+    </div>
         }
     </>
   )

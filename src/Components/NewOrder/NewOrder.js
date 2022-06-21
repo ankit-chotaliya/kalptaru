@@ -5,7 +5,7 @@ import {AiOutlineArrowLeft} from 'react-icons/ai'
 import NewOrderComponent from './NewOrderComponent'
 import NavBar from '../NavBar/Navbar'
 import { useDispatch, useSelector } from 'react-redux'
-import { createNewOrder } from '../../actions'
+import { createNewOrder, emptyOrderConfirm } from '../../actions'
 import Loader from '../Helper/Loader/Loader'
 /*track
   test={}
@@ -74,70 +74,6 @@ const NewOrder = () => {
     newFormValues.splice(i, 1);
     setFormValues(newFormValues);
   }
-
-  //for Component and order tracking using count
-  // const [count,setCount]=useState(2);
-  // const [Component, setComponent] = useState([
-
-  // ])
-
-  //add-more and submit button event
-  // const handleAddMore=(e)=>{
-  //   e.preventDefault();
-  //   if(karigar=="" || pCategory=="" || melting=="" || refNum=="" || qty=="" || weightFrom=="" || weightTo=="" || dDate=="" || priority=="" || huid=="" || oType==""){
-  //     alert("All the Information Required 1!")
-  //     return;
-  //   }
-  //   setFData(fData=>[...fData,{
-  //     client:client,
-  //     karigar:karigar,
-  //     pCategory:pCategory,
-  //     refNum:refNum,
-  //     qty:qty,
-  //     weightFrom:weightFrom,
-  //     weightTo:weightTo,
-  //     dDate:dDate,
-  //     melting:melting,
-  //     priority:priority,
-  //     img:img,
-  //     huid:huid,
-  //     oType:oType
-  //   }]);
-  //   setClient("");
-  //   setKarigar("");
-  //   setPCategory("");
-  //   setRefNum("");
-  //   setQty(1);
-  //   setWeightFrom(1);
-  //   setWeightTo(1);
-  //   setDDate("");
-  //   setMelting("");
-  //   setPriority("");
-  //   setImg([]);
-  //   setHuid("");
-  //   setOType("");
-  //   setCount(count=>count+1);
-  //   setComponent(Component=>
-  //     [...Component,
-  //       <NewOrderComponent 
-  //       key={count}
-  //       number={count}
-  //       handleClient={handleClient}
-  //       handleKarigar={handleKarigar}
-  //       handlePCategory={handlePCategory}
-  //       handleRefNum={handleRefNum}
-  //       handleQty={handleQty}
-  //       handleWFrom={handleWFrom}
-  //       handleWTo={handleWTo}
-  //       handledDate={handledDate}
-  //       handleMelting={handleMelting}
-  //       handlePriority={handlePriority}
-  //       handleimg={handleimg}
-  //       handleHUID={handleHUID}
-  //       handleOType={handleOType}
-  //       img={img}
-  //       />])
-  // }
 
   const handleSubmit=(e)=>{
     e.preventDefault();
@@ -227,48 +163,24 @@ const NewOrder = () => {
       formData.append("priority",ele.priority);
       formData.append("HUID",ele.huid);
       formData.append("orderType",ele.oType);
-      formData.append("orderStatus","New Order");
+      formData.append("orderStatus",1);
       
       formData.append("createdby",user.data.user._id);
       dispatch(createNewOrder(formData));
     })
 
-    
-    // const dataObj={
-    //   client:client,
-    //   karigar:karigar,
-    //   pCategory:pCategory,
-    //   refNum:refNum,
-    //   qty:qty,
-    //   weightFrom:weightFrom,
-    //   weightTo:weightTo,
-    //   dDate:dDate,
-    //   melting:melting,
-    //   priority:priority,
-    //   img:img,
-    //   huid:huid,
-    //   oType:oType
-    // };
-    // setKarigar("");
-    // setPCategory("");
-    // setRefNum("");
-    // setQty(1);
-    // setWeightFrom(1);
-    // setWeightTo(1);
-    // setDDate("");
-    // setMelting("");
-    // setPriority("");
-    // setImg([]);
-    // setHuid("");
-    // setOType("");
+
     
   }
   useEffect(()=>{
     if(order.dataAdded>0 && order.dataAdded==formValues.length && orderConfirm.isSet){
       // alert("Order Created Successfully");
-      navigate("/orderConfirm")
+      navigate("/orderConfirm");
     }
   },[order.dataAdded,orderConfirm.isSet])
+  useEffect(()=>{
+    dispatch(emptyOrderConfirm());
+  },[])
   return (
     <>
         <NavBar/>

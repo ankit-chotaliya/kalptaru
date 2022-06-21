@@ -1,5 +1,6 @@
 import {clientConstant} from './constant'
 import axios from '../utils/axios'
+import { setToastMsg } from './toast.action'
 export const getAllClient=()=>{
     return async (dispatch)=>{
         dispatch({
@@ -28,22 +29,21 @@ export const createClient=(dataObj)=>{
             type:clientConstant.ADD_CLIENT_REQ,
             data:"Please Wait..."
         })
-        axios.post('/client/createClient',dataObj)
-        .then(res=>{
+        const res=await axios.post('/client/createClient',dataObj)
+        if(res.status==200){
             dispatch({
                 type:clientConstant.ADD_CLIENT_SUC,
                 payload:res.data
             })
             dispatch(getAllClient());
-            alert("Client Added Successfully");
-           
-        })
-        .catch(err=>{
+            dispatch(setToastMsg("Client Added Successfully!",false));
+        }else if(res.status==203){
             dispatch({
                 type:clientConstant.ADD_CLIENT_FAILURE,
                 payload:"Client Can't Add!"
             })
-            alert("Client Can't Added!! try Again!");
-        })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+      
     }
 }

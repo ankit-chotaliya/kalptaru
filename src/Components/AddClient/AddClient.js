@@ -53,6 +53,7 @@ const AddClient = (props) => {
     //   console.log(clientPincode);
       const dataObj={
         client_company:clientID,
+        client_email:clientEmail,
         client_name:clientName,
         client_contact:clientMobile,
         client_city:clientCity,
@@ -63,6 +64,14 @@ const AddClient = (props) => {
       }
       dispatch(createClient(dataObj));
       props.onHide();
+      setClientID("");
+      setClientName("");
+      setClientMobile("");
+      setClientCity("");
+      setClientState("");
+      setClientCountry("");
+      setClientEmail("");
+      setClientPincode("");
   }
   return (
     <>
