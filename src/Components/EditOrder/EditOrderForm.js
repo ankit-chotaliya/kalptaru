@@ -1,13 +1,14 @@
 import React,{useState} from 'react'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import {GrDocumentUpdate} from 'react-icons/gr'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ModalHelper from '../Helper/Modal/ModalHelper';
 import NavBar from '../NavBar/Navbar'
 import EditOrderFormHelper from './EditOrderFormHelper';
 
 const EditOrderForm = () => {
     const navigate=useNavigate();
+    const {orderId}=useParams();
     const [client,setClient]=useState("");
     const [karigar,setKarigar]=useState("");
     const [pCategory,setPCategory]=useState("");
@@ -110,7 +111,7 @@ const EditOrderForm = () => {
                 />
                 <div className='row eof-mob'>
                   <div className='col-md-12 col-sm-12 mt-4'>
-                  <button type="submit" className='no-sub-btn eof-up-btn'  onClick={hadnleUpdateOrder}>Update Order</button>
+                  <button type="submit" className='no-sub-btn eof-up-btn'  onClick={hadnleUpdateOrder}>Update Order {orderId}</button>
                   <ModalHelper
                     show={viewModal}
                     onHide={() => setViewModal(false)}

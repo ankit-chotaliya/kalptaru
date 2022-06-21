@@ -119,7 +119,7 @@ const App = () => {
         <Route path="/create" exact element={<PrivateRoute isAuthenticated={user.authenticate}><NewOrder/></PrivateRoute>}/>
         <Route path="/orderConfirm" exact element={<PrivateRoute isAuthenticated={user.authenticate}><ConfirmOrder show={false}/></PrivateRoute>}/>
         <Route path="/EditOrder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Editorder/></PrivateRoute>}/>
-        <Route path="/EditOrderForm" exact element={<PrivateRoute isAuthenticated={user.authenticate}><EditOrderForm/></PrivateRoute>}/>
+        <Route path="/EditOrderForm/:orderId" exact element={<PrivateRoute isAuthenticated={user.authenticate}><EditOrderForm/></PrivateRoute>}/>
         <Route path="/settings" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Settings/></PrivateRoute>}/>
         <Route path="/modal" exact element={<ModalButton/>}/>
         <Route path="/SendReminder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><SendReminder/></PrivateRoute>}/>
