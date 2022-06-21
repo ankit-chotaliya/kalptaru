@@ -40,7 +40,7 @@ function AdminUsers() {
                             <td>9712599217</td>
                             <td className="text-center"><img className="status" src={online} /></td>
                             <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-share-btn'>
+                                <button className='co-btn'>
                                     Active &nbsp;<AiOutlineCheckCircle />
                                 </button>
                             </div></td>
@@ -56,7 +56,7 @@ function AdminUsers() {
                             <td>123456789</td>
                             <td className="text-center"><img className="status" src={offline} /></td>
                             <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-share-btn'>
+                                <button className='co-btn'>
                                     Deactive &nbsp;<AiOutlineCloseCircle />
                                 </button>
                             </div></td>
@@ -72,7 +72,7 @@ function AdminUsers() {
                             <td>1256347892</td>
                             <td className="text-center"><img className="status" src={online} /></td>
                             <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-share-btn'>
+                                <button className='co-btn'>
                                     Active &nbsp;<AiOutlineCheckCircle />
                                 </button>
                             </div></td>
@@ -88,7 +88,7 @@ function AdminUsers() {
                             <td>1234567896</td>
                             <td className="text-center"><img className="status" src={online} /></td>
                             <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-share-btn'>
+                                <button className='co-btn'>
                                     Active &nbsp;<AiOutlineCheckCircle />
                                 </button>
                             </div></td>
@@ -104,7 +104,7 @@ function AdminUsers() {
                             <td>6325478912</td>
                             <td className="text-center"><img className="status" src={offline} /></td>
                             <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-share-btn'>
+                                <button className='co-btn'>
                                     Deactive &nbsp;<AiOutlineCloseCircle />
                                 </button>
                             </div></td>
@@ -120,7 +120,7 @@ function AdminUsers() {
                             <td>8529637415</td>
                             <td className="text-center"><img className="status" src={online} /></td>
                             <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-share-btn'>
+                                <button className='co-btn'>
                                     Active &nbsp;<AiOutlineCheckCircle />
                                 </button>
                             </div></td>
