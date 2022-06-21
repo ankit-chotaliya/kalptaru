@@ -227,7 +227,7 @@ const NewOrder = () => {
       formData.append("priority",ele.priority);
       formData.append("HUID",ele.huid);
       formData.append("orderType",ele.oType);
-      formData.append("orderStatus","New Order");
+      formData.append("orderStatus",1);
       
       formData.append("createdby",user.data.user._id);
       dispatch(createNewOrder(formData));
