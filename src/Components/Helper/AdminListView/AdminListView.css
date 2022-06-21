@@ -1,0 +1,67 @@
+.lv-list{
+    display: flex;
+    /* margin-right: 10px; */
+    border-bottom: 1px solid var(--textColor);
+    transition: all 0.3s linear 0.5s;
+}
+.lv-no{
+    margin-left: 10px;
+    color: var(--textColor);
+    width: 5% !important;
+    transition: all 0.3s linear 0.5s;
+}
+
+.lv-name{
+    margin-left: 10px;
+    color: var(--textColor);
+    width: 15% !important;
+    transition: all 0.3s linear 0.5s;
+}
+
+.lv-mobile{
+    color: var(--textColor);
+    font-weight: bold;
+    width: 20% !important;
+    transition: all 0.3s linear 0.5s;
+}
+
+.lv-status{
+    width: 20% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s linear 0.5s;
+}
+
+.lv-active{
+    width: 20% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s linear 0.5s;
+}
+
+.lv-delete{
+    width: 20% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s linear 0.5s;
+}
+
+/* 
+@media only screen and (max-width: 600px) {
+    .lv-list{
+        margin: 0 15px;
+    }
+    .lv-property{
+        width: 35% !important;
+    }
+    .lv-value{
+        width: 55% !important;
+    }
+    
+  }  */

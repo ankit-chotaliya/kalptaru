@@ -1,0 +1,54 @@
+
+.to-heading{
+    height: auto;
+    font-family:cursive;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-weight: bold;
+}
+
+.status{
+    width: 5% ;
+}
+
+.co-share-btn{
+    width: 110px;
+    height: 30px;
+    border: 0px solid var(--textColor);
+    background-color: transparent;
+    transition: all 0.2s linear;
+}
+
+.co-share-btn:hover{
+    background-color: #91f16b;
+}
+
+
+.delete-btn{
+    width: 100px;
+    height: 30px;
+    border: 0px solid var(--textColor);
+    background-color: red;
+    color: white;
+    transition: all 0.3s linear 1s;
+}
+
+@media only screen and (max-width:938px){
+
+    .status{
+        width: 31%;
+    }
+    
+}
+
+@media only screen and (max-width:1200px) and (min-width:938px){
+
+    .status{
+        width: 10%;
+    }
+    
+}
