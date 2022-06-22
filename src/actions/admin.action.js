@@ -1,4 +1,4 @@
-import { adminConstant, adminClientConstant } from "./constant";
+import { adminConstant, adminClientConstant, adminKarigarConstant } from "./constant";
 import axios from "../utils/axios";
 import { setToastMsg } from "./toast.action";
 
@@ -48,3 +48,26 @@ export const adminGetAllClient=()=>{
         })
     }
 }
+
+export const adminGetAllKarigar=()=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_REQ,
+            data:"Please Wait..."
+        })
+        axios.get('/admin/getallKarigar')
+        .then(res=>{
+            dispatch({
+                type:adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_SUC,
+                payload:res.data
+            })
+        })
+        .catch(err=>{
+            dispatch({
+                type:adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_FAILURE,
+                payload:err.message
+            })
+        })
+    }
+}
+
