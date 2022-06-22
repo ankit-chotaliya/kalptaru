@@ -5,12 +5,17 @@ import * as FiIcons from 'react-icons/fi';
 import * as IoIcons from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './Sidebar';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../actions/user.action';
 import './NavBar.css';
 import logo from './logo.png';
 import { IconContext } from 'react-icons';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const navigate=useNavigate();
+  const dispatch=useDispatch();
 
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -45,7 +50,16 @@ function Navbar() {
       setSidebar(false);
   });
 
-
+  const handleLogout=(e)=>{
+    e.preventDefault();
+  
+    dispatch(logout()).then(()=>{
+        navigate('/login');
+    }).catch(()=>{
+        console.log("err here");
+    });
+    //setidToast(idToast+1);
+}
 
   return (
     <>
@@ -85,7 +99,7 @@ function Navbar() {
               </Link>
             </li>
             <li className='nav-text'>
-              <Link to={'/Logout'}>
+              <Link  onClick={handleLogout} to={'/login'}>
                 <FiIcons.FiLogOut style={{ color: 'red'}} />
                 <span className='nav_logout'>Logout</span>
               </Link>
