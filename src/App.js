@@ -34,6 +34,7 @@ import { emptyToastMsg } from './actions/toast.action';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './utils/PrivateRoute';
+import AdminHome from './Components/Admin/AdminHome/AdminHome';
 
 
 const App = () => {
@@ -133,6 +134,7 @@ const App = () => {
         <Route path="/OTPverify" exact element={<OTPverify/>}/>
         <Route path="/ChangePassword" exact element={<ChangePassword/>}/>
         <Route path='*' exact element={<NotFound/>}/>
+        <Route path="/adminHome" exact element={<AdminHome/>}/>
       </Routes>
     </>
   )

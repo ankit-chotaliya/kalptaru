@@ -9,7 +9,7 @@ import './AdminNavBar.css';
 import logo from './logo.png';
 import { IconContext } from 'react-icons';
 
-function Navbar() {
+function AdminNavbar() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -97,4 +97,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default AdminNavbar;
