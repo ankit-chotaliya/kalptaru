@@ -6,6 +6,7 @@ import { useState } from 'react'
 import ModalHelper from '../Modal/ModalHelper'
 import { useNavigate } from 'react-router-dom'
 const OrderStatusCard = (props) => {
+    // const orderId=props.orderId;
     const navigate=useNavigate();
     const [viewModal,setViewModal]=useState(false);
   const handleModalReply=(e)=>{

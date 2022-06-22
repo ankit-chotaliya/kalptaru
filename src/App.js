@@ -41,11 +41,13 @@ const App = () => {
   const user=useSelector(state=>state.user);
   const toastState=useSelector(state=>state.toast);
   const [idToast,setidToast]=useState(1);
+  const navigate=useNavigate();
 
   useEffect(()=>{
     if(localStorage.getItem('accessToken') && !user.authenticate){
       const token=localStorage.getItem('accessToken').split(" ")[0];
       dispatch(preLoginusingToken({accesstoken:token}));
+      
     }
   },[])
 
@@ -84,6 +86,7 @@ const App = () => {
       dispatch(getAllClient());
       dispatch(getAllKarigar());
       dispatch(getAllCategory());
+      // navigate(-1);
     }
   }, [user]);
   

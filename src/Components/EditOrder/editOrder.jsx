@@ -5,8 +5,9 @@ import { FiEdit2 } from 'react-icons/fi'
 import './editOrder.css';
 import ListView from '../Helper/ListView/ListView';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Helper/Loader/Loader';
+import { getAllOrders } from '../../actions/order.action';
 const EditOrder=()=> {
   const navigate=useNavigate();
   const order=useSelector(state=>state.order);
@@ -14,15 +15,16 @@ const EditOrder=()=> {
   const category=useSelector(state=>state.category);
   const [loading,setLoading]=useState(false);
   const [orderData,setOrderData]=useState([])
-
+  // const dispatch=useDispatch();
 useEffect(()=>{
+  // dispatch(getAllOrders());
   orderDatacreate();
 },[order.data.orders])
 const handleopenEditForm=(id)=>{
     navigate('/EditOrderForm/'+id);
 }
 const orderDatacreate=()=>{
-  if(order.data.orders.length>0){
+  if(order.data.orders && order.data.orders.length>0){
     setLoading(true);
     order.data.orders.map((ele,index)=>{
       let data={

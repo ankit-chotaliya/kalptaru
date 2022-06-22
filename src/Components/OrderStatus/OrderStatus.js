@@ -8,10 +8,12 @@ import Navbar from '../NavBar/Navbar'
 import './OrderStatus.css'
 import ringimg from './ring.jpg'
 import OrderStatusCard from '../Helper/OrderStatusCard/OrderStatusCard'
+import { useSelector } from 'react-redux'
 
 const OrderStatus = () => {
     const navigate=useNavigate();
-
+    //state variables
+    const order=useSelector(state=>state.order);
     const [newOrder,setnewOrder]=useState(true);
     const [inProcess,setinProcess]=useState(false);
     const [delivered,setDelivered]=useState(false);
@@ -94,6 +96,9 @@ const OrderStatus = () => {
                     </span>
                 </div>
             </div>
+            {
+                
+            }
             {
                 newOrder?<div className='os-container mt-3'>
                 <OrderStatusCard label="New Order"/>

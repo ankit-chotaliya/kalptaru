@@ -22,7 +22,8 @@ const LogIn = () => {
     const user=useSelector(state=>state.user)
     useEffect(() => {
         if (user.success && user.authenticate) {
-          navigate("/");
+
+          navigate(-1);
         }
       }, [user.success])
     const handleLogin=(e)=>{

@@ -1,8 +1,9 @@
 .spinner{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100vh;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    min-height: 100vh!important;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: center;
