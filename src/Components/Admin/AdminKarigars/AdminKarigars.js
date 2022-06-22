@@ -9,15 +9,15 @@ function AdminKarigars() {
 
     const navigate = useNavigate();
     const Karigars = useSelector(state=>state.karigar);
-
+    
     return (
         <>
             <AdminNavbar />
-            {/* {
+             {
                 Karigars.data.karigar && Karigars.data.karigar.map((v)=>{
                     return v.karigar_name;
                 })
-            } */}
+            } 
             <div className='container no-main no-border pageview'>
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
