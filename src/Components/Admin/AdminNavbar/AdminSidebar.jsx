@@ -4,7 +4,8 @@ import * as BiIcons from 'react-icons/bi';
 import * as GrIcons from 'react-icons/gr';
 import * as FiIcons from 'react-icons/fi';
 import Client from "../AdminHome/icons/client.ico"
-import Karigar from "../AdminHome/icons/client.ico"
+import Karigar from "../AdminHome/icons/karigar.ico"
+import User from "../AdminHome/icons/user.ico"
 
 export const SidebarData = [
   {
@@ -28,7 +29,7 @@ export const SidebarData = [
   {
     title: 'Users',
     path: '/AdminUsers',
-    icon: <FiIcons.FiUsers />,
+    icon: <img src={User} style={{height:"20px",width:"20px"}} />,
     cName: 'nav-text'
   }
   

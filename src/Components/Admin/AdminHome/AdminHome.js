@@ -32,7 +32,7 @@ function Adminadminhome() {
           <div className="row">
             <div className="col-md-2"></div>
             <div className="col-md-8 colcenter-adminhome mb-5">
-              <div className="parent_box-adminhome"> <div className="title-adminhome mt-5">Admin adminhome</div></div>
+              <div className="parent_box-adminhome"> <div className="title-adminhome mt-5">Admin Home</div></div>
               <div className="parent_box-adminhome">
                 <div className="row contentaround-adminhome ">
                   <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-adminhome">
@@ -90,7 +90,7 @@ function Adminadminhome() {
                     </Link>
                   </div>
                   <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-adminhome">
-                  <Link to="/AdminKarigars" className="link-style">
+                  <Link to="/AdminUsers" className="link-style">
                     <div className="card box-adminhome ">
                       <div className="card-body box-body">
                         <img
