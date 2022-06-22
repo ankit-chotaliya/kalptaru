@@ -5,7 +5,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { login } from '../../../actions/admin.action';
+import { adminLogin } from '../../../actions/admin.action';
 import { useSelector } from 'react-redux';
 import ToastHelper from '../../Helper/ToastHelper/ToastHelper';
 
@@ -29,8 +29,8 @@ function AdminLogin() {
             email: Email,
             password: password
         }
-        dispatch(login(dataObj)).then(()=>{
-            console.log('Login');
+        dispatch(adminLogin(dataObj)).then(()=>{
+            navigate("/AdminHome");
         }).catch(()=>{
             console.log('Error');
         })

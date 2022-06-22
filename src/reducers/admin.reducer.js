@@ -36,6 +36,7 @@ export default(state=intialState,action)=>{
                 authenticate:false
             }
         }
+        
     
         default:
             return state;

@@ -6,6 +6,8 @@ import orderReducer from './order.reducer'
 import orderConfirmReducer from './orderConfirm.reducer'
 import userReducer from './user.reducer'
 import toastReducer from './toast.reducer';
+import adminReducer from './admin.reducer'
+
 const rootreducer=combineReducers({
     order:orderReducer,
     client:clientReducer,
@@ -13,7 +15,8 @@ const rootreducer=combineReducers({
     user:userReducer,
     category:categoryReducer,
     orderConfirm:orderConfirmReducer,
-    toast:toastReducer
+    toast:toastReducer,
+    admin:adminReducer
 })
 
 export default rootreducer

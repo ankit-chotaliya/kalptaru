@@ -4,3 +4,4 @@ export * from './user.action';
 export * from './client.action';
 export * from './karigar.action';
 export * from './category.action';
+export * from './admin.action';
