@@ -14,13 +14,6 @@ function AdminClients() {
     return (
         <>
             <AdminNavbar />
-            {
-                clients.data.client && clients.data.client.map((c, index) => {
-
-                    return c.client_name;
-                })
-            }
-
             <div className='container no-main no-border pageview'>
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
@@ -41,11 +34,10 @@ function AdminClients() {
                         <tbody className="table-group-divider">
                         
                             {
-                                
                                 clients.data.client && clients.data.client.map((c, index) => {
 
                                    return  <tr key={index}>
-                                        <th scope="row">1</th>
+                                        <th scope="row">{index+1}</th>
                                         <td>{c.client_name}</td>
                                         <td>{c.client_contact}</td>
                                         <td>{c.client_city}</td>
@@ -55,6 +47,7 @@ function AdminClients() {
                                             </button>
                                         </div></td>
                                     </tr>
+
                                 })
                             }
                             
