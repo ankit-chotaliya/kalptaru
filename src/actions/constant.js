@@ -60,3 +60,9 @@ export const toastConstant={
     TOAST_SET_MSG:"TOAST_SET_MSG",
     TOAST_EMPTY_STATE:"TOAST_EMPTY_STATE",
 }
+
+export const adminConstant={
+    ADMIN_LOGIN_REQ:"ADMIN_LOGIN_REQ",
+    ADMIN_LOGIN_SUC:"ADMIN_LOGIN_SUC",
+    ADMIN_LOGIN_FAILURE:"ADMIN_LOGIN_FAILURE"
+}

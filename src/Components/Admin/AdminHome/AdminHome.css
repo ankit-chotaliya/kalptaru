@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.bg-adminhome {
+  background-color: var(--bgcolor);
+}
+.colcenter-adminhome{
+  animation: animateblur 0.5s linear forwards;
+}
+.title-adminhome {
+  color: black;
+  font-weight: 300;
+  font-size: 35px;
+  margin-left: 2rem !important;
+}
+
+.boxcenter-adminhome {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.box-adminhome {
+  width: 18rem !important;
+  height: 250px;
+  text-align: center;
+  background-color: #deffd1 !important;
+  border: 0 !important;
+  padding: 1.5rem !important;
+  margin-top: 10%;
+}
+
+.boxrow-adminhome {
+  margin-top: 50px !important;
+}
+
+.logo-adminhome {
+  width: 55px;
+  height: 55px;
+}
+
+.box-body {
+  margin-top: 1.5rem;
+}
+
+.boxname-adminhome {
+  margin-top: 25px;
+  font-size: 25px;
+}
+
+.parent_box-adminhome {
+  margin-left: 1rem;
+}
+
+@keyframes animateblur {
+  0% {
+    opacity: 0;
+    filter: blur(10px); }
+  100% {
+    opacity: 1;
+    filter: blur(0px); } 
+}
+
+@media screen and (max-width: 1500px) {
+  .title-adminhome {
+    margin-left: 0% !important;
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .title-adminhome {
+    margin-left: 0% !important;
+    font-size: 25px;
+  }
+
+  .logo-adminhome {
+    width: 45px;
+    height: 45px;
+  }
+
+  .boxname-adminhome {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .box-body {
+    margin-top: 0%;
+  }
+
+  .box-adminhome {
+    width: 15rem !important;
+    height: 180px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .logo-adminhome {
+    width: 35px;
+    height: 35px;
+  }
+
+  .boxname-adminhome {
+    margin-left: 0 !important;
+    font-size: 18px;
+  }
+
+  .box-adminhome {
+    padding: 0 !important;
+    padding-top: 1.5rem !important;
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .box-adminhome {
+    width: 11rem !important;
+    height: 140px;
+  }
+
+  .boxname-adminhome {
+    margin-left: 0 !important;
+    font-size: 15px;
+  }
+
+  .boxcenter-adminhome {
+    width: auto !important;
+    max-width: fit-content !important;
+  }
+
+  .boxrow-adminhome {
+    margin-top: 0 !important;
+  }
+}
+
+@media screen and (max-width: 427px) {
+  .parent_box-adminhome {
+    margin-left: 0%;
+  }
+
+  .logo-adminhome {
+    width: 35px;
+    height: 35px;
+  }
+
+  .row {
+    padding: 0rem;
+  }
+
+  .box-adminhome {
+    width: 11rem !important;
+    height: 140px;
+  }
+
+  .boxcenter-adminhome {
+    width: auto !important;
+    max-width: fit-content !important;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .boxrow-adminhome {
+    margin-top: 0 !important;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .box-adminhome {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 2rem;
+    margin-right: 0rem;
+  }
+
+  .title-adminhome {
+    margin-left: 4.5% !important;
+  }
+
+  .row {
+    margin-left: 3rem;
+  }
+
+  .parent_box-adminhome {
+    margin-left: 0rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .box-adminhome {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1.2rem;
+    margin-right: 0rem;
+  }
+
+  .boxcenter-adminhome {
+    --bs-gutter-x: 1rem !important;
+  }
+
+  .title-adminhome {
+    margin-left: 1.5% !important;
+  }
+
+  .parent_box-adminhome {
+    margin-left: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .box-adminhome {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1rem;
+    margin-right: 0rem;
+  }
+
+  .title-adminhome {
+    margin-left: 0% !important;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .box-adminhome {
+    width: 10rem !important;
+    height: 140px;
+    margin-left: 1rem;
+    margin-right: 0rem;
+  }
+
+  .title-adminhome {
+    margin-left: 0.5% !important;
+  }
+
+  .colcenter-adminhome {
+    --bs-gutter-x: 1rem !important;
+  }
+
+  .parent_box-adminhome {
+    margin-left: 0rem;
+  }
+
+}
+
+@media screen and (max-width: 325px) {
+  .box-adminhome {
+    width: 9rem !important;
+    height: 140px;
+    margin-left: 0.7rem;
+    margin-right: 0rem;
+  }
+
+  .parent_box-adminhome {
+    margin-left: 0.3rem;
+  }
+
+  .title-adminhome {
+    margin-left: 0% !important;
+  }
+}
