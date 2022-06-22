@@ -1,8 +1,8 @@
-import { adminConstant, userConstant } from "./constant";
+import { adminConstant, adminClientConstant } from "./constant";
 import axios from "../utils/axios";
 import { setToastMsg } from "./toast.action";
 
-export const login = (dataobj) =>{
+export const adminLogin = (dataobj) =>{
     return async (dispatch)=>{
         dispatch({
           type:adminConstant.ADMIN_LOGIN_REQ,
@@ -23,5 +23,28 @@ export const login = (dataobj) =>{
             })
             dispatch(setToastMsg(res.data.message,true));
         }
+    }
+}
+
+export const adminGetAllClient=()=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:adminClientConstant.GET_ADMIN_ALL_CLIENT_REQ,
+            data:"Please Wait..."
+        })
+        axios.get('/admin/getallClient')
+        .then(res=>{
+            console.log("hii");
+            dispatch({
+                type:adminClientConstant.GET_ADMIN_ALL_CLIENT_SUC,
+                payload:res.data
+            })
+        })
+        .catch(err=>{
+            dispatch({
+                type:adminClientConstant.GET_ADMIN_ALL_CLIENT_FAILURE,
+                payload:err.message
+            })
+        })
     }
 }

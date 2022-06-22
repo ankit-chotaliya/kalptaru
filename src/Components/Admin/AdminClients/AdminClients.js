@@ -1,16 +1,26 @@
 import React from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import './AdminClients.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
+import { adminGetAllClient } from "../../../actions/admin.action"
 
 function AdminClients() {
 
     const navigate = useNavigate();
+    const clients = useSelector(state => state.client);
 
     return (
         <>
             <AdminNavbar />
+            {
+                clients.data.client && clients.data.client.map((c, index) => {
+
+                    return c.client_name;
+                })
+            }
+
             <div className='container no-main no-border pageview'>
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
@@ -29,72 +39,25 @@ function AdminClients() {
                             </tr>
                         </thead>
                         <tbody className="table-group-divider">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Sagar Desai</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Parth Goti</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Ankit Chotaliya</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Sakshi Jain</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Shruti Jain</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Bhavika Balsara</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
+                        
+                            {
+                                
+                                clients.data.client && clients.data.client.map((c, index) => {
+
+                                   return  <tr key={index}>
+                                        <th scope="row">1</th>
+                                        <td>{c.client_name}</td>
+                                        <td>{c.client_contact}</td>
+                                        <td>{c.client_city}</td>
+                                        <td className="text-center"><div className='co-customer-share'>
+                                            <button className='delete-btn'>
+                                                Delete
+                                            </button>
+                                        </div></td>
+                                    </tr>
+                                })
+                            }
+                            
                         </tbody>
                     </table>
                 </div>

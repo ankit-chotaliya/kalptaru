@@ -1,6 +1,7 @@
 import {userConstant} from './constant'
 import axios from '../utils/axios'
 import { setToastMsg } from './toast.action'
+import { MdLocalHospital } from 'react-icons/md'
 
 
 export const registration=(dataObj)=>{
@@ -59,6 +60,30 @@ export const login=(dataObj)=>{
                 payload:res.data.message
             })
             dispatch(setToastMsg(res.data.message,true));
+        }
+    }
+}
+
+export const logout=()=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:userConstant.USER_LOGOUT_REQ,
+            data:"Requesting..."
+        })
+        if(localStorage.getItem("accessToken")){
+            
+            localStorage.clear();
+            dispatch({
+                type:userConstant.USER_LOGOUT_SUC
+            })
+            //dispatch(setToastMsg("Login Success",false));
+            
+        }else{
+            // console.log("hii");
+            dispatch({
+                type:userConstant.USER_LOGOUT_FAILURE,
+            })
+            dispatch(setToastMsg("Something Error",true));
         }
     }
 }
