@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4659ec04-e054-4556-b210-ad68dee81893" name="Changes" comment="clear branch" />
+    <list default="true" id="4659ec04-e054-4556-b210-ad68dee81893" name="Changes" comment="clear branch">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Admin/AdminClients/AdminClients.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Admin/AdminClients/AdminClients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Admin/AdminHome/AdminHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Admin/AdminHome/AdminHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Admin/AdminNavbar/AdminNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Admin/AdminNavbar/AdminNavbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/admin.action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/admin.action.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/client.action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/client.action.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/constant.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/constant.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/client.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/client.reducer.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,7 +19,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ankit" />
+        <entry key="$PROJECT_DIR$" value="sagar_parth" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

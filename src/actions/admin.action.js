@@ -10,6 +10,7 @@ export const adminLogin = (dataobj) =>{
         })
         const res=await axios.post('/admin/loginadmin',dataobj);
         if (res.status==200) {
+
             localStorage.setItem("accesstoken",res.data.accesstoken);
             dispatch({
                 type:adminConstant.ADMIN_LOGIN_SUC,
@@ -32,7 +33,7 @@ export const adminLogout=()=>{
             type:adminConstant.ADMIN_LOGOUT_REQ,
             data:"Requesting..."
         })
-        if(localStorage.getItem("accesstoken")){
+        if(localStorage.getItem("accessToken")){
             
             localStorage.clear();
             dispatch({
@@ -58,7 +59,6 @@ export const adminGetAllClient=()=>{
         })
         axios.get('/admin/getallClient')
         .then(res=>{
-            console.log("hii");
             dispatch({
                 type:adminClientConstant.GET_ADMIN_ALL_CLIENT_SUC,
                 payload:res.data
@@ -70,6 +70,33 @@ export const adminGetAllClient=()=>{
                 payload:err.message
             })
         })
+    }
+}
+
+export const adminDeleteClient=(clientId)=>{
+    console.log(clientId);
+    return async (dispatch)=>{
+        dispatch({
+            type:adminClientConstant.DELETE_ADMIN_CLIENT_REQ,
+        })
+         const res = await axios.delete('/admin/deleteClient/'+clientId)
+         console.log(res);
+         if (res.status==200){
+            dispatch(setToastMsg("Client Deleted Successfully!",false));
+            dispatch(adminGetAllClient());
+            dispatch({
+                type:adminClientConstant.DELETE_ADMIN_CLIENT_SUC,
+            })
+            
+        }
+        else if (res.status==203){
+            dispatch({
+                type:adminClientConstant.DELETE_ADMIN_CLIENT_FAILURE,
+                payload:res.data.message
+            })
+            dispatch(setToastMsg(res.data.message,true));
+            dispatch(adminGetAllClient());
+        }
     }
 }
 
