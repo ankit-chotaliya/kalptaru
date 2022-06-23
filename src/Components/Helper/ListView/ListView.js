@@ -19,9 +19,6 @@ const ListView = (props) => {
                     <div className='lv-property-name'>
                         {props.property2}
                     </div>
-                    <div className='lv-property-name'>
-                        {props.property3}
-                    </div>
                 </div>
                 <div className='lv-value'>
                     <div className='lv-value-name'>
@@ -30,9 +27,9 @@ const ListView = (props) => {
                     <div className='lv-value-name'>
                         {props.value2}
                     </div>
-                    <div className='lv-value-name'>
-                        {props.value3}
-                    </div>
+                </div>
+                <div className='lv-icon' onClick={handleiconclick}>
+                    {props.icon1}
                 </div>
                 <div className='lv-icon' onClick={handleiconclick}>
                     {props.icon}

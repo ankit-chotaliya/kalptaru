@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './NewOrder.css'
 import { useNavigate } from 'react-router-dom'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import NewOrderComponent from './NewOrderComponent'
 import NavBar from '../NavBar/Navbar'
+import { useDispatch, useSelector } from 'react-redux'
+import { createNewOrder, emptyOrderConfirm } from '../../actions'
+import Loader from '../Helper/Loader/Loader'
 /*track
   test={}
   [{
@@ -25,223 +28,202 @@ order:[
 const NewOrder = () => {
   const navigate = useNavigate();
   //form-variables
-  const [fData, setFData] = useState([{
-    client: "",
-    karigar: "",
-    pCategory: "",
-    refNum: "",
-    qty: "",
-    weightFrom: 1,
-    weightTo: 1,
-    dDate: "",
-    melting: "",
-    priority: "",
-    img: [],
-    huid: "",
-    oType: ""
-  }]);
-  const [client, setClient] = useState("");
-  const [karigar, setKarigar] = useState("");
-  const [pCategory, setPCategory] = useState("");
-  const [refNum, setRefNum] = useState("");
-  const [qty, setQty] = useState(1);
-  const [weightFrom, setWeightFrom] = useState(1);
-  const [weightTo, setWeightTo] = useState(1);
-  const [dDate, setDDate] = useState("");
-  const [melting, setMelting] = useState("");
-  const [priority, setPriority] = useState("");
-  const [img, setImg] = useState([]);
-  const [huid, setHuid] = useState("");
-  const [oType, setOType] = useState("");
- 
+  let variableObject={ 
+    clientName: "", 
+    karigarName : "",
+    category:"",
+    ref:"",
+    qty:"",
+    weightFrom:"",
+    weightTo:"",
+    dDate:"",
+    melting:"",
+    priority:"",
+    img:"",
+    huid:"",
+    oType:"",
+  }
+  const [formValues, setFormValues] = useState([variableObject])
+  const user=useSelector(state=>state.user);
+  const category=useSelector(state=>state.category);
+  const order=useSelector(state=>state.order);
+  const orderConfirm=useSelector(state=>state.orderConfirm);
+  const [errFlag,seterrFlag]=useState(true);
+  const dispatch=useDispatch();
 
-  //formdata tracking functions
-  const handleClient = (e) => {
-    setClient(e.target.value);
+  const handleChange=(i,e)=>{
+    let newFormValues = [...formValues];
+    const targetName=e.target.name.split(" ")[0];
+        if(e.target.type=="file"){
+          newFormValues[i][e.target.name] = e.target.files;
+        }else if(e.target.type=="radio" || targetName=="melting"){
+          newFormValues[i][targetName] = e.target.value;
+        }else{
+          newFormValues[i][e.target.name] = e.target.value;
+        }
+        setFormValues(newFormValues);
   }
-  const handleKarigar = (e) => {
-    setKarigar(e.target.value)
-  }
-  const handlePCategory = (e) => {
-    setPCategory(e.target.value);
-  }
-  const handleRefNum = (e) => {
-    setRefNum(e.target.value);
-  }
-  const handleQty = (e) => {
-    setQty(e.target.value);
-  }
-  const handleWFrom = (e) => {
-    setWeightFrom(e.target.value);
-  }
-  const handleWTo = (e) => {
-    setWeightTo(e.target.value);
-  }
-  const handledDate = (e) => {
-    setDDate(e.target.value);
-  }
-  const handleMelting = (e) => {
-    setMelting(e.target.value);
-  }
-  const handlePriority = (e) => {
-    setPriority(e.target.value);
-  }
-  const handleimg = (e) => {
-    console.log(e.target.files);
-    setImg(e.target.files)
-  }
-  const handleHUID = (e) => {
-    setHuid(e.target.value);
-  }
-  const handleOType = (e) => {
-    setOType(e.target.value);
-  }
-  //for Component and order tracking using count
-  const [count, setCount] = useState(2);
-  const [Component, setComponent] = useState([
-    <NewOrderComponent
-      key="1"
-      number="1"
-      handleClient={handleClient}
-      handleKarigar={handleKarigar}
-      handlePCategory={handlePCategory}
-      handleRefNum={handleRefNum}
-      handleQty={handleQty}
-      handleWFrom={handleWFrom}
-      handleWTo={handleWTo}
-      handledDate={handledDate}
-      handleMelting={handleMelting}
-      handlePriority={handlePriority}
-      handleimg={handleimg}
-      handleHUID={handleHUID}
-      handleOType={handleOType}
-      img={img}
-    />
-  ])
-
-  //add-more and submit button event
-  const handleAddMore = (e) => {
+  const addFormFields = (e) => {
     e.preventDefault();
-    if (karigar == "" || pCategory == "" || melting == "" || refNum == "" || qty == "" || weightFrom == "" || weightTo == "" || dDate == "" || priority == "" || huid == "" || oType == "") {
-      alert("All the Information Required 1!")
-      return;
-    }
-    setFData(fData => [...fData, {
-      client: client,
-      karigar: karigar,
-      pCategory: pCategory,
-      refNum: refNum,
-      qty: qty,
-      weightFrom: weightFrom,
-      weightTo: weightTo,
-      dDate: dDate,
-      melting: melting,
-      priority: priority,
-      img: img,
-      huid: huid,
-      oType: oType
-    }]);
-    setClient("");
-    setKarigar("");
-    setPCategory("");
-    setRefNum("");
-    setQty(1);
-    setWeightFrom(1);
-    setWeightTo(1);
-    setDDate("");
-    setMelting("");
-    setPriority("");
-    setImg([]);
-    setHuid("");
-    setOType("");
-    setCount(count => count + 1);
-    setComponent(Component =>
-      [...Component,
-      <NewOrderComponent
-        key={count}
-        number={count}
-        handleClient={handleClient}
-        handleKarigar={handleKarigar}
-        handlePCategory={handlePCategory}
-        handleRefNum={handleRefNum}
-        handleQty={handleQty}
-        handleWFrom={handleWFrom}
-        handleWTo={handleWTo}
-        handledDate={handledDate}
-        handleMelting={handleMelting}
-        handlePriority={handlePriority}
-        handleimg={handleimg}
-        handleHUID={handleHUID}
-        handleOType={handleOType}
-        img={img}
-      />])
+    setFormValues([...formValues, variableObject]);
+  }
+
+  const removeFormFields = (i,e) => {
+    e.preventDefault();
+    let newFormValues = [...formValues];
+    newFormValues.splice(i, 1);
+    setFormValues(newFormValues);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (karigar == "" || pCategory == "" || melting == "" || refNum == "" || qty == "" || weightFrom == "" || weightTo == "" || dDate == "" || priority == "" || huid == "" || oType == "") {
-      alert("All the Information Required 2!")
-      return;
+  //   formValues.forEach(ele => {
+  //     if (ele.clientName=="") {
+  //         // alert("Client Not Selected");
+  //         seterrFlag(true);
+  //       }
+  //     if (ele.karigarName=="") {
+  //         // alert("Karigar Not Selected");
+  //         seterrFlag(true);
+  //       }
+  //     if (ele.category=="") {
+  //         // alert("Category Not Selected");
+  //         // seterrFlag(true);
+  //       }
+  //     if (ele.qty=="") {
+  //         // alert("Please Enter Quantity");
+  //         seterrFlag(true);
+  //       }
+  //     if (ele.weightFrom=="") {
+  //         // alert("Please Enter weight From");
+  //         seterrFlag(true);
+  //       }
+  //     if (ele.weightTo=="") {
+  //         // alert("Please Enter weight To");
+  //         seterrFlag(true);
+  //       }
+  //     if (ele.dDate=="") {
+  //         // alert("Please Enter delivery date");
+  //         seterrFlag(true);
+  //       }
+  //     if (ele.melting=="") {
+  //         // alert("Please Select Melting Point");
+  //         seterrFlag(true);
+  //       }
+  //     if (ele.priority=="") {
+  //         // alert("Please Select Priority");
+  //         seterrFlag(true);
+  //       }
+  //     if (ele.img=="") {
+  //         // alert("Please Upload Images");
+  //         seterrFlag(true);
+  //       }
+  //     if (ele.huid=="") {
+  //       // alert("Please select HUID");
+  //       seterrFlag(true);
+  //     }
+  //     if (ele.oType=="") {
+  //       // alert("Please select HUID");
+  //       seterrFlag(true);
+  //     }
+  //  });
+  //  if(errFlag){
+  //   alert("All the information is required!!");
+  //   return;
+  //  }
+    // if(karigar=="" || pCategory=="" || melting=="" || refNum=="" || qty=="" || weightFrom=="" || weightTo=="" || dDate=="" || priority=="" || huid=="" || oType==""){
+    //   alert("All the Information Required 2!")
+    //   return;
+    // }
+    const clientId=formValues[0].clientName;
+    formValues.forEach(ele=>{
+      const formData=new FormData();
+      
+      var target=ele.category;
+      category.data.categories.forEach(element => {
+        if(element._id==target){
+          ele.ref=element.ref;
+        }
+      });
+
+
+      Array.from(ele.img).forEach(ele=>{
+        formData.append("orderImg",ele);
+      })
+      console.log(ele.ref);
+      formData.append("clientId",clientId);
+      formData.append("karigarId",ele.karigarName);
+      formData.append("orderCategory",ele.category);
+      formData.append("refNo",ele.ref);
+      formData.append("quantity",ele.qty);
+      formData.append("weightFrom",ele.weightFrom);
+      formData.append("weightTo",ele.weightTo);
+      formData.append("deliveryDate",ele.dDate);
+      formData.append("melting",ele.melting);
+      formData.append("priority",ele.priority);
+      formData.append("HUID",ele.huid);
+      formData.append("orderType",ele.oType);
+      formData.append("orderStatus",1);
+      
+      formData.append("createdby",user.data.user._id);
+      dispatch(createNewOrder(formData));
+    })
+
+
+    
+  }
+  useEffect(()=>{
+    if(order.dataAdded>0 && order.dataAdded==formValues.length && orderConfirm.isSet){
+      // alert("Order Created Successfully");
+      navigate("/orderConfirm");
     }
-    setFData(fData => [...fData, {
-      karigar: karigar,
-      pCategory: pCategory,
-      refNum: refNum,
-      qty: qty,
-      weightFrom: weightFrom,
-      weightTo: weightTo,
-      dDate: dDate,
-      melting: melting,
-      priority: priority,
-      img: img,
-      huid: huid,
-      oType: oType
-    }]);
-    setKarigar("");
-    setPCategory("");
-    setRefNum("");
-    setQty(1);
-    setWeightFrom(1);
-    setWeightTo(1);
-    setDDate("");
-    setMelting("");
-    setPriority("");
-    setImg([]);
-    setHuid("");
-    setOType("");
-
-    console.log(fData[1].melting);
-
-  }
-
-  const handleSubmit2 = () => {
-    navigate('/orderConfirm');
-  }
+  },[order.dataAdded,orderConfirm.isSet])
+  useEffect(()=>{
+    dispatch(emptyOrderConfirm());
+  },[])
   return (
     <>
-      <NavBar />
-
-      <div className='container no-main no-border pageview'>
-        <div className='no-heading'>
-          <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> New Order
-        </div>
-
-        <div className='no-form'>
-          <form onSubmit={handleSubmit}>
-            {Component}
-            <div className='row'>
-              <div className='col-md-6 col-sm-6 mt-4'>
-                <button className='no-add-more' onClick={handleAddMore}>Add More</button>
+        <NavBar/>
+        {
+          order.loading?<Loader msg="Generating PDF..."/>:<div className='container no-main no-border pageview'>
+          <div className='no-heading'>
+            <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> New Order
+          </div>
+          
+          <div className='no-form'>
+            <form onSubmit={handleSubmit} encType='multipart/form-data'>
+            {
+              formValues.map((element,index)=>{
+               return (
+                <NewOrderComponent 
+                key={index}
+                index={index}
+                orderNumber={index+1}
+                ele={element}
+                handleChange={handleChange}
+                removeFormFields={removeFormFields}
+                />
+               ) 
+              })
+            }
+              <div className='row'>
+              <div className='mt-4'><b>* Indicates Mandatory fields</b></div>
               </div>
-              <div className='col-md-6 col-sm-6 mt-4'>
-                <button type="submit" className='no-sub-btn' onClick={handleSubmit2}>Submit Order</button>
+              
+              <div className='row'>
+                <div className='col-md-6 col-sm-6 mt-4'>
+                <button className='no-add-more' onClick={addFormFields}>Add More</button>
+                </div>
+                <div className='col-md-6 col-sm-6 mt-4'>
+                <button type="submit" className='no-sub-btn'>Submit Order</button>
+                </div>
               </div>
-              {console.log(fData)}
-            </div>
-          </form>
-        </div>
-
+            </form>
+          </div>
+         
       </div>
+        }
+        
     </>
   )
 }

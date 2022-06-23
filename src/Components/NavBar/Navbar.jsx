@@ -5,12 +5,17 @@ import * as FiIcons from 'react-icons/fi';
 import * as IoIcons from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './Sidebar';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../actions/user.action';
 import './NavBar.css';
 import logo from './logo.png';
 import { IconContext } from 'react-icons';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const navigate=useNavigate();
+  const dispatch=useDispatch();
 
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -22,7 +27,7 @@ function Navbar() {
 
       let mayBeHandler = (Event) => {
 
-        if(!click.current.contains(Event.target))
+        if(click.current && !click.current.contains(Event.target))
         {
           handler();
         }
@@ -45,7 +50,16 @@ function Navbar() {
       setSidebar(false);
   });
 
-
+  const handleLogout=(e)=>{
+    e.preventDefault();
+  
+    dispatch(logout()).then(()=>{
+        navigate('/login');
+    }).catch(()=>{
+        console.log("err here");
+    });
+    //setidToast(idToast+1);
+}
 
   return (
     <>
@@ -59,14 +73,14 @@ function Navbar() {
                   <p className='nav_logotext'>Shree Kalptaru</p>
                 </div>
         </div>
-        <nav ref = {click} className={sidebar ? 'nav-menu active' : 'nav-menu'} id="navMenu" style={{zIndex:999}}>
+        <nav ref = {click} className={sidebar ? 'nav-menu active' : 'nav-menu'} id="navMenu" style={{zIndex:998}}>
           <ul className='nav-menu-items' onClick={showSidebar}>
             <li className='navbar-toggle'>
               <Link to='#' className='menu-bars'>
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
-            <hr className='first_hr' style={{ 'margin-top': '15px'}}></hr>
+            <hr className='first_hr' style={{ 'marginTop': '15px'}}></hr>
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
@@ -85,7 +99,7 @@ function Navbar() {
               </Link>
             </li>
             <li className='nav-text'>
-              <Link to={'/Logout'}>
+              <Link  onClick={handleLogout} to={'/login'}>
                 <FiIcons.FiLogOut style={{ color: 'red'}} />
                 <span className='nav_logout'>Logout</span>
               </Link>

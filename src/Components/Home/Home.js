@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from '../NavBar/Navbar';
+import Loader from '../Helper/Loader/Loader';
 import newOrder from "./icons/plus.png";
 import editOrder from "./icons/edit.png";
 import trackOrder from "./icons/search.png";
@@ -9,11 +10,41 @@ import sendReminder from "./icons/notification.png";
 import urgentOrders from "./icons/exclamation-mark.png";
 import orderStatus from  "./icons/status.png"
 import "./Home.css";
+import { useSelector } from "react-redux";
+import { emptyOrderConfirm, getAllOrders } from "../../actions";
+import { useDispatch } from "react-redux";
 function Home() {
-  
+  const order=useSelector(state=>state.order);
+  const karigar=useSelector(state=>state.karigar);
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    dispatch(getAllOrders());
+    dispatch(emptyOrderConfirm());
+  },[])
+  if(order.loading){
+    return <Loader/>
+  }
   return (
     <>
     <Navbar />
+      {
+        // order.data.orders && order.data.orders.map((ele,index)=>{
+        //   return <div key={ele._id}>
+        //     <p>Id-{index} {ele._id}</p>
+        //     <br/>
+        //     <p>Category-{index} {ele.orderCategory}</p>
+        //   </div>
+        // })
+      }
+      {
+        // karigar.data.karigar && karigar.data.karigar.map((ele,index)=>{
+        //   return <div key={ele._id}>
+        //     <p>Id-{index} {ele._id}</p>
+        //     <br/>
+        //     <p>Karigar-Name-{index} {ele.karigar_name}</p>
+        //   </div>
+        // })
+      }
       <div className="container-fluid bg-home">
         <div className="row">
           <div className="col-md-2"></div>

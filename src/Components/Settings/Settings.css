@@ -14,8 +14,8 @@
     height: 44px;
     text-indent: 10px;
     border-radius: 0px !important;
-    pointer-events: auto ! important;
-    cursor: not-allowed ! important;
+    /* pointer-events: auto ! important;
+    cursor: not-allowed ! important; */
     outline: none;
 }
 

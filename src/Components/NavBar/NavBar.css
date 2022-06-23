@@ -70,9 +70,9 @@
   color: red;
 }
 
-:hover {
+/* :hover {
   color: var(--hovercolor);
-}
+} */
 .nav-text a:hover {
   background-color: #00a651;
   border-radius: 0px;
