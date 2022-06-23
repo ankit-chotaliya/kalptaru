@@ -92,12 +92,12 @@ function AdminNavbar() {
               );
             })}
             <hr></hr>
-            <li className='nav-text'>
+            {/* <li className='nav-text'>
               <Link to={'/Settings'}>
                 <IoIcons.IoSettingsOutline />
                 <span>Settings</span>
               </Link>
-            </li>
+            </li> */}
             <li className='nav-text'>
               <Link onClick={handleLogout} to={'/login'}>
                 <FiIcons.FiLogOut style={{ color: 'red'}} />

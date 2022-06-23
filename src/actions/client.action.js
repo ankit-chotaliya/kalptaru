@@ -36,6 +36,7 @@ export const createClient=(dataObj)=>{
             })
             dispatch(getAllClient());
             dispatch(setToastMsg("Client Added Successfully!",false));
+            
         }else if(res.status==203){
             dispatch({
                 type:clientConstant.ADD_CLIENT_FAILURE,
