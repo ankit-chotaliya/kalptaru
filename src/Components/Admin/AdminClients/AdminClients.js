@@ -2,14 +2,30 @@ import React from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import './AdminClients.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
-import { useNavigate } from 'react-router-dom'
-import { adminGetAllClient } from "../../../actions/admin.action"
+import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom';
+import { adminDeleteClient } from '../../../actions/admin.action';
 
 function AdminClients() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const clients = useSelector(state => state.client);
+
+
+    const handleDelete = (clientId, e)=>{
+        e.preventDefault();
+
+
+        dispatch(adminDeleteClient(clientId)).then(() => {
+            console.log(clientId);
+
+            if (clients.success) {
+                console.log("Successfull");
+            }
+        })
+
+    }
 
     return (
         <>
@@ -42,7 +58,7 @@ function AdminClients() {
                                         <td>{c.client_contact}</td>
                                         <td>{c.client_city}</td>
                                         <td className="text-center"><div className='co-customer-share'>
-                                            <button className='delete-btn'>
+                                            <button className='delete-btn' onClick={(e)=>handleDelete(c._id, e)}>
                                                 Delete
                                             </button>
                                         </div></td>

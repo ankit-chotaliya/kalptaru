@@ -26,8 +26,7 @@ export const getAllClient=()=>{
 export const createClient=(dataObj)=>{
     return async (dispatch)=>{
         dispatch({
-            type:clientConstant.ADD_CLIENT_REQ,
-            data:"Please Wait..."
+            type:clientConstant.ADD_CLIENT_REQ
         })
         const res=await axios.post('/client/createClient',dataObj)
         if(res.status==200){

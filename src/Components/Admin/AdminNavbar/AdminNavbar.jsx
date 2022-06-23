@@ -54,7 +54,7 @@ function AdminNavbar() {
     e.preventDefault();
   
     dispatch(adminLogout()).then(()=>{
-        navigate('/adminLogin');
+        navigate('/login');
     }).catch(()=>{
         console.log("err here");
     });
@@ -99,7 +99,7 @@ function AdminNavbar() {
               </Link>
             </li>
             <li className='nav-text'>
-              <Link onClick={handleLogout} to={'/adminLogin'}>
+              <Link onClick={handleLogout} to={'/login'}>
                 <FiIcons.FiLogOut style={{ color: 'red'}} />
                 <span className='nav_logout'>Logout</span>
               </Link>
