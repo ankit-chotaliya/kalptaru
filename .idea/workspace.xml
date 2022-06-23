@@ -15,7 +15,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectId" id="2ApOgRcN5kJn3vBBHcWktWVXJzD" />
+=======
+  <component name="ProjectId" id="28y3GoTDW2KE6EyPIrb97uDvUL9" />
+>>>>>>> 16902598649c010755c64f2432a451e9c0b30f51
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -23,7 +27,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../kalptaruBackend" />
+=======
+>>>>>>> 16902598649c010755c64f2432a451e9c0b30f51
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -37,10 +44,17 @@
     </task>
     <task active="true" id="Default" summary="Default task">
       <changelist id="4659ec04-e054-4556-b210-ad68dee81893" name="Changes" comment="clear branch" />
+<<<<<<< HEAD
       <created>1655703189925</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1655703189925</updated>
+=======
+      <created>1652174934895</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652174934895</updated>
+>>>>>>> 16902598649c010755c64f2432a451e9c0b30f51
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />

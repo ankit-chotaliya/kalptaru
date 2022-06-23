@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Modal,Button} from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux';
 import { createClient } from '../../actions';

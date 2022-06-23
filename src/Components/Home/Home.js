@@ -116,7 +116,7 @@ function Home() {
                         alt="New Order"
                       />
                       <h5 className="card-title boxname-home">
-                        Completed Orders
+                        Completed Delivery
                       </h5>
                     </div>
                   </div>

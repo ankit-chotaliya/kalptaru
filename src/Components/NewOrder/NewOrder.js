@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './NewOrder.css'
-import {useNavigate} from 'react-router-dom'
-import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import NewOrderComponent from './NewOrderComponent'
 import NavBar from '../NavBar/Navbar'
 import { useDispatch, useSelector } from 'react-redux'
@@ -26,7 +26,7 @@ order:[
 ]
 */
 const NewOrder = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   //form-variables
   let variableObject={ 
     clientName: "", 
@@ -75,7 +75,7 @@ const NewOrder = () => {
     setFormValues(newFormValues);
   }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
   //   formValues.forEach(ele => {
   //     if (ele.clientName=="") {

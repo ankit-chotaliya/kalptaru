@@ -29,7 +29,7 @@ function CompletedOrder() {
       <div className='container no-main no-border pageview'>
         <div className='cmt-o-heading no-heading'>
           <div className='cmt-o-editorder'>
-            <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Completed Order
+            <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Completed Delivery
           </div>
           <div className='cmt-o-btns'>
             <button className='cmt-o-btn'>Urgent</button>
@@ -42,36 +42,46 @@ function CompletedOrder() {
           <ListView
             property1="Client Name: "
             property2="Ref No: "
+            property3="Date: "
             value1="Parth Goti"
             value2="1234"
+            value3="12/12/2022"
             icon={<FiRepeat onClick={hadnleUpdateOrder} />}
           />
           <ListView
             property1="Client Name: "
             property2="Ref No: "
+            property3="Date: "
             value1="Parth Goti"
             value2="1234"
+            value3="12/12/2022"
             icon={<FiRepeat onClick={hadnleUpdateOrder} />}
           />
           <ListView
             property1="Client Name: "
             property2="Ref No: "
+            property3="Date: "
             value1="Parth Goti"
             value2="1234"
+            value3="12/12/2022"
             icon={<FiRepeat onClick={hadnleUpdateOrder} />}
           />
           <ListView
             property1="Client Name: "
             property2="Ref No: "
+            property3="Date: "
             value1="Parth Goti"
             value2="1234"
+            value3="12/12/2022"
             icon={<FiRepeat onClick={hadnleUpdateOrder} />}
           />
           <ListView
             property1="Client Name: "
             property2="Ref No: "
+            property3="Date: "
             value1="Parth Goti"
             value2="1234"
+            value3="12/12/2022"
             icon={<FiRepeat onClick={hadnleUpdateOrder} />}
           />
 
