@@ -3,10 +3,17 @@ import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import './AdminOrders.css';
 import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
+function dateFormat(d) {
+    var date = new Date(d);
+    const day = date.getDate().toString().padStart(2,"0") +"/"+ (date.getMonth()+1).toString().padStart(2,"0") +"/"+ date.getFullYear();
+    return day;
+}
 function AdminOrders() {
 
     const navigate = useNavigate();
+    const Orders = useSelector(state=>state.order);
 
     return (
         <>
@@ -20,7 +27,7 @@ function AdminOrders() {
                 <div className='container mt-4'>
                     <div className='btns'>
                         <button className='btn1'>Urgent</button>
-                        <button className='btn btn-bt'>Fast</button>
+                        <button className='btn1 btn-bt'>Fast</button>
                         <button className='btn1'>Normal</button>
                     </div>
                 </div>
@@ -40,72 +47,28 @@ function AdminOrders() {
                             </tr>
                         </thead>
                         <tbody className="table-group-divider">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Sagar Desai</td>
-                                <td>1234567896</td>
-                                <td>Rose Gold</td>
-                                <td className="text-center">Parth Goti</td>
-                                <td className="text-center">Shrui Jain</td>
-                                <td className="text-center">In Process</td>
-                                <td className="text-center">12/01/2022</td>
-                                <td className="text-center">14/01/2022</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Ankit chotaliya</td>
-                                <td>1234567896</td>
-                                <td>Rose Gold</td>
-                                <td className="text-center">Parth Goti</td>
-                                <td className="text-center">Shrui Jain</td>
-                                <td className="text-center">In Process</td>
-                                <td className="text-center">12/01/2022</td>
-                                <td className="text-center">14/01/2022</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Parth Goti</td>
-                                <td>1234567896</td>
-                                <td>Rose Gold</td>
-                                <td className="text-center">Parth Goti</td>
-                                <td className="text-center">Shrui Jain</td>
-                                <td className="text-center">In Process</td>
-                                <td className="text-center">12/01/2022</td>
-                                <td className="text-center">14/01/2022</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Sakhsi Jain</td>
-                                <td>12345678796</td>
-                                <td>Rose Gold</td>
-                                <td className="text-center">Parth Goti</td>
-                                <td className="text-center">Shrui Jain</td>
-                                <td className="text-center">In Process</td>
-                                <td className="text-center">12/01/2022</td>
-                                <td className="text-center">14/01/2022</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Shruti Jain</td>
-                                <td>1234567896</td>
-                                <td>Rose Gold</td>
-                                <td className="text-center">Parth Goti</td>
-                                <td className="text-center">Shrui Jain</td>
-                                <td className="text-center">In Process</td>
-                                <td className="text-center">12/01/2022</td>
-                                <td className="text-center">14/01/2022</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Bhavika Balasara</td>
-                                <td>1234567896</td>
-                                <td>Rose Gold</td>
-                                <td className="text-center">Parth Goti</td>
-                                <td className="text-center">Shrui Jain</td>
-                                <td className="text-center">In Process</td>
-                                <td className="text-center">12/01/2022</td>
-                                <td className="text-center">14/01/2022</td>
-                            </tr>
+                        {
+                            Orders.data.order && Orders.data.order.map((o,index)=>{
+                              return  <tr key={index} >
+                                <th scope="row">{index+1}</th>
+                                <td>{o.clientId?o.clientId.client_name:<>Null</>}</td>
+                                <td>{o.clientId?o.clientId.client_contact:<>Null</>}</td>
+                                <td>{o.orderCategory.name}</td>
+                                <td className="text-center">{o.createdby.fullname}</td>
+                                <td className="text-center">{o.karigarId?o.karigarId.karigar_name:<>Null</>}</td>
+                                <td className="text-center">
+                                {o.orderStatus==1 ?"New Order":null}
+                                {o.orderStatus==2 ?"In Process":null}
+                                {o.orderStatus==3 ?"Karigar Ccompleted":null}
+                                {o.orderStatus==4 ?"Order Ready":null}
+                                {o.orderStatus==5 ?"Delivery Pending":null}
+                                {o.orderStatus==6 ?"Delivered":null}
+                                </td>
+                                <td className="text-center">{dateFormat(o.createdAt)}</td>
+                                <td className="text-center">{dateFormat(o.deliveryDate)}</td>
+                            </tr> ;
+                            })
+                        }
                         </tbody>
                     </table>
                 </div>

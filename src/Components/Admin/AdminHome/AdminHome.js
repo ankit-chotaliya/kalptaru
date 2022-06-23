@@ -8,7 +8,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import completedOrders from "../../Home/icons/clipboard.png";
 import orderStatus from  "../../Home/icons/status.png"
 import { useSelector } from "react-redux";
-import { adminGetAllClient, adminGetAllKarigar, emptyOrderConfirm, getAllOrders } from "../../../../src/actions";
+import { adminGetAllClient, adminGetAllKarigar, adminGetAllOrder, adminGetAllUser, emptyOrderConfirm, getAllOrders } from "../../../../src/actions";
 import { useDispatch } from "react-redux";
 import "./AdminHome.css";
 
@@ -22,6 +22,8 @@ function Adminadminhome() {
       // dispatch(getAllOrders());
       dispatch(adminGetAllClient());
       dispatch(adminGetAllKarigar());
+      dispatch(adminGetAllUser());
+      dispatch(adminGetAllOrder());
     },[])
     if(order.loading){
       return <Loader/>

@@ -1,4 +1,4 @@
-import { adminConstant, adminClientConstant, adminKarigarConstant } from "./constant";
+import { adminConstant, adminClientConstant, adminKarigarConstant, adminUserConstant, adminOrderConstant } from "./constant";
 import axios from "../utils/axios";
 import { setToastMsg } from "./toast.action";
 
@@ -89,6 +89,50 @@ export const adminGetAllKarigar=()=>{
         .catch(err=>{
             dispatch({
                 type:adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_FAILURE,
+                payload:err.message
+            })
+        })
+    }
+}
+
+export const adminGetAllUser=()=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:adminUserConstant.GET_ADMIN_ALL_USER_REQ,
+            data:"Please Wait..."
+        })
+        axios.get('/admin/getallUser')
+        .then(res=>{
+            dispatch({
+                type:adminUserConstant.GET_ADMIN_ALL_USER_SUC,
+                payload:res.data
+            })
+        })
+        .catch(err=>{
+            dispatch({
+                type:adminUserConstant.GET_ADMIN_ALL_USER_FAILURE,
+                payload:err.message
+            })
+        })
+    }
+}
+
+export const adminGetAllOrder=()=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:adminOrderConstant.GET_ADMIN_ALL_ORDER_REQ,
+            data:"Please Wait..."
+        })
+        axios.get('admin/getallOrder')
+        .then(res=>{
+            dispatch({
+                type:adminOrderConstant.GET_ADMIN_ALL_ORDER_SUC,
+                payload:res.data
+            })
+        })
+        .catch(err=>{
+            dispatch({
+                type:adminOrderConstant.GET_ADMIN_ALL_ORDER_FAILURE,
                 payload:err.message
             })
         })
