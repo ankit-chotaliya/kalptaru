@@ -26,6 +26,30 @@ export const adminLogin = (dataobj) =>{
     }
 }
 
+export const adminLogout=()=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:adminConstant.ADMIN_LOGOUT_REQ,
+            data:"Requesting..."
+        })
+        if(localStorage.getItem("accesstoken")){
+            
+            localStorage.clear();
+            dispatch({
+                type:adminConstant.ADMIN_LOGOUT_SUC
+            })
+            //dispatch(setToastMsg("Login Success",false));
+            
+        }else{
+            // console.log("hii");
+            dispatch({
+                type:adminConstant.ADMIN_LOGOUT_FAILURE,
+            })
+            dispatch(setToastMsg("Something Error",true));
+        }
+    }
+}
+
 export const adminGetAllClient=()=>{
     return async (dispatch)=>{
         dispatch({
