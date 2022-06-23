@@ -70,7 +70,7 @@ export default (state=intialState,action)=>{
                 err:action.payload
             }
         }
-        default:
+               default:
             return state;
     }
 }

@@ -1,4 +1,4 @@
-import {karigarConstant} from '../actions/constant'
+import {karigarConstant, adminKarigarConstant} from '../actions/constant'
 const intialState={
     loading:false,
     data:{},
@@ -44,6 +44,27 @@ export default (state=intialState,action)=>{
         }
         case karigarConstant.ADD_KARIGAR_FAILURE:{
             return {
+                ...state,
+                loading:false,
+                err:action.payload
+            }
+        }
+        case adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_REQ:{
+            return{
+                ...state,
+                loading:true,
+                err:action.data
+            }
+        }
+        case adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_SUC:{
+            return{
+                ...state,
+                loading:false,
+                data:action.payload
+            }
+        }
+        case adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_FAILURE:{
+            return{
                 ...state,
                 loading:false,
                 err:action.payload
