@@ -7,7 +7,7 @@
     margin-right: 20px;
 }
 
-.btn{
+.btn1{
     outline: none;
     border-radius: 8px;
     align-items: center;
@@ -18,7 +18,7 @@
     width: 96px;
     height: 44px;
 }
-.btn:hover{
+.btn1:hover{
     background-color: var(--lightGreen2) !important;
 }
 
@@ -50,7 +50,7 @@
         justify-content: space-between;
         font-size: 1rem;
     }
-    .btn{
+    .btn1{
         width: 80px;
     }
 }

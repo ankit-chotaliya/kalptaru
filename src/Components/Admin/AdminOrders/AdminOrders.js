@@ -19,9 +19,9 @@ function AdminOrders() {
                 </div>
                 <div className='container mt-4'>
                     <div className='btns'>
-                        <button className='btn'>Urgent</button>
+                        <button className='btn1'>Urgent</button>
                         <button className='btn btn-bt'>Fast</button>
-                        <button className='btn'>Normal</button>
+                        <button className='btn1'>Normal</button>
                     </div>
                 </div>
                 <div className='table-responsive-md'>

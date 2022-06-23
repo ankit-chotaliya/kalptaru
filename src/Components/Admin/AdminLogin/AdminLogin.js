@@ -5,14 +5,14 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { login } from '../../../actions/user.action';
+import { adminLogin } from '../../../actions/admin.action';
 import { useSelector } from 'react-redux';
 import ToastHelper from '../../Helper/ToastHelper/ToastHelper';
 
 function AdminLogin() {
 
     const navigate = useNavigate();
-    const [mobileNo, setMobileNo] = useState("");
+    const [Email, setEmail] = useState("");
     const [password, setPassWord] = useState("");
     const [showPassword, setShowPassWord] = useState(false);
     const [showToast, setShowToast] = useState(false);
@@ -26,9 +26,14 @@ function AdminLogin() {
     const handleLogin = (e) => {
         e.preventDefault();
         const dataObj = {
-            contact: mobileNo,
+            email: Email,
             password: password
         }
+        dispatch(adminLogin(dataObj)).then(()=>{
+            navigate("/AdminHome");
+        }).catch(()=>{
+            console.log('Error');
+        })
     }
     const handlepassword = (e) => {
         setShowPassWord(true);
@@ -50,15 +55,15 @@ function AdminLogin() {
                 <div className='co-container mt-4'>
                     <p className='nav_logotext' id="title">Admin Login</p>
                     <div className='st-mobile mt-5'>
-                        <label htmlFor='st-mob'>Phone No.</label>
+                        <label htmlFor='st-mob'>Email</label>
                         <br />
                         <div className='st-mob-sub'>
                             <input
                                 type="text"
                                 className='st-mob-input'
-                                placeholder='Mobile Number'
-                                value={mobileNo}
-                                onChange={(e) => { setMobileNo(e.target.value) }}
+                                placeholder='Email'
+                                value={Email}
+                                onChange={(e) => { setEmail(e.target.value) }}
                                 id="st-mob"
                             />
                             <FiEdit3 className='st-mob-icon' />

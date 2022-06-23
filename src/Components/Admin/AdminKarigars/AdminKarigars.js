@@ -3,14 +3,21 @@ import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import './AdminKarigars.css';
 import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 function AdminKarigars() {
 
     const navigate = useNavigate();
-
+    const Karigars = useSelector(state=>state.karigar);
+    
     return (
         <>
             <AdminNavbar />
+             {
+                Karigars.data.karigar && Karigars.data.karigar.map((v)=>{
+                    return v.karigar_name;
+                })
+            } 
             <div className='container no-main no-border pageview'>
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
@@ -29,79 +36,26 @@ function AdminKarigars() {
                             </tr>
                         </thead>
                         <tbody className="table-group-divider">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Sagar Desai</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
+                            {
+                                Karigars.data.karigar && Karigars.data.karigar.map((v,index)=>{
+                                    return <tr key={index}>
+                                <th scope="row">{index+1}</th>
+                                <td>{v.karigar_name}</td>
+                                <td>{v.karigar_contact}</td>
+                                <td>{v.karigar_city}</td>
                                 <td className="text-center"><div className='co-customer-share'>
                                 <button className='delete-btn'>
                                     Delete
                                 </button>
                             </div></td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Parth Goti</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Ankit Chotaliya</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Sakshi Jain</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Shruti Jain</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Bhavika Balsara</td>
-                                <td>1234567896</td>
-                                <td>Ahmedabad</td>
-                                <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                            </tr>
+                                })
+                            }
+                           
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
-
         </>
     )
 }
