@@ -1,4 +1,4 @@
-import { userConstant } from '../actions/constant'
+import { adminUserConstant, userConstant } from '../actions/constant'
 const intialState = {
     loading: false,
     data: {
@@ -43,6 +43,27 @@ export default (state = intialState, action) => {
                 },
                 err: "",
                 success: false
+            }
+        }
+        case adminUserConstant.GET_ADMIN_ALL_USER_FAILURE:{
+            return {
+                ...state,
+                loading:false,
+                data:action.data
+            }
+        }
+        case adminUserConstant.GET_ADMIN_ALL_USER_SUC:{
+            return{
+                ...state,
+                loading:false,
+                data:action.payload
+            }
+        }
+        case adminUserConstant.GET_ADMIN_ALL_USER_FAILURE:{
+            return{
+                ...state,
+                loading:false,
+                err:action.payload
             }
         }
         default:

@@ -7,10 +7,12 @@ import online from './online.ico';
 import offline from './offline.ico';
 
 import AdminListView from '../../Helper/AdminListView/AdminListView';
+import { useSelector } from 'react-redux';
 
 function AdminUsers() {
 
     const navigate = useNavigate();
+    const Users = useSelector(state=>state.user);
 
     return (
         <>
@@ -34,14 +36,16 @@ function AdminUsers() {
                         </tr>
                     </thead>
                     <tbody className="table-group-divider">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Sagar Desai</td>
-                            <td>9712599217</td>
-                            <td className="text-center"><img className="status" src={online} /></td>
+                    {
+                        Users.data.user && Users.data.user.map((u,index)=>{
+                            return <tr key={index}>
+                            <th scope="row">{index+1}</th>
+                            <td>{u.fullname}</td>
+                            <td>{u.contact}</td>
+                            <td className="text-center"><img className="status" src={u.loginstatus? online :offline} /></td>
                             <td className="text-center"><div className='co-customer-share'>
                                 <button className='co-btn'>
-                                    Active &nbsp;<AiOutlineCheckCircle />
+                                   {u.isActive ?<>Active &nbsp;<AiOutlineCheckCircle /></>  : <>Deactive &nbsp;<AiOutlineCloseCircle /></> } 
                                 </button>
                             </div></td>
                             <td className="text-center"><div className='co-customer-share'>
@@ -50,86 +54,8 @@ function AdminUsers() {
                                 </button>
                             </div></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Ankit Chotaliya</td>
-                            <td>123456789</td>
-                            <td className="text-center"><img className="status" src={offline} /></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-btn'>
-                                    Deactive &nbsp;<AiOutlineCloseCircle />
-                                </button>
-                            </div></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Parth Goti</td>
-                            <td>1256347892</td>
-                            <td className="text-center"><img className="status" src={online} /></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-btn'>
-                                    Active &nbsp;<AiOutlineCheckCircle />
-                                </button>
-                            </div></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Sakhshi Jain</td>
-                            <td>1234567896</td>
-                            <td className="text-center"><img className="status" src={online} /></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-btn'>
-                                    Active &nbsp;<AiOutlineCheckCircle />
-                                </button>
-                            </div></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Shruti Jain</td>
-                            <td>6325478912</td>
-                            <td className="text-center"><img className="status" src={offline} /></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-btn'>
-                                    Deactive &nbsp;<AiOutlineCloseCircle />
-                                </button>
-                            </div></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>Bhavika Balasara</td>
-                            <td>8529637415</td>
-                            <td className="text-center"><img className="status" src={online} /></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='co-btn'>
-                                    Active &nbsp;<AiOutlineCheckCircle />
-                                </button>
-                            </div></td>
-                            <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
-                                    Delete
-                                </button>
-                            </div></td>
-                        </tr>
+                        })
+                    }
                     </tbody>
                 </table>
                 </div>

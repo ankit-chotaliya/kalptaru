@@ -10,16 +10,12 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ankit" />
+        <entry key="$PROJECT_DIR$" value="sagar_parth" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-<<<<<<< HEAD
-  <component name="ProjectId" id="2ApOgRcN5kJn3vBBHcWktWVXJzD" />
-=======
   <component name="ProjectId" id="28y3GoTDW2KE6EyPIrb97uDvUL9" />
->>>>>>> 16902598649c010755c64f2432a451e9c0b30f51
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -28,9 +24,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
 <<<<<<< HEAD
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+=======
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../kalptaruBackend" />
 =======
 >>>>>>> 16902598649c010755c64f2432a451e9c0b30f51
+>>>>>>> f2bc2717b0ea3b48b3cdf5b3c5474cc5648b6984
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

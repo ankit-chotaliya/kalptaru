@@ -1,5 +1,6 @@
 import React, { useEffect, useState,CSSProperties } from 'react'
 import AddClient from '../AddClient/AddClient';
+import AddClientCsv from '../AddClient/AddClientCsv';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import './Settings.css';
 import Navbar from '../NavBar/Navbar';
@@ -16,6 +17,7 @@ const Settings = () => {
     const [password,setPassWord]=useState("Abc@2022");
     const [showPassword,setShowPassWord]=useState(false);
     const [addClientModal,setAddClientModal]=useState(false);
+    const [addClientCsvModal,setAddClientCsvModal]=useState(false);
     const [addKarigarModal,setAddKarigarModal]=useState(false);
 
 
@@ -26,6 +28,12 @@ const Settings = () => {
     const handleClient=(e)=>{
         e.preventDefault();
         setAddClientModal(true);
+    }
+
+    
+    const handleClientCsv=(e)=>{
+        e.preventDefault();
+        setAddClientCsvModal(true);
     }
 
     const handleAddKarigar=(e)=>{
@@ -99,7 +107,6 @@ const Settings = () => {
                 </div>
 
                 <div className='st-mobile mt-2'>
-                    <label htmlFor='st-pass'>Add karigar using csv</label>
                     <br/>
                     <div className='st-mob-sub'>
 
@@ -115,10 +122,38 @@ const Settings = () => {
                     onHide={() => setAddClientModal(false)}
                     />
                 </div>
+
+                <div className='co-customer-share mt-4'>
+                  
+                   <button className='co-share-btn' onClick={handleClientCsv}>
+                        Add Client Using CSV
+                   </button>
+                   <AddClientCsv
+                    show={addClientCsvModal}
+                    onHide={() => setAddClientCsvModal(false)}
+                    />
+                </div>
+
+                <div className='st-mobile mt-2'>
+                    <br/>
+                    <div className='st-mob-sub'>
+
+                    </div>
+                </div>
                 
                 <div className='co-karigar-share mt-4'>
                     <button className='co-share-btn' onClick={handleAddKarigar}>
                         Add Karigar
+                   </button>
+                   <AddKarigar
+                    show={addKarigarModal}
+                    onHide={() => setAddKarigarModal(false)}
+                    />
+                </div>
+
+                <div className='co-karigar-share mt-4'>
+                    <button className='co-share-btn' onClick={handleAddKarigar}>
+                        Add Karigar USing CSV
                    </button>
                    <AddKarigar
                     show={addKarigarModal}

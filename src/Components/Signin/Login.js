@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import AddClient from '../AddClient/AddClient';
-import AddKarigar from '../AddKarigar/AddKarigar';
 import './Login.css';
 import logo from './logo.png';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../actions/user.action';
 import { useSelector } from 'react-redux';
-import ToastHelper from '../Helper/ToastHelper/ToastHelper';
 import Loader from '../Helper/Loader/Loader';
 const LogIn = () => {
     const navigate = useNavigate();
@@ -17,7 +13,6 @@ const LogIn = () => {
     const [password, setPassWord] = useState("");
     const [showPassword, setShowPassWord] = useState(false);
     const [idToast, setidToast] = useState(1);
-    const delayToast = 3000;
     const dispatch = useDispatch();
     const user = useSelector(state => state.user)
     useEffect(() => {

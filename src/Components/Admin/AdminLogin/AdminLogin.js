@@ -1,27 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AdminLogin.css';
 import logo from './logo.png';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { adminLogin } from '../../../actions/admin.action';
 import { useSelector } from 'react-redux';
-import ToastHelper from '../../Helper/ToastHelper/ToastHelper';
+import { adminLogin } from '../../../actions/admin.action';
 
 function AdminLogin() {
-
     const navigate = useNavigate();
     const [Email, setEmail] = useState("");
     const [password, setPassWord] = useState("");
     const [showPassword, setShowPassWord] = useState(false);
-    const [showToast, setShowToast] = useState(false);
-    const [msgToast, setmsgToast] = useState("asdasd");
-    const [bgToast, setbgToast] = useState("danger");
-    const [idToast, setidToast] = useState(1);
-    const delayToast = 3000;
     const dispatch = useDispatch();
-    const user = useSelector(state => state.user)
+
+    const admin = useSelector(state => state.admin)
+
+        useEffect(() => {
+            if (admin.success && admin.authenticate) {
+            navigate("/AdminHome");
+            }
+        }, [admin.success])
     
     const handleLogin = (e) => {
         e.preventDefault();
@@ -30,17 +29,14 @@ function AdminLogin() {
             password: password
         }
         dispatch(adminLogin(dataObj)).then(()=>{
-            navigate("/AdminHome");
+           console.log('here');
         }).catch(()=>{
             console.log('Error');
-        })
+        });
     }
     const handlepassword = (e) => {
         setShowPassWord(true);
         setPassWord(e.target.value);
-    }
-    const fn = () => {
-        return (<ToastHelper key={idToast} msg={msgToast} delay={delayToast} bg={bgToast} />);
     }
     return (
         <>
