@@ -7,19 +7,19 @@ export const getAllClient=()=>{
             type:clientConstant.GET_ALL_CLIENT_REQ,
             data:"Please Wait..."
         })
-        axios.get('/client/getClient')
-        .then(res=>{
+        const res=await axios.get('/client/getClient')
+        if(res.status==200){
             dispatch({
                 type:clientConstant.GET_ALL_CLIENT_SUC,
                 payload:res.data
             })
-        })
-        .catch(err=>{
+        }else if(res.status==203){
+            alert(res.data.error);
             dispatch({
                 type:clientConstant.GET_ALL_CLIENT_FAILURE,
-                payload:err.message
+                payload:res.data.error.message
             })
-        })
+        }
     }
 }
 

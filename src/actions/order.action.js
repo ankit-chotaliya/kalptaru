@@ -129,3 +129,52 @@ export const editOrder=(dataObj,orderId)=>{
         }
     }
 }
+
+//repeat order action
+export const repeatOrder=(dataObj)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:orderConstant.REPEAT_ORDER_REQ
+        })
+        const res=await axios.post('order/repeatOrder',dataObj);
+        if(res.status==200){
+            dispatch({
+                type:orderConstant.REPEAT_ORDER_SUC
+            })
+            dispatch(setToastMsg(res.data.message,false));
+        }else if(res.status==203){
+            dispatch({
+                type:orderConstant.REPEAT_ORDER_FAILURE
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }else{
+            dispatch(setToastMsg("Something went Wrong!",true));
+        }
+    }
+}
+
+//order status change
+export const orderStatusChange=(dataObj)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:orderConstant.CHANGE_ORDER_STATUS_REQ
+        })
+        const res=await axios.post('order/orderStatuschange',dataObj);
+        if(res.status==200){
+            
+            dispatch({
+                type:orderConstant.CHANGE_ORDER_STATUS_SUC
+            })
+            dispatch(getAllOrders());
+            dispatch(setToastMsg(res.data.message,false));
+            
+        }else if(res.status==203){
+            dispatch({
+                type:orderConstant.CHANGE_ORDER_STATUS_FAILURE
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }else{
+            dispatch(setToastMsg("Something went Wrong!",true));
+        }
+    }
+}

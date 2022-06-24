@@ -57,7 +57,7 @@
 .os-card {
     border: 2px solid var(--navColor);
     width: 100%;
-    height: 144px;
+    height: auto;
     display: flex;
     /* justify-content: ; */
     overflow: hidden;
@@ -74,7 +74,8 @@
 
 .os-card-img img {
     width: 200px;
-    height: auto;
+    height: 170px;
+    /* height: auto; */
 }
 
 .os-card-detail {

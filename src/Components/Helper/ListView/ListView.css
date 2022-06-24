@@ -28,6 +28,13 @@
     cursor: pointer;
     transition: all 0.3s linear 0.5s;
 }
+.lv-value-label{
+    background-color: var(--darkGreen) !important;
+    color: white!important;
+    max-width: 30% !important;
+    text-align: center;
+    font-weight: lighter;
+}
 
 @media only screen and (max-width: 600px) {
     .lv-list{
@@ -38,6 +45,9 @@
     }
     .lv-value{
         width: 55% !important;
+    }
+    .lv-value-label{
+        max-width: 50%!important;
     }
     
   }

@@ -19,6 +19,26 @@ const ListView = (props) => {
                     <div className='lv-property-name'>
                         {props.property2}
                     </div>
+                    {
+                        props.property3?<div className='lv-property-name'>
+                        {props.property3}
+                        </div>:null
+                    }
+                    {
+                        props.property4?<div className='lv-property-name'>
+                        {props.property4}
+                        </div>:null
+                    }
+                    {
+                        props.property5?<div className='lv-property-name'>
+                        {props.property5}
+                        </div>:null
+                    }
+                    {
+                        props.propertyLabel?<div className='lv-property-label'>
+                        {props.propertyLabel}
+                        </div>:null
+                    }
                 </div>
                 <div className='lv-value'>
                     <div className='lv-value-name'>
@@ -27,6 +47,26 @@ const ListView = (props) => {
                     <div className='lv-value-name'>
                         {props.value2}
                     </div>
+                    {
+                        props.value3?<div className='lv-value-name'>
+                        {props.value3}
+                        </div>:null
+                    }
+                    {
+                        props.value4?<div className='lv-value-name'>
+                        {props.value4}
+                        </div>:null
+                    }
+                    {
+                        props.value5?<div className='lv-value-name'>
+                        {props.value5}
+                        </div>:null
+                    }
+                    {
+                        props.valueLabel?<div className='lv-value-label'>
+                        {props.valueLabel}
+                        </div>:null
+                    }
                 </div>
                 <div className='lv-icon' onClick={handleiconclick}>
                     {props.icon1}

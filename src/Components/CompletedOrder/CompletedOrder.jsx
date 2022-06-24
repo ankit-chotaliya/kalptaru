@@ -1,89 +1,157 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../NavBar/Navbar'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import ModalHelper from '../Helper/Modal/ModalHelper';
 import './CompletedOrder.css';
 import ListView from '../Helper/ListView/ListView';
 import { FiRepeat } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { GrFormView } from 'react-icons/gr'
+import { useDispatch, useSelector } from 'react-redux';
+import { repeatOrder } from '../../actions';
+import { setToastMsg } from '../../actions/toast.action';
 function CompletedOrder() {
   const navigate = useNavigate();
+  const search = useLocation().search;
+  // const queryStr=new URLSearchParams(search).get('priority');
+  // const priority=queryStr?queryStr.charAt(0).toUpperCase() + queryStr.slice(1):null;
   const [viewModal, setViewModal] = useState(false);
+  const [orderData,setOrderData]=useState([]);
+  const [orderDataSpecific,setOrderDataSpecific]=useState([]);
+  const [isUrgent,setIsUrgent]=useState(false);
+  const [isFast,setIsFast]=useState(false);
+  const [isNormal,setIsNormal]=useState(false);
+  const [orderUpdateId,setOrderUpdateId]=useState("");
+  const order=useSelector(state=>state.order);
+  const client=useSelector(state=>state.client);
+  const category=useSelector(state=>state.category);
+  const dispatch=useDispatch();
+  //Filter from order state function
+  const orderDatacreate=()=>{
+    if(order.data.orders && order.data.orders.length>0){
+      order.data.orders.map((ele,index)=>{
+        if(ele.orderStatus==6){
+          let data={
+            orderId:"",
+            orderClient:"",
+            orderCategory:"",
+            orderPriority:"",
+            orderDeliveryDate:"",
+          }
+          data.orderId=ele._id;
+          var clientName;
+          client.data.client.map((c)=>{
+            if(c._id==ele.clientId){
+              clientName=c.client_name;
+              return;
+            }
+          })
+          var categoryName;
+          category.data.categories.map((c)=>{
+            if(c._id==ele.orderCategory){
+              categoryName=c.name;
+              return;
+            }
+          })
+          data.orderClient=clientName;
+          data.orderCategory=categoryName;
+          data.orderPriority=ele.priority;
+          data.orderDeliveryDate=dateFormat(ele.deliveryDate);
+          setOrderData(pstate=>[...pstate,data]);
+        }
+      })
+    }
+  }
   const handleModalReply = (e) => {
     const reply = e.target.value;
-    console.log(reply);
+    // console.log(reply);
     if (reply == "true") {
-      alert("updated successfully!");
+      // console.log(orderUpdateId);
+      dispatch(repeatOrder({orderId:orderUpdateId}));
     } else {
-      alert("Not Updated!");
+      dispatch(setToastMsg("Order Remain as it is!",false));
     }
     setViewModal(false);
   }
-  const hadnleUpdateOrder = (e) => {
-    e.preventDefault();
+  const hadnleUpdateOrder = (orderId) => {
+    // console.log(orderId);
+    setOrderUpdateId(orderId)
     setViewModal(true);
   }
+  const handleOrderView = (orderId) => {
+    navigate('/OrderView/'+orderId);
+  }
+  const dateFormat=(d)=>{
+    var date = new Date(d);
+    const day = date.getDate().toString().padStart(2,"0") +"/"+ (date.getMonth()+1).toString().padStart(2,"0") +"/"+ date.getFullYear();
+    return day;
+  } 
+  const handleUrgent=()=>{
+    setIsUrgent(true);
+    setIsNormal(false);
+    setIsFast(false);
+    setOrderDataSpecific(orderData.filter(x=>x.orderPriority=='Urgent'));
+  }
+  const handleFast=()=>{
+    setIsUrgent(false);
+    setIsNormal(false);
+    setIsFast(true);
+    setOrderDataSpecific(orderData.filter(x=>x.orderPriority=='Fast'));
+    // setOrderData(items=>items.filter(x=>x.orderPriority=='Fast'));
+  }
+  const handleNormal=()=>{
+    setIsUrgent(false);
+    setIsNormal(true);
+    setIsFast(false);
+    setOrderDataSpecific(orderData.filter(x=>x.orderPriority=='Normal'));
+    // setOrderData(items=>items.filter(x=>x.orderPriority=='Normal'));
+  }
+  useEffect(()=>{
+    // dispatch(getAllOrders());
+    // console.log("hiii");
+    if(order.data.orders && client.data.client && category.data.categories && orderData.length==0){
+      orderDatacreate();
+    }
+    // console.log("hiii 2");
+  },[order.data.orders,client.data.client,category.data.categories])
+
+  useEffect(()=>{
+    console.log("hii");
+    setOrderDataSpecific(orderData);
+  },[orderData])
   return (
     <>
       <Navbar />
       <div className='container no-main no-border pageview'>
         <div className='cmt-o-heading no-heading'>
           <div className='cmt-o-editorder'>
-            <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Completed Delivery
+            <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate('/')} /> Completed Delivery
           </div>
           <div className='cmt-o-btns'>
-            <button className='cmt-o-btn'>Urgent</button>
-            <button className='cmt-o-btn cmt-o-btn-bt'>Fast</button>
-            <button className='cmt-o-btn'>Normal</button>
+            <button className={isUrgent?'cmt-o-btn cmt-o-btn-active':'cmt-o-btn'} onClick={handleUrgent}>Urgent</button>
+            <button className={isFast?'cmt-o-btn cmt-o-btn-bt cmt-o-btn-active':'cmt-o-btn cmt-o-btn-bt'} onClick={handleFast}>Fast</button>
+            <button className={isNormal?'cmt-o-btn cmt-o-btn-active':'cmt-o-btn'} onClick={handleNormal}>Normal</button>
           </div>
         </div>
 
         <div className='eo-container mt-4'>
-          <ListView
-            property1="Client Name: "
-            property2="Ref No: "
-            property3="Date: "
-            value1="Parth Goti"
-            value2="1234"
-            value3="12/12/2022"
-            icon={<FiRepeat onClick={hadnleUpdateOrder} />}
-          />
-          <ListView
-            property1="Client Name: "
-            property2="Ref No: "
-            property3="Date: "
-            value1="Parth Goti"
-            value2="1234"
-            value3="12/12/2022"
-            icon={<FiRepeat onClick={hadnleUpdateOrder} />}
-          />
-          <ListView
-            property1="Client Name: "
-            property2="Ref No: "
-            property3="Date: "
-            value1="Parth Goti"
-            value2="1234"
-            value3="12/12/2022"
-            icon={<FiRepeat onClick={hadnleUpdateOrder} />}
-          />
-          <ListView
-            property1="Client Name: "
-            property2="Ref No: "
-            property3="Date: "
-            value1="Parth Goti"
-            value2="1234"
-            value3="12/12/2022"
-            icon={<FiRepeat onClick={hadnleUpdateOrder} />}
-          />
-          <ListView
-            property1="Client Name: "
-            property2="Ref No: "
-            property3="Date: "
-            value1="Parth Goti"
-            value2="1234"
-            value3="12/12/2022"
-            icon={<FiRepeat onClick={hadnleUpdateOrder} />}
-          />
+          {
+            orderDataSpecific.length>0?orderDataSpecific.map((ele,index)=>{
+              return <ListView
+              property1="Client Name:"
+              property2="Category:"
+              property3="Delivery Date:"
+              propertyLabel="Priority:"
+              value1={ele.orderClient==""|| !ele.clientName?"None":ele.orderClient}
+              value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
+              value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":ele.orderDeliveryDate}
+              valueLabel={ele.orderPriority=="" || !ele.orderPriority?"Not Decided":ele.orderPriority}
+              icon={<FiRepeat onClick={()=>{hadnleUpdateOrder(ele.orderId)}} />}
+              icon1={<GrFormView style={{fontSize:"2.5rem"}} onClick={()=>handleOrderView(ele.orderId)}/>}
+            />
+            }):<div className='text-center'><h2>No Completed Orders right now</h2></div>
+          }
+          
 
         </div>
         <ModalHelper
