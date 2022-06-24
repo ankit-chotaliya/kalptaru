@@ -47,3 +47,28 @@ export const createClient=(dataObj)=>{
       
     }
 }
+
+export const createClientCsv=(dataObj)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:clientConstant.ADD_CLIENT_CSV_REQ
+        })
+        const res=await axios.post('/client/createClientCsv',{dataObj})
+        if(res.status==200){
+            dispatch({
+                type:clientConstant.ADD_CLIENT_CSV_SUC,
+                payload:res.data
+            })
+            dispatch(getAllClient());
+            dispatch(setToastMsg("Client Added Successfully!",false));
+            
+        }else if(res.status==203){
+            dispatch({
+                type:clientConstant.ADD_CLIENT_CSV_FAILURE,
+                payload:"Client Can't Add!"
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+      
+    }
+}

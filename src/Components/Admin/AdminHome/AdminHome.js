@@ -14,6 +14,7 @@ import "./AdminHome.css";
 
 function Adminadminhome() {
     const order=useSelector(state=>state.order);
+    const clients=useSelector(state=>state.client);
     const karigar=useSelector(state=>state.karigar);
     const admin=useSelector(state=>state.admin);
     const dispatch=useDispatch();
@@ -77,15 +78,6 @@ function Adminadminhome() {
                         <h5 className="card-title boxname-adminhome">
                           Orders
                         </h5>
-                        {
-                          orders.data.order && orders.data.order.map((o, index, orders) => {
-
-                            {/* if (index + 1 == clients.length) {
-                              return <p style={{fontSize:"18px", fontWeight:"bold"}}>({clients.length})</p>
-                            } */}
-                              {/* return <p style={{fontSize:"18px", fontWeight:"bold"}}>({length})</p> */}
-                          })
-                        }
                       </div>
                     </div>
                   </Link>
