@@ -36,7 +36,6 @@ export default (state = intialState, action) => {
             return {
                 ...state,
                 loading: true,
-                data: action.data,
                 success: false
             }
         }

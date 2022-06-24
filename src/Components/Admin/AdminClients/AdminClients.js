@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import './AdminClients.css';
+import ModalHelper from '../../Helper/Modal/ModalHelper';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { HiOutlineTrash } from "react-icons/hi";
 import { useNavigate } from 'react-router-dom';
 import { adminDeleteClient } from '../../../actions/admin.action';
 
@@ -12,18 +14,29 @@ function AdminClients() {
     const dispatch = useDispatch();
     const clients = useSelector(state => state.client);
 
+    const [viewModal, setViewModal] = useState(false);
+    const [orderDeleteId, setOrderDeleteId] = useState("");
 
-    const handleDelete = (clientId, e)=>{
-        e.preventDefault();
+    const handleModalReply = (e) => {
+        const reply = e.target.value;
+
+        if (reply == "true") {
+
+            dispatch(adminDeleteClient(orderDeleteId)).then(() => {
+
+                if (clients.success) {
+                    console.log("Successfull");
+                }
+            })
+
+        }
+        setViewModal(false);
+    }
 
 
-        dispatch(adminDeleteClient(clientId)).then(() => {
-            console.log(clientId);
-
-            if (clients.success) {
-                console.log("Successfull");
-            }
-        })
+    const handleDelete = (clientId) => {
+        setOrderDeleteId(clientId);
+        setViewModal(true);
     }
 
     return (
@@ -47,28 +60,38 @@ function AdminClients() {
                             </tr>
                         </thead>
                         <tbody className="table-group-divider">
-                        
-                            {
-                                clients.data.client && clients.data.client.map((c, index) => {
 
-                                   return  <tr key={index}>
-                                        <th scope="row">{index+1}</th>
+                            {
+                                clients.data.client && clients.data.client.map((c, index,clients) => {
+
+                                    return <tr key={index}>
+                                        <th scope="row">{index + 1}</th>
                                         <td>{c.client_name}</td>
                                         <td>{c.client_contact}</td>
                                         <td>{c.client_city}</td>
-                                        <td className="text-center"><div className='co-customer-share'>
+                                        {/* <td className="text-center"><div className='co-customer-share'>
                                             <button className='delete-btn' onClick={(e)=>handleDelete(c._id, e)}>
                                                 Delete
                                             </button>
-                                        </div></td>
+                                        </div></td> */}
+                                        <td className="text-center"><div className='co-customer-share'>
+                                            <button className='eo2-btn'><HiOutlineTrash id='deleteicon' onClick={() => handleDelete(c._id)} /></button>
+                                        </div>
+                                        </td>
                                     </tr>
-
                                 })
                             }
-                            
+
                         </tbody>
                     </table>
                 </div>
+                <ModalHelper
+                    show={viewModal}
+                    onHide={() => setViewModal(false)}
+                    icon={<HiOutlineTrash />}
+                    text="Are you sure you want to delete this Client?"
+                    onReply={(e) => handleModalReply(e)}
+                />
 
 
             </div>

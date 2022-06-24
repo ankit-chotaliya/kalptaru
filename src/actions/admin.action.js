@@ -59,7 +59,7 @@ export const adminLogout=()=>{
             type:adminConstant.ADMIN_LOGOUT_REQ,
             data:"Requesting..."
         })
-        if(localStorage.getItem("accessToken")){
+        if(localStorage.getItem("accesstoken")){
             
             localStorage.clear();
             dispatch({
@@ -100,19 +100,18 @@ export const adminGetAllClient=()=>{
 }
 
 export const adminDeleteClient=(clientId)=>{
-    console.log(clientId);
     return async (dispatch)=>{
         dispatch({
             type:adminClientConstant.DELETE_ADMIN_CLIENT_REQ,
         })
          const res = await axios.delete('/admin/deleteClient/'+clientId)
-         console.log(res);
          if (res.status==200){
-            dispatch(setToastMsg("Client Deleted Successfully!",false));
-            dispatch(adminGetAllClient());
+            
             dispatch({
                 type:adminClientConstant.DELETE_ADMIN_CLIENT_SUC,
             })
+            dispatch(adminGetAllClient());
+            dispatch(setToastMsg("Client Deleted Successfully!",false));
             
         }
         else if (res.status==203){
