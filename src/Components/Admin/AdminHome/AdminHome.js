@@ -8,27 +8,28 @@ import { Link, useNavigate } from 'react-router-dom';
 import completedOrders from "../../Home/icons/clipboard.png";
 import orderStatus from "../../Home/icons/status.png"
 import { useSelector } from "react-redux";
-import { adminGetAllClient, adminGetAllKarigar, adminDeleteClient } from "../../../../src/actions";
+import { adminGetAllClient, adminGetAllKarigar, adminGetAllOrder, adminGetAllUser, emptyOrderConfirm, getAllOrders } from "../../../../src/actions";
 import { useDispatch } from "react-redux";
 import "./AdminHome.css";
 
 
 
 function Adminadminhome() {
-  const orders = useSelector(state => state.order);
-  const karigar = useSelector(state => state.karigar);
-  const clients = useSelector(state => state.client);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    // dispatch(getAllOrders());
-    dispatch(adminGetAllClient());
-    dispatch(adminGetAllKarigar());
-  }, [])
-  if (orders.loading) {
-    return <Loader />
-  }
-  return (
-    <>
+    const order=useSelector(state=>state.order);
+    const karigar=useSelector(state=>state.karigar);
+    const dispatch=useDispatch();
+    useEffect(()=>{
+      // dispatch(getAllOrders());
+      dispatch(adminGetAllClient());
+      dispatch(adminGetAllKarigar());
+      dispatch(adminGetAllUser());
+      dispatch(adminGetAllOrder());
+    },[])
+    if(order.loading){
+      return <Loader/>
+    }
+    return (
+      <>
       <AdminNavbar />
       <div className="container-fluid bg-adminhome">
         <div className="row">

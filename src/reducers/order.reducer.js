@@ -1,4 +1,4 @@
-import {orderConstant} from '../actions/constant'
+import {adminOrderConstant, orderConstant} from '../actions/constant'
 const intialState={
     loading:false,
     dataAdded:0,
@@ -116,6 +116,27 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 editsuccess:false
+            }
+        }
+        case adminOrderConstant.GET_ADMIN_ALL_ORDER_REQ:{
+            return {
+                ...state,
+                loading:true,
+                data:action.data
+            }
+        }
+        case adminOrderConstant.GET_ADMIN_ALL_ORDER_SUC:{
+            return {
+                ...state,
+                loading:false,
+                data:action.payload
+            }
+        }
+        case adminOrderConstant.GET_ADMIN_ALL_ORDER_FAILURE:{
+            return{
+                ...state,
+                loading:false,
+                err:action.payload
             }
         }
         default:
