@@ -24,7 +24,6 @@ function AdminClients() {
                 console.log("Successfull");
             }
         })
-
     }
 
     return (

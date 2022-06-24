@@ -3,21 +3,29 @@ import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import './AdminKarigars.css';
 import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { adminDeleteKarigar } from '../../../actions/admin.action';
 
 function AdminKarigars() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const Karigars = useSelector(state=>state.karigar);
     
+    const handleDelete = (karigarId)=>{
+
+        dispatch(adminDeleteKarigar(karigarId))
+        .then(()=>{
+            console.log(karigarId);
+            if (Karigars.success) {
+                console.log('Successful');
+            }   
+        })
+    }
+
     return (
         <>
             <AdminNavbar />
-             {
-                Karigars.data.karigar && Karigars.data.karigar.map((v)=>{
-                    return v.karigar_name;
-                })
-            } 
             <div className='container no-main no-border pageview'>
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
@@ -42,9 +50,9 @@ function AdminKarigars() {
                                 <th scope="row">{index+1}</th>
                                 <td>{v.karigar_name}</td>
                                 <td>{v.karigar_contact}</td>
-                                <td>{v.karigar_city}</td>
+                                <td>{v._id}</td>
                                 <td className="text-center"><div className='co-customer-share'>
-                                <button className='delete-btn'>
+                                <button className='delete-btn' onClick={()=>{handleDelete(v._id)}}>
                                     Delete
                                 </button>
                             </div></td>

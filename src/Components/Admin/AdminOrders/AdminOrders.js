@@ -5,7 +5,7 @@ import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from '
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
-function dateFormat(d) {
+const dateFormat = (d) => {
     var date = new Date(d);
     const day = date.getDate().toString().padStart(2,"0") +"/"+ (date.getMonth()+1).toString().padStart(2,"0") +"/"+ date.getFullYear();
     return day;

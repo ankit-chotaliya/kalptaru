@@ -1,7 +1,7 @@
 import {userConstant} from './constant'
 import axios from '../utils/axios'
 import { setToastMsg } from './toast.action'
-import { MdLocalHospital } from 'react-icons/md'
+
 
 
 export const registration=(dataObj)=>{

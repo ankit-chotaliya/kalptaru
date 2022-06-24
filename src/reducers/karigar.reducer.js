@@ -70,6 +70,28 @@ export default (state=intialState,action)=>{
                 err:action.payload
             }
         }
+        case adminKarigarConstant.DELETE_ADMIN_KARIGAR_REQ:{
+            return{
+                ...state,
+                loading:true,
+                success:false
+            }
+        }
+        case adminKarigarConstant.DELETE_ADMIN_KARIGAR_SUC:{
+            return{
+                ...state,
+                loading:false,
+                success:true
+            }
+        }
+        case adminKarigarConstant.DELETE_ADMIN_KARIGAR_FAILURE:{
+            return{
+                ...state,
+                loading:true,
+                err:action.payload,
+                success:false
+            }
+        }
         default:
             return state;
     }

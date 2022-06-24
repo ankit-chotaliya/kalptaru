@@ -5,15 +5,16 @@ import * as FiIcons from 'react-icons/fi';
 import * as IoIcons from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './AdminSidebar';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { adminLogout } from '../../../actions/admin.action';
 import './AdminNavBar.css';
 import logo from './logo.png';
 import { IconContext } from 'react-icons';
 import { useNavigate } from 'react-router-dom';
 
-function AdminNavbar() {
+const AdminNavbar=(props) =>{
   const [sidebar, setSidebar] = useState(false);
+  const admin = useSelector(state => state.admin)
   const navigate=useNavigate();
   const dispatch=useDispatch();
 
@@ -53,12 +54,20 @@ function AdminNavbar() {
   const handleLogout=(e)=>{
     e.preventDefault();
   
-    dispatch(adminLogout()).then(()=>{
-        navigate('/login');
-    }).catch(()=>{
-        console.log("err here");
-    });
+    dispatch(adminLogout())
 }
+useEffect(()=>{
+  // console.log('Hii 1');
+  // console.log(admin.adminlogoutsuccess);
+  
+if (admin.adminlogoutsuccess) {
+  navigate("/",{replace:true})
+  // this.props.history.replace("/login","urlhistory");
+  // window.location.href='/login';
+  // window.history.pushState({},undefined,"/login");
+  // document.location.replace("/login");
+}
+},[admin.adminlogoutsuccess])
 
 
   return (

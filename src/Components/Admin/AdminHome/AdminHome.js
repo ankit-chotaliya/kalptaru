@@ -8,23 +8,31 @@ import { Link,useNavigate } from 'react-router-dom';
 import completedOrders from "../../Home/icons/clipboard.png";
 import orderStatus from  "../../Home/icons/status.png"
 import { useSelector } from "react-redux";
-import { adminGetAllClient, adminGetAllKarigar, adminGetAllOrder, adminGetAllUser, emptyOrderConfirm, getAllOrders } from "../../../../src/actions";
+import { adminGetAllClient, adminGetAllKarigar, adminGetAllOrder, adminGetAllUser, emptyOrderConfirm, getAllOrders, preadminloginusingToken } from "../../../../src/actions";
 import { useDispatch } from "react-redux";
 import "./AdminHome.css";
-
-
 
 function Adminadminhome() {
     const order=useSelector(state=>state.order);
     const karigar=useSelector(state=>state.karigar);
+    const admin=useSelector(state=>state.admin);
     const dispatch=useDispatch();
+
     useEffect(()=>{
-      // dispatch(getAllOrders());
+      if(localStorage.getItem('accessToken') && !admin.authenticate){
+        const token=localStorage.getItem('accesstoken').split(" ")[0];
+        dispatch(preadminloginusingToken({accesstoken:token}));
+      }
+    },[])
+
+    useEffect(()=>{
+      if(admin.authenticate){
       dispatch(adminGetAllClient());
       dispatch(adminGetAllKarigar());
       dispatch(adminGetAllUser());
       dispatch(adminGetAllOrder());
-    },[])
+      }
+    },[admin.authenticate])
     if(order.loading){
       return <Loader/>
     }
