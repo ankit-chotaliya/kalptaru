@@ -14,10 +14,8 @@ import "./AdminHome.css";
 
 function Adminadminhome() {
     const order=useSelector(state=>state.order);
-    const karigars=useSelector(state=>state.karigar);
     const clients=useSelector(state=>state.client);
-    const orders=useSelector(state=>state.order);
-    const users=useSelector(state=>state.user);
+    const karigar=useSelector(state=>state.karigar);
     const admin=useSelector(state=>state.admin);
     let count=0;
     const dispatch=useDispatch();
