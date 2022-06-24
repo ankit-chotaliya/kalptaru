@@ -26,6 +26,7 @@ import AdminUsers from './Components/Admin/AdminUsers/AdminUsers';
 import AdminOrders from './Components/Admin/AdminOrders/AdminOrders';
 import AdminKarigars from './Components/Admin/AdminKarigars/AdminKarigars';
 import AdminClients from './Components/Admin/AdminClients/AdminClients';
+import AdminCompletedOrders from './Components/Admin/AdminCompletedOrders/AdminCompletedOrders';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory, getAllOrders,getAllClient,getAllKarigar, preLoginusingToken } from './actions';
 import Loader from './Components/Helper/Loader/Loader';
@@ -120,6 +121,7 @@ const App = () => {
         <Route path="/AdminOrders" exact element={<AdminOrders/>}/>
         <Route path="/AdminKarigars" exact element={<AdminKarigars/>}/>
         <Route path="/AdminClients" exact element={<AdminClients/>}/>
+        <Route path="/AdminCompletedOrders" exact element={<AdminCompletedOrders/>}/>
         <Route path="/create" exact element={<PrivateRoute isAuthenticated={user.authenticate}><NewOrder/></PrivateRoute>}/>
         <Route path="/orderConfirm" exact element={<PrivateRoute isAuthenticated={user.authenticate}><ConfirmOrder show={false}/></PrivateRoute>}/>
         <Route path="/EditOrder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Editorder/></PrivateRoute>}/>

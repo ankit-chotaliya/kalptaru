@@ -66,6 +66,28 @@ export default (state = intialState, action) => {
                 err:action.payload
             }
         }
+        case adminUserConstant.DELETE_ADMIN_USER_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false
+            }
+        }
+        case adminUserConstant.DELETE_ADMIN_USER_SUC: {
+            return {
+                ...state,
+                loading: false,
+                success: true
+            }
+        }
+        case adminUserConstant.DELETE_ADMIN_USER_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                err: action.payload,
+                success: false
+            }
+        }
         default:
             return state;
     }
