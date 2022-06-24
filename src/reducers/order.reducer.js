@@ -12,6 +12,7 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:true,
+                success:false,
                 isPDFset:false,
                 editsuccess:false,
                 data:action.data
@@ -22,6 +23,7 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 isPDFset:false,
+                success:true,
                 editsuccess:false,
                 dataAdded:0,
                 data:action.payload
@@ -32,6 +34,7 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 isPDFset:false,
+                success:false,
                 editsuccess:false,
                 dataAdded:0,
                 err:action.payload
@@ -42,6 +45,7 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:true,
                 isPDFset:false,
+                success:false,
                 editsuccess:false,
                 dataAdded:0,
                 data:action.data
@@ -53,6 +57,7 @@ export default (state=intialState,action)=>{
                 loading:false,
                 isPDFset:false,
                 editsuccess:false,
+                success:true,
                 dataAdded:state.dataAdded+1,
                 data:action.payload
             }
@@ -62,6 +67,7 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 isPDFset:false,
+                success:false,
                 editsuccess:false,
                 dataAdded:0,
                 err:action.payload
@@ -71,6 +77,7 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:true,
+                success:false,
                 editsuccess:false,
                 isPDFset:false,
                 
@@ -82,6 +89,7 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 editsuccess:false,
+                success:true,
                 isPDFset:true,
              
                 data:action.payload
@@ -91,6 +99,7 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:false,
+                success:false,
                 editsuccess:false,
                 isPDFset:false,
                 
@@ -101,6 +110,7 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:true,
+                success:false,
                 editsuccess:false
             }
         }
@@ -108,6 +118,7 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:false,
+                success:true,
                 editsuccess:true
             }
         }
@@ -115,6 +126,55 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:false,
+                success:false,
+                editsuccess:false
+            }
+        }
+        case orderConstant.REPEAT_ORDER_REQ:{
+            return{
+                ...state,
+                loading:true,
+                success:false,
+                editsuccess:false
+            }
+        }
+        case orderConstant.REPEAT_ORDER_SUC:{
+            return{
+                ...state,
+                loading:false,
+                success:true,
+                editsuccess:false
+            }
+        }
+        case orderConstant.REPEAT_ORDER_FAILURE:{
+            return{
+                ...state,
+                loading:false,
+                success:false,
+                editsuccess:false
+            }
+        }
+        case orderConstant.CHANGE_ORDER_STATUS_REQ:{
+            return{
+                ...state,
+                loading:true,
+                success:false,
+                editsuccess:false
+            }
+        }
+        case orderConstant.CHANGE_ORDER_STATUS_SUC:{
+            return{
+                ...state,
+                loading:false,
+                success:true,
+                editsuccess:false
+            }
+        }
+        case orderConstant.CHANGE_ORDER_STATUS_FAILURE:{
+            return{
+                ...state,
+                loading:false,
+                success:false,
                 editsuccess:false
             }
         }

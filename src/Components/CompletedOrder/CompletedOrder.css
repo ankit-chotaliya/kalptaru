@@ -21,6 +21,9 @@
 .cmt-o-btn:hover{
     background-color: var(--lightGreen2);
 }
+.cmt-o-btn-active{
+    background-color: var(--lightGreen2);
+}
 .cmt-o-editorder{
     width: 33%;
 }

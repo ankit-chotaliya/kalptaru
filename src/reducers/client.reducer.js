@@ -11,35 +11,38 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:true,
-                data:action.data
+                data:action.data,
+                err:""
             }
         }
         case clientConstant.GET_ALL_CLIENT_SUC:{
             return {
                 ...state,
                 loading:false,
-                data:action.payload
+                data:action.payload,
+                err:""
             }
         }
         case clientConstant.GET_ALL_CLIENT_FAILURE:{
             return {
                 ...state,
                 loading:false,
-                err:action.payload
+                err:action.payload,
             }
         }
         case clientConstant.ADD_CLIENT_REQ:{
             return {
                 ...state,
                 loading:true,
-                data:action.data
+                err:""
             }
         }
         case clientConstant.ADD_CLIENT_SUC:{
             return {
                 ...state,
                 loading:false,
-                data:action.payload
+                data:action.payload,
+                err:""
             }
         }
         case clientConstant.ADD_CLIENT_FAILURE:{
@@ -53,14 +56,16 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:true,
-                data:action.data
+                data:action.data,
+                err:""
             }
         }
         case adminClientConstant.GET_ADMIN_ALL_CLIENT_SUC:{
             return {
                 ...state,
                 loading:false,
-                data:action.payload
+                data:action.payload,
+                err:""
             }
         }
         case adminClientConstant.GET_ADMIN_ALL_CLIENT_FAILURE:{
@@ -70,7 +75,7 @@ export default (state=intialState,action)=>{
                 err:action.payload
             }
         }
-               default:
+        default:
             return state;
     }
 }
