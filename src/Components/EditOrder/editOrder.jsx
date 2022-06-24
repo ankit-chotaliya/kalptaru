@@ -18,8 +18,12 @@ const EditOrder=()=> {
   // const dispatch=useDispatch();
 useEffect(()=>{
   // dispatch(getAllOrders());
-  orderDatacreate();
-},[order.data.orders])
+  // console.log("hii");
+  if(order.data.orders && client.data.client && category.data.categories && orderData.length==0){
+    orderDatacreate();
+  }
+  
+},[order.data.orders,client.data.client,category.data.categories])
 const handleopenEditForm=(id)=>{
     navigate('/EditOrderForm/'+id);
 }
@@ -29,8 +33,10 @@ const orderDatacreate=()=>{
     order.data.orders.map((ele,index)=>{
       let data={
         orderId:"",
-        clientName:"",
-        categoryName:"",
+        orderClient:"",
+        orderCategory:"",
+        orderDeliveryDate:"",
+        orderCreatedDate:"",
       }
       data.orderId=ele._id;
       var clientName;
@@ -49,12 +55,19 @@ const orderDatacreate=()=>{
       })
       data.orderClient=clientName;
       data.orderCategory=categoryName;
+      data.orderDeliveryDate=dateFormat(ele.deliveryDate);
+      data.orderCreatedDate=dateFormat(ele.createdAt);
       setOrderData(pstate=>[...pstate,data]);
     })
     
     setLoading(false)
   }
 } 
+const dateFormat=(d)=>{
+  var date = new Date(d);
+  const day = date.getDate().toString().padStart(2,"0") +"/"+ (date.getMonth()+1).toString().padStart(2,"0") +"/"+ date.getFullYear();
+  return day;
+}
   // orderDatacreate();
   return (
     <>
@@ -78,8 +91,12 @@ const orderDatacreate=()=>{
                     <ListView
                     property1="Client Name: "
                     property2="Category : "
-                    value1={ele.orderClient}
-                    value2={ele.orderCategory}
+                    property3="Deliver Date: "
+                    property4="Created At: "
+                    value1={!ele.orderClient?"None":ele.orderClient}
+                    value2={!ele.orderCategory?"None" :ele.orderCategory}
+                    value3={!ele.orderDeliveryDate?"Not exist!" :ele.orderDeliveryDate}
+                    value4={!ele.orderCreatedDate?"Not exist!" :ele.orderCreatedDate}
                     icon={<FiEdit2 onClick={()=>handleopenEditForm(ele.orderId)}/>}
                     />
                     </div>

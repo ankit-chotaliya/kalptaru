@@ -189,17 +189,21 @@ const EditOrderFormHelper = (props) => {
                 setMelting(res.data.order[0].melting);
                 setDdate(res.data.order[0].deliveryDate);
                 setOrderStatus(res.data.order[0].orderStatus);
+                setPriority(res.data.order[0].priority);
                 const url="http://localhost:8080/uploads/orderImage/"
                 res.data.order[0].orderImg.map(ele=>{
                     setImg(pstate=>[...pstate,url+ele.img]);
                 })
             }else if(res.status==203){
-                // dispatch(setToastMsg("Edit Order Can't Fetched Try Again!",true));
+                navigate('/');
+                dispatch(setToastMsg("Order Can't Find! Try Again!",true));
             }
             
         }).then(()=>{
             setLoading(false);
             // dispatch(setToastMsg("Edit Order Fetched",false));
+        }).catch((err)=>{
+
         })
     },[orderId])
     useEffect(()=>{
@@ -215,6 +219,9 @@ const EditOrderFormHelper = (props) => {
         Order Id #{props.number}
         </div>
     </div>
+    {
+        
+    }
     <form onSubmit={hadnleUpdateOrder}>
     <div className="row">
         
@@ -254,12 +261,13 @@ const EditOrderFormHelper = (props) => {
         <div className="col-md-6 col-sm-12 mt-4">
         <label htmlFor="product-category">Order Status*</label>
         <div className='d-flex justify-content-start'>
-            <select className="form-select no-select-full-row" aria-label="Default select example" id="product-category" data-number={props.number} onChange={handleCatChange}>
+            <select className="form-select no-select-full-row" aria-label="Default select example" id="product-category" data-number={props.number} onChange={handleorderStatusChange}>
                 <option value="1" selected={orderStatus==1?true:false}>New Order</option>
                 <option value="2" selected={orderStatus==2?true:false}>Order in process</option>
                 <option value="3" selected={orderStatus==3?true:false}>Karigar Completed</option>
                 <option value="4" selected={orderStatus==4?true:false}>Order Ready</option>
                 <option value="5" selected={orderStatus==5?true:false}>Delivery Pending</option>
+                <option value="6" selected={orderStatus==6?true:false}>Order Delivered/Order Completed</option>
             </select>
         </div>
         </div>

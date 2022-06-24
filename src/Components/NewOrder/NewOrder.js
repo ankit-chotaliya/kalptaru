@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './NewOrder.css'
-import {useNavigate} from 'react-router-dom'
-import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import NewOrderComponent from './NewOrderComponent'
 import NavBar from '../NavBar/Navbar'
 import { useDispatch, useSelector } from 'react-redux'
@@ -26,7 +26,7 @@ order:[
 ]
 */
 const NewOrder = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   //form-variables
   let variableObject={ 
     clientName: "", 
@@ -53,6 +53,7 @@ const NewOrder = () => {
 
   const handleChange=(i,e)=>{
     let newFormValues = [...formValues];
+    
     const targetName=e.target.name.split(" ")[0];
         if(e.target.type=="file"){
           newFormValues[i][e.target.name] = e.target.files;
@@ -75,7 +76,7 @@ const NewOrder = () => {
     setFormValues(newFormValues);
   }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
   //   formValues.forEach(ele => {
   //     if (ele.clientName=="") {

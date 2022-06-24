@@ -286,7 +286,7 @@ const NewOrderComponent = (props) => {
         <label htmlFor="select-priority">Select Priority*:</label>
         <div className='d-flex justify-content-start'>
             <select name="priority" onChange={e=>props.handleChange(props.index,e)} className="form-select no-select-full-row" aria-label="Default select example" id="select-priority" >
-            <option selected>Select</option>
+            <option selected disabled>Select</option>
             <option value="Normal">Normal</option>
             <option value="Fast">Fast</option>
             <option value="Urgent">Urgent</option>

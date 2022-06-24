@@ -11,40 +11,68 @@ export default (state = intialState, action) => {
         case clientConstant.GET_ALL_CLIENT_REQ: {
             return {
                 ...state,
+<<<<<<< HEAD
                 loading: true,
                 data: action.data,
                 success: false
+=======
+                loading:true,
+                data:action.data,
+                err:""
+>>>>>>> f2bc2717b0ea3b48b3cdf5b3c5474cc5648b6984
             }
         }
         case clientConstant.GET_ALL_CLIENT_SUC: {
             return {
                 ...state,
+<<<<<<< HEAD
                 loading: false,
                 data: action.payload,
                 success: true
+=======
+                loading:false,
+                data:action.payload,
+                err:""
+>>>>>>> f2bc2717b0ea3b48b3cdf5b3c5474cc5648b6984
             }
         }
         case clientConstant.GET_ALL_CLIENT_FAILURE: {
             return {
                 ...state,
+<<<<<<< HEAD
                 loading: false,
                 err: action.payload,
                 success: false
+=======
+                loading:false,
+                err:action.payload,
+>>>>>>> f2bc2717b0ea3b48b3cdf5b3c5474cc5648b6984
             }
         }
         case clientConstant.ADD_CLIENT_REQ: {
             return {
                 ...state,
+<<<<<<< HEAD
                 loading: true,
                 success: false
+=======
+                loading:true,
+                err:""
+>>>>>>> f2bc2717b0ea3b48b3cdf5b3c5474cc5648b6984
             }
         }
         case clientConstant.ADD_CLIENT_SUC: {
             return {
                 ...state,
+<<<<<<< HEAD
                 loading: false,
                 data: action.payload,
                 success: true
+=======
+                loading:false,
+                data:action.payload,
+                err:""
+>>>>>>> f2bc2717b0ea3b48b3cdf5b3c5474cc5648b6984
             }
         }
         case clientConstant.ADD_CLIENT_FAILURE: {
@@ -58,17 +86,29 @@ export default (state = intialState, action) => {
         case adminClientConstant.GET_ADMIN_ALL_CLIENT_REQ: {
             return {
                 ...state,
+<<<<<<< HEAD
                 loading: true,
                 data: action.data,
                 success: false
+=======
+                loading:true,
+                data:action.data,
+                err:""
+>>>>>>> f2bc2717b0ea3b48b3cdf5b3c5474cc5648b6984
             }
         }
         case adminClientConstant.GET_ADMIN_ALL_CLIENT_SUC: {
             return {
                 ...state,
+<<<<<<< HEAD
                 loading: false,
                 data: action.payload,
                 success: true
+=======
+                loading:false,
+                data:action.payload,
+                err:""
+>>>>>>> f2bc2717b0ea3b48b3cdf5b3c5474cc5648b6984
             }
         }
         case adminClientConstant.GET_ADMIN_ALL_CLIENT_FAILURE: {
@@ -79,6 +119,7 @@ export default (state = intialState, action) => {
                 success: false
             }
         }
+<<<<<<< HEAD
         case adminClientConstant.DELETE_ADMIN_CLIENT_REQ: {
             return {
                 ...state,
@@ -101,6 +142,8 @@ export default (state = intialState, action) => {
                 success: false
             }
         }
+=======
+>>>>>>> f2bc2717b0ea3b48b3cdf5b3c5474cc5648b6984
         default:
             return state;
     }
