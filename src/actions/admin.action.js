@@ -8,11 +8,14 @@ export const adminLogin = (dataobj) =>{
           type:adminConstant.ADMIN_LOGIN_REQ,
           data:"Wait For a while "
         })
+        if(localStorage.getItem('accessToken1')){
+            localStorage.removeItem('accessToken1');
+        }
         const res=await axios.post('/admin/loginadmin',dataobj);
         if (res.status==200) {
             console.log(res.data);
             
-            localStorage.setItem("accessToken",res.data.accesstoken+" kalptaru");
+            localStorage.setItem("accessToken2",res.data.accesstoken+" kalptaru");
             dispatch({
                 type:adminConstant.ADMIN_LOGIN_SUC,
                 payload:res.data
@@ -34,11 +37,14 @@ export const preadminloginusingToken = (accesstoken)=>{
             type:adminConstant.ADMIN_LOGIN_REQ,
             data:"Requesting..."
         })
+        if(localStorage.getItem('accessToken1')){
+            localStorage.removeItem('accessToken1');
+        }
         const res = await axios.post('/admin/adminsigninAccess',accesstoken);
 
         if (res.status==200) {
             console.log(res.data.admin);
-            localStorage.setItem("accessToken",res.data.accesstoken+" kalptaru");
+            localStorage.setItem("accessToken2",res.data.accesstoken+" kalptaru");
             dispatch({
                 type:adminConstant.ADMIN_LOGIN_SUC,
                 payload:res.data
@@ -59,7 +65,7 @@ export const adminLogout=()=>{
             type:adminConstant.ADMIN_LOGOUT_REQ,
             data:"Requesting..."
         })
-        if(localStorage.getItem("accesstoken")){
+        if(localStorage.getItem("accesstoken2")){
             
             localStorage.clear();
             dispatch({

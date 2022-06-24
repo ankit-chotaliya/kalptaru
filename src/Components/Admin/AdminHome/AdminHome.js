@@ -15,12 +15,14 @@ import "./AdminHome.css";
 function Adminadminhome() {
     const order=useSelector(state=>state.order);
     const karigar=useSelector(state=>state.karigar);
+    const clients=useSelector(state=>state.client);
+    const orders=useSelector(state=>state.order);
     const admin=useSelector(state=>state.admin);
     const dispatch=useDispatch();
 
     useEffect(()=>{
-      if(localStorage.getItem('accessToken') && !admin.authenticate){
-        const token=localStorage.getItem('accesstoken').split(" ")[0];
+      if(localStorage.getItem('accessToken2') && !admin.authenticate){
+        const token=localStorage.getItem('accessToken2').split(" ")[0];
         dispatch(preadminloginusingToken({accesstoken:token}));
       }
     },[])

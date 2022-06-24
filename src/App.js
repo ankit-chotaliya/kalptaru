@@ -43,10 +43,10 @@ const App = () => {
   const toastState=useSelector(state=>state.toast);
   const [idToast,setidToast]=useState(1);
   const navigate=useNavigate();
-
+  
   useEffect(()=>{
-    if(localStorage.getItem('accessToken') && !user.authenticate){
-      const token=localStorage.getItem('accessToken').split(" ")[0];
+    if(localStorage.getItem('accessToken1') && !user.authenticate){
+      const token=localStorage.getItem('accessToken1').split(" ")[0];
       dispatch(preLoginusingToken({accesstoken:token}));
       
     }
@@ -99,6 +99,7 @@ const App = () => {
   // setInterval(emptyToast,30000);
   return (
     <>
+   
       {user.loading?<Loader/>:null}
       {
        <ToastContainer position="bottom-right"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from '../NavBar/Navbar';
 import Loader from '../Helper/Loader/Loader';
 import newOrder from "./icons/plus.png";
@@ -17,6 +17,28 @@ function Home() {
   const order=useSelector(state=>state.order);
   const karigar=useSelector(state=>state.karigar);
   const dispatch=useDispatch();
+  const [online, isOnline] = useState(navigator.onLine);
+
+  const setOnline = () => {
+    console.log('We are online!');
+    isOnline(true);
+  };
+  const setOffline = () => {
+    console.log('We are offline!');
+    isOnline(false);
+  };
+
+  // Register the event listeners
+  useEffect(() => {
+    window.addEventListener('offline', setOffline);
+    window.addEventListener('online', setOnline);
+
+    // cleanup if we unmount
+    return () => {
+      window.removeEventListener('offline', setOffline);
+      window.removeEventListener('online', setOnline);
+    }
+  }, []);
   useEffect(()=>{
     dispatch(getAllOrders());
     dispatch(emptyOrderConfirm());
@@ -46,6 +68,7 @@ function Home() {
         // })
       }
       <div className="container-fluid bg-home">
+      <div>Hii {online}</div>
         <div className="row">
           <div className="col-md-2"></div>
           <div className="col-md-8 colcenter-home mb-5">
