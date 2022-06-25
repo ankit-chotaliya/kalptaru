@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import { useCSVReader } from 'react-papaparse'
 import { Modal, Button } from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux';
 import { createClientCsv } from '../../actions';
-import Loader from '../Helper/Loader/Loader'
 import './AddClient.css';
 
 const AddClientCsv = (props) => {
 
     const [clientCsv, setClientCsv] = useState(null);
-    
+
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
+
+    var bool = new Boolean(false);
 
     const handleFile = (e) => {
 
@@ -26,15 +26,12 @@ const AddClientCsv = (props) => {
 
         headers[sz - 1] = headers[sz - 1].split('\r')[0];
 
-        
-
         const rows = str.slice(str.indexOf('\n') + 1).split('\n');
-    
 
         const dataObj = rows.map((row, index) => {
             if (index < rows.length - 1) {
                 const values = row.split(delim);
-            
+
                 values[sz - 1] = values[sz - 1].split('\r')[0];
 
                 const eachObject = headers.reduce((obj, header, i) => {
@@ -45,9 +42,51 @@ const AddClientCsv = (props) => {
                 return eachObject;
             }
         })
-        console.log(dataObj);
 
-        dispatch(createClientCsv(dataObj));
+        dataObj.map((data, index) => {
+            if (index < dataObj.length - 1) {
+
+                if (data.client_name == "" || !RegExp(/^[a-zA-Z ]{2,30}$/).test(data.client_name)) {
+
+                    alert("Client Name Incorrect");
+                    return;
+                }
+                else if (data.client_company == "" || !RegExp(/^[a-zA-Z ]{4,30}$/).test(data.client_company)) {
+
+                    alert("Company Name Incorrect");
+                    return;
+                }
+                else if (data.client_email == "" || !RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(data.client_email)) {
+
+                    alert("Email is not valid");
+                    return;
+                }
+                else if (data.client_contact == "" || !RegExp(/^\d{10}$/).test(data.client_contact)) {
+
+                    alert("Mobile No. is not valid!");
+                    return;
+                }
+                else if (data.client_pincode == "" || !RegExp(/^\d{6}$/).test(data.client_pincode)) {
+
+                    alert("Pincode is not valid!");
+                    return;
+                }
+                else if (data.client_country == "" || !RegExp(/^[a-zA-Z ]{2,30}$/).test(data.client_country)) {
+                    alert("Country Name Incorrect");
+                    return;
+                }
+                else {
+                    bool = true;
+                    return;
+                }
+
+            }
+        })
+
+        if (bool == true) {
+            dispatch(createClientCsv(dataObj));
+        }
+
         props.onHide();
     }
 

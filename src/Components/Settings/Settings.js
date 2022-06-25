@@ -6,8 +6,9 @@ import './Settings.css';
 import Navbar from '../NavBar/Navbar';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import Loader from '../Helper/Loader/Loader'
+import { useSelector } from 'react-redux';
 
 
 const Settings = () => {
