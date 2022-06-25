@@ -8,11 +8,14 @@ export const adminLogin = (dataobj) =>{
           type:adminConstant.ADMIN_LOGIN_REQ,
           data:"Wait For a while "
         })
+        if(localStorage.getItem("accessToken1")){
+            localStorage.removeItem("acccessToken1");
+        }
         const res=await axios.post('/admin/loginadmin',dataobj);
         if (res.status==200) {
             console.log(res.data);
             
-            localStorage.setItem("accessToken",res.data.accesstoken+" kalptaru");
+            localStorage.setItem("accessToken2",res.data.accesstoken+" kalptaru");
             dispatch({
                 type:adminConstant.ADMIN_LOGIN_SUC,
                 payload:res.data
@@ -34,11 +37,14 @@ export const preadminloginusingToken = (accesstoken)=>{
             type:adminConstant.ADMIN_LOGIN_REQ,
             data:"Requesting..."
         })
+        if(localStorage.getItem("accessToken1")){
+            localStorage.removeItem("acccessToken1");
+        }
         const res = await axios.post('/admin/adminsigninAccess',accesstoken);
 
         if (res.status==200) {
             console.log(res.data.admin);
-            localStorage.setItem("accessToken",res.data.accesstoken+" kalptaru");
+            localStorage.setItem("accessToken2",res.data.accesstoken+" kalptaru");
             dispatch({
                 type:adminConstant.ADMIN_LOGIN_SUC,
                 payload:res.data
@@ -172,6 +178,33 @@ export const adminGetAllKarigar=()=>{
                 payload:err.message
             })
         })
+    }
+}
+
+export const adminDeleteuser=(userId)=>{
+    console.log(userId);
+    return async (dispatch)=>{
+        dispatch({
+            type:adminUserConstant.DELETE_ADMIN_USER_REQ,
+        })
+         const res = await axios.delete('/admin/deleteUser/'+userId)
+         console.log(res);
+         if (res.status==200){
+            
+            dispatch({
+                type:adminUserConstant.DELETE_ADMIN_USER_SUC,
+            })
+            dispatch(adminGetAllUser());
+            dispatch(setToastMsg("User Deleted Successfully!",true));
+        }
+        else if (res.status==203){
+            dispatch({
+                type:adminUserConstant.DELETE_ADMIN_USER_FAILURE,
+                payload:res.data.message
+            })
+            dispatch(setToastMsg(res.data.message,true));
+            dispatch(adminGetAllUser());
+        }
     }
 }
 

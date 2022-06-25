@@ -17,11 +17,13 @@ function Adminadminhome() {
     const clients=useSelector(state=>state.client);
     const karigar=useSelector(state=>state.karigar);
     const admin=useSelector(state=>state.admin);
+    let count=0;
     const dispatch=useDispatch();
 
+
     useEffect(()=>{
-      if(localStorage.getItem('accessToken') && !admin.authenticate){
-        const token=localStorage.getItem('accesstoken').split(" ")[0];
+      if(localStorage.getItem('accessToken2') && !admin.authenticate){
+        const token=localStorage.getItem('accessToken2').split(" ")[0];
         dispatch(preadminloginusingToken({accesstoken:token}));
       }
     },[])
@@ -78,6 +80,15 @@ function Adminadminhome() {
                         <h5 className="card-title boxname-adminhome">
                           Orders
                         </h5>
+                        {
+                          orders.data.order && orders.data.order.map((o, index, orders) => {
+
+                            if (index + 1 == orders.length) {
+                              return <p style={{fontSize:"18px", fontWeight:"bold"}}>({orders.length})</p>
+                            }
+
+                          })
+                        }
                       </div>
                     </div>
                   </Link>
@@ -92,12 +103,21 @@ function Adminadminhome() {
                           alt="Edit Order"
                         />
                         <h5 className="card-title boxname-adminhome">Karigar</h5>
+                        {
+                          karigars.data.karigar && karigars.data.karigar.map((v, index, karigars) => {
+
+                            if (index + 1 == karigars.length) {
+                              return <p style={{fontSize:"18px", fontWeight:"bold"}}>({karigars.length})</p>
+                            }
+
+                          })
+                        }
                       </div>
                     </div>
                   </Link>
                 </div>
                 <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-adminhome">
-                  <Link to="/TrackOrder" className="link-style">
+                  <Link to="/AdminCompletedOrders" className="link-style">
                     <div className="card box-adminhome ">
                       <div className="card-body box-body">
                         <img
@@ -106,6 +126,15 @@ function Adminadminhome() {
                           alt="Track Order"
                         />
                         <h5 className="card-title boxname-adminhome">Completed Order</h5>
+                
+                        {
+                          orders.data.order && orders.data.order.map((o, index, orders) => {
+                              if(o.orderStatus==6){
+                                count++;
+                              }
+                            })
+                         }
+                         <p style={{fontSize:"18px", fontWeight:"bold"}}>({count})</p>
                       </div>
                     </div>
                   </Link>
@@ -120,6 +149,15 @@ function Adminadminhome() {
                           alt="Edit Order"
                         />
                         <h5 className="card-title boxname-adminhome">Users</h5>
+                        {
+                          users.data.user && users.data.user.map((u, index, users) => {
+
+                            if (index + 1 == users.length) {
+                              return <p style={{fontSize:"18px", fontWeight:"bold"}}>({users.length})</p>
+                            }
+
+                          })
+                        }
                       </div>
                     </div>
                   </Link>

@@ -52,10 +52,10 @@ function AdminClients() {
                     <table className="table mt-4">
                         <thead>
                             <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Phone No</th>
-                                <th scope="col"> City</th>
+                                <th scope="col" className='text-center' >No</th>
+                                <th scope="col" className='text-center'>Name</th>
+                                <th scope="col" className='text-center'>Phone No</th>
+                                <th scope="col" className='text-center'> City</th>
                                 <th scope="col" className="text-center">Delete</th>
                             </tr>
                         </thead>
@@ -65,17 +65,12 @@ function AdminClients() {
                                 clients.data.client && clients.data.client.map((c, index,clients) => {
 
                                     return <tr key={index}>
-                                        <th scope="row">{index + 1}</th>
-                                        <td>{c.client_name}</td>
-                                        <td>{c.client_contact}</td>
-                                        <td>{c.client_city}</td>
-                                        {/* <td className="text-center"><div className='co-customer-share'>
-                                            <button className='delete-btn' onClick={(e)=>handleDelete(c._id, e)}>
-                                                Delete
-                                            </button>
-                                        </div></td> */}
+                                        <th scope="row" className='text-center align-middle'>{index + 1}</th>
+                                        <td scope="row" className='text-center align-middle'>{c.client_name}</td>
+                                        <td scope="row" className='text-center align-middle'>{c.client_contact}</td>
+                                        <td scope="row" className='text-center align-middle'>{c.client_city}</td>
                                         <td className="text-center"><div className='co-customer-share'>
-                                            <button className='eo2-btn'><HiOutlineTrash id='deleteicon' onClick={() => handleDelete(c._id)} /></button>
+                                        <button className='adclient-btn del-icon'><HiOutlineTrash id='deleteicon' onClick={() => handleDelete(c._id)} /></button>
                                         </div>
                                         </td>
                                     </tr>
@@ -92,8 +87,6 @@ function AdminClients() {
                     text="Are you sure you want to delete this Client?"
                     onReply={(e) => handleModalReply(e)}
                 />
-
-
             </div>
 
         </>
