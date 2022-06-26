@@ -1,6 +1,7 @@
 import React, { useEffect, useState, CSSProperties } from 'react'
 import AddClient from '../AddClient/AddClient';
 import AddClientCsv from '../AddClient/AddClientCsv';
+import AddKarigarCsv from '../AddKarigar/AddKarigarCsv';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import './Settings.css';
 import Navbar from '../NavBar/Navbar';
@@ -14,6 +15,7 @@ import { useSelector } from 'react-redux';
 const Settings = () => {
     const navigate = useNavigate();
     const clients = useSelector(state => state.client);
+    const karigars = useSelector(state => state.karigar);
 
     //react-hook
     const [mobileNo, setMobileNo] = useState("1234567890");
@@ -21,6 +23,7 @@ const Settings = () => {
     const [showPassword, setShowPassWord] = useState(false);
     const [addClientModal, setAddClientModal] = useState(false);
     const [addClientCsvModal, setAddClientCsvModal] = useState(false);
+    const [addKarigarCsvModal, setAddKarigarCsvModal] = useState(false);
     const [addKarigarModal, setAddKarigarModal] = useState(false);
 
 
@@ -44,6 +47,11 @@ const Settings = () => {
         setAddKarigarModal(true);
     }
 
+    const handleAddKarigarCsv = (e) => {
+        e.preventDefault();
+        setAddKarigarCsvModal(true);
+    }
+
     const handlepassword = (e) => {
         setShowPassWord(true);
         setPassWord(e.target.value);
@@ -53,19 +61,12 @@ const Settings = () => {
         console.log(" password change")
     }
 
-    const handleFiles = files => {
-
-        const reader = new FileReader();
-        // reader.readAsText(files[0]);
-        console.log(reader.readAsText(files[0]));
-    }
-
     return (
         <>
             <Navbar />
 
             {
-                clients.loading ? <Loader /> : <div className='container no-main no-border pageview'>
+                (clients.loading || karigars.loading) ? <Loader /> : <div className='container no-main no-border pageview'>
                     <div className='no-heading'>
                         <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Settings
                     </div>
@@ -157,12 +158,12 @@ const Settings = () => {
                         </div>
 
                         <div className='co-karigar-share mt-4'>
-                            <button className='co-share-btn' onClick={handleAddKarigar}>
+                            <button className='co-share-btn' onClick={handleAddKarigarCsv}>
                                 Add Karigar USing CSV
                             </button>
-                            <AddKarigar
-                                show={addKarigarModal}
-                                onHide={() => setAddKarigarModal(false)}
+                            <AddKarigarCsv
+                                show={addKarigarCsvModal}
+                                onHide={() => setAddKarigarCsvModal(false)}
                             />
                         </div>
                     </div>

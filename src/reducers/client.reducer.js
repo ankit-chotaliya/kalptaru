@@ -11,28 +11,18 @@ export default (state = intialState, action) => {
         case clientConstant.GET_ALL_CLIENT_REQ: {
             return {
                 ...state,
-<<<<<<< HEAD
-                loading: true,
-                data: action.data,
-=======
                 loading:true,
                 data:action.data,
                 err:"",
->>>>>>> 355b968acdb3e2dd2d09303c50b961a6b993fbbb
                 success: false
             }
         }
         case clientConstant.GET_ALL_CLIENT_SUC: {
             return {
                 ...state,
-<<<<<<< HEAD
-                loading: false,
-                data: action.payload,
-=======
                 loading:false,
                 data:action.payload,
                 err:"",
->>>>>>> 355b968acdb3e2dd2d09303c50b961a6b993fbbb
                 success: true
             }
         }

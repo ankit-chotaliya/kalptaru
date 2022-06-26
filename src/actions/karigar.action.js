@@ -46,3 +46,28 @@ export const createKarigar=(dataObj)=>{
         }
     }
 }
+
+export const createKarigarCsv=(dataObj)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:karigarConstant.ADD_KARIGAR_CSV_REQ
+        })
+        const res=await axios.post('/karigar/createKarigarCsv',{dataObj})
+        if(res.status==200){
+            dispatch({
+                type:karigarConstant.ADD_KARIGAR_CSV_SUC,
+                payload:res.data
+            })
+            dispatch(getAllKarigar());
+            dispatch(setToastMsg("Karigar Added Successfully!",false));
+            
+        }else if(res.status==203){
+            dispatch({
+                type:karigarConstant.ADD_KARIGAR_CSV_FAILURE,
+                payload:"Karigar Can't Add!"
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+      
+    }
+}
