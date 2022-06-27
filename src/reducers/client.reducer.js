@@ -22,6 +22,7 @@ export default (state = intialState, action) => {
                 ...state,
                 loading:false,
                 data:action.payload,
+                err:"",
                 success: true
             }
         }

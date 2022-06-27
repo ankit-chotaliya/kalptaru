@@ -82,7 +82,7 @@ function Adminadminhome() {
                         <h5 className="card-title boxname-adminhome">
                           Orders
                         </h5>
-                        {
+                        {/* {
                           orders.data.order && orders.data.order.map((o, index, orders) => {
 
                             if (index + 1 == orders.length) {
@@ -90,7 +90,7 @@ function Adminadminhome() {
                             }
 
                           })
-                        }
+                        } */}
                       </div>
                     </div>
                   </Link>
@@ -129,13 +129,13 @@ function Adminadminhome() {
                         />
                         <h5 className="card-title boxname-adminhome">Completed Order</h5>
                 
-                        {
+                        {/* {
                           orders.data.order && orders.data.order.map((o, index, orders) => {
                               if(o.orderStatus==6){
                                 count++;
                               }
                             })
-                         }
+                         } */}
                          <p style={{fontSize:"18px", fontWeight:"bold"}}>({count})</p>
                       </div>
                     </div>
