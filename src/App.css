@@ -34,6 +34,17 @@ body::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
 }
+.app-icon{
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    /* font-weight: lighter !important; */
+}
+.app-icon:hover{
+    background-color: rgba(72, 72, 72, 0.2);
+    border-radius: 50%;
+    transition: all 0.1s linear;
+}
 @media only screen and (max-width: 600px){
     .pageview {
         width: 100% !important;

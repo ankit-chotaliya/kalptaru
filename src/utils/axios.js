@@ -14,7 +14,7 @@ axiosinstance.interceptors.request.use((req)=>{
             const token=user.data.accesstoken;
             req.headers.Authorization=`Bearer ${token}` 
         }else{
-            const istoken=localStorage.getItem("accessToken");
+            const istoken=localStorage.getItem("accessToken1");
             if(istoken){
                 const token=istoken.split(" ")[0];
                 req.headers.Authorization=`Bearer ${token}`
@@ -26,7 +26,7 @@ axiosinstance.interceptors.request.use((req)=>{
             const token=admin.data.accesstoken;
             req.headers.Authorization=`Bearer ${token}` 
         }else{
-            const istoken=localStorage.getItem("accessToken");
+            const istoken=localStorage.getItem("accessToken2");
             if(istoken){
                 const token=istoken.split(" ")[0];
                 req.headers.Authorization=`Bearer ${token}`

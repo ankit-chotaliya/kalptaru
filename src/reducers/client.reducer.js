@@ -11,9 +11,9 @@ export default (state = intialState, action) => {
         case clientConstant.GET_ALL_CLIENT_REQ: {
             return {
                 ...state,
-                loading:true,
-                data:action.data,
-                err:""
+                loading: true,
+                data: action.data,
+                success: false
             }
         }
         case clientConstant.GET_ALL_CLIENT_SUC: {
@@ -21,22 +21,30 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 data: action.payload,
-                success: true,
-                loading:false
+                success: true
+            }
+        }
+        case clientConstant.GET_ALL_CLIENT_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                err: action.payload,
+                success: false
             }
         }
         case clientConstant.ADD_CLIENT_REQ: {
             return {
-                loading:true,
-                err:""
+                ...state,
+                loading: true,
+                success: false
             }
         }
         case clientConstant.ADD_CLIENT_SUC: {
             return {
                 ...state,
-                loading:false,
-                data:action.payload,
-                err:""
+                loading: false,
+                data: action.payload,
+                success: true
             }
         }
         case clientConstant.ADD_CLIENT_FAILURE: {
@@ -50,20 +58,42 @@ export default (state = intialState, action) => {
         case adminClientConstant.GET_ADMIN_ALL_CLIENT_REQ: {
             return {
                 ...state,
-                loading:true,
-                data:action.data,
-                err:""
+                loading: true,
+                data: action.data,
+                success: false
             }
         }
         case adminClientConstant.GET_ADMIN_ALL_CLIENT_SUC: {
             return {
                 ...state,
-                loading:false,
-                data:action.payload,
-                err:""
+                loading: false,
+                data: action.payload,
+                success: true
             }
         }
         case adminClientConstant.GET_ADMIN_ALL_CLIENT_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                err: action.payload,
+                success: false
+            }
+        }
+        case adminClientConstant.DELETE_ADMIN_CLIENT_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false
+            }
+        }
+        case adminClientConstant.DELETE_ADMIN_CLIENT_SUC: {
+            return {
+                ...state,
+                loading: false,
+                success: true
+            }
+        }
+        case adminClientConstant.DELETE_ADMIN_CLIENT_FAILURE: {
             return {
                 ...state,
                 loading: false,

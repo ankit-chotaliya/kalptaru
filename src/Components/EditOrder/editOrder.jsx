@@ -85,14 +85,14 @@ const dateFormat=(d)=>{
                 {
                   
                   loading?<Loader msg="Data is Processing..."/>:
-                  orderData && orderData.length<2?<div>No Order's are available</div>:orderData.map((ele,index)=>{
+                  orderData && orderData.length<1?<div>No Order's are available</div>:orderData.map((ele,index)=>{
                     // count++;
                     return <div key={index}>
                     <ListView
-                    property1="Client Name: "
+                    property1="Client Name : "
                     property2="Category : "
-                    property3="Deliver Date: "
-                    property4="Created At: "
+                    property3="Delivery Date : "
+                    property4="Created At : "
                     value1={!ele.orderClient?"None":ele.orderClient}
                     value2={!ele.orderCategory?"None" :ele.orderCategory}
                     value3={!ele.orderDeliveryDate?"Not exist!" :ele.orderDeliveryDate}

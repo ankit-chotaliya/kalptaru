@@ -44,7 +44,21 @@
 .sr-btn-bt{
     margin: 0 10px;
 }
+.sr-btn-active{
+    background-color: var(--lightGreen2);
+}
 
+.sr-icon-remainder{
+    width: 40px;
+    height: 50px;
+    padding: 10px;
+    /* font-weight: lighter !important; */
+}
+.sr-icon-remainder:hover{
+    background-color: rgba(72, 72, 72, 0.2);
+    border-radius: 50%;
+    transition: all 0.1s linear;
+}
 @media only screen and (max-width: 280px) {
         .sr-btns{
             width: 90% !important;

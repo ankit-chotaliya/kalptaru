@@ -125,7 +125,13 @@
 .os-card-info span {
     margin-left: 0;
 }
-
+.os-sort-name {
+    min-width: 180px;
+    width: auto;
+    font-size:16px;
+    display: inline !important;
+    transition: 0.2s all linear;
+}
 @keyframes animateblur {
     0% {
         opacity: 0;
@@ -154,5 +160,9 @@
 
     .os-card-orderno {
         font-size: 1rem;
+    }
+    .os-sort-name{
+        min-width: 120px;
+        font-size: 10px;
     }
 }

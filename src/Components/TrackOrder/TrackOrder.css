@@ -30,6 +30,7 @@
     font-family: 'Gilroy-SemiBold';
  
 }
+
 .to-heading{
     height: auto;
     font-family:cursive;
@@ -57,6 +58,7 @@
 
 }
 .to-more-btn{
+    border: none !important;
     width: 10%;
     display: flex;
     align-items: center;
