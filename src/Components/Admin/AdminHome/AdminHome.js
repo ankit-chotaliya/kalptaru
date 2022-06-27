@@ -14,10 +14,12 @@ import "./AdminHome.css";
 
 function Adminadminhome() {
     const order=useSelector(state=>state.order);
+    const orders =useSelector(state=>state.order);
     const karigar=useSelector(state=>state.karigar);
     const clients=useSelector(state=>state.client);
     const orders=useSelector(state=>state.order);
     const admin=useSelector(state=>state.admin);
+    const clients=useSelector(state=>state.client);
     const dispatch=useDispatch();
 
     useEffect(()=>{
