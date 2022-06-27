@@ -55,6 +55,29 @@ export default (state = intialState, action) => {
                 success: false
             }
         }
+        case clientConstant.ADD_CLIENT_CSV_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false
+            }
+        }
+        case clientConstant.ADD_CLIENT_CSV_SUC: {
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+                success: true
+            }
+        }
+        case clientConstant.ADD_CLIENT_CSV_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                err: action.payload,
+                success: false
+            }
+        }
         case adminClientConstant.GET_ADMIN_ALL_CLIENT_REQ: {
             return {
                 ...state,

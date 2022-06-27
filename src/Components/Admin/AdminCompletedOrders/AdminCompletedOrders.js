@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState }  from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
-import './AdminOrders.css';
-import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
+// import './AdminOrders.css';
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import Pagination from '../../Helper/Pagination/Pagination';
@@ -11,7 +11,7 @@ const dateFormat = (d) => {
     const day = date.getDate().toString().padStart(2,"0") +"/"+ (date.getMonth()+1).toString().padStart(2,"0") +"/"+ date.getFullYear();
     return day;
 }
-function AdminOrders() {
+function AdminCompletedOrders() {
 
     const navigate = useNavigate();
     const Orders = useSelector(state=>state.order);
@@ -20,14 +20,21 @@ function AdminOrders() {
     const [currentPage, setCurrentPage] = useState(1);
     const [recordsPerPage] = useState(10);
 
+    let array = [];
+
     useEffect(() => {
-        setData(Orders.data.order);
+
+        Orders.data.order && Orders.data.order.map((o,index) => {
+            if(o.orderStatus==6){
+                array.push(Orders.data.order[index]);
+              }
+          })
+          setData(array);
     }, [])
 
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
-    let sum = 0;
     const nPages = Math.ceil(data.length / recordsPerPage)
 
     return (
@@ -36,8 +43,8 @@ function AdminOrders() {
             <div className='container no-main no-border pageview'>
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
-                        <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Orders
-                        <span style={{fontSize:"18px", fontWeight:"bold"}}>( {indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length})</span>
+                        <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Completed Orders
+                        <span style={{fontSize:"18px", fontWeight:"bold"}}>(  {indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length})</span>
                     </div>
                 </div>
                 <div className='container mt-4'>
@@ -59,13 +66,15 @@ function AdminOrders() {
                                 <th scope="col" className="text-center">Karigar Name</th>
                                 <th scope="col" className="text-center">Order Status</th>
                                 <th scope="col" className="text-center">Order Date</th>
-                                <th scope="col" className="text-center">Due Date</th>
+                                <th scope="col" className="text-center">Delivery Date</th>
                             </tr>
                         </thead>
                         <tbody className="table-group-divider">
                         {
                             currentRecords.map((o,index)=>{
-                              return  <tr key={index} >
+                                console.log(currentRecords);
+                                if(o.orderStatus==6){
+                                    return  <tr key={index} >
                                 <th scope="row" className='text-center align-middle'>{index + 1 + indexOfLastRecord - 10}</th>
                                 <td scope="row" className='text-center align-middle w-25'>{o.clientId?o.clientId.client_name:<>Null</>}</td>
                                 <td scope="row" className='text-center align-middle w-25'>{o.clientId?o.clientId.client_contact:<>Null</>}</td>
@@ -83,6 +92,7 @@ function AdminOrders() {
                                 <td scope="row" className='text-center align-middle'>{dateFormat(o.createdAt)}</td>
                                 <td scope="row" className='text-center align-middle'>{dateFormat(o.deliveryDate)}</td>
                             </tr> ;
+                                }
                             })
                         }
                         </tbody>
@@ -93,12 +103,9 @@ function AdminOrders() {
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                 />
-
-
             </div>
-
         </>
     )
 }
 
-export default AdminOrders
+export default AdminCompletedOrders
