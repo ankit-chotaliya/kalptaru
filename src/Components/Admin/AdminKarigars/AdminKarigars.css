@@ -14,3 +14,7 @@
     background-color: rgba(1337, 142, 140, .1);
     border-radius: 50%;
 }
+
+.to-editorder{
+    width: 100% !important;
+    }

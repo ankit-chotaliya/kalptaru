@@ -35,6 +35,30 @@ export default (state = intialState, action) => {
                 authenticate: false,
             }
         }
+        case userConstant.USER_REGISTER_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false,
+                authenticate: false,
+            }
+        }
+        case userConstant.USER_REGISTER_SUC: {
+            return {
+                ...state,
+                loading: false,
+                success: true,
+                authenticate: false,
+            }
+        }
+        case userConstant.USER_REGISTER_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                success: false,
+                authenticate: false,
+            }
+        }
         case userConstant.USER_LOGOUT_SUC: {
             return {
                 ...state,

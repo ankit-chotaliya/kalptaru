@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 // import './AdminOrders.css';
-import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import Pagination from '../../Helper/Pagination/Pagination';
 
 const dateFormat = (d) => {
     var date = new Date(d);
@@ -15,6 +16,27 @@ function AdminCompletedOrders() {
     const navigate = useNavigate();
     const Orders = useSelector(state=>state.order);
 
+    const [data, setData] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(10);
+
+    let array = [];
+
+    useEffect(() => {
+
+        Orders.data.order && Orders.data.order.map((o,index) => {
+            if(o.orderStatus==6){
+                array.push(Orders.data.order[index]);
+              }
+          })
+          setData(array);
+    }, [])
+
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+    const nPages = Math.ceil(data.length / recordsPerPage)
+
     return (
         <>
             <AdminNavbar />
@@ -22,6 +44,7 @@ function AdminCompletedOrders() {
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
                         <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Completed Orders
+                        <span style={{fontSize:"18px", fontWeight:"bold"}}>(  {indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length})</span>
                     </div>
                 </div>
                 <div className='container mt-4'>
@@ -48,10 +71,11 @@ function AdminCompletedOrders() {
                         </thead>
                         <tbody className="table-group-divider">
                         {
-                            Orders.data.order && Orders.data.order.map((o,index)=>{
+                            currentRecords.map((o,index)=>{
+                                console.log(currentRecords);
                                 if(o.orderStatus==6){
                                     return  <tr key={index} >
-                                <th scope="row" className='text-center align-middle'>{index+1}</th>
+                                <th scope="row" className='text-center align-middle'>{index + 1 + indexOfLastRecord - 10}</th>
                                 <td scope="row" className='text-center align-middle w-25'>{o.clientId?o.clientId.client_name:<>Null</>}</td>
                                 <td scope="row" className='text-center align-middle w-25'>{o.clientId?o.clientId.client_contact:<>Null</>}</td>
                                 <td scope="row" className='text-center align-middle'>{o.orderCategory.name}</td>
@@ -74,10 +98,12 @@ function AdminCompletedOrders() {
                         </tbody>
                     </table>
                 </div>
-
-
+                <Pagination
+                    nPages={nPages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
             </div>
-
         </>
     )
 }

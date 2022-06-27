@@ -1,4 +1,4 @@
-import React,{ useState }from 'react'
+import React,{ useEffect,useState }from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import './AdminUsers.css';
 import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HiOutlineTrash } from "react-icons/hi";
 import ModalHelper from '../../Helper/Modal/ModalHelper';
 import { adminDeleteuser } from '../../../actions/admin.action';
+import Pagination from '../../Helper/Pagination/Pagination';
 
 function AdminUsers() {
 
@@ -18,6 +19,19 @@ function AdminUsers() {
 
     const [viewModal,setViewModal] = useState(false);
     const [orderDeleteId,setOrderDeleteId] = useState("");
+
+    const [data, setData] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(10);
+
+    useEffect(() => {
+        setData(Users.data.user);
+    }, [])
+
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+    const nPages = Math.ceil(data.length / recordsPerPage)
 
     const handleModalReply = (e) =>{
         const reply = e.target.value;
@@ -44,6 +58,7 @@ function AdminUsers() {
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
                         <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Users
+                        <span style={{fontSize:"18px", fontWeight:"bold"}}>( {indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length})</span>
                     </div>
                 </div>
                 <div className='table-responsive-md'>
@@ -60,7 +75,7 @@ function AdminUsers() {
                     </thead>
                     <tbody className="table-group-divider">
                     {
-                        Users.data.user && Users.data.user.map((u,index)=>{
+                        currentRecords.map((u,index)=>{
                             return <tr className='text-center align-middle' key={index}>
                             <th scope="row" className='text-center align-middle'>{index+1}</th>
                             <td className='text-center align-middle'>{u.fullname}</td>
@@ -80,6 +95,11 @@ function AdminUsers() {
                     </tbody>
                 </table>
                 </div>
+                <Pagination
+                    nPages={nPages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
                 <ModalHelper
                     show={viewModal}
                     onHide={() => setViewModal(false)}
