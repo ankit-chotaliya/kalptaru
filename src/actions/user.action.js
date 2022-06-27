@@ -43,10 +43,14 @@ export const login=(dataObj)=>{
             type:userConstant.USER_LOGIN_REQ,
             data:"Requesting..."
         })
+        if(localStorage.getItem('accessToken2')){
+            localStorage.removeItem('accessToken2');
+        }
         const res=await axios.post('/user/signin',dataObj);
         console.log(res);
         if(res.status==200){
-            localStorage.setItem("accessToken",res.data.accesstoken+" kalptaru");
+            localStorage.setItem("accessToken1",res.data.accesstoken+" kalptaru");
+            // localStorage.setItem("enc","");
             dispatch({
                 type:userConstant.USER_LOGIN_SUC,
                 payload:res.data
@@ -70,7 +74,7 @@ export const logout=()=>{
             type:userConstant.USER_LOGOUT_REQ,
             data:"Requesting..."
         })
-        if(localStorage.getItem("accessToken")){
+        if(localStorage.getItem("accessToken1")){
             
             localStorage.clear();
             dispatch({
@@ -94,10 +98,13 @@ export const preLoginusingToken=(token)=>{
             type:userConstant.USER_LOGIN_REQ,
             data:"Requesting..."
         })
+        if(localStorage.getItem('accessToken2')){
+            localStorage.removeItem('accessToken2');
+        }
         const res=await axios.post('/user/signinAccess',token);
         // console.log(res);
         if(res.status==200){
-            localStorage.setItem("accessToken",res.data.accesstoken+" kalptaru");
+            localStorage.setItem("accessToken1",res.data.accesstoken+" kalptaru");
             dispatch({
                 type:userConstant.USER_LOGIN_SUC,
                 payload:res.data

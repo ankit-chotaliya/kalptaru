@@ -26,8 +26,9 @@
     justify-content: center;
     font-size: 1.5rem;
     cursor: pointer;
-    transition: all 0.3s linear 0.5s;
+    transition: all 0.2s linear;
 }
+
 .lv-value-label{
     background-color: var(--darkGreen) !important;
     color: white!important;
