@@ -21,6 +21,7 @@ function CompletedOrder() {
   const [isUrgent,setIsUrgent]=useState(false);
   const [isFast,setIsFast]=useState(false);
   const [isNormal,setIsNormal]=useState(false);
+  const [isDefault,setIsDefault]=useState(true);
   const [orderUpdateId,setOrderUpdateId]=useState("");
   const order=useSelector(state=>state.order);
   const client=useSelector(state=>state.client);
@@ -64,9 +65,7 @@ function CompletedOrder() {
   }
   const handleModalReply = (e) => {
     const reply = e.target.value;
-    // console.log(reply);
     if (reply == "true") {
-      // console.log(orderUpdateId);
       dispatch(repeatOrder({orderId:orderUpdateId}));
     } else {
       dispatch(setToastMsg("Order Remain as it is!",false));
@@ -74,7 +73,6 @@ function CompletedOrder() {
     setViewModal(false);
   }
   const hadnleUpdateOrder = (orderId) => {
-    // console.log(orderId);
     setOrderUpdateId(orderId)
     setViewModal(true);
   }
@@ -90,29 +88,34 @@ function CompletedOrder() {
     setIsUrgent(true);
     setIsNormal(false);
     setIsFast(false);
+    setIsDefault(false);
     setOrderDataSpecific(orderData.filter(x=>x.orderPriority=='Urgent'));
   }
   const handleFast=()=>{
     setIsUrgent(false);
     setIsNormal(false);
     setIsFast(true);
+    setIsDefault(false);
     setOrderDataSpecific(orderData.filter(x=>x.orderPriority=='Fast'));
-    // setOrderData(items=>items.filter(x=>x.orderPriority=='Fast'));
   }
   const handleNormal=()=>{
     setIsUrgent(false);
     setIsNormal(true);
     setIsFast(false);
+    setIsDefault(false);
     setOrderDataSpecific(orderData.filter(x=>x.orderPriority=='Normal'));
-    // setOrderData(items=>items.filter(x=>x.orderPriority=='Normal'));
+  }
+  const handleDefault=()=>{
+    setIsUrgent(false);
+    setIsNormal(false);
+    setIsFast(false);
+    setIsDefault(true);
+    setOrderDataSpecific(orderData);
   }
   useEffect(()=>{
-    // dispatch(getAllOrders());
-    // console.log("hiii");
     if(order.data.orders && client.data.client && category.data.categories && orderData.length==0){
       orderDatacreate();
     }
-    // console.log("hiii 2");
   },[order.data.orders,client.data.client,category.data.categories])
 
   useEffect(()=>{
@@ -130,7 +133,8 @@ function CompletedOrder() {
           <div className='cmt-o-btns'>
             <button className={isUrgent?'cmt-o-btn cmt-o-btn-active':'cmt-o-btn'} onClick={handleUrgent}>Urgent</button>
             <button className={isFast?'cmt-o-btn cmt-o-btn-bt cmt-o-btn-active':'cmt-o-btn cmt-o-btn-bt'} onClick={handleFast}>Fast</button>
-            <button className={isNormal?'cmt-o-btn cmt-o-btn-active':'cmt-o-btn'} onClick={handleNormal}>Normal</button>
+            <button className={isNormal?'cmt-o-btn cmt-o-btn-bt cmt-o-btn-active':'cmt-o-btn cmt-o-btn-bt'} onClick={handleNormal}>Normal</button>
+            <button className={isDefault?'cmt-o-btn cmt-o-btn-active':'cmt-o-btn'} onClick={handleDefault}>Default</button>
           </div>
         </div>
 

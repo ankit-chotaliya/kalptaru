@@ -68,7 +68,6 @@ function Home() {
         // })
       }
       <div className="container-fluid bg-home">
-      <div>Hii {online}</div>
         <div className="row">
           <div className="col-md-2"></div>
           <div className="col-md-8 colcenter-home mb-5">

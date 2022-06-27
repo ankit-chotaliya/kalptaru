@@ -1,0 +1,50 @@
+
+.mh-modal{
+    background-color: var(--lightGreen2);
+    transition: all 0.3s linear 1s;
+
+    border-radius: 3%;
+}
+.mh-container{
+    text-align: center;
+    transition: all 0.3s linear 1s;
+    color: var(--textColor);
+}
+.mh-icon{
+    font-size: 5rem;
+    transition: all 0.3s linear 2s;
+}
+.mh-title{
+    margin-bottom: 15px;
+    color: var(--textColor);
+    font-weight:bold;
+}
+.mh-btn{
+    margin: 10px;
+    
+}
+.mh-btn button{
+    width: 64px;
+    height: 44px;
+    border: none;
+    background-color: transparent;
+    border: 1px solid var(--textColor);
+    transition: all 0.3s linear;
+    text-align: center;
+    justify-content: center;
+}
+.mh-yes-btn:hover{
+    border: 1px solid var(--darkGreen);
+    color: var(--bgColor);
+    transition: all 0.3s linear;
+    background-color: var(--darkGreen);
+}
+.mh-yes-btn{
+    margin-right: 25px;
+}
+.mh-no-btn:hover{
+    border: 1px solid var(--redColor);
+    color: var(--bgColor);
+    transition: all 0.3s linear;
+    background-color: var(--redColor);
+}
