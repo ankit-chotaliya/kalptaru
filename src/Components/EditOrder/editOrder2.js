@@ -7,6 +7,10 @@ import {AiOutlineArrowLeft} from 'react-icons/ai'
 import { HiOutlineTrash } from "react-icons/hi";
 import { VscEdit } from "react-icons/vsc";
 import ring from "./ring.jpg";
+import demo from './demo.jpg';
+import demo1 from './demo1.jpg';
+import demo2 from './demo2.jpg';
+import demo3 from './demo3.jpg';
 import Slider from "react-slick";
 
 
@@ -60,51 +64,30 @@ function EditOrder2() {
             }
         ]
     };
-    // console.log(config);
-    if (window.innerWidth < 600) {
-        const config = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        };
-        // console.log("hello");
-    }
-    else {
-        const config = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 3,
-            slidesToScroll: 1
-        };
-    }
     const products = [
         {
             img: ring,
             title: 'Ring1',
         },
         {
-            img: ring,
+            img: demo,
             title: 'Ring2',
         },
         {
-            img: ring,
+            img: demo1,
             title: 'Ring3',
         },
         {
-            img: ring,
+            img: demo2,
             title: 'Ring4',
         },
         {
-            img: ring,
+            img: demo3,
             title: 'Ring5',
         }
     ]
 
     const hadnleUpdateOrder = (e) => {
-        // console.log(" hii ")
         e.preventDefault();
         setViewModal(true);
     }
@@ -141,7 +124,7 @@ function EditOrder2() {
                                 <tbody>
                                     <tr>
                                         <td className='twidth'>Name:</td>
-                                        <td className='twidth'>Harsh Panchal</td>
+                                        <td className='twidth'>Harsh Pathak</td>
                                     </tr>
                                     <tr>
                                         <td className='twidth'>Phone no:</td>
@@ -162,7 +145,7 @@ function EditOrder2() {
                             <Slider {...config}>
                                 {products.map((x, i) => {
                                     return <div key="{i}" className="img-card">
-                                        <img className="img" src={x.img} />
+                                        <img className="img" src={x.img} style={{"height" : "250px"}}/>
                                     </div>
                                 })}
                             </Slider>

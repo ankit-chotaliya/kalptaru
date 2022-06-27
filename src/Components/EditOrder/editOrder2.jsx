@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom';
 import { BiArrowBack } from "react-icons/bi";
 import { HiOutlineTrash } from "react-icons/hi";
 import { VscEdit } from "react-icons/vsc";
+import demo from './demo.jpg';
+import demo1 from './demo1.jpg';
+import demo2 from './demo2.jpg';
+import demo3 from './demo3.jpg';
 import ring from "./ring.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -62,50 +66,28 @@ function editOrder2() {
             }
         ]
     };
-    console.log(config);
-    if (window.innerWidth < 600) {
-        const config = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        };
-        console.log("hello");
-    }
-    else {
-        const config = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 3,
-            slidesToScroll: 1
-        };
-    }
     const products = [
         {
             img: ring,
             title: 'Ring1',
         },
         {
-            img: ring,
+            img: demo,
             title: 'Ring2',
         },
         {
-            img: ring,
+            img: demo1,
             title: 'Ring3',
         },
         {
-            img: ring,
+            img: demo2,
             title: 'Ring4',
         },
         {
-            img: ring,
+            img: demo3,
             title: 'Ring5',
         }
     ]
-    console.log(window.innerHeight);
-    console.log(window.innerWidth);
 
     const hadnleUpdateOrder = (e) => {
         e.preventDefault();
@@ -136,7 +118,7 @@ function editOrder2() {
                                     <tbody>
                                         <tr>
                                             <td className='twidth'>Name:</td>
-                                            <td className='twidth'>Harsh Panchal</td>
+                                            <td className='twidth'>Harsh Pathak</td>
                                         </tr>
                                         <tr>
                                             <td className='twidth'>Phone no:</td>
