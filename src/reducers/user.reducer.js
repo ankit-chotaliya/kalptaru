@@ -35,6 +35,48 @@ export default (state = intialState, action) => {
                 authenticate: false,
             }
         }
+        case userConstant.USER_ONLINE_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false,
+            }
+        }
+        case userConstant.USER_ONLINE_SUC: {
+            return {
+                ...state,
+                loading: false,
+                success: true,
+            }
+        }
+        case userConstant.USER_ONLINE_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                success: false,
+            }
+        }
+        case userConstant.USER_OFFLINE_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false,
+            }
+        }
+        case userConstant.USER_OFFLINE_SUC: {
+            return {
+                ...state,
+                loading: false,
+                success: true,
+            }
+        }
+        case userConstant.USER_OFFLINE_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                success: false,
+            }
+        }
         case userConstant.USER_LOGOUT_SUC: {
             return {
                 ...state,

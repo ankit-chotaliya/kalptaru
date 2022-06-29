@@ -27,7 +27,7 @@ import AdminOrders from './Components/Admin/AdminOrders/AdminOrders';
 import AdminKarigars from './Components/Admin/AdminKarigars/AdminKarigars';
 import AdminClients from './Components/Admin/AdminClients/AdminClients';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategory, getAllOrders,getAllClient,getAllKarigar, preLoginusingToken } from './actions';
+import { getAllCategory, getAllOrders,getAllClient,getAllKarigar, preLoginusingToken,statusOnline,statusOffline } from './actions';
 import Loader from './Components/Helper/Loader/Loader';
 import ToastHelper from './Components/Helper/ToastHelper/ToastHelper';
 import { emptyToastMsg } from './actions/toast.action';
@@ -35,20 +35,28 @@ import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './utils/PrivateRoute';
 import AdminHome from './Components/Admin/AdminHome/AdminHome';
+import UrgentOrders from './Components/UrgentOrders/UrgentOrders';
 
 
 const App = () => {
   const dispatch=useDispatch();
   const user=useSelector(state=>state.user);
   const toastState=useSelector(state=>state.toast);
-  const [idToast,setidToast]=useState(1);
+  const [userId,setUserId]=useState("");
+  const [isOnline,setisOnline]=useState(true);
   const navigate=useNavigate();
-  
+  let interval=null;
+  const InternetErrorMessage=()=>setisOnline(navigator.onLine===true);
   useEffect(()=>{
     if(localStorage.getItem('accessToken1') && !user.authenticate){
       const token=localStorage.getItem('accessToken1').split(" ")[0];
       dispatch(preLoginusingToken({accesstoken:token}));
       
+    }
+    interval=setInterval(InternetErrorMessage, 1000);
+
+    return()=>{
+      clearInterval(interval);
     }
   },[])
 
@@ -88,6 +96,7 @@ const App = () => {
       dispatch(getAllKarigar());
       dispatch(getAllCategory());
       // navigate(-1);
+      setUserId(user.data.user._id);
     }
   }, [user]);
   
@@ -97,6 +106,23 @@ const App = () => {
       
   // }
   // setInterval(emptyToast,30000);
+
+  useEffect(()=>{
+    if(user.success && user.authenticate){
+      if(isOnline){
+        const dataObj={
+          userId:userId
+        }
+        dispatch(statusOnline(dataObj))
+      }else{
+        const dataObj={
+          userId:userId
+        }
+        dispatch(statusOffline(dataObj))
+      }
+    }
+    
+  },[isOnline])
   return (
     <>
    
@@ -113,9 +139,8 @@ const App = () => {
         pauseOnHover/>
       }
       <Routes>
-        
+        {console.log(isOnline)}
         <Route path="/" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Home/></PrivateRoute>}/>
-        <Route path="/AdminNavbar" exact element={<AdminNavbar/>}/>
         <Route path="/AdminLogin" exact element={<AdminLogin/>}/>
         <Route path="/AdminUsers" exact element={<AdminUsers/>}/>
         <Route path="/AdminOrders" exact element={<AdminOrders/>}/>
@@ -130,6 +155,7 @@ const App = () => {
         <Route path="/SendReminder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><SendReminder/></PrivateRoute>}/>
         <Route path="/CompletedOrders" exact element={<PrivateRoute isAuthenticated={user.authenticate}><CompletedOrder/></PrivateRoute>}/>
         <Route path="/TrackOrder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><TrackOrder/></PrivateRoute>}/>
+        <Route path="/UrgentOrders" exact element={<PrivateRoute isAuthenticated={user.authenticate}><UrgentOrders/></PrivateRoute>}/>
         <Route path="/OrderView/:orderId" exact element={<PrivateRoute isAuthenticated={user.authenticate}><EditOrder2/></PrivateRoute>}/>
         <Route path="/OrderStatus" exact element={<PrivateRoute isAuthenticated={user.authenticate}><OrderStatus/></PrivateRoute>}/>
         <Route path="/Login" exact element={<LogIn/>}/>
