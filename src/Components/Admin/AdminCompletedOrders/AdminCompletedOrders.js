@@ -1,10 +1,10 @@
 import React, { useEffect, useState }  from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
-// import './AdminOrders.css';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import Pagination from '../../Helper/Pagination/Pagination';
+import Loader from '../../Helper/Loader/Loader';
 
 const dateFormat = (d) => {
     var date = new Date(d);
@@ -16,9 +16,13 @@ function AdminCompletedOrders() {
     const navigate = useNavigate();
     const Orders = useSelector(state=>state.order);
 
+    const [currentRecords,setCurrentRecords] = useState([]);
+    const [nPages,setNPages] = useState(1);
     const [data, setData] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage] = useState(10);
+    const [indexOfFirstRecord,setindexOfFirstRecord] = useState(0);
+    const [indexOfLastRecord,setindexOfLastRecord] = useState(10);
+    const recordsPerPage = 10;
 
     let array = [];
 
@@ -32,28 +36,52 @@ function AdminCompletedOrders() {
           setData(array);
     }, [])
 
-    const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
-    const nPages = Math.ceil(data.length / recordsPerPage)
+    useEffect(()=>{
+        if (data.length > 0) {
+            let d = currentPage * recordsPerPage;
+            setindexOfLastRecord(d);
+            setindexOfFirstRecord(d - recordsPerPage);
+            setCurrentRecords(data.slice(d - recordsPerPage, d));
+            setNPages( Math.ceil(data.length / recordsPerPage));
+        }
+        },[data,currentPage])
+    
+        useEffect(() => {
+            if (Orders.success==true) {
+                setData(array);
+            }
+        }, [Orders])
+    
+        useEffect(()=>{
+            if(currentRecords.length==0){
+                    if (currentPage==1) {
+                        console.log("currentpage:",currentPage);
+                        setCurrentPage(1)
+                    } else {
+                        setCurrentPage(currentPage-1);
+                        console.log("currentpage:",currentPage);
+                    }
+                }
+        },[currentRecords])
+
 
     return (
         <>
             <AdminNavbar />
+            {
+                Orders.data.loading?<Loader/>:
             <div className='container no-main no-border pageview'>
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
                         <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Completed Orders
-                        <span style={{fontSize:"18px", fontWeight:"bold"}}>(  {indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length})</span>
+                        <span style={{fontSize:"18px", fontWeight:"bold"}}>
+                        {
+                                data.length>0?<>{indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length}</>:null
+                        }
+                        </span>
                     </div>
                 </div>
-                <div className='container mt-4'>
-                    <div className='btns'>
-                        <button className='btn1'>Urgent</button>
-                        <button className='btn1 btn-bt'>Fast</button>
-                        <button className='btn1'>Normal</button>
-                    </div>
-                </div>
+                {data.length>0?<>
                 <div className='table-responsive-md'>
                     <table className="table mt-4">
                         <thead>
@@ -103,7 +131,10 @@ function AdminCompletedOrders() {
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                 />
+                </>:<div className='text-center'><h2>No Completed Orders Available right now</h2></div>
+                }
             </div>
+            }
         </>
     )
 }
