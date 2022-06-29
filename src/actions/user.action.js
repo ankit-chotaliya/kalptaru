@@ -15,12 +15,11 @@ export const registration=(dataObj)=>{
 
         axios.post('/user/signup', dataObj)
         .then(res=>{
-
-            alert("Registration Successfully")
             dispatch({
                 type:userConstant.USER_REGISTER_SUC,
                 payload:res.data
             })
+            dispatch(setToastMsg("Registration Successfull",false))
             
         })
         .catch(err=>{
@@ -30,6 +29,7 @@ export const registration=(dataObj)=>{
                 type:userConstant.USER_REGISTER_FAILURE,
                 payload:err.message
             })
+            dispatch(setToastMsg("Please Try Again",true))
 
         })
     }

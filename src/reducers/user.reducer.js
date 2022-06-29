@@ -35,10 +35,33 @@ export default (state = intialState, action) => {
                 authenticate: false,
             }
         }
-        case userConstant.USER_ONLINE_REQ: {
+
+        case userConstant.USER_REGISTER_REQ: {
             return {
                 ...state,
                 loading: true,
+                success: false,
+            }
+        }
+        case userConstant.USER_REGISTER_SUC: {
+            return {
+                ...state,
+                loading: false,
+                success: true,
+            }
+        }
+        case userConstant.USER_REGISTER_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                success: false,
+                authenticate: false,
+            }
+        }
+        case userConstant.USER_ONLINE_REQ: {
+            return {
+                ...state,
+                loading: false,
                 success: false,
             }
         }
@@ -77,20 +100,18 @@ export default (state = intialState, action) => {
                 success: false,
             }
         }
+
         case userConstant.USER_LOGOUT_SUC: {
             return {
                 ...state,
                 loading: false,
-                data: {
-                },
-                err: "",
                 success: false
             }
         }
-        case adminUserConstant.GET_ADMIN_ALL_USER_FAILURE:{
+        case adminUserConstant.GET_ADMIN_ALL_USER_REQ:{
             return {
                 ...state,
-                loading:false,
+                loading:true,
                 data:action.data
             }
         }
@@ -106,6 +127,28 @@ export default (state = intialState, action) => {
                 ...state,
                 loading:false,
                 err:action.payload
+            }
+        }
+        case adminUserConstant.DELETE_ADMIN_USER_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false
+            }
+        }
+        case adminUserConstant.DELETE_ADMIN_USER_SUC: {
+            return {
+                ...state,
+                loading: false,
+                success: true
+            }
+        }
+        case adminUserConstant.DELETE_ADMIN_USER_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                err: action.payload,
+                success: false
             }
         }
         default:

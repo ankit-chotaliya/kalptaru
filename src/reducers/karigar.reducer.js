@@ -2,7 +2,8 @@ import {karigarConstant, adminKarigarConstant} from '../actions/constant'
 const intialState={
     loading:false,
     data:{},
-    err:""
+    err:"",
+    success: false
 }
 
 export default (state=intialState,action)=>{
@@ -11,63 +12,95 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:true,
-                msg:action.data
+                msg:action.data,
+                success: false
             }
         }
         case karigarConstant.GET_ALL_KARIGAR_SUC:{
             return {
                 ...state,
                 loading:false,
-                data:action.payload
+                data:action.payload,
+                success: true
             }
         }
         case karigarConstant.GET_ALL_KARIGAR_FAILURE:{
             return {
                 ...state,
                 loading:false,
-                err:action.payload
+                err:action.payload,
+                success: false
             }
         }
         case karigarConstant.ADD_KARIGAR_REQ:{
             return {
                 ...state,
                 loading:true,
-                msg:action.data
+                msg:action.data,
+                success: false
             }
         }
         case karigarConstant.ADD_KARIGAR_SUC:{
             return {
                 ...state,
                 loading:false,
-                data:action.payload
+                data:action.payload,
+                success: true
             }
         }
         case karigarConstant.ADD_KARIGAR_FAILURE:{
             return {
                 ...state,
                 loading:false,
-                err:action.payload
+                err:action.payload,
+                success: false
+            }
+        }
+        case karigarConstant.ADD_KARIGAR_CSV_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false
+            }
+        }
+        case karigarConstant.ADD_KARIGAR_CSV_SUC: {
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+                success: true
+            }
+        }
+        case karigarConstant.ADD_KARIGAR_CSV_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                err: action.payload,
+                success: false
             }
         }
         case adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_REQ:{
             return{
                 ...state,
                 loading:true,
-                err:action.data
+                err:action.data,
+                success: false
             }
         }
         case adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_SUC:{
             return{
                 ...state,
                 loading:false,
-                data:action.payload
+                data:action.payload,
+                success: true
             }
         }
         case adminKarigarConstant.GET_ADMIN_ALL_KARIGAR_FAILURE:{
             return{
                 ...state,
                 loading:false,
-                err:action.payload
+                err:action.payload,
+                success: false
             }
         }
         case adminKarigarConstant.DELETE_ADMIN_KARIGAR_REQ:{

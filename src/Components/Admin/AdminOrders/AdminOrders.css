@@ -1,7 +1,7 @@
 .btns{
-    width: 100%;
+    width: 67%;
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 2px;
     margin-right: 20px;
@@ -11,15 +11,22 @@
     outline: none;
     border-radius: 8px;
     align-items: center;
-    /* background: transparent; */
+    background: transparent;
     font-family: none;
     border: none;
-    background-color:whitesmoke !important ;
+    background-color: #F9F9FF;
     width: 96px;
-    height: 44px;
+    height: 44px; 
+}
+.btn1-active{
+    background-color: var(--lightGreen2) !important;
 }
 .btn1:hover{
     background-color: var(--lightGreen2) !important;
+}
+
+.btn-bt{
+    margin: 0 10px;
 }
 
 .to-editorder{
@@ -38,10 +45,6 @@
     font-weight: bold;
 }
 
-
-.btn-bt{
-    margin: 0 10px;
-}
 @media only screen and (max-width: 280px) {
     
     .btns{

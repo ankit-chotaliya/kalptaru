@@ -1,0 +1,19 @@
+.adclient-btn{
+    background: transparent;
+    outline: none ;
+    border: none ;
+    cursor: pointer; 
+}
+.del-icon{
+color: red;
+width: 50px;
+height: 50px;
+}
+.del-icon:hover{
+color: red;
+background-color: rgba(1337, 142, 140, .1);
+border-radius: 50%;
+}
+.to-editorder{
+width: 100% !important;
+}

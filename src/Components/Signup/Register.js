@@ -8,6 +8,7 @@ import { registration } from '../../actions/user.action';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
+import Loader from "../Helper/Loader/Loader"
 
 const Register = () => {
     const navigate = useNavigate();
@@ -22,8 +23,7 @@ const Register = () => {
 
     useEffect(() => {
         if (user.success) {
-            <p>Redirecting...</p>
-            navigate("/login");
+            navigate("/");
         }
     }, [user.success])
 
@@ -56,13 +56,7 @@ const Register = () => {
             password: password
         }
 
-        dispatch(registration(dataObj)).then(() => {
-
-            if (user.success) {
-                navigate("/login");
-
-            }
-        })
+        dispatch(registration(dataObj))
 
     }
 
@@ -76,8 +70,10 @@ const Register = () => {
         setcPassWord(e.target.value);
     }
     return (
-        <>
-            <div className='navbar'>
+        <>{
+         user.loading?<Loader
+            msg="Please Wait.."
+         />:<><div className='navbar'>
                 <div className="container">
                     <img className='m-2' src={logo} />
                     <p className='nav_logotext'>Shree Kalptaru</p>
@@ -163,10 +159,13 @@ const Register = () => {
                         </button>
                     </div>
                 </div>
-
+ 
             </div>
+            </>
+        }
         </>
     )
+
 }
 
 export default Register
