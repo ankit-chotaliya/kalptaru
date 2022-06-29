@@ -35,12 +35,12 @@ export default (state = intialState, action) => {
                 authenticate: false,
             }
         }
+
         case userConstant.USER_REGISTER_REQ: {
             return {
                 ...state,
                 loading: true,
                 success: false,
-                authenticate: false,
             }
         }
         case userConstant.USER_REGISTER_SUC: {
@@ -48,7 +48,6 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: true,
-                authenticate: false,
             }
         }
         case userConstant.USER_REGISTER_FAILURE: {
@@ -59,20 +58,60 @@ export default (state = intialState, action) => {
                 authenticate: false,
             }
         }
+        case userConstant.USER_ONLINE_REQ: {
+            return {
+                ...state,
+                loading: false,
+                success: false,
+            }
+        }
+        case userConstant.USER_ONLINE_SUC: {
+            return {
+                ...state,
+                loading: false,
+                success: true,
+            }
+        }
+        case userConstant.USER_ONLINE_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                success: false,
+            }
+        }
+        case userConstant.USER_OFFLINE_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false,
+            }
+        }
+        case userConstant.USER_OFFLINE_SUC: {
+            return {
+                ...state,
+                loading: false,
+                success: true,
+            }
+        }
+        case userConstant.USER_OFFLINE_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                success: false,
+            }
+        }
+
         case userConstant.USER_LOGOUT_SUC: {
             return {
                 ...state,
                 loading: false,
-                data: {
-                },
-                err: "",
                 success: false
             }
         }
-        case adminUserConstant.GET_ADMIN_ALL_USER_FAILURE:{
+        case adminUserConstant.GET_ADMIN_ALL_USER_REQ:{
             return {
                 ...state,
-                loading:false,
+                loading:true,
                 data:action.data
             }
         }

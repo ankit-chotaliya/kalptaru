@@ -122,3 +122,38 @@ export const preLoginusingToken=(token)=>{
     }
 }
 
+export const statusOnline=(userId)=>{
+    return async(dispatch)=>{
+        dispatch({
+            type:userConstant.USER_ONLINE_REQ
+        })
+        const res=await axios.post("/user/statusOnline",userId)
+        if(res.status==200){
+            dispatch({
+                type:userConstant.USER_ONLINE_REQ
+            })
+        }else if(res.status==203){
+            dispatch({
+                type:userConstant.USER_ONLINE_FAILURE
+            })
+        }
+    }
+}
+
+export const statusOffline=(userId)=>{
+    return async(dispatch)=>{
+        dispatch({
+            type:userConstant.USER_OFFLINE_REQ
+        })
+        const res=await axios.post("/user/statusOffline",userId)
+        if(res.status==200){
+            dispatch({
+                type:userConstant.USER_OFFLINE_REQ
+            })
+        }else if(res.status==203){
+            dispatch({
+                type:userConstant.USER_OFFLINE_FAILURE
+            })
+        }
+    }
+}
