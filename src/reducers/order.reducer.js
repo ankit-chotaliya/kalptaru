@@ -182,6 +182,7 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:true,
+                success:false,
                 data:action.data
             }
         }
@@ -189,6 +190,7 @@ export default (state=intialState,action)=>{
             return {
                 ...state,
                 loading:false,
+                success:true,
                 data:action.payload
             }
         }
@@ -196,6 +198,7 @@ export default (state=intialState,action)=>{
             return{
                 ...state,
                 loading:false,
+                success:false,
                 err:action.payload
             }
         }
