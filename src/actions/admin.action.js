@@ -65,7 +65,7 @@ export const adminLogout=()=>{
             type:adminConstant.ADMIN_LOGOUT_REQ,
             data:"Requesting..."
         })
-        if(localStorage.getItem("accesstoken")){
+        if(localStorage.getItem("accessToken2")){
             
             localStorage.clear();
             dispatch({

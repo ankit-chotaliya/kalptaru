@@ -69,10 +69,9 @@ body {
     margin-left: 0% !important;
   }
 }
-
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 1300px) {
   .title-adminhome {
-    margin-left: 0% !important;
+    margin-left: 4px !important;
     font-size: 25px;
   }
 
@@ -83,20 +82,50 @@ body {
 
   .boxname-adminhome {
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .box-body {
-    margin-top: 0%;
+    margin-top: 2rem;
   }
 
   .box-adminhome {
     width: 15rem !important;
+    padding: 0 !important;
     height: 180px;
   }
+  
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1030px) {
+  .title-adminhome {
+    margin-left: 0% !important;
+    font-size: 25px;
+  }
+  .logo-adminhome {
+    width: 35px;
+    height: 35px;
+  }
+  .box-body {
+    margin-top: 0%;
+  }
+
+  .boxname-adminhome {
+    margin-left: 0 !important;
+    font-size: 18px;
+  }
+
+  .box-adminhome {
+    width: 12.5rem !important;
+    padding: 0 !important;
+    padding-top: 1.5rem !important;
+    height: 160px;
+  }
+  .contentaround-adminhome {
+    padding: 0rem 0.2rem;
+  }
+}
+@media screen and (max-width: 915px) {
   .logo-adminhome {
     width: 35px;
     height: 35px;
@@ -108,10 +137,57 @@ body {
   }
 
   .box-adminhome {
+    width: 11rem !important;
     padding: 0 !important;
     padding-top: 1.5rem !important;
     height: 160px;
   }
+  .contentaround-adminhome {
+    padding: 0rem 0.2rem;
+  }
+}
+@media screen and (max-width: 830px) {
+  .logo-adminhome {
+    width: 35px;
+    height: 35px;
+  }
+
+  .boxname-adminhome {
+    margin-left: 0 !important;
+    font-size: 18px;
+  }
+
+  .box-adminhome {
+    width: 10rem !important;
+    padding: 0 !important;
+    padding-top: 1.2rem !important;
+    height: 160px;
+  }
+  .contentaround-adminhome {
+    padding: 0rem 0.5rem;
+  }
+}
+@media screen and (max-width: 769px) {
+  .logo-adminhome {
+    width: 35px;
+    height: 35px;
+  }
+
+  .boxname-adminhome {
+    margin-left: 0 !important;
+    font-size: 18px;
+  }
+
+  .box-adminhome {
+    width: 9.5rem !important;
+    padding: 0 !important;
+    padding-top: 1.2rem !important;
+    height: 160px;
+  }
+  .contentaround-adminhome {
+    padding: 0rem 0.5rem;
+  }
+  
 }
 
 @media screen and (max-width: 540px) {
@@ -132,6 +208,12 @@ body {
 
   .boxrow-adminhome {
     margin-top: 0 !important;
+  }
+  .parent_box-adminhome{
+    margin-left: 5rem;
+  }
+  .contentaround-adminhome {
+    padding: 0rem;
   }
 }
 

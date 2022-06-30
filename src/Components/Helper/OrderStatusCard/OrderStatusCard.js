@@ -24,15 +24,16 @@ const OrderStatusCard = (props) => {
                     orderId:updateOrderId,
                     confirm:true
                 }
+                props.handleActiveTabChange(6);
             }else{
                 dataObj={
                     orderId:updateOrderId,
                     confirm:false
                 }
+                props.handleActiveTabChange(1+Number(props.label));
             }
             props.handleemptyOrderData();
             dispatch(orderStatusChange(dataObj));
-            
             // alert("updated successfully!");
         }else{
             let dataObj={};
@@ -41,10 +42,9 @@ const OrderStatusCard = (props) => {
                     orderId:updateOrderId,
                     confirm:false
                 }
+                props.handleActiveTabChange(5);
                 props.handleemptyOrderData();
                 dispatch(orderStatusChange(dataObj));
-                
-                
             }else{
                 dispatch(setToastMsg("Remain as it is!",false));
             }

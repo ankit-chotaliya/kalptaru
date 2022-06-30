@@ -15,12 +15,11 @@ export const registration=(dataObj)=>{
 
         axios.post('/user/signup', dataObj)
         .then(res=>{
-
-            alert("Registration Successfully")
             dispatch({
                 type:userConstant.USER_REGISTER_SUC,
                 payload:res.data
             })
+            dispatch(setToastMsg("Registration Successfull",false))
             
         })
         .catch(err=>{
@@ -30,6 +29,7 @@ export const registration=(dataObj)=>{
                 type:userConstant.USER_REGISTER_FAILURE,
                 payload:err.message
             })
+            dispatch(setToastMsg("Please Try Again",true))
 
         })
     }
@@ -43,10 +43,14 @@ export const login=(dataObj)=>{
             type:userConstant.USER_LOGIN_REQ,
             data:"Requesting..."
         })
+        if(localStorage.getItem('accessToken2')){
+            localStorage.removeItem('accessToken2');
+        }
         const res=await axios.post('/user/signin',dataObj);
         console.log(res);
         if(res.status==200){
-            localStorage.setItem("accessToken",res.data.accesstoken+" kalptaru");
+            localStorage.setItem("accessToken1",res.data.accesstoken+" kalptaru");
+            // localStorage.setItem("enc","");
             dispatch({
                 type:userConstant.USER_LOGIN_SUC,
                 payload:res.data
@@ -70,7 +74,7 @@ export const logout=()=>{
             type:userConstant.USER_LOGOUT_REQ,
             data:"Requesting..."
         })
-        if(localStorage.getItem("accessToken")){
+        if(localStorage.getItem("accessToken1")){
             
             localStorage.clear();
             dispatch({
@@ -94,10 +98,13 @@ export const preLoginusingToken=(token)=>{
             type:userConstant.USER_LOGIN_REQ,
             data:"Requesting..."
         })
+        if(localStorage.getItem('accessToken2')){
+            localStorage.removeItem('accessToken2');
+        }
         const res=await axios.post('/user/signinAccess',token);
         // console.log(res);
         if(res.status==200){
-            localStorage.setItem("accessToken",res.data.accesstoken+" kalptaru");
+            localStorage.setItem("accessToken1",res.data.accesstoken+" kalptaru");
             dispatch({
                 type:userConstant.USER_LOGIN_SUC,
                 payload:res.data
@@ -115,3 +122,38 @@ export const preLoginusingToken=(token)=>{
     }
 }
 
+export const statusOnline=(userId)=>{
+    return async(dispatch)=>{
+        dispatch({
+            type:userConstant.USER_ONLINE_REQ
+        })
+        const res=await axios.post("/user/statusOnline",userId)
+        if(res.status==200){
+            dispatch({
+                type:userConstant.USER_ONLINE_REQ
+            })
+        }else if(res.status==203){
+            dispatch({
+                type:userConstant.USER_ONLINE_FAILURE
+            })
+        }
+    }
+}
+
+export const statusOffline=(userId)=>{
+    return async(dispatch)=>{
+        dispatch({
+            type:userConstant.USER_OFFLINE_REQ
+        })
+        const res=await axios.post("/user/statusOffline",userId)
+        if(res.status==200){
+            dispatch({
+                type:userConstant.USER_OFFLINE_REQ
+            })
+        }else if(res.status==203){
+            dispatch({
+                type:userConstant.USER_OFFLINE_FAILURE
+            })
+        }
+    }
+}

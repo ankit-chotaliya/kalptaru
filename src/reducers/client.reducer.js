@@ -11,18 +11,16 @@ export default (state = intialState, action) => {
         case clientConstant.GET_ALL_CLIENT_REQ: {
             return {
                 ...state,
-                loading:true,
-                data:action.data,
-                err:"",
+                loading: true,
+                data: action.data,
                 success: false
             }
         }
         case clientConstant.GET_ALL_CLIENT_SUC: {
             return {
                 ...state,
-                loading:false,
-                data:action.payload,
-                err:"",
+                loading: false,
+                data: action.payload,
                 success: true
             }
         }

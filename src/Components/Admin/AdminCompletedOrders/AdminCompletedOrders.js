@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
-// import './AdminOrders.css';
-import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import Pagination from '../../Helper/Pagination/Pagination';
+import Loader from '../../Helper/Loader/Loader';
 
 const dateFormat = (d) => {
     var date = new Date(d);
@@ -15,22 +16,72 @@ function AdminCompletedOrders() {
     const navigate = useNavigate();
     const Orders = useSelector(state=>state.order);
 
+    const [currentRecords,setCurrentRecords] = useState([]);
+    const [nPages,setNPages] = useState(1);
+    const [data, setData] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [indexOfFirstRecord,setindexOfFirstRecord] = useState(0);
+    const [indexOfLastRecord,setindexOfLastRecord] = useState(10);
+    const recordsPerPage = 10;
+
+    let array = [];
+
+    useEffect(() => {
+
+        Orders.data.order && Orders.data.order.map((o,index) => {
+            if(o.orderStatus==6){
+                array.push(Orders.data.order[index]);
+              }
+          })
+          setData(array);
+    }, [])
+
+    useEffect(()=>{
+        if (data.length > 0) {
+            let d = currentPage * recordsPerPage;
+            setindexOfLastRecord(d);
+            setindexOfFirstRecord(d - recordsPerPage);
+            setCurrentRecords(data.slice(d - recordsPerPage, d));
+            setNPages( Math.ceil(data.length / recordsPerPage));
+        }
+        },[data,currentPage])
+    
+        useEffect(() => {
+            if (Orders.success==true) {
+                setData(array);
+            }
+        }, [Orders])
+    
+        useEffect(()=>{
+            if(currentRecords.length==0){
+                    if (currentPage==1) {
+                        console.log("currentpage:",currentPage);
+                        setCurrentPage(1)
+                    } else {
+                        setCurrentPage(currentPage-1);
+                        console.log("currentpage:",currentPage);
+                    }
+                }
+        },[currentRecords])
+
+
     return (
         <>
             <AdminNavbar />
+            {
+                Orders.data.loading?<Loader/>:
             <div className='container no-main no-border pageview'>
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
                         <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Completed Orders
+                        <span style={{fontSize:"18px", fontWeight:"bold"}}>
+                        {
+                                data.length>0?<>{indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length}</>:null
+                        }
+                        </span>
                     </div>
                 </div>
-                <div className='container mt-4'>
-                    <div className='btns'>
-                        <button className='btn1'>Urgent</button>
-                        <button className='btn1 btn-bt'>Fast</button>
-                        <button className='btn1'>Normal</button>
-                    </div>
-                </div>
+                {data.length>0?<>
                 <div className='table-responsive-md'>
                     <table className="table mt-4">
                         <thead>
@@ -48,10 +99,11 @@ function AdminCompletedOrders() {
                         </thead>
                         <tbody className="table-group-divider">
                         {
-                            Orders.data.order && Orders.data.order.map((o,index)=>{
+                            currentRecords.map((o,index)=>{
+                                console.log(currentRecords);
                                 if(o.orderStatus==6){
                                     return  <tr key={index} >
-                                <th scope="row" className='text-center align-middle'>{index+1}</th>
+                                <th scope="row" className='text-center align-middle'>{index + 1 + indexOfLastRecord - 10}</th>
                                 <td scope="row" className='text-center align-middle w-25'>{o.clientId?o.clientId.client_name:<>Null</>}</td>
                                 <td scope="row" className='text-center align-middle w-25'>{o.clientId?o.clientId.client_contact:<>Null</>}</td>
                                 <td scope="row" className='text-center align-middle'>{o.orderCategory.name}</td>
@@ -74,10 +126,15 @@ function AdminCompletedOrders() {
                         </tbody>
                     </table>
                 </div>
-
-
+                <Pagination
+                    nPages={nPages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
+                </>:<div className='text-center'><h2>No Completed Orders Available right now</h2></div>
+                }
             </div>
-
+            }
         </>
     )
 }

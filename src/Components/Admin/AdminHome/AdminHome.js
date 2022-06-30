@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import completedOrders from "../../Home/icons/clipboard.png";
 import orderStatus from "../../Home/icons/status.png"
 import { useSelector } from "react-redux";
-import { adminGetAllClient, adminGetAllKarigar, adminGetAllOrder, adminGetAllUser, emptyOrderConfirm, getAllOrders, preadminloginusingToken } from "../../../../src/actions";
+import { adminGetAllClient, adminGetAllKarigar, adminGetAllOrder, adminGetAllUser,preadminloginusingToken } from "../../../../src/actions";
 import { useDispatch } from "react-redux";
 import "./AdminHome.css";
 
@@ -16,8 +16,9 @@ function Adminadminhome() {
     const order=useSelector(state=>state.order);
     const clients=useSelector(state=>state.client);
     const karigars=useSelector(state=>state.karigar);
-    const users = useSelector(state=>state.user);
     const admin=useSelector(state=>state.admin);
+    const orders=useSelector(state=>state.order);
+    const users=useSelector(state=>state.user);
     let count=0;
     const dispatch=useDispatch();
 
@@ -81,7 +82,7 @@ function Adminadminhome() {
                         <h5 className="card-title boxname-adminhome">
                           Orders
                         </h5>
-                        {/* {
+                        {
                           orders.data.order && orders.data.order.map((o, index, orders) => {
 
                             if (index + 1 == orders.length) {
@@ -89,7 +90,7 @@ function Adminadminhome() {
                             }
 
                           })
-                        } */}
+                        }
                       </div>
                     </div>
                   </Link>
@@ -127,14 +128,13 @@ function Adminadminhome() {
                           alt="Track Order"
                         />
                         <h5 className="card-title boxname-adminhome">Completed Order</h5>
-                
-                        {/* {
+                        {
                           orders.data.order && orders.data.order.map((o, index, orders) => {
                               if(o.orderStatus==6){
                                 count++;
                               }
                             })
-                         } */}
+                         }
                          <p style={{fontSize:"18px", fontWeight:"bold"}}>({count})</p>
                       </div>
                     </div>

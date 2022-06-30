@@ -44,7 +44,7 @@
   transition: 350ms;
 }
 
-.nav-text {
+.admin-nav-text {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -70,9 +70,6 @@
   color: red;
 }
 
-/* :hover {
-  color: var(--hovercolor);
-} */
 .nav-text a:hover {
   background-color: #00a651;
   border-radius: 0px;
@@ -121,7 +118,7 @@ span {
 @media (max-width: 767px) and (min-width: 360px){
 
   #navMenu{
-    background-color: #DEFFD1;
+  background-color: #DEFFD1;
   width: 350px;
   height: 1368px;
   display: flex;

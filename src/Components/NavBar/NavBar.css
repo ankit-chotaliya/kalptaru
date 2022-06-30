@@ -70,9 +70,6 @@
   color: red;
 }
 
-/* :hover {
-  color: var(--hovercolor);
-} */
 .nav-text a:hover {
   background-color: #00a651;
   border-radius: 0px;
@@ -118,10 +115,10 @@ span {
   font-size: 22px;
 }
 
-@media (max-width: 767px) and (min-width: 360px){
+@media (max-wisdth: 767px) and (min-width: 360px){
 
   #navMenu{
-    background-color: #DEFFD1;
+  background-color: #DEFFD1;
   width: 350px;
   height: 1368px;
   display: flex;

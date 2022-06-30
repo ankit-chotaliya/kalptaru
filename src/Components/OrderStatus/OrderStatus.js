@@ -26,6 +26,8 @@ const OrderStatus = () => {
     const [DeliveryPending,setDeliveryPending]=useState(false);
     const [kComplete,setkComplete]=useState(false);
     const [oReady,setoReady]=useState(false);
+    const [sortStatus,setSortStatus]=useState("Normal");
+    const [activeTab,setActiveTab]=useState(1);
 
     const dateFormat=(d)=>{
         var date = new Date(d);
@@ -84,9 +86,23 @@ const OrderStatus = () => {
       },[order.data.orders,client.data.client,category.data.categories])
 
     useEffect(()=>{
-    console.log("hii");
     setOrderDataSpecific(orderData);
-    newOrderclick();
+    if(activeTab=='1'){
+        newOrderclick();
+    }else if(activeTab=='2'){
+        inProcessclick();
+    }else if(activeTab=='3'){
+        kCompleteclick();
+    }else if(activeTab=='4'){
+        oReadyclick();
+    }else if(activeTab=='5'){
+        DeliveryPendingclick();
+    }else if(activeTab=='6'){
+        console.log("hii 2");
+        deliveredclick();
+    }else{
+        newOrderclick();
+    }
     },[orderData])
     const newOrderclick=()=>{
         setnewOrder(true);
@@ -96,6 +112,7 @@ const OrderStatus = () => {
         setkComplete(false);
         setoReady(false);
         setOrderDataSpecific(orderData.filter(x=>x.orderStatus=='1'));
+        setActiveTab(1);
     }
     const inProcessclick=()=>{
         setnewOrder(false);
@@ -105,6 +122,7 @@ const OrderStatus = () => {
         setkComplete(false);
         setoReady(false);
         setOrderDataSpecific(orderData.filter(x=>x.orderStatus=='2'));
+        setActiveTab(2);
     }
     const kCompleteclick=()=>{
         setnewOrder(false);
@@ -114,6 +132,7 @@ const OrderStatus = () => {
         setkComplete(true);
         setoReady(false);
         setOrderDataSpecific(orderData.filter(x=>x.orderStatus=='3'));
+        setActiveTab(3);
     }
     const oReadyclick=()=>{
         setnewOrder(false);
@@ -123,6 +142,7 @@ const OrderStatus = () => {
         setkComplete(false);
         setoReady(true);
         setOrderDataSpecific(orderData.filter(x=>x.orderStatus=='4'));
+        setActiveTab(4);
     }
     const DeliveryPendingclick=()=>{
         setnewOrder(false);
@@ -132,6 +152,7 @@ const OrderStatus = () => {
         setkComplete(false);
         setoReady(false);
         setOrderDataSpecific(orderData.filter(x=>x.orderStatus=='5'));
+        setActiveTab(5);
     }
     const deliveredclick=()=>{
         setnewOrder(false);
@@ -141,11 +162,51 @@ const OrderStatus = () => {
         setkComplete(false);
         setoReady(false);
         setOrderDataSpecific(orderData.filter(x=>x.orderStatus=='6'));
+        setActiveTab(6);
     }
 
     const handleemptyOrderData=()=>{
         setOrderData([]);
     }
+    const handleActiveTabChange=(num)=>{
+        setActiveTab(num);
+    }
+    const sorting=()=>{
+        orderData.sort((a,b)=>{
+            const date1=a.orderDeliveryDate.split('/');
+            const date2=b.orderDeliveryDate.split('/');
+            const c=new Date(date1[2],date1[1]-1,date1[0]);
+            const d=new Date(date2[2],date2[1]-1,date2[0]);
+            if(sortStatus=='A->Z'){
+              return d-c;  
+            }
+            return c-d;
+        })
+        setOrderData(orderData);
+        if(activeTab=='1'){
+            newOrderclick();
+        }else if(activeTab=='2'){
+            inProcessclick();
+        }else if(activeTab=='3'){
+            kCompleteclick();
+        }else if(activeTab=='4'){
+            oReadyclick();
+        }else if(activeTab=='5'){
+            DeliveryPendingclick();
+        }else if(activeTab=='6'){
+            console.log("hii 2");
+            deliveredclick();
+        }else{
+            newOrderclick();
+        }
+        if(sortStatus=='A->Z'){
+            setSortStatus('Z->A');
+        }else{
+            setSortStatus("A->Z")
+        }  
+    }
+    // When we have to add filter
+    // <button className='eo2-btn'><FiFilter /></button>
   return (
     <>
         <Navbar/>
@@ -155,8 +216,8 @@ const OrderStatus = () => {
         <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Order Status
         </div>
         <div className='eo2-btns'>
-        <button className='eo2-btn'><FiFilter /></button>
-        <button className='eo2-btn'><BiSort /></button>
+        <div className='os-sort-name'>Delivery Date: {sortStatus}</div>
+        <button className='eo2-btn' onClick={sorting}><BiSort /></button>
         </div>
         </div>
 
@@ -175,7 +236,7 @@ const OrderStatus = () => {
         </div>
         <div className='os-container mt-3'>
         {
-            orderDataSpecific.length>0?orderDataSpecific.map((ele,index)=>{
+            orderDataSpecific && orderDataSpecific.length>0?orderDataSpecific.map((ele,index)=>{
                 return <OrderStatusCard 
                 key={index}
                 orderId={ele.orderId} 
@@ -187,6 +248,7 @@ const OrderStatus = () => {
                 orderCreatedDate={ele.orderCreatedDate}
                 orderHUID={ele.orderHUID}
                 handleemptyOrderData={handleemptyOrderData}
+                handleActiveTabChange={handleActiveTabChange}
                 />
             }):<div className='text-center'><h4>No Orders in this stage!!</h4></div>
         }

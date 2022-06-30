@@ -1,134 +1,84 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../NavBar/Navbar'
 import { AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowUp, AiOutlineCloudDownload } from 'react-icons/ai'
-import { RiEqualizerLine } from 'react-icons/ri'
+import { RiExchangeBoxLine,RiEqualizerLine } from 'react-icons/ri'
 import { GrFormView } from 'react-icons/gr'
 import { Modal, Button } from 'react-bootstrap'
-import './TrackOrder.css';
+import './UrgentOrder.css';
 import ListView from '../Helper/ListView/ListView';
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-const TrackOrder=()=> {
+import { useDispatch, useSelector } from 'react-redux'
+import { orderStatusChange } from '../../actions/order.action'
+import { setToastMsg } from '../../actions/toast.action'
+import ModalHelper from '../Helper/Modal/ModalHelper'
+import Loader from '../Helper/Loader/Loader'
+const UrgentOrders=()=> {
   const navigate = useNavigate();
   const [orderData,setOrderData]=useState([]);
   const [orderForthisWeek,setOrderForthisWeek]=useState([]);
   const [orderForthisMonth,setOrderForthisMonth]=useState([]);
   const [orderForthisOther,setOrderForthisOther]=useState([]);
-  const [isUrgent,setIsUrgent]=useState(false);
-  const [isFast,setIsFast]=useState(false);
-  const [isNormal,setIsNormal]=useState(false);
-  const [isDefault,setIsDefault]=useState(true);
   const [filterModal,setFilterModal]=useState(false);
   const [filterClientId,setFilterClientId]=useState("");
   const [filterCategoryId,setFilterCategoryId]=useState("");
   const [filterKarigarId,setFilterKarigarId]=useState("");
   const [issorting,setIssorting]=useState("0");
+  const [viewModal,setViewModal]=useState(false);
+  const [updateOrderId,setUpdateOrderId]=useState("");
+  const [statusNumber,setStatusNumber]=useState("");
   const [count,setCount]=useState(0);
   const order=useSelector(state=>state.order);
   const client=useSelector(state=>state.client);
   const category=useSelector(state=>state.category);
   const karigar=useSelector(state=>state.karigar);
+  const dispatch=useDispatch();
   
 
   //render functions
   const handleopenEditForm = (orderId) => {
     navigate('/OrderView/'+orderId);
   }
-  const handleDownload=(orderId)=>{
+  const handleChangeStatus=(orderId,statusNumber)=>{
+    console.log(orderId,statusNumber);
+    setUpdateOrderId(orderId);
+    setStatusNumber(statusNumber);
+    setViewModal(true);
+  }
+  const handleModalReply=(e)=>{
+        const reply=e.target.value;
+        console.log(reply);
+        if(reply == "true"){
+            let dataObj={};
+            if(statusNumber=='4'){
+                dataObj={
+                    orderId:updateOrderId,
+                    confirm:true
+                }
+            }else{
+                dataObj={
+                    orderId:updateOrderId,
+                    confirm:false
+                }
+            }
 
-  }
-
-  const handleUrgent=()=>{
-    setIsUrgent(true);
-    setIsNormal(false);
-    setIsFast(false);
-    setIsDefault(false);
-    setOrderForthisWeek(orderData.filter((x)=>{
-      let duedays=duein(x.orderDeliveryDate);
-      if(duedays<=7 && x.orderPriority=='Urgent'){
-        return true;
-      }
-      return false;
-    }));
-    setOrderForthisMonth(orderData.filter((x)=>{
-      let duedays=dueinmonth(x.orderDeliveryDate);
-      if(duedays && x.orderPriority=='Urgent'){
-        return true;
-      }
-      return false;
-    }));
-    setOrderForthisOther(orderData.filter((x)=>{
-      if(x.orderPriority=='Urgent'){
-        return true;
-      }
-      return false;
-    }));
-  }
-  const handleFast=()=>{
-    setIsUrgent(false);
-    setIsNormal(false);
-    setIsFast(true);
-    setIsDefault(false);
-    setOrderForthisWeek(orderData.filter((x)=>{
-      let duedays=duein(x.orderDeliveryDate);
-      if(duedays<=7 && x.orderPriority=='Fast'){
-        return true;
-      }
-      return false;
-    }));
-    setOrderForthisMonth(orderData.filter((x)=>{
-      let duedays=dueinmonth(x.orderDeliveryDate);
-      if(duedays && x.orderPriority=='Fast'){
-        return true;
-      }
-      return false;
-    }));
-    
-    setOrderForthisOther(orderData.filter((x)=>{
-      if(x.orderPriority=='Fast'){
-        return true;
-      }
-      return false;
-    }));
-    // setOrderData(items=>items.filter(x=>x.orderPriority=='Fast'));
-  }
-  const handleNormal=()=>{
-    setIsUrgent(false);
-    setIsNormal(true);
-    setIsFast(false);
-    setIsDefault(false);
-    setOrderForthisWeek(orderData.filter((x)=>{
-      let duedays=duein(x.orderDeliveryDate);
-      if(duedays<=7 && x.orderPriority=='Normal'){
-        return true;
-      }
-      return false;
-    }));
-    setOrderForthisMonth(orderData.filter((x)=>{
-      let duedays=dueinmonth(x.orderDeliveryDate);
-      if(duedays && x.orderPriority=='Normal'){
-        return true;
-      }
-      return false;
-    }));
-    setOrderForthisOther(orderData.filter((x)=>{
-      if( x.orderPriority=='Normal'){
-        return true;
-      }
-      return false;
-    }));
-    // setOrderData(items=>items.filter(x=>x.orderPriority=='Normal'));
-  }
-
-  const handleDefault=()=>{
-    setIsUrgent(false);
-    setIsNormal(false);
-    setIsFast(false);
-    setIsDefault(true);
-    handlethisweek(orderData);
-    handlethismonth(orderData);
-    handlethisother(orderData);
-  }
+            dispatch(orderStatusChange(dataObj));
+            setOrderData([]);
+            // alert("updated successfully!");
+        }else{
+            let dataObj={};
+            if(statusNumber=='4'){
+                dataObj={
+                    orderId:updateOrderId,
+                    confirm:false
+                }
+                dispatch(orderStatusChange(dataObj));
+                setOrderData([]);
+            }else{
+                dispatch(setToastMsg("Remain as it is!",false));
+            }
+        }
+        setViewModal(false);
+    }
   //Filter from order state function
   const orderDatacreate=()=>{
     if(order.data.orders && order.data.orders.length>0){
@@ -141,7 +91,7 @@ const TrackOrder=()=> {
             orderKarigarId:"",
             orderCategoryId:"",
             orderCategory:"",
-            orderPriority:"",
+            orderStatus:"",
             orderDeliveryDate:"",
           }
           data.orderId=ele._id;
@@ -161,7 +111,18 @@ const TrackOrder=()=> {
           })
           data.orderClient=clientName;
           data.orderCategory=categoryName;
-          data.orderPriority=ele.priority;
+          if(ele.orderStatus==1){
+            data.orderStatus="New Order";
+          }else if(ele.orderStatus==2){
+            data.orderStatus="Order In Process"
+          }else if(ele.orderStatus==3){
+            data.orderStatus="Karigar Completed"
+          }else if(ele.orderStatus==4){
+            data.orderStatus="Order Ready"
+          }else{
+            data.orderStatus="Delivery Pending"
+          }
+          data.orderStatusNumber=ele.orderStatus;
           data.orderDeliveryDate=ele.deliveryDate;
           data.orderClientId=ele.clientId;
           data.orderCategoryId=ele.orderCategory;
@@ -449,25 +410,20 @@ const TrackOrder=()=> {
         </form>
         </Modal.Body>
       </Modal>
-      <div className='container no-main no-border pageview'>
-        <div className='to-heading no-heading'>
-          <div className='to-editorder'>
-            <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Track Order
-          </div>
-          <div className='to-btns'>
-          <button className={isUrgent?'cmt-o-btn cmt-o-btn-active':'cmt-o-btn'} onClick={handleUrgent}>Urgent</button>
-          <button className={isFast?'cmt-o-btn cmt-o-btn-bt cmt-o-btn-active':'cmt-o-btn cmt-o-btn-bt'} onClick={handleFast}>Fast</button>
-          <button className={isNormal?'cmt-o-btn cmt-o-btn-bt cmt-o-btn-active':'cmt-o-btn cmt-o-btn-bt'} onClick={handleNormal}>Normal</button>
-          <button className={isDefault?'cmt-o-btn cmt-o-btn-active':'cmt-o-btn'} onClick={handleDefault}>All</button>
+      {
+        order.loading?<Loader/>:<div className='container no-main no-border pageview'>
+        <div className='uo-heading no-heading'>
+          <div className='uo-editorder'>
+            <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Urgent Orders
           </div>
         </div>
-        <div className='to-heading2 mt-4'>
-          <div className='to-editorder2'>
+        <div className='uo-heading2 mt-4'>
+          <div className='uo-editorder2'>
             This Week
           </div>
-          <button className='to-more-btn' onClick={()=>setFilterModal(true)}>
+          <button className='uo-more-btn' onClick={()=>setFilterModal(true)}>
             <RiEqualizerLine style={{ cursor: 'pointer' }} />
-            <div className='to-moretext'>More</div>
+            <div className='uo-moretext'>More</div>
           </button>
         </div>
 
@@ -478,19 +434,19 @@ const TrackOrder=()=> {
               property1="Client Name:"
               property2="Category:"
               property3="Delivery Date:"
-              propertyLabel="Priority:"
+              propertyLabel="Order Status:"
               value1={!ele.orderClient?"None":ele.orderClient}
               value2={!ele.orderCategory?"None":ele.orderCategory}
               value3={!ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
-              valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}
+              valueLabel={!ele.orderStatus?"Not Decided":ele.orderStatus}
               icon={<GrFormView className='app-icon' onClick={()=>{handleopenEditForm(ele.orderId)}} />}
-              icon1={<AiOutlineCloudDownload className='app-icon' onClick={()=>handleDownload(ele.orderId)}/>}
+              icon1={<RiExchangeBoxLine className='app-icon' onClick={()=>handleChangeStatus(ele.orderId,ele.orderStatusNumber)}/>}
             />
             }):<div className='text-center'><h2>No Delivery Orderes were available in this week!</h2></div>
           }
         </div>
-        <div className='to-heading2 mt-5'>
-          <div className='to-editorder2'>
+        <div className='uo-heading2 mt-5'>
+          <div className='uo-editorder2'>
             This Month
           </div>
          
@@ -507,16 +463,16 @@ const TrackOrder=()=> {
             value1={ele.orderClient==""|| !ele.clientName?"None":ele.orderClient}
             value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
             value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
-            valueLabel={ele.orderPriority=="" || !ele.orderPriority?"Not Decided":ele.orderPriority}
+            valueLabel={ele.orderStatus=="" || !ele.orderStatus?"Not Decided":ele.orderStatus}
             icon={<GrFormView className='app-icon' onClick={()=>{handleopenEditForm(ele.orderId)}} />}
-            icon1={<AiOutlineCloudDownload className='app-icon' onClick={()=>handleDownload(ele.orderId)}/>}
+            icon1={<RiExchangeBoxLine className='app-icon' onClick={()=>handleChangeStatus(ele.orderId)}/>}
           />
           }):<div className='text-center'><h2>No Delivery Orderes were available in this Month!</h2></div>
         }
         </div>
 
-        <div className='to-heading2 mt-5'>
-          <div className='to-editorder2'>
+        <div className='uo-heading2 mt-5'>
+          <div className='uo-editorder2'>
             Other
           </div>
           
@@ -533,17 +489,26 @@ const TrackOrder=()=> {
             value1={ele.orderClient==""|| !ele.clientName?"None":ele.orderClient}
             value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
             value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
-            valueLabel={ele.orderPriority=="" || !ele.orderPriority?"Not Decided":ele.orderPriority}
+            valueLabel={ele.orderStatus=="" || !ele.orderStatus?"Not Decided":ele.orderStatus}
             icon={<GrFormView className='app-icon' onClick={()=>{handleopenEditForm(ele.orderId)}} />}
-            icon1={<AiOutlineCloudDownload className='app-icon' onClick={()=>handleDownload(ele.orderId)}/>}
+            icon1={<RiExchangeBoxLine className='app-icon' onClick={()=>handleChangeStatus(ele.orderId)}/>}
           />
           }):<div className='text-center'><h2>No Delivery Orderes were available above month!</h2></div>
         }
         </div>
       </div>
+      }
+      
+      <ModalHelper
+                    show={viewModal}
+                    onHide={() => setViewModal(false)}
+                    icon={<RiExchangeBoxLine/>}
+                    text="Are you sure you want push order into next Status?"
+                    onReply={handleModalReply}
+                    />
 
     </>
   )
 }
 
-export default TrackOrder
+export default UrgentOrders
