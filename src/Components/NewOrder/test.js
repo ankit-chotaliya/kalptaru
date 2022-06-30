@@ -6,12 +6,10 @@ import { HiOutlineTrash } from "react-icons/hi";
 import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import AddCategory from '../AddCategory/AddCategory';
-import { Country, State, City }  from 'country-state-city';
 import imgtest from '../EditOrder/ring.jpg';
 import { getAllCategory, getAllClient, getAllKarigar } from '../../actions';
 import { setToastMsg } from '../../actions/toast.action';
 const NewOrderComponent = (props) => {
-    console.log(City.getCitiesOfState("IN", "GJ"))
     const [imglen, setImglen] = useState(0);
     const [addClientModal, setAddClientModal] = useState(false);
     const [addKarigarModal, setAddKarigarModal] = useState(false);
@@ -106,7 +104,7 @@ const NewOrderComponent = (props) => {
     return (
 
         <>
-        
+
             <div className='row no-order-number'>
                 <div className={props.orderNumber == 1 ? 'mt-4 mb-2' : 'no-ordernum mt-5 mb-2'}>
                     Order #{props.orderNumber}

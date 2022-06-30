@@ -1,0 +1,31 @@
+.dropdown-content {
+
+    padding: 10px;
+    background: #fff;
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.06);
+    font-weight: 500;
+    color: #333;
+    max-height: 230px;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width:100%;
+    border-left:1px solid #333;
+    border-bottom:1px solid #333;
+    border-right:1px solid #333;
+    
+}
+.dropdown1{
+    background: #fff !important;
+    z-index: 999;
+    height: 0px  !important;
+}
+.dropdown-content .options {
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dropdown-content .options:hover {
+    background: #f4f4f4;
+}
