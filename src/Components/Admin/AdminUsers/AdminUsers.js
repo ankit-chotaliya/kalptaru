@@ -122,7 +122,7 @@ function AdminUsers() {
                                 </button>
                             </div></td>
                             <td className="text-center"><div className='co-customer-share'>
-                            <button className='adkarigar-btn del-icon'><HiOutlineTrash id='deleteicon' onClick={() => handleDelete(u._id)} /></button>
+                            <button onClick={() => handleDelete(u._id)} className='adkarigar-btn del-icon'><HiOutlineTrash id='deleteicon'/></button>
                             </div></td>
                         </tr>
                         })
@@ -140,7 +140,7 @@ function AdminUsers() {
                     onHide={() => setViewModal(false)}
                     icon={<HiOutlineTrash />}
                     text="Are you sure you want to delete this User?"
-                    onReply={(e) => handleModalReply(e)}
+                    reply={(e) => handleModalReply(e)}
                 />
                  </>:<div className='text-center'><h2>No Users Available right now</h2></div>
                 }

@@ -475,6 +475,7 @@ const TrackOrder=()=> {
           {
             orderForthisWeek && orderForthisWeek.length>0?orderForthisWeek.map((ele,index)=>{
               return <ListView
+              indexnum={index+1}
               property1="Client Name:"
               property2="Category:"
               property3="Delivery Date:"
@@ -500,6 +501,7 @@ const TrackOrder=()=> {
         {
           orderForthisMonth && orderForthisMonth.length>0?orderForthisMonth.map((ele,index)=>{
             return <ListView
+            indexnum={index+1}
             property1="Client Name:"
             property2="Category:"
             property3="Delivery Date:"
@@ -526,6 +528,7 @@ const TrackOrder=()=> {
         {
           orderForthisOther && orderForthisOther.length>0?orderForthisOther.map((ele,index)=>{
             return <ListView
+            indexnum={index+1}
             property1="Client Name:"
             property2="Category:"
             property3="Delivery Date:"

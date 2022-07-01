@@ -30,7 +30,7 @@ const ConfirmOrder = () => {
 
             orderConfirm.data && orderConfirm.data.map((ele,index)=>{
                 axios.get(`http://localhost:8080/uploads/pdf/karigar/${ele}_orderKarigar.pdf`,{responseType:"blob"}).then(res=>{
-                    // console.log(res);
+                    console.log(res.data);
                     const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
                     // console.log(pdfBlob);
                     const fil2=new File([pdfBlob],"Karigar.pdf",{

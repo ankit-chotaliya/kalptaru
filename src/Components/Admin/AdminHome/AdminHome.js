@@ -59,11 +59,9 @@ function Adminadminhome() {
                         <h5 className="card-title boxname-adminhome">Clients</h5>
                         {
                           clients.data.client && clients.data.client.map((c, index, clients) => {
-
                             if (index + 1 == clients.length) {
                               return <p style={{fontSize:"18px", fontWeight:"bold"}}>({clients.length})</p>
                             }
-
                           })
                         }
                       </div>

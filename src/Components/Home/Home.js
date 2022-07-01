@@ -18,6 +18,7 @@ function Home() {
   const karigar=useSelector(state=>state.karigar);
   const dispatch=useDispatch();
   const [online, isOnline] = useState(navigator.onLine);
+  let count = 0;
 
   const setOnline = () => {
     console.log('We are online!');
@@ -71,7 +72,7 @@ function Home() {
         <div className="row">
           <div className="col-md-2"></div>
           <div className="col-md-8 colcenter-home mb-5">
-            <div className="parent_box-home"> <div className="title-home mt-5">Order Status</div></div>
+            <div className="parent_box-home"> <div className="title-home mt-5">Home</div></div>
             <div className="parent_box-home">
               <div className="row contentaround-home ">
                 <div className="col-md-4 col-xs-6 col-sm-6 boxcenter-home">
@@ -96,6 +97,15 @@ function Home() {
                       <h5 className="card-title boxname-home">
                         Order Status
                       </h5>
+                      {
+                          order.data.orders && order.data.orders.map((o, index, orders) => {
+
+                            if (index + 1 == orders.length) {
+                              return <p className="total-count">({orders.length})</p>
+                            }
+       
+                          })
+                        }
                     </div>
                   </div>
                   </Link>
@@ -137,9 +147,17 @@ function Home() {
                         src={completedOrders}
                         alt="New Order"
                       />
-                      <h5 className="card-title boxname-home">
-                        Completed Delivery
+                      <h5 className="card-title boxname-home cd-home-text">
+                        Completed Order
                       </h5>
+                      {
+                          order.data.orders && order.data.orders.map((o, index, orders) => {
+                              if(o.orderStatus==6){
+                                count++;
+                              }
+                            })
+                      }
+                    <p className="total-count">({count})</p>
                     </div>
                   </div>
                   </Link>
@@ -168,6 +186,14 @@ function Home() {
                         alt="Track Order"
                       />
                       <h5 className="card-title boxname-home">Urgent Orders</h5>
+                      {
+                          order.data.orders && order.data.orders.map((o, index, orders) => {
+                              if(o.priority=="Urgent"){
+                                count++;
+                              }
+                            })
+                      }
+                      <p className="total-count">({count})</p>
                     </div>
                   </div>
                   </Link>

@@ -481,7 +481,7 @@ const EditOrderFormHelper = (props) => {
                     onHide={() => setViewModal(false)}
                     icon={<GrDocumentUpdate/>}
                     text="Are you sure do you want to edit this order?"
-                    onReply={handleModalReply}
+                    reply={handleModalReply}
                   />
                   </div>
                 </div>

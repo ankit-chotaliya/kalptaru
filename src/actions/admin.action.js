@@ -117,7 +117,7 @@ export const adminDeleteClient=(clientId)=>{
                 type:adminClientConstant.DELETE_ADMIN_CLIENT_SUC,
             })
             dispatch(adminGetAllClient());
-            dispatch(setToastMsg("Client Deleted Successfully!",false));
+            dispatch(setToastMsg("Client Deleted Successfully!",true));
             
         }
         else if (res.status==203){

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import './AdminClients.css';
 import ModalHelper from '../../Helper/Modal/ModalHelper';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { HiOutlineTrash } from "react-icons/hi";
-import { useNavigate } from 'react-router-dom';
 import { adminDeleteClient, adminGetAllClient } from '../../../actions/admin.action';
 import Pagination from '../../Helper/Pagination/Pagination';
 import Loader from '../../Helper/Loader/Loader';
@@ -27,7 +27,7 @@ function AdminClients() {
     const recordsPerPage = 10;
    
     useEffect(()=>{
-    if (data.length > 0) {
+    if (data && data.length > 0) {
         let d = currentPage * recordsPerPage;
         setindexOfLastRecord(d);
         setindexOfFirstRecord(d - recordsPerPage);
@@ -41,6 +41,7 @@ function AdminClients() {
             setData(clients.data.client);
         }
     }, [clients])
+    console.log(data)
 
     useEffect(()=>{
         if(currentRecords.length==0){
@@ -77,18 +78,18 @@ function AdminClients() {
         <>
             <AdminNavbar />
             {
-                clients.data.loading?<Loader/>: <div className='container no-main no-border pageview'>
+              clients.loading?<Loader/>: <div className='container no-main no-border pageview'>
                 <div className='to-heading no-heading'>
                     <div className='to-editorder'>
                         <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Clients
                         <span style={{fontSize:"18px", fontWeight:"bold"}}>
                         {
-                                data.length>0?<>{indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length}</>:null
+                            data && data.length>0?<>{indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length}</>:null
                         }
                         </span>
                     </div>
                 </div>
-                {data.length>0?<>
+                {data && data.length>0?<>
                 <div className='table-responsive-md'>
                     <table className="table mt-4">
                         <thead>
@@ -96,14 +97,14 @@ function AdminClients() {
                                 <th scope="col" className='text-center' >No</th>
                                 <th scope="col" className='text-center'>Name</th>
                                 <th scope="col" className='text-center'>Phone No</th>
-                                <th scope="col" className='text-center'> City</th>
+                                <th scope="col" className='text-center'>City</th>
                                 <th scope="col" className="text-center">Delete</th>
                             </tr>
                         </thead>
                         <tbody className="table-group-divider">
 
                             {
-                              currentRecords.map((c, index) => {
+                                currentRecords && currentRecords.map((c, index) => {
 
                                     return <tr key={index}>
                                         <th scope="row" className='text-center align-middle'>{index + 1 + indexOfLastRecord - 10}</th>
@@ -111,7 +112,7 @@ function AdminClients() {
                                         <td scope="row" className='text-center align-middle'>{c.client_contact}</td>
                                         <td scope="row" className='text-center align-middle'>{c.client_city}</td>
                                         <td className="text-center"><div className='co-customer-share'>
-                                            <button className='adclient-btn del-icon'><HiOutlineTrash id='deleteicon' onClick={() => handleDelete(c._id)} /></button>
+                                            <button onClick={() => handleDelete(c._id)} className='adclient-btn del-icon'><HiOutlineTrash id='deleteicon'/></button>
                                         </div>
                                         </td>
                                     </tr>
@@ -130,7 +131,7 @@ function AdminClients() {
                     onHide={() => setViewModal(false)}
                     icon={<HiOutlineTrash />}
                     text="Are you sure you want to delete this Client?"
-                    onReply={(e) => handleModalReply(e)}
+                    reply={(e) => handleModalReply(e)}
                 />
                 </>:<div className='text-center'><h2>No Clients Available right now</h2></div>
                 }

@@ -431,6 +431,7 @@ const UrgentOrders=()=> {
           {
             orderForthisWeek && orderForthisWeek.length>0?orderForthisWeek.map((ele,index)=>{
               return <ListView
+              indexnum={index+1}
               property1="Client Name:"
               property2="Category:"
               property3="Delivery Date:"
@@ -456,10 +457,11 @@ const UrgentOrders=()=> {
         {
           orderForthisMonth && orderForthisMonth.length>0?orderForthisMonth.map((ele,index)=>{
             return <ListView
+            indexnum={index+1}
             property1="Client Name:"
             property2="Category:"
             property3="Delivery Date:"
-            propertyLabel="Priority:"
+            propertyLabel="Order Status:"
             value1={ele.orderClient==""|| !ele.clientName?"None":ele.orderClient}
             value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
             value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
@@ -482,10 +484,11 @@ const UrgentOrders=()=> {
         {
           orderForthisOther && orderForthisOther.length>0?orderForthisOther.map((ele,index)=>{
             return <ListView
+            indexnum={index+1}
             property1="Client Name:"
             property2="Category:"
             property3="Delivery Date:"
-            propertyLabel="Priority:"
+            propertyLabel="Order Status:"
             value1={ele.orderClient==""|| !ele.clientName?"None":ele.orderClient}
             value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
             value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
@@ -504,7 +507,7 @@ const UrgentOrders=()=> {
                     onHide={() => setViewModal(false)}
                     icon={<RiExchangeBoxLine/>}
                     text="Are you sure you want push order into next Status?"
-                    onReply={handleModalReply}
+                    reply={handleModalReply}
                     />
 
     </>

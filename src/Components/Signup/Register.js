@@ -13,6 +13,7 @@ import Loader from "../Helper/Loader/Loader"
 const Register = () => {
     const navigate = useNavigate();
     const [mobileNo, setMobileNo] = useState("");
+    const [email, setEmail] = useState("");
     const [fullname, setFullName] = useState("");
     const [password, setPassWord] = useState("");
     const [cpassword, setcPassWord] = useState("");
@@ -52,6 +53,7 @@ const Register = () => {
         // navigate("/");
         const dataObj = {
             fullname: fullname,
+            email:email,
             contact: mobileNo,
             password: password
         }
@@ -108,6 +110,21 @@ const Register = () => {
                                 placeholder='Mobile Number'
                                 value={mobileNo}
                                 onChange={(e) => { setMobileNo(e.target.value) }}
+                                id="st-mob"
+                            />
+                            <FiEdit3 className='st-mob-icon' />
+                        </div>
+                    </div>
+                    <div className='st-mobile mt-2'>
+                        <label htmlFor='st-mob'>E-Mail</label>
+                        <br />
+                        <div className='st-mob-sub'>
+                            <input
+                                type="text"
+                                className='st-mob-input'
+                                placeholder='Email'
+                                value={email}
+                                onChange={(e) => { setEmail(e.target.value) }}
                                 id="st-mob"
                             />
                             <FiEdit3 className='st-mob-icon' />

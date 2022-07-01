@@ -101,7 +101,7 @@ if (admin.adminlogoutsuccess) {
               );
             })}
             <hr></hr>
-            <li className='admin-nav-text'>
+            <li className='nav-text'>
               <Link onClick={handleLogout} to={'/login'}>
                 <FiIcons.FiLogOut style={{ color: 'red'}} />
                 <span className='nav_logout'>Logout</span>
