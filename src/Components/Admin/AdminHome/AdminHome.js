@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import Loader from '../../Helper/Loader/Loader';
 import Client from "./icons/client.png";
@@ -13,34 +13,53 @@ import { useDispatch } from "react-redux";
 import "./AdminHome.css";
 
 function Adminadminhome() {
+    //count state
+    const [orderCount,setOrderCount]=useState(0);
+    const [userCount,setUserCount]=useState(0);
+    const [clientCount,setClientCount]=useState(0);
+    const [karigarCount,setKarigarCount]=useState(0);
+    const [CompletedCount,setCompletedCount]=useState(0);
     const order=useSelector(state=>state.order);
-    const clients=useSelector(state=>state.client);
-    const karigars=useSelector(state=>state.karigar);
+    const client=useSelector(state=>state.client);
+    const karigar=useSelector(state=>state.karigar);
     const admin=useSelector(state=>state.admin);
-    const orders=useSelector(state=>state.order);
-    const users=useSelector(state=>state.user);
-    let count=0;
+    const user=useSelector(state=>state.user);
     const dispatch=useDispatch();
+    const navigate=useNavigate();
+
+
 
 
     useEffect(()=>{
-      if(localStorage.getItem('accessToken2') && !admin.authenticate){
-        const token=localStorage.getItem('accessToken2').split(" ")[0];
-        dispatch(preadminloginusingToken({accesstoken:token}));
-      }
-    },[])
+      if(admin.success && admin.authenticate){
 
-    useEffect(()=>{
-      if(admin.authenticate){
-      dispatch(adminGetAllClient());
-      dispatch(adminGetAllKarigar());
-      dispatch(adminGetAllUser());
-      dispatch(adminGetAllOrder());
       }
     },[admin.authenticate])
-    if(order.loading){
-      return <Loader/>
-    }
+
+    useEffect(()=>{
+      if(client.data.client && client.data.client.length>0){
+        setClientCount(client.data.client.length);
+      }
+      if(order.data.order && order.data.order.length>0){
+        setOrderCount(order.data.order.length);
+      }
+      if(order.data.order && order.data.order.length>0){
+        let count=0;
+        order.data.order && order.data.order.map((o) => {
+          if(o.orderStatus==6){
+            count++;
+          }
+        })
+        setCompletedCount(count);
+      }
+      if(karigar.data.karigar && karigar.data.karigar.length>0){
+        setKarigarCount(karigar.data.karigar.length);
+      }
+      if(user.data.user && user.data.user.length>0){
+        setUserCount(user.data.user.length);
+      }
+    },[order,client,karigar,user]);
+
     return (
       <>
       <AdminNavbar />
@@ -57,15 +76,7 @@ function Adminadminhome() {
                       <div className="card-body box-body ">
                         <img className="logo-adminhome" src={Client} alt="New Order" />
                         <h5 className="card-title boxname-adminhome">Clients</h5>
-                        {
-                          clients.data.client && clients.data.client.map((c, index, clients) => {
-
-                            if (index + 1 == clients.length) {
-                              return <p style={{fontSize:"18px", fontWeight:"bold"}}>({clients.length})</p>
-                            }
-
-                          })
-                        }
+                         ({clientCount})
                       </div>
                     </div>
                   </Link>
@@ -82,15 +93,7 @@ function Adminadminhome() {
                         <h5 className="card-title boxname-adminhome">
                           Orders
                         </h5>
-                        {
-                          orders.data.order && orders.data.order.map((o, index, orders) => {
-
-                            if (index + 1 == orders.length) {
-                              return <p style={{fontSize:"18px", fontWeight:"bold"}}>({orders.length})</p>
-                            }
-
-                          })
-                        }
+                        ({orderCount})
                       </div>
                     </div>
                   </Link>
@@ -105,15 +108,7 @@ function Adminadminhome() {
                           alt="Edit Order"
                         />
                         <h5 className="card-title boxname-adminhome">Karigar</h5>
-                        {
-                          karigars.data.karigar && karigars.data.karigar.map((v, index, karigars) => {
-
-                            if (index + 1 == karigars.length) {
-                              return <p style={{fontSize:"18px", fontWeight:"bold"}}>({karigars.length})</p>
-                            }
-
-                          })
-                        }
+                        ({karigarCount})
                       </div>
                     </div>
                   </Link>
@@ -128,14 +123,7 @@ function Adminadminhome() {
                           alt="Track Order"
                         />
                         <h5 className="card-title boxname-adminhome">Completed Order</h5>
-                        {
-                          orders.data.order && orders.data.order.map((o, index, orders) => {
-                              if(o.orderStatus==6){
-                                count++;
-                              }
-                            })
-                         }
-                         <p style={{fontSize:"18px", fontWeight:"bold"}}>({count})</p>
+                        ({CompletedCount})
                       </div>
                     </div>
                   </Link>
@@ -150,15 +138,7 @@ function Adminadminhome() {
                           alt="Edit Order"
                         />
                         <h5 className="card-title boxname-adminhome">Users</h5>
-                        {
-                          users.data.user && users.data.user.map((u, index, users) => {
-
-                            if (index + 1 == users.length) {
-                              return <p style={{fontSize:"18px", fontWeight:"bold"}}>({users.length})</p>
-                            }
-
-                          })
-                        }
+                        ({userCount})
                       </div>
                     </div>
                   </Link>

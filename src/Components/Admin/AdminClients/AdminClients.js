@@ -83,12 +83,12 @@ function AdminClients() {
                         <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Clients
                         <span style={{fontSize:"18px", fontWeight:"bold"}}>
                         {
-                                data.length>0?<>{indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length}</>:null
+                                data && data.length>0?<>{indexOfFirstRecord + 1 } - {indexOfLastRecord+currentRecords.length - 10} of {data.length}</>:null
                         }
                         </span>
                     </div>
                 </div>
-                {data.length>0?<>
+                {data && data.length>0?<>
                 <div className='table-responsive-md'>
                     <table className="table mt-4">
                         <thead>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import './ChangePassword.css';
@@ -6,18 +6,37 @@ import Navbar from '../NavBar/Navbar';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToastMsg } from '../../actions/toast.action';
+import { passwordChange } from '../../actions';
 
 const ChangePassword = () => {
     const navigate=useNavigate();
     const [mobileNo,setMobileNo]=useState("");
     const [password,setPassWord]=useState("");
     const [showPassword,setShowPassWord]=useState(false);
+    const [token,setToken]=useState("");
     const [cpassword,setcPassWord]=useState("");
-   
+    const dispatch=useDispatch();
+    const user=useSelector(state=>state.user);
     const handleLogin=(e)=>{
         e.preventDefault();
-        alert("Changed Successfull!");
-        navigate("/Login");
+        if(password=="" || cpassword==""){
+            dispatch(setToastMsg("password should not empty",true));
+            return;
+        }
+        if(password!=cpassword){
+            dispatch(setToastMsg("password and confirm password should equal",true));
+            return;
+        }
+        const dataobj={
+            password:password,
+            token:token
+        }
+
+        dispatch(passwordChange(dataobj)).then(()=>{
+            navigate("/login");
+        });
     }
 
     const handlepassword=(e)=>{
@@ -28,6 +47,15 @@ const ChangePassword = () => {
         setShowPassWord(true);
         setcPassWord(e.target.value);
     }
+
+    useEffect(()=>{
+        if(user.success){
+            if(user.data.accesstoken){
+                const t=user.data.accesstoken;
+                setToken(t);
+            }
+        }
+    },[user])
   return (
     <>
     <Navbar/>
@@ -35,7 +63,7 @@ const ChangePassword = () => {
             <div className='no-heading'>
               <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate("/")}/> Change Password
             </div>
-            
+            <form onSubmit={handleLogin}>
             <div className='co-container mt-4'>
                 <div className='st-mobile mt-2'>
                     <label htmlFor='st-pass'>Password</label>
@@ -73,13 +101,13 @@ const ChangePassword = () => {
                 </div>
                 <div className='co-customer-share mt-4'>
                   
-                   <button className='co-share-btn' onClick={handleLogin}>
+                   <button className='co-share-btn' type="submit">
                         Log in
                    </button>
                 </div>
                 
             </div>
-           
+            </form>
         </div>
     </>
   )
