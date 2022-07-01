@@ -236,7 +236,7 @@ export const adminGetAllOrder=()=>{
             type:adminOrderConstant.GET_ADMIN_ALL_ORDER_REQ,
             data:"Please Wait..."
         })
-        axios.get('admin/getallOrder')
+        axios.post('admin/getallOrder')
         .then(res=>{
             dispatch({
                 type:adminOrderConstant.GET_ADMIN_ALL_ORDER_SUC,
@@ -252,3 +252,31 @@ export const adminGetAllOrder=()=>{
     }
 }
 
+export const adminUActivateDeactivate=(userId)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:adminUserConstant.ADMIN_USER_ACTIVATE_DEACTIVATE_REQ,
+            success:false,
+            data:"Please Wait..."
+        })
+        const res=await axios.post('admin/userActivate',userId)
+        if(res.status==200){
+            dispatch({
+                type:adminUserConstant.ADMIN_USER_ACTIVATE_DEACTIVATE_SUC,
+                success:true,
+                payload:res.data
+            })
+            dispatch(adminGetAllUser());
+            dispatch(setToastMsg(res.data.message,false));
+     
+        }else if(res.status==203){
+            dispatch({
+                type:adminUserConstant.ADMIN_USER_ACTIVATE_DEACTIVATE_FAILURE,
+                success:false,
+                payload:res.data
+            })
+            dispatch(setToastMsg(res.data.message,true));
+     
+        }
+    }
+}

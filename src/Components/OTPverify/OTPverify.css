@@ -30,6 +30,12 @@
 .st-mob-sub{
     border: 1px solid var(--textColor);
 }
+.resent-otp{
+    border: none;
+    outline: none;
+    color:var(--darkGreen);
+    background: none;
+}
 
 @media only screen and (max-width: 300px){
     .st-mobile {

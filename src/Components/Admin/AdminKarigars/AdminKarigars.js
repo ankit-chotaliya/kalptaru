@@ -36,23 +36,23 @@ function AdminKarigars() {
         }
         },[data,currentPage])
 
-        useEffect(() => {
-            if (Karigars.success==true) {
-                setData(Karigars.data.karigar);
-            }
-        }, [Karigars])
+    useEffect(() => {
+        if (Karigars.success==true) {
+            setData(Karigars.data.karigar);
+        }
+    }, [Karigars])
 
-        useEffect(()=>{
-            if(currentRecords.length==0){
-                    if (currentPage==1) {
-                        console.log("currentpage:",currentPage);
-                        setCurrentPage(1)
-                    } else {
-                        setCurrentPage(currentPage-1);
-                        console.log("currentpage:",currentPage);
-                    }
+    useEffect(()=>{
+        if(currentRecords.length==0){
+                if (currentPage==1) {
+                    console.log("currentpage:",currentPage);
+                    setCurrentPage(1)
+                } else {
+                    setCurrentPage(currentPage-1);
+                    console.log("currentpage:",currentPage);
                 }
-        },[currentRecords])
+            }
+    },[currentRecords])
     const handleModalReply = (e) =>{
         const reply = e.target.value;
         if(reply=="true"){

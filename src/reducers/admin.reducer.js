@@ -45,6 +45,8 @@ export default(state=intialState,action)=>{
             return{
                 ...state,
                 loading:true,
+                success:false,
+                authenticate:false,
                 adminlogoutsuccess:false,
             }
         }
@@ -54,7 +56,7 @@ export default(state=intialState,action)=>{
                 loading:false,
                 data:{},
                 authenticate:false,
-                success:false,
+                success:true,
                 adminlogoutsuccess:true
             }
         }
@@ -62,6 +64,8 @@ export default(state=intialState,action)=>{
             return{
                 ...state,
                 loading:false,
+                authenticate:false,
+                success:false,
                 adminlogoutsuccess:false
             }
         }

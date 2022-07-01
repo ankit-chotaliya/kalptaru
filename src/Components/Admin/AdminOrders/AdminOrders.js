@@ -45,7 +45,7 @@ function AdminOrders() {
             setindexOfFirstRecord(d - recordsPerPage);
             setNPages( Math.ceil(currentRecords.length / recordsPerPage));
         }
-        },[data,currentPage])
+        },[data,currentPage,isNormal,isDefault,isFast,isUrgent])
         useEffect(() => {
             if (Orders.success==true) {
                 setData(Orders.data.order);
@@ -55,11 +55,11 @@ function AdminOrders() {
         useEffect(()=>{
             if(currentRecords.length==0){
                     if (currentPage==1) {
-                        console.log("currentpage:",currentPage);
+                        // console.log("currentpage:",currentPage);
                         setCurrentPage(1)
                     } else {
                         setCurrentPage(currentPage-1);
-                        console.log("currentpage:",currentPage);
+                        // console.log("currentpage:",currentPage);
                     }
                 }
         },[currentRecords])
@@ -69,32 +69,35 @@ function AdminOrders() {
             setIsNormal(false);
             setIsFast(false);
             setIsDefault(false);
-            setIsSorting(true)
-            setCurrentPage(1)
+            setIsSorting(true);
+            setCurrentRecords(data.filter(x=>x.priority=='Urgent'));
+            setCurrentPage(1);
           }
           const handleFast=()=>{
             setIsUrgent(false);
             setIsNormal(false);
             setIsFast(true);
             setIsDefault(false);
-            setIsSorting(true)
-            setCurrentPage(1)
+            setIsSorting(true);
+            setCurrentPage(1);
+            setCurrentRecords(data.filter(x=>x.priority=='Fast'));
           }
           const handleNormal=()=>{
             setIsUrgent(false);
             setIsNormal(true);
             setIsFast(false);
             setIsDefault(false);
-            setIsSorting(true)
-            setCurrentPage(1)
+            setIsSorting(true);
+            setCurrentPage(1);
+            setCurrentRecords(data.filter(x=>x.priority=='Normal'));
           }
           const handleDefault=()=>{
             setIsUrgent(false);
             setIsNormal(false);
             setIsFast(false);
             setIsDefault(true);
-            setIsSorting(false)
-            setCurrentPage(1)
+            setIsSorting(false);
+            setCurrentPage(1);
           }
 
     return (
@@ -113,6 +116,7 @@ function AdminOrders() {
                         </span>
                     </div>
                 </div>
+                {console.log(data)}
                 <div className='container mt-4'>
                     <div className='btns'>
                         <button className={isUrgent?'btn1 btn1-active':'btn1'} onClick={handleUrgent}>Urgent</button>

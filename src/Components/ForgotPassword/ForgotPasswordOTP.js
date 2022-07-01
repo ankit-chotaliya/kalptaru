@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import './OTPverify.css';
+import './ForgotPassword.css';
 import Navbar from '../NavBar/Navbar';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToastMsg } from '../../actions/toast.action';
-import { otpverify, registration } from '../../actions/user.action';
+import { otpverify, otpverifyForgotPassword, registration } from '../../actions/user.action';
 import Loader from '../Helper/Loader/Loader';
 
-const OTPverify = () => {
+const ForgotPasswordOTP = () => {
     const navigate=useNavigate();
     const [mobileNo,setMobileNo]=useState("");
     const [password,setPassWord]=useState("");
@@ -18,6 +18,7 @@ const OTPverify = () => {
     const user=useSelector(state=>state.user);
     const dispatch=useDispatch();
     const handleSubmit=(e)=>{
+        e.preventDefault();
         if(password=="" || password.length!=6){
             dispatch(setToastMsg("OTP is not valid!",true));
             return;
@@ -33,17 +34,7 @@ const OTPverify = () => {
         const formData=new FormData();
         formData.append("otp",password);
         formData.append("token",token);
-        dispatch(otpverify(dataobj));
-    }
-    const handleresend=(e)=>{
-        e.preventDefault();
-        const dataobj={
-            fullname:user.data.user.fullname,
-            contact:user.data.user.mobileNo,
-            password:user.data.user.password,
-            count:user.data.user.count
-        }
-        dispatch(registration(dataobj))
+        dispatch(otpverifyForgotPassword(dataobj))
     }
     const handlepassword=(e)=>{
         setShowPassWord(true);
@@ -60,8 +51,8 @@ const OTPverify = () => {
     },[])
 
     useEffect(()=>{
-        if(user.success && user.otpVerified){
-            navigate("/login");
+        if(user.success && user.passwordOTPVerified){
+            navigate("/ChangePassword");
         }
     },[user])
   return (
@@ -89,9 +80,7 @@ const OTPverify = () => {
                 />
                 <FiEdit3 className='st-mob-icon'/>
                 </div>
-                <span style={{ marginLeft: "0", marginTop: "10px" }}>
-                    <button className='resent-otp' onClick={handleresend}>Resend OTP?</button>
-                </span>
+
             </div>
                 <div className='co-customer-share mt-4'>
                   
@@ -106,4 +95,4 @@ const OTPverify = () => {
   )
 }
 
-export default OTPverify
+export default ForgotPasswordOTP
