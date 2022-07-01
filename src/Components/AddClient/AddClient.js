@@ -203,8 +203,7 @@ const AddClient = (props) => {
           </Modal.Footer>
         </form>
         </Modal.Body>
-      </Modal>
-    
+      </Modal>  
   </>
   )
 }

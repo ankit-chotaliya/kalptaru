@@ -166,7 +166,7 @@ function AdminUsers() {
                     onHide={() => setViewModal(false)}
                     icon={<HiOutlineTrash />}
                     text="Are you sure you want to delete this User?"
-                    onReply={(e) => handleUactivateModalReply(e)}
+                    reply={(e) => handleUactivateModalReply(e)}
                 />
                  </>:<div className='text-center'><h2>No Users Available right now</h2></div>
                 }

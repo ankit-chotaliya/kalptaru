@@ -5,9 +5,7 @@ import { setToastMsg } from './toast.action'
 
 
 export const registration=(dataObj)=>{
-
     return async (dispatch)=>{
-
         dispatch({
             type:userConstant.USER_REGISTER_REQ,
             data:"Requesting..."
