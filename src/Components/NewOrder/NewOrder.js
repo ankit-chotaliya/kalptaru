@@ -53,8 +53,8 @@ const NewOrder = () => {
 
   const handleChange=(i,e)=>{
     let newFormValues = [...formValues];
-    
     const targetName=e.target.name.split(" ")[0];
+
         if(e.target.type=="file"){
           newFormValues[i][e.target.name] = e.target.files;
         }else if(e.target.type=="radio" || targetName=="melting"){

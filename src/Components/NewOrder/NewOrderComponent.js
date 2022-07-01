@@ -6,15 +6,21 @@ import { HiOutlineTrash } from "react-icons/hi";
 import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import AddCategory from '../AddCategory/AddCategory';
-import { Country, State, City }  from 'country-state-city';
+import { Country, State, City } from 'country-state-city';
 import imgtest from '../EditOrder/ring.jpg';
 import { getAllCategory, getAllClient, getAllKarigar } from '../../actions';
 import { setToastMsg } from '../../actions/toast.action';
 const NewOrderComponent = (props) => {
-    console.log(City.getCitiesOfState("IN", "GJ"))
+
     const [imglen, setImglen] = useState(0);
     const [addClientModal, setAddClientModal] = useState(false);
+    const [addClient, setAddClient] = useState("");
+    const [activeClient, setActiveClient] = useState(false);
     const [addKarigarModal, setAddKarigarModal] = useState(false);
+    const [addKarigar, setAddKarigar] = useState("");
+    const [activeKarigar, setActiveKarigar] = useState(false);
+    const [addCategory, setAddCategory] = useState("");
+    const [activeCategory, setActiveCategory] = useState(false);
     const [addCategoryModal, setAddCategoryModal] = useState(false);
     const clients = useSelector(state => state.client);
     const karigars = useSelector(state => state.karigar);
@@ -33,6 +39,7 @@ const NewOrderComponent = (props) => {
         setImglen(e.target.files.length);
         props.handleimg(e);
     }
+
 
     const handleClient = (e) => {
         e.preventDefault();
@@ -106,7 +113,7 @@ const NewOrderComponent = (props) => {
     return (
 
         <>
-        
+
             <div className='row no-order-number'>
                 <div className={props.orderNumber == 1 ? 'mt-4 mb-2' : 'no-ordernum mt-5 mb-2'}>
                     Order #{props.orderNumber}
@@ -117,41 +124,103 @@ const NewOrderComponent = (props) => {
 
             </div>
             <div className="row">
-                {!props.index ? <div className="col-md-6 col-sm-12 mt-4">
+                {!props.index ? <div className="col-md-6 col-sm-12 mt-4" style={{ zIndex: 1 }} >
                     <label htmlFor="select-client">Select Client*:</label>
-                    <div className='d-flex justify-content-start'>
-                        <select className="form-select no-select" aria-label="Default select example" id='select-client' name="clientName" onChange={e => props.handleChange(props.index, e)} >
-                            <option selected disabled>Select</option>
-                            {
-                                clients.data.client && clients.data.client.map((c, index) => {
-                                    return <option value={c._id} >{c.client_name}</option>;
-                                })
-                            }
-                        </select>
+                    <div className='d-flex' onClick={(e) => { setActiveClient(!activeClient); setActiveKarigar(false); setActiveCategory(false) }}>
+                        <input type="text"
+                            className="form-select no-select"
+                            placeholder='Select Client'
+                            value={addClient}
+                            onChange={(e) => { setAddClient(e.target.value); setActiveClient(true) }}
+                        />
+
                         <button className='no-add-btn' onClick={handleClient}> Add </button>
                         <AddClient
                             show={addClientModal}
                             onHide={() => setAddClientModal(false)}
                         />
+
+                    </div>
+
+                    <div className="dropdown1 no-select">
+
+                        {
+                            activeClient && (
+                                <div className='dropdown-content '>
+                                    {
+                                        
+                                        clients.data.client.length > 0 ? clients.data.client && clients.data.client.filter((val) => {
+
+                                            if (addClient == "") {
+
+                                                return val;
+                                            }
+                                            else if (val.client_name.toLowerCase().includes(addClient.toLowerCase())) {
+                                                return val;
+                                            }
+                                        }).map((c, index) => {
+                                            return <button value={c._id} name="clientName" className='options1' onClick={(e) => {
+
+                                                setAddClient(c.client_name);
+                                                setActiveClient(false);
+                                                props.handleChange(props.index, e);
+
+
+                                            }} >{c.client_name}</button>;
+                                        }) : <button className='options1'> No Clients</button>
+                                    }
+
+                                </div>
+                            )
+                        }
                     </div>
                 </div> : null}
 
-                <div className="col-md-6 col-sm-12 mt-4">
+                <div className="col-md-6 col-sm-12 mt-4" style={{ zIndex: 0 }}>
                     <label htmlFor="select-karigar">Select Karigar*:</label>
-                    <div className='d-flex justify-content-start'>
-                        <select className="form-select no-select" aria-label="Default select example" id="select-karigar" name="karigarName" onChange={e => props.handleChange(props.index, e)}>
-                            <option selected disabled>Select</option>
-                            {
-                                karigars.data.karigar && karigars.data.karigar.map((k, index) => {
-                                    return <option value={k._id}>{k.karigar_name}</option>;
-                                })
-                            }
-                        </select>
+                    <div className='d-flex' onClick={(e) => { setActiveClient(false); setActiveKarigar(!activeKarigar); setActiveCategory(false) }}>
+                        <input type="text"
+                            className="form-select no-select"
+                            placeholder='Select Karigar'
+                            value={addKarigar}
+                            onChange={(e) => { setAddKarigar(e.target.value); setActiveKarigar(true) }} />
                         <button className='no-add-btn' onClick={handleAddKarigar}> Add </button>
                         <AddKarigar
                             show={addKarigarModal}
                             onHide={() => setAddKarigarModal(false)}
                         />
+                    </div>
+                    <div className="dropdown1 no-select">
+
+                        {
+                            activeKarigar && (
+                                <div className='dropdown-content '>
+                                    {
+                                        
+                                        karigars.data.karigar.length > 0 ? karigars.data.karigar && karigars.data.karigar.filter((val) => {
+
+                                        if (addKarigar == "") {
+
+                                            return val;
+                                        }
+                                        else if (val.karigar_name.toLowerCase().includes(addKarigar.toLowerCase())) {
+                                            return val;
+                                        }
+                                    }).map((k, index) => {
+                                        return <button value={k._id} name="karigarName" className='options1' onClick={(e) => {
+
+                                            setAddKarigar(k.karigar_name);
+                                            setActiveKarigar(false);
+                                            props.handleChange(props.index, e);
+
+                                        }}>{k.karigar_name}</button>
+                                   
+                                    }) : <button className='options1'> No Karigars</button>
+                                    }
+                                </div>
+                            )
+                        }
+
                     </div>
                 </div>
             </div>
@@ -159,24 +228,54 @@ const NewOrderComponent = (props) => {
 
             <div className='row mt-4'>
                 <label htmlFor="product-category">Product Category*:</label>
-                <div className='d-flex justify-content-start'>
-                    <select className="form-select no-select-full-row" aria-label="Default select example" id="product-category" name="category" onChange={e => handlePCategory(props.index, e)}>
-                        <option selected disabled>Select</option>
-                        {
-                            category.data.categories && category.data.categories.map((c, index) => {
-                                return <option value={c._id}>{c.name}</option>;
-                            })
-                        }
-                    </select>
+                <div className='d-flex' onClick={(e) => { setActiveClient(false); setActiveKarigar(false); setActiveCategory(!activeCategory) }}>
+                    <input type="text"
+                        className="form-select no-select-full-row"
+                        placeholder='Select Category'
+                        value={addCategory}
+                        onChange={(e) => { setAddCategory(e.target.value); setActiveCategory(true) }} />
                     <button className='no-add-btn' onClick={handleAddCategory}> Add </button>
                     <AddCategory
                         show={addCategoryModal}
                         onHide={() => setAddCategoryModal(false)}
                     />
                 </div>
+                <div className="dropdown1 no-select-full-row">
+
+                    {
+                        activeCategory && (
+                            <div className='dropdown-content '>
+                                {
+                                    
+                                    category.data.categories.length > 0 ? category.data.categories && category.data.categories.filter((val) => {
+
+                                    if (addCategory == "") {
+
+                                        return val;
+                                    }
+                                    else if (val.name.toLowerCase().includes(addCategory.toLowerCase())) {
+                                        return val;
+                                    }
+                                }).map((c, index) => {
+                                    return <button value={c._id} name="category" className='options1' onClick={(e) => {
+
+                                        setAddCategory(c.name);
+                                        setActiveCategory(false);
+                                        handlePCategory(props.index, e)
+
+                                    }} >{c.name}</button>;
+                                }): <button className='options1'> No Categories</button>
+                                
+                                }
+
+                            </div>
+                        )
+                    }
+
+                </div>
             </div>
             <div className='row'>
-                <div className="col-md-6 col-sm-12 mt-4">
+                <div className="col-md-6 col-sm-12 mt-4"  style={{ zIndex: -1 }}>
                     <label htmlFor="ref-num">Reference Number*:</label>
                     <div className='d-flex justify-content-start'>
                         <input
@@ -207,7 +306,7 @@ const NewOrderComponent = (props) => {
             </div>
 
             <div className='row'>
-                <div className="col-md-6 col-sm-12 mt-4">
+                <div className="col-md-6 col-sm-12 mt-4"  >
                     <label htmlFor="from">Weight(in grams)*:</label>
                     <div className='d-flex justify-content-start'>
                         <input
@@ -221,7 +320,7 @@ const NewOrderComponent = (props) => {
                         />
                     </div>
                 </div>
-                <div className="col-md-6 col-sm-12 mt-4">
+                <div className="col-md-6 col-sm-12 mt-4" >
                     <label htmlFor="to"></label>
                     <div className='d-flex justify-content-start'>
                         <input
@@ -238,7 +337,7 @@ const NewOrderComponent = (props) => {
             </div>
 
             <div className='row'>
-                <div className="col-md-6 col-sm-12 mt-4">
+                <div className="col-md-6 col-sm-12 mt-4" >
                     <label htmlFor="d-date">Delivery Date*:</label>
                     <div className='d-flex justify-content-start'>
                         <input
@@ -253,7 +352,7 @@ const NewOrderComponent = (props) => {
                         <span className='no-validity'></span>
                     </div>
                 </div>
-                <div className="col-md-6 col-sm-12 mt-4">
+                <div className="col-md-6 col-sm-12 mt-4" >
                     <label htmlFor="melting">Melting*:</label>
                     <div className='d-flex justify-content-around'>
 
