@@ -239,6 +239,7 @@ const OrderStatus = () => {
             orderDataSpecific && orderDataSpecific.length>0?orderDataSpecific.map((ele,index)=>{
                 return <OrderStatusCard 
                 key={index}
+                index={index}
                 orderId={ele.orderId} 
                 label={ele.orderStatus}
                 orderImage={ele.orderImage}

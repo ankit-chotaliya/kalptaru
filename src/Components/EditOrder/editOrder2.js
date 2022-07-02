@@ -347,7 +347,7 @@ function EditOrder2() {
                     onHide={() => setViewModal(false)}
                     icon={<HiOutlineTrash onClick={hadnleUpdateOrder} />}
                     text="Are you sure you want to delete this Order?"
-                    onReply={handleModalReply}
+                    reply={handleModalReply}
                      />
                     
                     

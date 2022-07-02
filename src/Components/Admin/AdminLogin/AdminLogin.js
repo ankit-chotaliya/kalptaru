@@ -46,7 +46,7 @@ function AdminLogin() {
                     <p className='nav_logotext'>Shree Kalptaru</p>
                 </div>
             </div>
-
+        <form>
             <div className='container no-main no-border pageview'>
                 <div className='co-container mt-4'>
                     <p className='nav_logotext' id="title">Admin Login</p>
@@ -91,6 +91,7 @@ function AdminLogin() {
                 </div>
 
             </div>
+        </form>    
         </>
     );
 }

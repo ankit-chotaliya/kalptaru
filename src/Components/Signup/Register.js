@@ -5,6 +5,7 @@ import AddKarigar from '../AddKarigar/AddKarigar';
 import './Register.css';
 import logo from './logo.png';
 // import { registration } from '../../actions/user.action';
+import { emptyuserState } from '../../actions/user.action';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
@@ -20,12 +21,6 @@ const Register = () => {
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
-
-    useEffect(() => {
-        if (user.success) {
-            navigate("/");
-        }
-    }, [user.success])
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -50,13 +45,20 @@ const Register = () => {
 
         // alert("Registration Successfull!");
         // navigate("/");
-        const dataObj = {
-            fullname: fullname,
-            contact: mobileNo,
-            password: password
+        const dataobj={
+            fullname:fullname,
+            contact:mobileNo,
+            password:password,
+            count:3
         }
 
-        // dispatch(registration(dataObj))
+        const formData=new FormData();
+        formData.append("fullname",fullname);
+        formData.append("contact",mobileNo);
+        formData.append("password",password);
+
+        //dispatch(registration(dataobj))
+
 
     }
 
@@ -69,6 +71,15 @@ const Register = () => {
         setShowPassWord(true);
         setcPassWord(e.target.value);
     }
+    useEffect(()=>{
+        if(user.success && user.data.success){
+            navigate("/otpverify");
+        }
+    },[user])
+
+    useEffect(()=>{
+        dispatch(emptyuserState());
+    },[])
     return (
         <>{
          user.loading?<Loader
@@ -80,7 +91,7 @@ const Register = () => {
                 </div>
             </div>
             <div className='container no-main no-border pageview'>
-
+                <form onSubmit={handleRegister}>
                 <div className='co-container mt-4'>
                     <p className='nav_logotext' id="title">User Registration</p>
                     <div className='st-mobile mt-5'>
@@ -149,7 +160,7 @@ const Register = () => {
                     </div>
                     <div className='co-customer-share mt-4'>
 
-                        <button className='co-share-btn' onClick={handleRegister}>
+                        <button type="submit" className='co-share-btn'>
                             Register
                         </button>
                     </div>
@@ -159,7 +170,8 @@ const Register = () => {
                         </button>
                     </div>
                 </div>
- 
+                </form>
+
             </div>
             </>
         }

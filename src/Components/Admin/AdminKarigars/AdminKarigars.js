@@ -36,26 +36,25 @@ function AdminKarigars() {
         }
         },[data,currentPage])
 
-        useEffect(() => {
-            if (Karigars.success==true) {
-                setData(Karigars.data.karigar);
-            }
-        }, [Karigars])
+    useEffect(() => {
+        if (Karigars.success==true) {
+            setData(Karigars.data.karigar);
+        }
+    }, [Karigars])
 
-        useEffect(()=>{
-            if(currentRecords.length==0){
-                    if (currentPage==1) {
-                        console.log("currentpage:",currentPage);
-                        setCurrentPage(1)
-                    } else {
-                        setCurrentPage(currentPage-1);
-                        console.log("currentpage:",currentPage);
-                    }
+    useEffect(()=>{
+        if(currentRecords.length==0){
+                if (currentPage==1) {
+                    console.log("currentpage:",currentPage);
+                    setCurrentPage(1)
+                } else {
+                    setCurrentPage(currentPage-1);
+                    console.log("currentpage:",currentPage);
                 }
-        },[currentRecords])
+            }
+    },[currentRecords])
     const handleModalReply = (e) =>{
         const reply = e.target.value;
-
         if(reply=="true"){
             dispatch(adminDeleteKarigar(orderDeleteId)).then(()=>{
                 if (Karigars.success) {
@@ -107,7 +106,7 @@ function AdminKarigars() {
                                 <td scope="row" className='text-center align-middle'>{v.karigar_contact}</td>
                                 <td scope="row" className='text-center align-middle'>{v.karigar_city}</td>
                                 <td className="text-center"><div className='co-customer-share'>
-                                <button className='adkarigar-btn del-icon'><HiOutlineTrash id='deleteicon' onClick={() => handleDelete(v._id)} /></button>
+                                <button  onClick={() => handleDelete(v._id)}  className='adkarigar-btn del-icon'><HiOutlineTrash id='deleteicon'/></button>
                             </div></td>
                             </tr>
                                 })
@@ -124,8 +123,8 @@ function AdminKarigars() {
                     show={viewModal}
                     onHide={() => setViewModal(false)}
                     icon={<HiOutlineTrash />}
-                    text="Are you sure you want to delete this Client?"
-                    onReply={(e) => handleModalReply(e)}
+                    text="Are you sure you want to delete this karigar?"
+                    reply={(e) => handleModalReply(e)}
                 />
                 </>:<div className='text-center'><h2>No Karigars Available right now</h2></div>
                 }        

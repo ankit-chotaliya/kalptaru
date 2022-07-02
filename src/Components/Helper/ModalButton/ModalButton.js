@@ -26,7 +26,7 @@ const ModalButton = () => {
             onHide={() => setViewModal(false)}
             icon={<RiDeleteBin6Line/>}
             text="Are you sure you want to repeat this order?"
-            onReply={handleModalReply}
+            reply={handleModalReply}
         />  
     </>
   )

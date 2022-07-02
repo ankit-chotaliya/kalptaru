@@ -12,6 +12,9 @@ const ListView = (props) => {
     return (
         <>
             <div className='lv-list pb-2 pt-2'>
+                <div className='lv-indexnum'>
+                      {props.indexnum}
+                </div>
                 <div className='lv-property'>
                     <div className='lv-property-name'>
                         {props.property1}

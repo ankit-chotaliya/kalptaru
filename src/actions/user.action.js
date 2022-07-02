@@ -45,7 +45,7 @@ export const logout=()=>{
             dispatch({
                 type:userConstant.USER_LOGOUT_SUC
             })
-            //dispatch(setToastMsg("Login Success",false));
+            dispatch(setToastMsg("Logout Success",false));
             
         }else{
             // console.log("hii");
@@ -119,6 +119,96 @@ export const statusOffline=(userId)=>{
             dispatch({
                 type:userConstant.USER_OFFLINE_FAILURE
             })
+        }
+    }
+}
+export const emptyuserState=()=>{
+    return async(dispatch)=>{
+        dispatch({
+            type:userConstant.EMPTY_REQ
+        })
+    }
+}
+export const otpverify=(obj)=>{
+    return async(dispatch)=>{
+        dispatch({
+            type:userConstant.OTP_VERIFY_REQ
+        })
+        const res=await axios.post("/user/otpverify",obj)
+        if(res.status==200){
+            dispatch({
+                type:userConstant.OTP_VERIFY_SUC
+            })
+            dispatch(setToastMsg(res.data.message,false));
+        }else if(res.status==203){
+            dispatch({
+                type:userConstant.OTP_VERIFY_FAILURE
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+    }
+}
+
+export const otpsendForgotPassword=(obj)=>{
+    return async(dispatch)=>{
+        dispatch({
+            type:userConstant.FORGOT_OTP_REQ
+        })
+        const res=await axios.post("/user/forgotpasswordotp",obj)
+        if(res.status==200){
+            dispatch({
+                type:userConstant.FORGOT_OTP_SUC,
+                payload:res.data
+            })
+            dispatch(setToastMsg(res.data.message,false));
+        }else if(res.status==203){
+            dispatch({
+                type:userConstant.FORGOT_OTP_FAILURE
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+    }
+}
+
+export const otpverifyForgotPassword=(obj)=>{
+    return async(dispatch)=>{
+        dispatch({
+            type:userConstant.FORGOT_OTP_VERIFY_REQ
+        })
+        const res=await axios.post("/user/forgotpasswordotpverify",obj)
+        if(res.status==200){
+            dispatch({
+                type:userConstant.FORGOT_OTP_VERIFY_SUC,
+                payload:res.data
+            })
+            dispatch(setToastMsg(res.data.message,false));
+        }else if(res.status==203){
+            dispatch({
+                type:userConstant.FORGOT_OTP_VERIFY_FAILURE
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+    }
+}
+
+export const passwordChange=(obj)=>{
+    return async(dispatch)=>{
+        dispatch({
+            type:userConstant.PASSWORD_CHANGE_REQ
+        })
+        const res=await axios.post("/user/passwordchange",obj)
+        if(res.status==200){
+            dispatch({
+                type:userConstant.PASSWORD_CHANGE_SUC,
+                payload:res.data
+            })
+            dispatch(setToastMsg(res.data.message,false));
+            dispatch(emptyuserState());
+        }else if(res.status==203){
+            dispatch({
+                type:userConstant.PASSWORD_CHANGE_FAILURE
+            })
+            dispatch(setToastMsg(res.data.message,true));
         }
     }
 }

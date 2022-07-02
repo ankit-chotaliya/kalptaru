@@ -63,6 +63,13 @@ body {
     opacity: 1;
     filter: blur(0px); } 
 }
+.total-count{
+  font-size:1.8rem;
+  font-weight: 800;
+}
+.cd-home-text{
+  font-size: 24px;
+}
 
 @media screen and (max-width: 1500px) {
   .title-home {
@@ -84,6 +91,10 @@ body {
   .boxname-home {
     margin-top: 20px;
     font-size: 22px;
+  }
+  .total-count{
+    font-size:1rem;
+    font-weight: 800;
   }
 
   .box-body {
@@ -107,10 +118,17 @@ body {
     width: 35px;
     height: 35px;
   }
+  .total-count{
+    font-size:1rem;
+    font-weight: 800;
+  }
 
   .boxname-home {
     margin-left: 0 !important;
     font-size: 18px;
+  }
+  .cd-home-text{
+    font-size: 16px;
   }
 
   .box-home {
@@ -133,7 +151,13 @@ body {
     margin-left: 0 !important;
     font-size: 18px;
   }
-
+  .total-count{
+    font-size:1rem;
+    font-weight: 800;
+  }
+  .cd-home-text{
+    font-size: 14px;
+  }
   .box-home {
     width: 11rem !important;
     padding: 0 !important;
@@ -154,7 +178,13 @@ body {
     margin-left: 0 !important;
     font-size: 18px;
   }
-
+  .total-count{
+    font-size:1rem;
+    font-weight: 800;
+  }
+  .cd-home-text{
+    font-size: 14px;
+  }
   .box-home {
     width: 10rem !important;
     padding: 0 !important;
@@ -173,9 +203,15 @@ body {
 
   .boxname-home {
     margin-left: 0 !important;
-    font-size: 18px;
+    font-size: 16px;
   }
-
+  .total-count{
+    font-size:1rem;
+    font-weight: 800;
+  }
+  .cd-home-text{
+    font-size: 14px;
+  }
   .box-home {
     width: 9.5rem !important;
     padding: 0 !important;
@@ -196,6 +232,13 @@ body {
   .boxname-home {
     margin-left: 0 !important;
     font-size: 15px;
+  }
+  .total-count{
+    font-size:1rem;
+    font-weight: 800;
+  }
+  .cd-home-text{
+    font-size: 14px;
   }
 
   .boxcenter-home {
@@ -221,7 +264,13 @@ body {
     width: 35px;
     height: 35px;
   }
-
+  .total-count{
+    font-size:1rem;
+    font-weight: 800;
+  }
+  .cd-home-text{
+    font-size: 14px;
+  }
   .row {
     padding: 0rem;
   }
@@ -262,7 +311,13 @@ body {
   .title-home {
     margin-left: 4.5% !important;
   }
-
+  .total-count{
+    font-size:1rem;
+    font-weight: 800;
+  }
+  .cd-home-text{
+    font-size: 14px;
+  }
   .row {
     margin-left: 3rem;
   }
@@ -286,7 +341,13 @@ body {
   .boxcenter-home {
     --bs-gutter-x: 1rem !important;
   }
-
+  .total-count{
+    font-size:1rem;
+    font-weight: 800;
+  }
+  .cd-home-text{
+    font-size: 14px;
+  }
   .title-home {
     margin-left: 1.5% !important;
   }
