@@ -151,7 +151,7 @@ const NewOrder = () => {
       Array.from(ele.img).forEach(ele=>{
         formData.append("orderImg",ele);
       })
-      console.log(ele.ref);
+      // console.log(ele.ref);
       formData.append("clientId",clientId);
       formData.append("karigarId",ele.karigarName);
       formData.append("orderCategory",ele.category);

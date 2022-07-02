@@ -107,11 +107,11 @@ const LogIn = () => {
                                 Log in
                             </button>
                         </div>
-                        <div className='co-karigar-share mt-4'>
+                        {/* <div className='co-karigar-share mt-4'>
                             <button className='co-share-btn' onClick={() => { navigate("/Register") }}>
                                 Don't have an Account?
                             </button>
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>

@@ -36,21 +36,21 @@ export default (state = intialState, action) => {
             }
         }
 
-        case userConstant.USER_REGISTER_REQ: {
+        case adminUserConstant.USER_ADMIN_REGISTER_REQ: {
             return {
                 ...state,
                 loading: true,
                 success: false,
             }
         }
-        case userConstant.USER_REGISTER_SUC: {
+        case adminUserConstant.USER_ADMIN_REGISTER_SUC: {
             return {
                 ...state,
                 loading: false,
                 success: true,
             }
         }
-        case userConstant.USER_REGISTER_FAILURE: {
+        case adminUserConstant.USER_ADMIN_REGISTER_FAILURE: {
             return {
                 ...state,
                 loading: false,

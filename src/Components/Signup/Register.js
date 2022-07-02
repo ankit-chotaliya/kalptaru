@@ -4,7 +4,7 @@ import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import './Register.css';
 import logo from './logo.png';
-import { registration } from '../../actions/user.action';
+// import { registration } from '../../actions/user.action';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
@@ -56,7 +56,7 @@ const Register = () => {
             password: password
         }
 
-        dispatch(registration(dataObj))
+        // dispatch(registration(dataObj))
 
     }
 
