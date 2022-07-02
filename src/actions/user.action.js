@@ -2,6 +2,39 @@ import {userConstant} from './constant'
 import axios from '../utils/axios'
 import { setToastMsg } from './toast.action'
 
+export const registration=(dataObj)=>{
+
+    return async (dispatch)=>{
+
+        dispatch({
+            type:userConstant.USER_REGISTER_REQ,
+            data:"Requesting..."
+        })
+
+        axios.post('/user/signup', dataObj)
+        .then(res=>{
+            dispatch({
+                type:userConstant.USER_REGISTER_SUC,
+                payload:res.data
+            })
+            dispatch(setToastMsg("Registration Successfull",false))
+            
+        })
+        .catch(err=>{
+
+            alert("Registration Error");
+            dispatch({
+                type:userConstant.USER_REGISTER_FAILURE,
+                payload:err.message
+            })
+            dispatch(setToastMsg("Please Try Again",true))
+
+        })
+    }
+
+}
+
+
 export const login=(dataObj)=>{
     return async (dispatch)=>{
         dispatch({
