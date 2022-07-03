@@ -16,7 +16,7 @@ import Settings from './Components/Settings/Settings';
 import CompletedOrder from './Components/CompletedOrder/CompletedOrder';
 import OrderStatus from './Components/OrderStatus/OrderStatus';
 import LogIn from './Components/Signin/Login';
-import Register from './Components/Signup/Register';
+// import Register from './Components/Signup/Register';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import OTPverify from './Components/OTPverify/OTPverify';
 import ChangePassword from './Components/ChangePassword/ChangePassword';
@@ -175,7 +175,7 @@ const App = () => {
         <Route path="/OrderView/:orderId" exact element={<PrivateRoute isAuthenticated={user.authenticate}><EditOrder2/></PrivateRoute>}/>
         <Route path="/OrderStatus" exact element={<PrivateRoute isAuthenticated={user.authenticate}><OrderStatus/></PrivateRoute>}/>
         <Route path="/Login" exact element={<LogIn/>}/>
-        <Route path="/Register" exact element={<Register/>}/>
+        {/* <Route path="/Register" exact element={<Register/>}/> */}
         <Route path="/ForgotPassword" exact element={<ForgotPassword/>}/>
         <Route path="/forgotpasswordotpverify" exact element={<ForgotPasswordOTP/>}/>
         <Route path="/OTPverify" exact element={<OTPverify/>}/>

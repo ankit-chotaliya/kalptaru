@@ -2,42 +2,36 @@ import {userConstant} from './constant'
 import axios from '../utils/axios'
 import { setToastMsg } from './toast.action'
 
-
-
 export const registration=(dataObj)=>{
+
     return async (dispatch)=>{
+
         dispatch({
             type:userConstant.USER_REGISTER_REQ,
             data:"Requesting..."
         })
-        if(dataObj.count<=0){
+
+        axios.post('/user/signup', dataObj)
+        .then(res=>{
+            dispatch({
+                type:userConstant.USER_REGISTER_SUC,
+                payload:res.data
+            })
+            dispatch(setToastMsg("Registration Successfull",false))
+            
+        })
+        .catch(err=>{
+
+            alert("Registration Error");
             dispatch({
                 type:userConstant.USER_REGISTER_FAILURE,
-                payload:"OTP Limit reached"
+                payload:err.message
             })
-            dispatch(setToastMsg("OTP Limit reached",true))
-        }else{
-            const res=await axios.post('/user/otpsend',dataObj)
-            if(res.status==200){
-                dispatch({
-                    type:userConstant.USER_REGISTER_SUC,
-                    payload:res.data
-                })
-                if(res.data.user.count<=2){
-                    dispatch(setToastMsg(res.data.message+"! "+res.data.user.count+" Trial Remaining",false));
-                }else{
-                    dispatch(setToastMsg(res.data.message,false));
-                }
-            }else if(res.status==203){
-                dispatch({
-                    type:userConstant.USER_REGISTER_FAILURE,
-                    payload:res.data.message
-                })
-                dispatch(setToastMsg(res.data.message,true))
-            }
-        }
-        
+            dispatch(setToastMsg("Please Try Again",true))
+
+        })
     }
+
 }
 
 

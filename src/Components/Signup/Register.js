@@ -4,7 +4,8 @@ import AddClient from '../AddClient/AddClient';
 import AddKarigar from '../AddKarigar/AddKarigar';
 import './Register.css';
 import logo from './logo.png';
-import { registration,emptyuserState } from '../../actions/user.action';
+// import { registration } from '../../actions/user.action';
+import { emptyuserState } from '../../actions/user.action';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
@@ -56,7 +57,8 @@ const Register = () => {
         formData.append("contact",mobileNo);
         formData.append("password",password);
 
-        dispatch(registration(dataobj))
+        //dispatch(registration(dataobj))
+
 
     }
 
@@ -169,7 +171,7 @@ const Register = () => {
                     </div>
                 </div>
                 </form>
- 
+
             </div>
             </>
         }

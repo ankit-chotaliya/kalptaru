@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
+import AddClient from '../../AddClient/AddClient';
 import './AdminClients.css';
-import ModalHelper from '../../Helper/Modal/ModalHelper';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
-import { HiOutlineTrash } from "react-icons/hi";
-import { adminDeleteClient, adminGetAllClient } from '../../../actions/admin.action';
-import Pagination from '../../Helper/Pagination/Pagination';
 import Loader from '../../Helper/Loader/Loader';
 import AdminClientTable from '../../Helper/AdminClientTable/AdminClientTable';
 
@@ -16,34 +13,42 @@ function AdminClients() {
     const navigate = useNavigate();
     const clients = useSelector(state => state.client);
 
-    const [viewModal, setViewModal] = useState(false);
-    const [orderDeleteId, setOrderDeleteId] = useState("");
-    const [data, setData] = useState([])
 
-   
+    const [addClientModal, setAddClientModal] = useState(false);
+    const [data, setData] = useState([])
+  
 
 
     useEffect(() => {
-        if (clients.success==true) {
+        if (clients.success == true) {
             setData(clients.data.client);
         }
     }, [clients])
+    console.log(data)
 
-
-
-
+    const handleClient = (e) => {
+        e.preventDefault();
+        setAddClientModal(true);
+    }
+    
     return (
         <>
             <AdminNavbar />
             {
-              clients.loading?<Loader/>: <div className='container no-main no-border pageview'>
-                <div className='to-heading no-heading'>
-                    <div className='to-editorder'>
-                        <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Clients    
+                clients.loading ? <Loader /> : <div className='container no-main no-border pageview'>
+                    <div className='to-heading no-heading'>
+                        <div className='to-editorder'>
+                            <AiOutlineArrowLeft style={{ cursor: "pointer" }} onClick={() => navigate(-1)} /> Clients
+                        </div>
                     </div>
+                    <button className='no-add-btn mt-4 w-25' style={{ marginRight: "414px" }} onClick={handleClient} > Add Client </button>
+                    <AddClient
+                        show={addClientModal}
+                        onHide={() => setAddClientModal(false)}
+                    />
+                    <button className='no-add-btn mt-4 w-25' > Add Client using CSV </button>
+                   <AdminClientTable/>
                 </div>
-              <AdminClientTable/>
-            </div>
             }
         </>
     )

@@ -230,6 +230,59 @@ export const adminGetAllUser=()=>{
     }
 }
 
+export const adminAddUser=(dataObj)=>{
+
+    return async (dispatch)=>{
+
+        dispatch({
+            type:adminUserConstant.USER_ADMIN_REGISTER_REQ,
+            data:"Requesting..."
+        })
+
+        const res = await axios.post('/user/signup', dataObj)
+
+        if(res.status == 200){
+            dispatch({
+                type:adminUserConstant.USER_ADMIN_REGISTER_SUC,
+                payload:res.data
+            })
+            dispatch(setToastMsg("Registration Successfull",false));
+            dispatch(adminGetAllUser());
+            
+        }else if(res.status==203){
+            dispatch({
+                type:adminUserConstant.USER_ADMIN_REGISTER_FAILURE,
+                payload:"User Can't Add!"
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+    }
+}
+
+export const adminAddUserCsv=(dataObj)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:adminUserConstant.ADD_USER_CSV_REQ
+        })
+        const res=await axios.post('/user/signupCsv',{dataObj})
+        if(res.status==200){
+            dispatch({
+                type:adminUserConstant.ADD_USER_CSV_SUC,
+                payload:res.data
+            })
+            dispatch(setToastMsg("User Added Successfully!",false));
+            dispatch(adminGetAllUser());
+        }else if(res.status==203){
+            dispatch({
+                type:adminUserConstant.ADD_USER_CSV_FAILURE,
+                payload:"User Can't Add!"
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+      
+    }
+}
+
 export const adminGetAllOrder=()=>{
     return async (dispatch)=>{
         dispatch({

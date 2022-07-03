@@ -53,8 +53,8 @@ const NewOrder = () => {
 
   const handleChange=(i,e)=>{
     let newFormValues = [...formValues];
-    
     const targetName=e.target.name.split(" ")[0];
+
         if(e.target.type=="file"){
           newFormValues[i][e.target.name] = e.target.files;
         }else if(e.target.type=="radio" || targetName=="melting"){
@@ -151,7 +151,7 @@ const NewOrder = () => {
       Array.from(ele.img).forEach(ele=>{
         formData.append("orderImg",ele);
       })
-      console.log(ele.ref);
+      // console.log(ele.ref);
       formData.append("clientId",clientId);
       formData.append("karigarId",ele.karigarName);
       formData.append("orderCategory",ele.category);
