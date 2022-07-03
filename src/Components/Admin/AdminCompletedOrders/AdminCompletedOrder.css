@@ -1,5 +1,7 @@
 .getexel-btn{
     background-color: #00a651 !important;
+    min-width: 15%;
+    color: white;
     padding: 5px !important;
     border: none !important;
     margin: 5px !important;
