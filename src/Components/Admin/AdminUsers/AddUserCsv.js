@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux';
-import { adminAddUserCsv } from '../../../actions/admin.action';
+import { adminAddUserCsv, adminGetAllUser } from '../../../actions/admin.action';
 import './AdminUsers.css';
 
 const AddUserCsv = (props) => {
@@ -57,7 +57,7 @@ const AddUserCsv = (props) => {
                     alert("Mobile No. is not valid!");
                     return;
                 }
-                else if (data.hash_password == "" || !RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/).test(data.hash_password)) {
+                else if (data.password == "" || !RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/).test(data.password)) {
                     alert("Please Enter the Storng Password!");
                     return;
                 }
@@ -75,6 +75,7 @@ const AddUserCsv = (props) => {
 
         if (bool == true) {
              dispatch(adminAddUserCsv(dataObj));
+             dispatch(adminGetAllUser());
         }
 
         props.onHide();
