@@ -8,6 +8,7 @@ import './TrackOrder.css';
 import ListView from '../Helper/ListView/ListView';
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import PDF from '../PDF/PDF'
 const TrackOrder=()=> {
   const navigate = useNavigate();
   const [orderData,setOrderData]=useState([]);
@@ -19,6 +20,8 @@ const TrackOrder=()=> {
   const [isNormal,setIsNormal]=useState(false);
   const [isDefault,setIsDefault]=useState(true);
   const [filterModal,setFilterModal]=useState(false);
+  const [DownloadModal,setDownloadModal]=useState(false);
+  const [DownloadOrderId,setDownloadOrderId]=useState("");
   const [filterClientId,setFilterClientId]=useState("");
   const [filterCategoryId,setFilterCategoryId]=useState("");
   const [filterKarigarId,setFilterKarigarId]=useState("");
@@ -35,7 +38,8 @@ const TrackOrder=()=> {
     navigate('/OrderView/'+orderId);
   }
   const handleDownload=(orderId)=>{
-
+    setDownloadOrderId(orderId);
+    setDownloadModal(true);
   }
 
   const handleUrgent=()=>{
@@ -449,6 +453,45 @@ const TrackOrder=()=> {
         </form>
         </Modal.Body>
       </Modal>
+
+      <Modal
+        show={DownloadModal}
+        onHide={()=>setDownloadModal(false)}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className='no-modal'
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+          <div className='no-heading'>
+            <AiOutlineArrowLeft onClick={()=>setDownloadModal(false)}/> Download PDF
+          </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            {
+              orderData && orderData.map((ele,index)=>{
+                if(ele.orderId==DownloadOrderId){
+                  console.log("Element:"+ele);
+                  return <div key={index} className="mb-2">
+                    <ListView
+                      property1="Client Name:"
+                      property2="Category:"
+                      property3="Delivery Date:"
+                      propertyLabel="Priority:"
+                      value1={!ele.orderClient?"None":ele.orderClient}
+                      value2={!ele.orderCategory?"None":ele.orderCategory}
+                      value3={!ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
+                      valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}
+                    />
+                  </div>
+                }
+              })
+            }
+            <PDF orderId={DownloadOrderId} isRow={true}/>
+        </Modal.Body>
+      </Modal>
       <div className='container no-main no-border pageview'>
         <div className='to-heading no-heading'>
           <div className='to-editorder'>
@@ -506,10 +549,10 @@ const TrackOrder=()=> {
             property2="Category:"
             property3="Delivery Date:"
             propertyLabel="Priority:"
-            value1={ele.orderClient==""|| !ele.clientName?"None":ele.orderClient}
-            value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
-            value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
-            valueLabel={ele.orderPriority=="" || !ele.orderPriority?"Not Decided":ele.orderPriority}
+            value1={!ele.orderClient?"None":ele.orderClient}
+            value2={!ele.orderCategory?"None":ele.orderCategory}
+            value3={!ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
+            valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}
             icon={<GrFormView className='app-icon' onClick={()=>{handleopenEditForm(ele.orderId)}} />}
             icon1={<AiOutlineCloudDownload className='app-icon' onClick={()=>handleDownload(ele.orderId)}/>}
           />
@@ -533,10 +576,10 @@ const TrackOrder=()=> {
             property2="Category:"
             property3="Delivery Date:"
             propertyLabel="Priority:"
-            value1={ele.orderClient==""|| !ele.clientName?"None":ele.orderClient}
-            value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
-            value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
-            valueLabel={ele.orderPriority=="" || !ele.orderPriority?"Not Decided":ele.orderPriority}
+            value1={!ele.orderClient?"None":ele.orderClient}
+            value2={!ele.orderCategory?"None":ele.orderCategory}
+            value3={!ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
+            valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}
             icon={<GrFormView className='app-icon' onClick={()=>{handleopenEditForm(ele.orderId)}} />}
             icon1={<AiOutlineCloudDownload className='app-icon' onClick={()=>handleDownload(ele.orderId)}/>}
           />

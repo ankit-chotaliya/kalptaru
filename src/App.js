@@ -181,7 +181,6 @@ const App = () => {
         <Route path="/OTPverify" exact element={<OTPverify/>}/>
         <Route path="/ChangePassword" exact element={<ChangePassword/>}/>
         <Route path='*' exact element={<NotFound/>}/>
-        <Route path='/pdf' exact element={<PDF/>}/>
         <Route path="/AdminHome" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminHome/></PrivateRouteAdmin>}/>
       </Routes>
     </>
