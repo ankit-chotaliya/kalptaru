@@ -34,14 +34,13 @@ export const createNewOrder=(dataObj)=>{
         // console.log(dataObj);
         const res=await axios.post('/order/newOrders',dataObj);
         if(res.status==200){
-            // dispatch(PDFfetch(res.data._id));
-            console.log("From order create action :",res.data.data._id);
             dispatch({
                 type:orderConstant.NEW_ORDER_SUC,
-                payload:res.data
+                payload:res.data.data
             })
-            dispatch(setOrderConfirm(res.data.data._id));
             dispatch(setToastMsg("Order Created!",false));
+            dispatch(setOrderConfirm(res.data.data._id));
+            dispatch(getAllOrders());
             
         }else{
             // dispatch(emptyOrderConfirm());

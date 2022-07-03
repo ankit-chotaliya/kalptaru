@@ -8,7 +8,10 @@ import { HiOutlineTrash } from "react-icons/hi";
 import { VscEdit } from "react-icons/vsc";
 import ring from "./ring.jpg";
 import Slider from "react-slick";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PdfDocument } from "../PDF/Template";
 import { useDispatch, useSelector } from 'react-redux';
+import PDF from '../PDF/PDF';
 
 
 function EditOrder2() {
@@ -17,6 +20,9 @@ function EditOrder2() {
     const [viewModal, setViewModal] = useState(false);
     const [orderData,setOrderData]=useState([]);
     const [orderDataSpecific,setOrderDataSpecific]=useState([]);
+    const [movieDetails, setDetails] = useState([]);
+    const [show, setHide] = useState(true);
+    const [showKarigar, setHideKarigar] = useState(true);
     const {orderId}=useParams()
     const handleModalReply = (e) => {
         const reply = e.target.value;
@@ -340,6 +346,7 @@ function EditOrder2() {
                                 </tr>
                             </table>
                         </div>
+                        <PDF orderId={orderId} isRow={true}/>
                     </div>:<div className='mt-5 text-center'><h2>Order Details were not found!</h2></div>
                     }
                     <ModalHelper
