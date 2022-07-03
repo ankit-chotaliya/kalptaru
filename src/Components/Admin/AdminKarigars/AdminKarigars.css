@@ -18,3 +18,15 @@
 .to-editorder{
     width: 100% !important;
     }
+
+.getexel-btn{
+    background-color: #00a651 !important;
+    padding: 5px !important;
+    border: none !important;
+    margin: 5px !important;
+}
+.karigar-table{
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    box-sizing: content-box !important;
+}

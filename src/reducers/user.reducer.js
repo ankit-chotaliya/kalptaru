@@ -302,7 +302,7 @@ export default (state = intialState, action) => {
                 success: false
             }
         }
-        case adminUserConstant.ADMIN_USER_ACTIVATE_DEACTIVATE_REQ: {
+        case adminUserConstant.ADMIN_USER_ACTIVATE_REQ: {
             return {
                 ...state,
                 loading: true,
@@ -310,7 +310,7 @@ export default (state = intialState, action) => {
                 success: false
             }
         }
-        case adminUserConstant.ADMIN_USER_ACTIVATE_DEACTIVATE_SUC: {
+        case adminUserConstant.ADMIN_USER_ACTIVATE_SUC: {
             return {
                 ...state,
                 loading: false,
@@ -318,7 +318,32 @@ export default (state = intialState, action) => {
                 success: true
             }
         }
-        case adminUserConstant.ADMIN_USER_ACTIVATE_DEACTIVATE_FAILURE: {
+        case adminUserConstant.ADMIN_USER_ACTIVATE_AILURE: {
+            return {
+                ...state,
+                loading: false,
+                err: action.payload,
+                otpVerified:false,passwordOTPVerified:false,
+                success: false
+            }
+        }
+        case adminUserConstant.ADMIN_USER_DEACTIVATE_REQ: {
+            return {
+                ...state,
+                loading: true,
+                otpVerified:false,passwordOTPVerified:false,
+                success: false
+            }
+        }
+        case adminUserConstant.ADMIN_USER_DEACTIVATE_SUC: {
+            return {
+                ...state,
+                loading: false,
+                otpVerified:false,passwordOTPVerified:false,
+                success: true
+            }
+        }
+        case adminUserConstant.ADMIN_USER_DEACTIVATE_FAILURE: {
             return {
                 ...state,
                 loading: false,
