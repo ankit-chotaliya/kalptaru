@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux';
- import { adminAddUser } from '../../../actions/admin.action';
-// import { registration } from '../../../actions/user.action';
+import { adminAddUser } from '../../../actions/admin.action';
 import './AdminUsers.css';
 const AddUser = (props) => {
 

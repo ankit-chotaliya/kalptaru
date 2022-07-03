@@ -613,13 +613,13 @@ const EditOrderFormHelper = (props) => {
                 </div>
                 <div className='row eof-mob'>
                     <div className='col-md-12 col-sm-12 mt-4'>
-                        <button type="submit" className='no-sub-btn' onClick={hadnleUpdateOrder}>Update Order</button>
+                        <button type="submit" className='no-sub-btn' onClick={(e)=>hadnleUpdateOrder(e)}>Update Order</button>
                         <ModalHelper
                             show={viewModal}
                             onHide={() => setViewModal(false)}
                             icon={<GrDocumentUpdate />}
                             text="Are you sure do you want to edit this order?"
-                            onReply={handleModalReply}
+                            onReply={(e)=>handleModalReply(e)}
                         />
                     </div>
                 </div>

@@ -257,7 +257,30 @@ export const adminAddUser=(dataObj)=>{
             dispatch(setToastMsg(res.data.message,true));
         }
     }
+}
 
+export const adminAddUserCsv=(dataObj)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:adminUserConstant.ADD_USER_CSV_REQ
+        })
+        const res=await axios.post('/user/signupCsv',{dataObj})
+        if(res.status==200){
+            dispatch({
+                type:adminUserConstant.ADD_USER_CSV_SUC,
+                payload:res.data
+            })
+            dispatch(setToastMsg("User Added Successfully!",false));
+            dispatch(adminGetAllUser());
+        }else if(res.status==203){
+            dispatch({
+                type:adminUserConstant.ADD_USER_CSV_FAILURE,
+                payload:"User Can't Add!"
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+      
+    }
 }
 
 export const adminGetAllOrder=()=>{

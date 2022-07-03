@@ -14,7 +14,7 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: true,
                 success: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 authenticate: false,
             }
         }
@@ -24,7 +24,7 @@ export default (state = intialState, action) => {
                 loading: false,
                 data: action.payload,
                 success: true,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 authenticate: true,
             }
         }
@@ -34,7 +34,7 @@ export default (state = intialState, action) => {
                 loading: false,
                 err: action.payload,
                 success: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 authenticate: false,
             }
         }
@@ -44,7 +44,7 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: true,
                 success: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 authenticate: false,
             }
         }
@@ -53,8 +53,8 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: true,
-                data:action.payload,
-                otpVerified:false,passwordOTPVerified:false,
+                data: action.payload,
+                otpVerified: false, passwordOTPVerified: false,
                 authenticate: false,
             }
         }
@@ -63,16 +63,40 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 authenticate: false,
-                
+
             }
         }
+        case adminUserConstant.ADD_USER_CSV_REQ: {
+            return {
+                ...state,
+                loading: true,
+                success: false
+            }
+        }
+        case adminUserConstant.ADD_USER_CSV_SUC: {
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+                success: true
+            }
+        }
+        case adminUserConstant.ADD_USER_CSV_FAILURE: {
+            return {
+                ...state,
+                loading: false,
+                err: action.payload,
+                success: false
+            }
+        }
+
         case userConstant.USER_ONLINE_REQ: {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: false,
             }
         }
@@ -80,7 +104,7 @@ export default (state = intialState, action) => {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: true,
             }
         }
@@ -88,7 +112,7 @@ export default (state = intialState, action) => {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: false,
             }
         }
@@ -97,14 +121,14 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: true,
                 success: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
             }
         }
         case userConstant.USER_OFFLINE_SUC: {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: true,
             }
         }
@@ -112,7 +136,7 @@ export default (state = intialState, action) => {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: false,
             }
         }
@@ -121,10 +145,10 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: false,
-                authenticate:false,
-                otpVerified:false,passwordOTPVerified:false,
-                data:{},
-                err:"",
+                authenticate: false,
+                otpVerified: false, passwordOTPVerified: false,
+                data: {},
+                err: "",
             }
         }
         case userConstant.OTP_VERIFY_REQ: {
@@ -132,17 +156,17 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: true,
                 success: false,
-                otpVerified:false,passwordOTPVerified:false,
-                authenticate:false,
+                otpVerified: false, passwordOTPVerified: false,
+                authenticate: false,
             }
         }
         case userConstant.OTP_VERIFY_SUC: {
             return {
                 ...state,
                 loading: false,
-                otpVerified:true,
+                otpVerified: true,
                 success: true,
-                authenticate:false,
+                authenticate: false,
             }
         }
         case userConstant.OTP_VERIFY_FAILURE: {
@@ -150,8 +174,8 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: false,
-                authenticate:false,
-                otpVerified:false,passwordOTPVerified:false,
+                authenticate: false,
+                otpVerified: false, passwordOTPVerified: false,
             }
         }
         case userConstant.FORGOT_OTP_REQ: {
@@ -159,18 +183,18 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: true,
                 success: false,
-                otpVerified:false,passwordOTPVerified:false,
-                authenticate:false,
+                otpVerified: false, passwordOTPVerified: false,
+                authenticate: false,
             }
         }
         case userConstant.FORGOT_OTP_SUC: {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: true,
-                data:action.payload,
-                authenticate:false,
+                data: action.payload,
+                authenticate: false,
             }
         }
         case userConstant.FORGOT_OTP_FAILURE: {
@@ -178,8 +202,8 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: false,
-                authenticate:false,
-                otpVerified:false,passwordOTPVerified:false,
+                authenticate: false,
+                otpVerified: false, passwordOTPVerified: false,
             }
         }
         case userConstant.FORGOT_OTP_VERIFY_REQ: {
@@ -187,20 +211,20 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: true,
                 success: false,
-                otpVerified:false,
-                passwordOTPVerified:false,
-                authenticate:false,
+                otpVerified: false,
+                passwordOTPVerified: false,
+                authenticate: false,
             }
         }
         case userConstant.FORGOT_OTP_VERIFY_SUC: {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,
+                otpVerified: false,
                 success: true,
-                data:action.payload,
-                passwordOTPVerified:true,
-                authenticate:false,
+                data: action.payload,
+                passwordOTPVerified: true,
+                authenticate: false,
             }
         }
         case userConstant.FORGOT_OTP_VERIFY_FAILURE: {
@@ -208,9 +232,9 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: false,
-                authenticate:false,
-                passwordOTPVerified:false,
-                otpVerified:false,passwordOTPVerified:false,
+                authenticate: false,
+                passwordOTPVerified: false,
+                otpVerified: false, passwordOTPVerified: false,
             }
         }
         case userConstant.PASSWORD_CHANGE_REQ: {
@@ -218,19 +242,19 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: true,
                 success: false,
-                otpVerified:false,
-                passwordOTPVerified:false,
-                authenticate:false,
+                otpVerified: false,
+                passwordOTPVerified: false,
+                authenticate: false,
             }
         }
         case userConstant.PASSWORD_CHANGE_SUC: {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,
-                passwordOTPVerified:false,
+                otpVerified: false,
+                passwordOTPVerified: false,
                 success: true,
-                authenticate:false,
+                authenticate: false,
             }
         }
         case userConstant.PASSWORD_CHANGE_FAILURE: {
@@ -238,9 +262,9 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: false,
-                authenticate:false,
-                otpVerified:false,
-                passwordOTPVerified:false,
+                authenticate: false,
+                otpVerified: false,
+                passwordOTPVerified: false,
             }
         }
         case userConstant.USER_LOGOUT_SUC: {
@@ -248,33 +272,33 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 success: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
             }
         }
-        case adminUserConstant.GET_ADMIN_ALL_USER_REQ:{
+        case adminUserConstant.GET_ADMIN_ALL_USER_REQ: {
             return {
                 ...state,
-                loading:true,
-                success:false,
-                otpVerified:false,passwordOTPVerified:false,
+                loading: true,
+                success: false,
+                otpVerified: false, passwordOTPVerified: false,
             }
         }
-        case adminUserConstant.GET_ADMIN_ALL_USER_SUC:{
-            return{
+        case adminUserConstant.GET_ADMIN_ALL_USER_SUC: {
+            return {
                 ...state,
-                loading:false,
-                success:true,
-                data:action.payload,
-                otpVerified:false,passwordOTPVerified:false,
+                loading: false,
+                success: true,
+                data: action.payload,
+                otpVerified: false, passwordOTPVerified: false,
             }
         }
-        case adminUserConstant.GET_ADMIN_ALL_USER_FAILURE:{
-            return{
+        case adminUserConstant.GET_ADMIN_ALL_USER_FAILURE: {
+            return {
                 ...state,
-                loading:false,
-                success:false,
-                err:action.payload,
-                otpVerified:false,passwordOTPVerified:false,
+                loading: false,
+                success: false,
+                err: action.payload,
+                otpVerified: false, passwordOTPVerified: false,
             }
         }
         case adminUserConstant.DELETE_ADMIN_USER_REQ: {
@@ -282,14 +306,14 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: true,
                 success: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
             }
         }
         case adminUserConstant.DELETE_ADMIN_USER_SUC: {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: true
             }
         }
@@ -297,7 +321,7 @@ export default (state = intialState, action) => {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 err: action.payload,
                 success: false
             }
@@ -306,7 +330,7 @@ export default (state = intialState, action) => {
             return {
                 ...state,
                 loading: true,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: false
             }
         }
@@ -314,7 +338,7 @@ export default (state = intialState, action) => {
             return {
                 ...state,
                 loading: false,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: true
             }
         }
@@ -323,7 +347,7 @@ export default (state = intialState, action) => {
                 ...state,
                 loading: false,
                 err: action.payload,
-                otpVerified:false,passwordOTPVerified:false,
+                otpVerified: false, passwordOTPVerified: false,
                 success: false
             }
         }

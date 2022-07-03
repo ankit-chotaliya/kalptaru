@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import AddUser from '../AdminUsers/AddUser';
+import AddUserCsv from '../AdminUsers/AddUserCsv';
 import './AdminUsers.css';
 import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
@@ -22,6 +23,7 @@ function AdminUsers() {
     const [viewModal, setViewModal] = useState(false);
     const [orderDeleteId, setOrderDeleteId] = useState("");
     const [addUserModel, setAddUserModel] = useState(false);
+    const [addUserCsvModal, setAddUserCsvModal] = useState(false);
     const [uActivate, setUActivate] = useState(false);
     const [userId, setuserID] = useState();
 
@@ -98,9 +100,13 @@ function AdminUsers() {
         setAddUserModel(true);
     }
 
+    const handleUserCsv = (e) => {
+        e.preventDefault();
+        setAddUserCsvModal(true);
+    }
+
     const handleUActivate = (userId) => {
         setuserID(userId);
-        console.log(userId);
         setUActivate(true);
         setViewModal(true);
     }
@@ -124,11 +130,18 @@ function AdminUsers() {
                             </div>
 
                         </div>
-                        <button className='no-add-btn mt-4 w-25' onClick={(e) => handleUser(e)}> Add User </button>
+                        <button className='no-add-btn mt-4 w-25' style={{marginRight:"414px"}} onClick={(e) => handleUser(e)}> Add User </button>
                         <AddUser
                             show={addUserModel}
                             onHide={() => setAddUserModel(false)}
                         />
+
+
+                        <button className='no-add-btn mt-4 w-25' onClick={(e)=>handleUserCsv(e)}> Add User using CSV </button>
+                        <AddUserCsv
+                                show={addUserCsvModal}
+                                onHide={() => setAddUserCsvModal(false)}
+                            />
 
                         {Users.data.user && Users.data.user.length > 0 ? <>
                             <div className='table-responsive-md'>
