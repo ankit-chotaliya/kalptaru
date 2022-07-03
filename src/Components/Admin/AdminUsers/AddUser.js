@@ -60,9 +60,6 @@ const AddUser = (props) => {
     }
     dispatch(adminAddUser(dataObj));
 
-
-
-
     props.onHide();
     setUserName("");
     setUserEmail("");

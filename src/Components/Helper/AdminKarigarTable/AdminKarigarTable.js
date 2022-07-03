@@ -36,9 +36,9 @@ const range = len => {
     const statusChance = Math.random()
     return {
       No: index+1,
-      Name: kdata[index].karigar_name,
-      Phone: kdata[index].karigar_contact,
-      City: kdata[index].karigar_city,
+      Name: kdata[index].karigar_name?kdata[index].karigar_name:"Not Exist",
+      Phone: kdata[index].karigar_contact?kdata[index].karigar_contact:"Not Exist",
+      City: kdata[index].karigar_city?kdata[index].karigar_city:"Not Exist",
       icon:<button  onClick={() => deleteKarigarReq(kdata[index]._id)}  className='adkarigar-btn del-icon'><HiOutlineTrash id='deleteicon'/></button>
 
     //   visits: Math.floor(Math.random() * 100),
@@ -506,7 +506,7 @@ function AdminKarigarTable() {
     setOrderDeleteId(id);
     setViewModal(true);
   }
-  const data = React.useMemo(() => makeData(kdata,deleteKarigarReq,kdata.length?kdata.length:0), [karigars]);
+  const data = React.useMemo(() => makeData(kdata,deleteKarigarReq,kdata&&kdata.length>0?kdata.length:0), [karigars]);
 
   return (
     <div>

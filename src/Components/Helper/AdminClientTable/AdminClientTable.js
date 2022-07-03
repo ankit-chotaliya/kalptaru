@@ -36,9 +36,9 @@ const range = len => {
     const statusChance = Math.random()
     return {
       No: index+1,
-      Name: cdata[index].client_name,
-      Phone: cdata[index].client_contact,
-      City: cdata[index].client_city,
+      Name: cdata[index].client_name?cdata[index].client_name:"Not Exist",
+      Phone: cdata[index].client_contact?cdata[index].client_contact:"Not Exist",
+      City: cdata[index].client_city?cdata[index].client_city:"Not Exist",
       icon:<button  onClick={() => deleteClientReq(cdata[index]._id)}  className='adkarigar-btn del-icon'><HiOutlineTrash id='deleteicon'/></button>
 
     //   visits: Math.floor(Math.random() * 100),
@@ -522,7 +522,7 @@ function AdminClientTable() {
     setOrderDeleteId(id);
     setViewModal(true);
   }
-  const data = React.useMemo(() => makeData(cdata,deleteClientReq,cdata.length?cdata.length:0), [clients]);
+  const data = React.useMemo(() => makeData(cdata,deleteClientReq,cdata&&cdata.length>0?cdata.length:0), [clients]);
 
   return (
     <div>

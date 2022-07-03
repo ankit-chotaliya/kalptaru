@@ -39,9 +39,9 @@ const range = len => {
     const statusChance = Math.random()
     return {
       No: index+1,
-      Name: udata[index].fullname,
-      Phone: udata[index].contact,
-      Location:"Null",
+      Name: udata[index].fullname?udata[index].fullname:"Not Exist",
+      Phone: udata[index].contact?udata[index].contact:"Not Exist",
+      Location:udata[index].location?udata[index].location:"Not Exist",
       Status:<img className="status" src={udata[index].loginstatus? online :offline} />,
       ActiveDeactive:<button className='co-btn'  onClick={() => handleUActivate(udata[index]._id,index,udata)}>
       { udata[index].isActive ?<>Active &nbsp;<AiOutlineCheckCircle /></>  : <>Deactive &nbsp;<AiOutlineCloseCircle /></> } 
@@ -534,7 +534,7 @@ function AdminUserTable() {
     setOrderDeleteId(id);
     setViewModal(true);
   }
-  const data = React.useMemo(() => makeData(udata,deleteUserReq,handleUActivate,udata.length?udata.length:0), [users]);
+  const data = React.useMemo(() => makeData(udata,deleteUserReq,handleUActivate,udata&&udata.length>0?udata.length:0), [users]);
 
   return (
     <div>

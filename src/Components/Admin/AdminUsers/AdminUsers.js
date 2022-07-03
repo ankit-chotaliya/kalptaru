@@ -7,6 +7,7 @@ import { AiOutlineArrowLeft  } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import AdminUserTable from '../../Helper/AdminUserTable/AdminUserTable';
+import Loader from '../../Helper/Loader/Loader';
 
 
 
@@ -43,9 +44,9 @@ function AdminUsers() {
 
     return (
         <>
-            <AdminNavbar />
-            {
-                Users.data.loading ? <Loader /> :
+        {
+            Users.data.loading ? <Loader /> :<><AdminNavbar />
+            
                     <div className='container no-main no-border pageview'>
                         <div className='to-heading no-heading'>
                             <div className='to-editorder'>
@@ -68,7 +69,7 @@ function AdminUsers() {
 
                         <AdminUserTable/>
                     </div>
-
+                </>
             }
         </>
     )

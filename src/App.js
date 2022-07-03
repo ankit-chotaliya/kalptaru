@@ -142,7 +142,7 @@ const App = () => {
   return (
     <>
    
-      {user.loading || admin.loading?<Loader/>:null}
+      {user.loading?<Loader/>:null}
       {
        <ToastContainer position="bottom-right"
         autoClose={5000}

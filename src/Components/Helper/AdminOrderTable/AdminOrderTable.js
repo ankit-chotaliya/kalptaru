@@ -62,11 +62,11 @@ const range = len => {
       No: index+1,
       ClientName: odata[index].clientId?odata[index].clientId.client_name:"Not Exist",
       PhoneNo:odata[index].clientId?odata[index].clientId.client_contact:"Not Exist",
-      Category: odata[index].orderCategory.name,
+      Category: odata[index].orderCategory.name?odata[index].orderCategory.name:"Not Exist",
       KarigarName:odata[index].karigarId?odata[index].karigarId.karigar_name:"Not Exist",
-      Priority:odata[index].priority,
+      Priority:odata[index].priority?odata[index].priority:"Not Exist",
       PlacedBy:odata[index].createdby?odata[index].createdby.fullname:"Not Exist",
-      OrderStatus:ostatus,
+      OrderStatus:ostatus?ostatus:"Not Exist",
       OrderDate:dateFormat(odata[index].createdAt),
       DueDate:dateFormat(odata[index].deliveryDate)
 
@@ -580,7 +580,7 @@ function AdminOrderTable() {
   );
   const orders=useSelector(state=>state.order);
   let odata= orders.data.order;
-  const data = React.useMemo(() => makeData(odata,odata.length?odata.length:0), [orders]);
+  const data = React.useMemo(() => makeData(odata,odata&&odata.length?odata.length:0), [orders]);
 
   return (
     <div>
