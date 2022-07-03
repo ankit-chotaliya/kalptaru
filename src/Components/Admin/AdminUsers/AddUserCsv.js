@@ -9,6 +9,8 @@ const AddUserCsv = (props) => {
 
     const [userCsv, setUserCsv] = useState(null);
 
+    const Users = useSelector(state => state.user);
+
     const dispatch = useDispatch();
 
     var bool = new Boolean(false);
@@ -41,8 +43,18 @@ const AddUserCsv = (props) => {
             }
         })
 
+        var error_flag = 0;
+
         dataObj.map((data, index) => {
             if (index < dataObj.length - 1) {
+
+                Users.data.user.forEach(value => {
+
+                    if (value.contact == data.contact) {
+                        error_flag = error_flag + 1;
+                        return
+                    }
+                })
 
                 if (data.fullname == "" || !RegExp(/^[a-zA-Z ]{2,30}$/).test(data.fullname)) {
                     alert("User Name Incorrect");
@@ -65,17 +77,15 @@ const AddUserCsv = (props) => {
                     alert("Please Select Valid Location!");
                     return;
                 }
-                else {
-                    bool = true;
-                    return;
-                }
-
             }
         })
 
-        if (bool == true) {
-             dispatch(adminAddUserCsv(dataObj));
-             dispatch(adminGetAllUser());
+        if(error_flag > 0){
+            alert("User Already Exists");
+        }
+        else{
+            dispatch(adminAddUserCsv(dataObj));
+            dispatch(adminGetAllUser());
         }
 
         props.onHide();
