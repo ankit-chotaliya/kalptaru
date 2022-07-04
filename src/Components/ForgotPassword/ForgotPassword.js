@@ -5,7 +5,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { otpsendForgotPassword } from '../../actions';
+import { emptyuserState, otpsendForgotPassword } from '../../actions';
 
 const ForgotPassword = () => {
     const navigate=useNavigate();
@@ -26,7 +26,9 @@ const ForgotPassword = () => {
         setShowPassWord(true);
         setPassWord(e.target.value);
     }
-
+    useEffect(()=>{
+        dispatch(emptyuserState());
+    },[])
     useEffect(()=>{
         if(user.success && user.data.accesstoken){
             navigate("/forgotpasswordotpverify")

@@ -11,6 +11,8 @@ import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../Helper/Loader/Loader'
+import { useDispatch } from 'react-redux';
+import { emptyuserState } from '../../actions';
 
 
 const Settings = () => {
@@ -29,7 +31,7 @@ const Settings = () => {
     const [addClientCsvModal, setAddClientCsvModal] = useState(false);
     const [addKarigarCsvModal, setAddKarigarCsvModal] = useState(false);
     const [addKarigarModal, setAddKarigarModal] = useState(false);
-
+    const dispatch=useDispatch();
 
     useEffect(() => {
         //    console.log("hii"); 
@@ -68,7 +70,7 @@ const Settings = () => {
     }
 
     const handlePasswordChange = () => {
-        console.log(" password change");
+        dispatch(emptyuserState());
         navigate("/ForgotPassword")
     }
 

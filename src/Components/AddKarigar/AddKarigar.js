@@ -29,10 +29,10 @@ const AddKarigar = (props) => {
       return;
     }
 
-    if (karigarEmail == "" || !RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(karigarEmail)) {
-      alert("Email is not valid");
-      return;
-    }
+    // if (karigarEmail == "" || !RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(karigarEmail)) {
+    //   alert("Email is not valid");
+    //   return;
+    // }
 
     if (karigarMobile.length < 10 || karigarMobile.length > 10) {
       alert("Mobile No. is not valid!");
@@ -51,16 +51,31 @@ const AddKarigar = (props) => {
     // console.log(karigarEmail);
     // console.log(karigarMobile);
     // console.log(karigarPincode);
-    const dataObj = {
-      karigar_name: karigarName,
-      karigar_contact: karigarMobile,
-      karigar_city: karigarCity,
-      karigar_state: karigarState,
-      karigar_country: karigarCountry,
-      karigar_pincode: karigarPincode,
-      createdby: user.data.user._id
+    let dataObj={};
+    if(user.authenticate==true){
+      dataObj = {
+        karigar_name: karigarName,
+        karigar_contact: karigarMobile,
+        karigar_city: karigarCity,
+        karigar_state: karigarState,
+        karigar_country: karigarCountry,
+        karigar_pincode: karigarPincode,
+        createdby: user.data.user._id
+      }
+      dispatch(createKarigar(dataObj,false));
+    }else{
+      dataObj = {
+        karigar_name: karigarName,
+        karigar_contact: karigarMobile,
+        karigar_city: karigarCity,
+        karigar_state: karigarState,
+        karigar_country: karigarCountry,
+        karigar_pincode: karigarPincode,
+        createdByAdmin: true
+      }
+      dispatch(createKarigar(dataObj,true));
     }
-    dispatch(createKarigar(dataObj));
+    
     props.onHide();
     setKarigarName("");
     setKarigarMobile("");

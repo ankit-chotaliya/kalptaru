@@ -4,6 +4,7 @@ import AddClient from '../../AddClient/AddClient';
 import './AdminClients.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import AddClientCsv from '../../AddClient/AddClientCsv';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import Loader from '../../Helper/Loader/Loader';
 import AdminClientTable from '../../Helper/AdminClientTable/AdminClientTable';
@@ -15,6 +16,7 @@ function AdminClients() {
 
 
     const [addClientModal, setAddClientModal] = useState(false);
+    const [addClientCsvModal, setAddClientCsvModal] = useState(false);
     const [data, setData] = useState([])
   
 
@@ -29,6 +31,10 @@ function AdminClients() {
     const handleClient = (e) => {
         e.preventDefault();
         setAddClientModal(true);
+    }
+    const handleClientCsv = (e) => {
+        e.preventDefault();
+        setAddClientCsvModal(true);
     }
     
     return (
@@ -46,8 +52,13 @@ function AdminClients() {
                         show={addClientModal}
                         onHide={() => setAddClientModal(false)}
                     />
-                    <button className='no-add-btn mt-4 w-25' > Add Client using CSV </button>
+                    <button className='no-add-btn mt-4 w-25' onClick={handleClientCsv} > Add Client using CSV </button>
+                    <AddClientCsv
+                        show={addClientCsvModal}
+                        onHide={() => setAddClientCsvModal(false)}
+                    />
                    <AdminClientTable/>
+                   
                 </div>
             }
         </>

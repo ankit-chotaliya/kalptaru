@@ -5,8 +5,8 @@ import * as FiIcons from 'react-icons/fi';
 import * as IoIcons from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './Sidebar';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../actions/user.action';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, statusOffline } from '../../actions/user.action';
 import './NavBar.css';
 import logo from './logo.png';
 import { IconContext } from 'react-icons';
@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const user=useSelector(state=>state.user);
   const navigate=useNavigate();
   const dispatch=useDispatch();
 
@@ -52,7 +53,10 @@ function Navbar() {
 
   const handleLogout=(e)=>{
     e.preventDefault();
-  
+    const dataObj={
+      userId:user.data.user._id
+    }
+    dispatch(statusOffline(dataObj))
     dispatch(logout()).then(()=>{
         navigate('/login');
     }).catch(()=>{

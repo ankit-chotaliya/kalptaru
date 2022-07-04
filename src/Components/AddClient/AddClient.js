@@ -20,6 +20,7 @@ const AddClient = (props) => {
   const [activeState, setActiveState] = useState(false);
   const [activeCity, setActiveCity] = useState(false);
   const user = useSelector(state => state.user);
+  const admin = useSelector(state => state.admin);
   const dispatch = useDispatch();
   const AddClientSubmit = (e) => {
     e.preventDefault();
@@ -57,18 +58,36 @@ const AddClient = (props) => {
     //   console.log(clientState);
     //   console.log(clientCity);
     //   console.log(clientPincode);
-    const dataObj = {
-      client_company: clientID,
-      client_email: clientEmail,
-      client_name: clientName,
-      client_contact: clientMobile,
-      client_city: clientCity,
-      client_state: clientState,
-      client_country: clientCountry,
-      client_pincode: clientPincode,
-      createdby: user.data.user._id
+    let dataObj={};
+    if(user.authenticate==true){
+      dataObj = {
+        client_company: clientID,
+        client_email: clientEmail,
+        client_name: clientName,
+        client_contact: clientMobile,
+        client_city: clientCity,
+        client_state: clientState,
+        client_country: clientCountry,
+        client_pincode: clientPincode,
+        createdby: user.data.user._id
+      }
+      dispatch(createClient(dataObj,false));
+    }else{
+      dataObj = {
+        client_company: clientID,
+        client_email: clientEmail,
+        client_name: clientName,
+        client_contact: clientMobile,
+        client_city: clientCity,
+        client_state: clientState,
+        client_country: clientCountry,
+        client_pincode: clientPincode,
+        createdByAdmin: true
+      }
+      dispatch(createClient(dataObj,true));
     }
-    dispatch(createClient(dataObj));
+    
+    
     props.onHide();
     setClientID("");
     setClientName("");
@@ -98,7 +117,7 @@ const AddClient = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form autoComplete='false'>
             <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
                 <label >Client Company*:</label>

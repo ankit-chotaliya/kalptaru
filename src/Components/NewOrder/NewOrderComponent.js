@@ -149,7 +149,7 @@ const NewOrderComponent = (props) => {
                                 <div className='dropdown-content '>
                                     {
                                         
-                                        clients.data.client.length > 0 ? clients.data.client && clients.data.client.filter((val) => {
+                                        clients.data.client && clients.data.client.length > 0 ? clients.data.client.filter((val) => {
 
                                             if (addClient == "") {
 
@@ -197,7 +197,7 @@ const NewOrderComponent = (props) => {
                                 <div className='dropdown-content '>
                                     {
                                         
-                                        karigars.data.karigar.length > 0 ? karigars.data.karigar && karigars.data.karigar.filter((val) => {
+                                        karigars.data.karigar && karigars.data.karigar.length > 0 ?  karigars.data.karigar.filter((val) => {
 
                                         if (addKarigar == "") {
 
@@ -247,7 +247,7 @@ const NewOrderComponent = (props) => {
                             <div className='dropdown-content '>
                                 {
                                     
-                                    category.data.categories.length > 0 ? category.data.categories && category.data.categories.filter((val) => {
+                                    category.data.categories && category.data.categories.length > 0 ? category.data.categories.filter((val) => {
 
                                     if (addCategory == "") {
 

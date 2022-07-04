@@ -1,6 +1,7 @@
 import {clientConstant} from './constant'
 import axios from '../utils/axios'
 import { setToastMsg } from './toast.action'
+import { adminGetAllClient } from './admin.action'
 export const getAllClient=()=>{
     return async (dispatch)=>{
         dispatch({
@@ -23,7 +24,7 @@ export const getAllClient=()=>{
     }
 }
 
-export const createClient=(dataObj)=>{
+export const createClient=(dataObj,isAdmin)=>{
     return async (dispatch)=>{
         dispatch({
             type:clientConstant.ADD_CLIENT_REQ
@@ -34,7 +35,11 @@ export const createClient=(dataObj)=>{
                 type:clientConstant.ADD_CLIENT_SUC,
                 payload:res.data
             })
-            dispatch(getAllClient());
+            if(isAdmin){
+                dispatch(adminGetAllClient());
+            }else{
+                dispatch(getAllClient());
+            }
             dispatch(setToastMsg("Client Added Successfully!",false));
             
         }else if(res.status==203){
@@ -48,7 +53,7 @@ export const createClient=(dataObj)=>{
     }
 }
 
-export const createClientCsv=(dataObj)=>{
+export const createClientCsv=(dataObj,isAdmin)=>{
     return async (dispatch)=>{
         dispatch({
             type:clientConstant.ADD_CLIENT_CSV_REQ
@@ -59,7 +64,11 @@ export const createClientCsv=(dataObj)=>{
                 type:clientConstant.ADD_CLIENT_CSV_SUC,
                 payload:res.data
             })
-            dispatch(getAllClient());
+            if(isAdmin){
+                dispatch(adminGetAllClient());
+            }else{
+                dispatch(getAllClient());
+            }
             dispatch(setToastMsg("Client Added Successfully!",false));
             
         }else if(res.status==203){

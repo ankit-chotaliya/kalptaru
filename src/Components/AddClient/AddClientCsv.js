@@ -36,7 +36,12 @@ const AddClientCsv = (props) => {
 
                 const eachObject = headers.reduce((obj, header, i) => {
                     obj[header] = values[i];
-                    obj["createdby"] = user.data.user._id;
+                    if(user.authenticate==true){
+                        obj["createdby"] = user.data.user._id;
+                    }else{
+                        obj["createdByAdmin"]=true;
+                    }
+                    
                     return obj;
                 }, {})
                 return eachObject;
@@ -92,7 +97,12 @@ const AddClientCsv = (props) => {
         })
 
         if (bool == true) {
-            dispatch(createClientCsv(dataObj));
+            if(user.authenticate==true){
+                dispatch(createClientCsv(dataObj,false));
+            }else{
+                dispatch(createClientCsv(dataObj,true));
+            }
+           
         }
 
         props.onHide();

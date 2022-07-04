@@ -11,11 +11,11 @@ import urgentOrders from "./icons/exclamation-mark.png";
 import orderStatus from  "./icons/status.png"
 import "./Home.css";
 import { useSelector } from "react-redux";
-import { emptyOrderConfirm, getAllOrders } from "../../actions";
+import { emptyOrderConfirm, getAllOrders, statusOffline, statusOnline } from "../../actions";
 import { useDispatch } from "react-redux";
 function Home() {
   const order=useSelector(state=>state.order);
-  const karigar=useSelector(state=>state.karigar);
+  const user=useSelector(state=>state.user);
   const dispatch=useDispatch();
   const [online, isOnline] = useState(navigator.onLine);
   let count = 0;
@@ -23,10 +23,18 @@ function Home() {
   const setOnline = () => {
     console.log('We are online!');
     isOnline(true);
+    const dataObj={
+      userId:user.data.user._id
+    }
+    dispatch(statusOnline(dataObj))
   };
   const setOffline = () => {
     console.log('We are offline!');
     isOnline(false);
+    const dataObj={
+      userId:user.data.user._id
+    }
+    dispatch(statusOffline(dataObj))
   };
 
   // Register the event listeners
@@ -43,6 +51,12 @@ function Home() {
   useEffect(()=>{
     dispatch(getAllOrders());
     dispatch(emptyOrderConfirm());
+    if(user.authenticate==true){
+      const dataObj={
+        userId:user.data.user._id
+      }
+      dispatch(statusOnline(dataObj))
+    }
   },[])
   if(order.loading){
     return <Loader/>

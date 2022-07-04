@@ -177,3 +177,27 @@ export const orderStatusChange=(dataObj)=>{
         }
     }
 }
+
+export const sendRemainder=(dataObj)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:orderConstant.SEND_REM_REQ
+        })
+        const res=await axios.post('order/sendRemainder',dataObj);
+        if(res.status==200){
+            
+            dispatch({
+                type:orderConstant.SEND_REM_SUC
+            })
+            dispatch(setToastMsg(res.data.message,false));
+            
+        }else if(res.status==203){
+            dispatch({
+                type:orderConstant.SEND_REM_FAILURE
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }else{
+            dispatch(setToastMsg("Something went Wrong!",true));
+        }
+    }
+}
