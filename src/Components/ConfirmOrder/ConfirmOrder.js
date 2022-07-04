@@ -27,7 +27,6 @@ const ConfirmOrder = () => {
     let url = canonical ? canonical.href : document.location.href;
     const title="PDF For Confirm Order-Shree Kalptaru";
     const text="Order Confirmed!"
-    const shareDetails={url:"http://localhost:3000",title:title,text:text};
 
     useEffect(()=>{
         if(!order.data.orders){

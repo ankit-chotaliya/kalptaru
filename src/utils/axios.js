@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import store from '../store';
 const axiosinstance=axios.create({
-    baseURL:'http://localhost:8080'
+    baseURL:'https://shreekalptaru-backend.herokuapp.com/'
 })
 
 axiosinstance.interceptors.request.use((req)=>{

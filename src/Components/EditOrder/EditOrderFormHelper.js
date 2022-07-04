@@ -229,7 +229,7 @@ const EditOrderFormHelper = (props) => {
                 setDdate(res.data.order[0].deliveryDate);
                 setOrderStatus(res.data.order[0].orderStatus);
                 setPriority(res.data.order[0].priority);
-                const url = "http://localhost:8080/uploads/orderImage/"
+                const url = "https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/"
 
                 if(imgurls.length > 0){
                     setImg([]);

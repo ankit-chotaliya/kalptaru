@@ -161,9 +161,9 @@ const styles = StyleSheet.create({
 
 export function PdfDocument(props) {
   console.log("pdf props", props.data);
-  const QRCODE="http://localhost:8080/uploads/qrcode/";
-  const ORDERIMG="http://localhost:8080/uploads/orderImage/";
-  const LOGOIMG="http://localhost:8080/uploads/logo.png";
+  const QRCODE="https://shreekalptaru-backend.herokuapp.com/uploads/qrcode/";
+  const ORDERIMG="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/";
+  const LOGOIMG="https://shreekalptaru-backend.herokuapp.com/uploads/logo.png";
   return (
     <Document>
       <Page style={styles.page}>

@@ -156,7 +156,7 @@ const App = () => {
       }
       <Routes>
         <Route path="/" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Home/></PrivateRoute>}/>
-        <Route path="/AdminLogin" exact element={<AdminLogin/>}/>
+        <Route path="/AdminLogin2022" exact element={<AdminLogin/>}/>
         <Route path="/AdminUsers" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminUsers/></PrivateRouteAdmin>}/>
         <Route path="/AdminOrders" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminOrders/></PrivateRouteAdmin>}/>
         <Route path="/AdminKarigars" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminKarigars/></PrivateRouteAdmin>}/>
