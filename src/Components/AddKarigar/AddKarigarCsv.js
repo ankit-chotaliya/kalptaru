@@ -36,7 +36,12 @@ const AddKarigarCsv = (props) => {
 
                 const eachObject = headers.reduce((obj, header, i) => {
                     obj[header] = values[i];
-                    obj["createdby"] = user.data.user._id;
+                    if(user.authenticate==true){
+                        obj["createdby"] = user.data.user._id;
+                    }else{
+                        obj["createdByAdmin"]=true;
+                    }
+                    
                     return obj;
                 }, {})
                 return eachObject;
@@ -88,7 +93,12 @@ const AddKarigarCsv = (props) => {
         })
 
         if (bool == true) {
-             dispatch(createKarigarCsv(dataObj));
+            if(user.authenticate==true){
+                dispatch(createKarigarCsv(dataObj,false));
+            }else{
+                dispatch(createKarigarCsv(dataObj,true));
+            }
+             
         }
 
         props.onHide();

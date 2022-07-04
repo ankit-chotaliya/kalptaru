@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../actions/user.action';
 import { useSelector } from 'react-redux';
 import Loader from '../Helper/Loader/Loader';
+import adminReducer from '../../reducers/admin.reducer';
 const LogIn = () => {
     const navigate = useNavigate();
     const [mobileNo, setMobileNo] = useState("");
@@ -15,11 +16,14 @@ const LogIn = () => {
     const [idToast, setidToast] = useState(1);
     const dispatch = useDispatch();
     const user = useSelector(state => state.user)
+    const admin = useSelector(state => state.admin)
     useEffect(() => {
         if (user.success && user.authenticate) {
-          navigate(-1);
+          navigate("/");
+        }else if(admin.success && admin.authenticate){
+            navigate("/adminhome");
         }
-    }, [user.success])
+    }, [user.success,admin.success])
     const handleLogin = (e) => {
         e.preventDefault();
 
@@ -107,11 +111,11 @@ const LogIn = () => {
                                 Log in
                             </button>
                         </div>
-                        <div className='co-karigar-share mt-4'>
+                        {/* <div className='co-karigar-share mt-4'>
                             <button className='co-share-btn' onClick={() => { navigate("/Register") }}>
                                 Don't have an Account?
                             </button>
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>

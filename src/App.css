@@ -4,6 +4,7 @@ dark green : 00A651
 ligh green : DEFFD1
 Nav Color : F9F9FF
 BG : FFFFFF
+className=dropdown is only used for dropdown (Country dropdown, etc..)
 */
 :root{
     --darkGreen:#00A651;

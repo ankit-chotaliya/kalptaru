@@ -36,6 +36,19 @@
     color: white;
     transition: all 0.3s linear 1s;
 }
+.getexel-btn{
+    background-color: #00a651 !important;
+    min-width: 15%;
+    color: white;
+    padding: 5px !important;
+    border: none !important;
+    margin: 5px !important;
+}
+.user-table{
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    box-sizing: content-box !important;
+}
 
 @media only screen and (max-width:938px){
 

@@ -3,6 +3,7 @@ import AddClient from '../AddClient/AddClient';
 import AddClientCsv from '../AddClient/AddClientCsv';
 import AddKarigarCsv from '../AddKarigar/AddKarigarCsv';
 import AddKarigar from '../AddKarigar/AddKarigar';
+import { GrFormView } from 'react-icons/gr'
 import './Settings.css';
 import Navbar from '../NavBar/Navbar';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
@@ -10,22 +11,27 @@ import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../Helper/Loader/Loader'
+import { useDispatch } from 'react-redux';
+import { emptyuserState } from '../../actions';
 
 
 const Settings = () => {
     const navigate = useNavigate();
     const clients = useSelector(state => state.client);
     const karigars = useSelector(state => state.karigar);
-
+    const user = useSelector(state => state.user);
+    const data = user.data.user;
+    
     //react-hook
     const [mobileNo, setMobileNo] = useState("1234567890");
     const [password, setPassWord] = useState("Abc@2022");
     const [showPassword, setShowPassWord] = useState(false);
+    const [showMobileNo, setShowMobileNo] = useState(false);
     const [addClientModal, setAddClientModal] = useState(false);
     const [addClientCsvModal, setAddClientCsvModal] = useState(false);
     const [addKarigarCsvModal, setAddKarigarCsvModal] = useState(false);
     const [addKarigarModal, setAddKarigarModal] = useState(false);
-
+    const dispatch=useDispatch();
 
     useEffect(() => {
         //    console.log("hii"); 
@@ -52,13 +58,30 @@ const Settings = () => {
         setAddKarigarCsvModal(true);
     }
 
-    const handlepassword = (e) => {
-        setShowPassWord(true);
-        setPassWord(e.target.value);
+    const handlemobileNo = (e) => {
+        e.preventDefault();
+        if (showMobileNo==false) {
+            setShowMobileNo(true);
+            setMobileNo(data.contact)
+        } else {
+            setShowMobileNo(false);
+            setMobileNo("1234567890")
+        }
     }
 
     const handlePasswordChange = () => {
-        console.log(" password change")
+        dispatch(emptyuserState());
+        navigate("/ForgotPassword")
+    }
+
+    const Passwordshow = (e) =>{
+        e.preventDefault();
+        if (showPassword==false) {
+            setShowPassWord(true);
+            setPassWord(data.password)
+        } else {
+            setShowPassWord(false);
+        }
     }
 
     return (
@@ -82,10 +105,9 @@ const Settings = () => {
                                     className='st-mob-input'
                                     placeholder='Mobile Number'
                                     value={mobileNo}
-                                    onChange={(e) => { setMobileNo(e.target.value) }}
                                     id="st-mob"
                                 />
-                                <FiEdit3 className='st-mob-icon' />
+                                <GrFormView className='st-mob-icon' onClick={handlemobileNo} />
                             </div>
                         </div>
                         <div className='st-mobile mt-2'>
@@ -93,22 +115,22 @@ const Settings = () => {
                             <br />
                             <div className='st-mob-sub'>
                                 <input
+                                    disabled
                                     type={showPassword ? "text" : "password"}
                                     className='st-mob-input'
                                     placeholder='Password'
                                     value={password}
-                                    onChange={handlepassword}
                                     onFocus={() => { setShowPassWord(true) }}
                                     onBlur={() => { setShowPassWord(false) }}
                                     id="st-pass"
                                 />
-                                <FiEdit3 className='st-mob-icon' />
+                                <GrFormView className='st-mob-icon' onClick={Passwordshow} />
                             </div>
                         </div>
                         <div className='co-customer-share mt-4'>
 
                             <button className='co-share-btn' onClick={handlePasswordChange}>
-                                Submit
+                                Change Password
                             </button>
                         </div>
 

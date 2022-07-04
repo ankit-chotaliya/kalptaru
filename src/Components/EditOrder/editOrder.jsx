@@ -14,7 +14,7 @@ const EditOrder=()=> {
   const client=useSelector(state=>state.client);
   const category=useSelector(state=>state.category);
   const [loading,setLoading]=useState(false);
-  const [orderData,setOrderData]=useState([])
+  const [orderData,setOrderData]=useState([]);
   // const dispatch=useDispatch();
 useEffect(()=>{
   // dispatch(getAllOrders());
@@ -86,12 +86,14 @@ const dateFormat=(d)=>{
                   
                   loading?<Loader msg="Data is Processing..."/>:
                   orderData && orderData.length<1?<div>No Order's are available</div>:orderData.map((ele,index)=>{
-                    // count++;
+                    // count++
+                    {/* console.log(index); */}
                     return <div key={index}>
                     <ListView
-                    property1="Client Name : "
+                    indexnum={index+1}
+                    property1="Client :"
                     property2="Category : "
-                    property3="Delivery Date : "
+                    property3="Delivery : "
                     property4="Created At : "
                     value1={!ele.orderClient?"None":ele.orderClient}
                     value2={!ele.orderCategory?"None" :ele.orderCategory}
@@ -103,7 +105,6 @@ const dateFormat=(d)=>{
                   })
                 }
             </div>
-
         </div>
         </>
   )

@@ -20,8 +20,8 @@ const ModalHelper = (props) => {
                     {props.text}
                 </div>
                 <div className='mh-btn'>
-                    <button className="mh-yes-btn" value={true} onClick={props.onReply}>Yes</button>
-                    <button className="mh-no-btn" value={false} onClick={props.onReply}>No</button>
+                    <button className="mh-yes-btn" value={true} onClick={props.reply}>Yes</button>
+                    <button className="mh-no-btn" value={false} onClick={props.reply}>No</button>
                 </div>
             </div>
         </Modal.Body>

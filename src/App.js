@@ -16,7 +16,7 @@ import Settings from './Components/Settings/Settings';
 import CompletedOrder from './Components/CompletedOrder/CompletedOrder';
 import OrderStatus from './Components/OrderStatus/OrderStatus';
 import LogIn from './Components/Signin/Login';
-import Register from './Components/Signup/Register';
+// import Register from './Components/Signup/Register';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import OTPverify from './Components/OTPverify/OTPverify';
 import ChangePassword from './Components/ChangePassword/ChangePassword';
@@ -28,7 +28,7 @@ import AdminKarigars from './Components/Admin/AdminKarigars/AdminKarigars';
 import AdminClients from './Components/Admin/AdminClients/AdminClients';
 import AdminCompletedOrders from './Components/Admin/AdminCompletedOrders/AdminCompletedOrders';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategory, getAllOrders,getAllClient,getAllKarigar, preLoginusingToken,statusOnline,statusOffline } from './actions';
+import { getAllCategory, getAllOrders,getAllClient,getAllKarigar, preLoginusingToken,statusOnline,statusOffline,preadminloginusingToken, adminGetAllClient, adminGetAllKarigar, adminGetAllOrder, adminGetAllUser } from './actions';
 import Loader from './Components/Helper/Loader/Loader';
 import ToastHelper from './Components/Helper/ToastHelper/ToastHelper';
 import { emptyToastMsg } from './actions/toast.action';
@@ -37,11 +37,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './utils/PrivateRoute';
 import AdminHome from './Components/Admin/AdminHome/AdminHome';
 import UrgentOrders from './Components/UrgentOrders/UrgentOrders';
+import PDF from './Components/PDF/PDF';
+import PrivateRouteAdmin from './utils/PrivateRouteAdmin';
+import ForgotPasswordOTP from './Components/ForgotPassword/ForgotPasswordOTP';
 
 
 const App = () => {
   const dispatch=useDispatch();
   const user=useSelector(state=>state.user);
+  const admin=useSelector(state=>state.admin);
   const toastState=useSelector(state=>state.toast);
   const [userId,setUserId]=useState("");
   const [isOnline,setisOnline]=useState(true);
@@ -53,6 +57,10 @@ const App = () => {
       const token=localStorage.getItem('accessToken1').split(" ")[0];
       dispatch(preLoginusingToken({accesstoken:token}));
       
+    }else if(localStorage.getItem('accessToken2') && !admin.authenticate){
+        console.log("here");
+        const token=localStorage.getItem('accessToken2').split(" ")[0];
+        dispatch(preadminloginusingToken({accesstoken:token}));
     }
     interval=setInterval(InternetErrorMessage, 1000);
 
@@ -96,10 +104,17 @@ const App = () => {
       dispatch(getAllClient());
       dispatch(getAllKarigar());
       dispatch(getAllCategory());
-      // navigate(-1);
       setUserId(user.data.user._id);
     }
   }, [user]);
+  useEffect(() => {
+    if(admin.authenticate && admin.success){
+      dispatch(adminGetAllClient());
+      dispatch(adminGetAllKarigar());
+      dispatch(adminGetAllOrder());
+      dispatch(adminGetAllUser());
+    }
+  }, [admin]);
   
   // const incrementToast=()=>{
     
@@ -140,14 +155,13 @@ const App = () => {
         pauseOnHover/>
       }
       <Routes>
-        {console.log(isOnline)}
         <Route path="/" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Home/></PrivateRoute>}/>
-        <Route path="/AdminLogin" exact element={<AdminLogin/>}/>
-        <Route path="/AdminUsers" exact element={<AdminUsers/>}/>
-        <Route path="/AdminOrders" exact element={<AdminOrders/>}/>
-        <Route path="/AdminKarigars" exact element={<AdminKarigars/>}/>
-        <Route path="/AdminClients" exact element={<AdminClients/>}/>
-        <Route path="/AdminCompletedOrders" exact element={<AdminCompletedOrders/>}/>
+        <Route path="/AdminLogin2022" exact element={<AdminLogin/>}/>
+        <Route path="/AdminUsers" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminUsers/></PrivateRouteAdmin>}/>
+        <Route path="/AdminOrders" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminOrders/></PrivateRouteAdmin>}/>
+        <Route path="/AdminKarigars" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminKarigars/></PrivateRouteAdmin>}/>
+        <Route path="/AdminClients" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminClients/></PrivateRouteAdmin>}/>
+        <Route path="/AdminCompletedOrders" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminCompletedOrders/></PrivateRouteAdmin>}/>
         <Route path="/create" exact element={<PrivateRoute isAuthenticated={user.authenticate}><NewOrder/></PrivateRoute>}/>
         <Route path="/orderConfirm" exact element={<PrivateRoute isAuthenticated={user.authenticate}><ConfirmOrder show={false}/></PrivateRoute>}/>
         <Route path="/EditOrder" exact element={<PrivateRoute isAuthenticated={user.authenticate}><Editorder/></PrivateRoute>}/>
@@ -161,12 +175,13 @@ const App = () => {
         <Route path="/OrderView/:orderId" exact element={<PrivateRoute isAuthenticated={user.authenticate}><EditOrder2/></PrivateRoute>}/>
         <Route path="/OrderStatus" exact element={<PrivateRoute isAuthenticated={user.authenticate}><OrderStatus/></PrivateRoute>}/>
         <Route path="/Login" exact element={<LogIn/>}/>
-        <Route path="/Register" exact element={<Register/>}/>
+        {/* <Route path="/Register" exact element={<Register/>}/> */}
         <Route path="/ForgotPassword" exact element={<ForgotPassword/>}/>
+        <Route path="/forgotpasswordotpverify" exact element={<ForgotPasswordOTP/>}/>
         <Route path="/OTPverify" exact element={<OTPverify/>}/>
         <Route path="/ChangePassword" exact element={<ChangePassword/>}/>
         <Route path='*' exact element={<NotFound/>}/>
-        <Route path="/adminHome" exact element={<AdminHome/>}/>
+        <Route path="/AdminHome" exact element={<PrivateRouteAdmin isAuthenticated={admin.authenticate}><AdminHome/></PrivateRouteAdmin>}/>
       </Routes>
     </>
   )

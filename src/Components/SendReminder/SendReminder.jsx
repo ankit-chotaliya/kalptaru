@@ -6,16 +6,20 @@ import './SendReminder.css';
 import ListView from '../Helper/ListView/ListView';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Modal, Button } from 'react-bootstrap'
+import { sendRemainder } from '../../actions/order.action';
 function SendReminder() {
   const [orderData,setOrderData]=useState([]);
   const [orderDataSpecific,setOrderDataSpecific]=useState([]);
   const [isUrgent,setIsUrgent]=useState(false);
+  const [RemainderModal,setRemainderModal]=useState(false);
   const [isFast,setIsFast]=useState(false);
   const [isNormal,setIsNormal]=useState(false);
   const [isDefault,setIsDefault]=useState(true);
   const [orderUpdateId,setOrderUpdateId]=useState("");
   const order=useSelector(state=>state.order);
   const client=useSelector(state=>state.client);
+  const karigar=useSelector(state=>state.karigar);
   const category=useSelector(state=>state.category);
   const navigate=useNavigate();
   const dispatch=useDispatch();
@@ -38,6 +42,13 @@ function SendReminder() {
               return;
             }
           })
+          var KarigarName;
+          karigar.data.karigar.map((c)=>{
+            if(c._id==ele.karigarId){
+              KarigarName=c.karigar_name;
+              return;
+            }
+          })
           var categoryName;
           category.data.categories.map((c)=>{
             if(c._id==ele.orderCategory){
@@ -45,6 +56,7 @@ function SendReminder() {
               return;
             }
           })
+          data.orderKarigar=KarigarName;
           data.orderClient=clientName;
           data.orderCategory=categoryName;
           data.orderPriority=ele.priority;
@@ -99,13 +111,66 @@ function SendReminder() {
     console.log("hii");
     setOrderDataSpecific(orderData);
   },[orderData])
-
+  const handlesend=()=>{
+    const dataObj={
+      contact:"8866140344",
+      text:"hi how are you"
+    }
+    dispatch(sendRemainder(dataObj));
+    setRemainderModal(false);
+  }
   const handlesendRemainder=(orderId)=>{
-
+    setOrderUpdateId(orderId);
+    setRemainderModal(true);
   }
   return (
     <>
     <Navbar/>
+    <Modal
+        show={RemainderModal}
+        onHide={()=>setRemainderModal(false)}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className='no-modal'
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+          <div className='no-heading'>
+            <AiOutlineArrowLeft onClick={()=>setRemainderModal(false)}/> Send Remainder
+          </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            {
+              orderDataSpecific && orderDataSpecific.map((ele,index)=>{
+                if(ele.orderId==orderUpdateId){
+                  const text="Category: "+ele.orderCategory+"\r\n"+"Delivery Date: "+ele.orderDeliveryDate+"\r\n"+"Priority: "+ele.orderPriority;
+                  return <div key={index} className="mb-2">
+                  <form>
+                  <div className=' row'>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Send To</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" value={ele.orderKarigar} disabled/>
+                    </div>
+                      
+                    </div>
+                    <div className='row'>
+                      <div class="form-group">
+                        <label htmlFor="exampleFormControlTextarea1">Messsage</label>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" value={text} rows="3" disabled/>
+                      </div>
+                    </div> 
+                  </form>
+                  </div>
+                }
+              })
+            }
+        </Modal.Body>
+        <Modal.Footer>
+              <button className="mt-3 w-25 no-sub-btn" onClick={handlesend}>Send <FiSend/></button>
+        </Modal.Footer>
+      </Modal>
         <div className='container no-main no-border pageview'>
             <div className='sr-heading no-heading'>
             <div className='sr-editorder'>
@@ -122,6 +187,7 @@ function SendReminder() {
             {
               orderDataSpecific.length>0?orderDataSpecific.map((ele,index)=>{
                 return <ListView
+                indexnum={index+1}
                 property1="Client Name:"
                 property2="Category:"
                 property3="Delivery Date:"

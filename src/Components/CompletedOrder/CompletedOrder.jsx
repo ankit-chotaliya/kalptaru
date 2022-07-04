@@ -142,6 +142,7 @@ function CompletedOrder() {
           {
             orderDataSpecific.length>0?orderDataSpecific.map((ele,index)=>{
               return <ListView
+              indexnum={index+1}
               property1="Client Name:"
               property2="Category:"
               property3="Delivery Date:"
@@ -163,7 +164,7 @@ function CompletedOrder() {
           onHide={() => setViewModal(false)}
           icon={<FiRepeat onClick={hadnleUpdateOrder} />}
           text="Are you sure you want to Repeat this Order?"
-          onReply={handleModalReply}
+          reply={handleModalReply}
         />
       </div>
     </>

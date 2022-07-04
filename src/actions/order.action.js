@@ -34,14 +34,13 @@ export const createNewOrder=(dataObj)=>{
         // console.log(dataObj);
         const res=await axios.post('/order/newOrders',dataObj);
         if(res.status==200){
-            // dispatch(PDFfetch(res.data._id));
-            console.log("From order create action :",res.data.data._id);
             dispatch({
                 type:orderConstant.NEW_ORDER_SUC,
-                payload:res.data
+                payload:res.data.data
             })
-            dispatch(setOrderConfirm(res.data.data._id));
             dispatch(setToastMsg("Order Created!",false));
+            dispatch(setOrderConfirm(res.data.data._id));
+            dispatch(getAllOrders());
             
         }else{
             // dispatch(emptyOrderConfirm());
@@ -171,6 +170,30 @@ export const orderStatusChange=(dataObj)=>{
         }else if(res.status==203){
             dispatch({
                 type:orderConstant.CHANGE_ORDER_STATUS_FAILURE
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }else{
+            dispatch(setToastMsg("Something went Wrong!",true));
+        }
+    }
+}
+
+export const sendRemainder=(dataObj)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:orderConstant.SEND_REM_REQ
+        })
+        const res=await axios.post('order/sendRemainder',dataObj);
+        if(res.status==200){
+            
+            dispatch({
+                type:orderConstant.SEND_REM_SUC
+            })
+            dispatch(setToastMsg(res.data.message,false));
+            
+        }else if(res.status==203){
+            dispatch({
+                type:orderConstant.SEND_REM_FAILURE
             })
             dispatch(setToastMsg(res.data.message,true));
         }else{

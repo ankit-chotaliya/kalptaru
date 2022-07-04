@@ -1,7 +1,6 @@
 import React from 'react'
 import {RiExchangeBoxLine} from 'react-icons/ri'
 import { FiEdit2 } from 'react-icons/fi'
-import ringimg from '../../OrderStatus/ring.jpg'
 import { useState } from 'react'
 import ModalHelper from '../Modal/ModalHelper'
 import { useNavigate } from 'react-router-dom'
@@ -63,6 +62,9 @@ const OrderStatusCard = (props) => {
   return (
     <>
                     <div className='os-card mb-3'>
+                    <div className='os-card-index mb-3'>
+                     {props.index+1}
+                    </div>
                         <div className='os-card-img'>
                             <img src={props.orderImage}/>
                         </div>
@@ -111,7 +113,7 @@ const OrderStatusCard = (props) => {
                     onHide={() => setViewModal(false)}
                     icon={<RiExchangeBoxLine onClick={hadnleUpdateOrder}/>}
                     text="Are you sure you want push order into next Status?"
-                    onReply={handleModalReply}
+                    reply={handleModalReply}
                     />
     </>
   )
