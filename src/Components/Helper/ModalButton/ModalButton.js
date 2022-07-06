@@ -8,13 +8,13 @@ const ModalButton = () => {
     const [viewModal,setViewModal]=useState(false);
     const handleModalReply=(e)=>{
         const reply=e.target.value;
-        console.log(reply);
+        // console.log(reply);
         if(reply == "true"){
             setModalReply(reply);
-            console.log("replied Positively");
+            // console.log("replied Positively");
         }else{
             setModalReply(reply);
-            console.log("replid Negatively");
+            // console.log("replid Negatively");
         }
         setViewModal(false);
     }

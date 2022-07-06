@@ -473,7 +473,7 @@ const TrackOrder=()=> {
             {
               orderData && orderData.map((ele,index)=>{
                 if(ele.orderId==DownloadOrderId){
-                  console.log("Element:"+ele);
+                  
                   return <div key={index} className="mb-2">
                     <ListView
                       property1="Client Name:"

@@ -21,7 +21,7 @@ function Home() {
   let count = 0;
 
   const setOnline = () => {
-    console.log('We are online!');
+    // console.log('We are online!');
     isOnline(true);
     const dataObj={
       userId:user.data.user._id
@@ -29,7 +29,7 @@ function Home() {
     dispatch(statusOnline(dataObj))
   };
   const setOffline = () => {
-    console.log('We are offline!');
+    // console.log('We are offline!');
     isOnline(false);
     const dataObj={
       userId:user.data.user._id

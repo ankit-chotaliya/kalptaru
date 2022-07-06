@@ -13,7 +13,7 @@ export const adminLogin = (dataobj) =>{
         }
         const res=await axios.post('/admin/loginadmin',dataobj);
         if (res.status==200) {
-            console.log(res.data);
+            // console.log(res.data);
             
             localStorage.setItem("accessToken2",res.data.accesstoken+" kalptaru");
             dispatch({
@@ -43,7 +43,7 @@ export const preadminloginusingToken = (accesstoken)=>{
         const res = await axios.post('/admin/adminsigninAccess',accesstoken);
 
         if (res.status==200) {
-            console.log(res.data.admin);
+            // console.log(res.data.admin);
             localStorage.setItem("accessToken2",res.data.accesstoken+" kalptaru");
             dispatch({
                 type:adminConstant.ADMIN_LOGIN_SUC,
@@ -132,13 +132,13 @@ export const adminDeleteClient=(clientId)=>{
 }
 
 export const adminDeleteKarigar=(karigarId)=>{
-    console.log(karigarId);
+    // console.log(karigarId);
     return async (dispatch)=>{
         dispatch({
             type:adminKarigarConstant.DELETE_ADMIN_KARIGAR_REQ,
         })
          const res = await axios.delete('/admin/deleteKarigar/'+karigarId)
-         console.log(res);
+        //  console.log(res);
          if (res.status==200){
             
             
@@ -182,13 +182,13 @@ export const adminGetAllKarigar=()=>{
 }
 
 export const adminDeleteuser=(userId)=>{
-    console.log(userId);
+    // console.log(userId);
     return async (dispatch)=>{
         dispatch({
             type:adminUserConstant.DELETE_ADMIN_USER_REQ,
         })
          const res = await axios.delete('/admin/deleteUser/'+userId)
-         console.log(res);
+        //  console.log(res);
          if (res.status==200){
             
             dispatch({

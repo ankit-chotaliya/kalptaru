@@ -144,7 +144,7 @@ const EditOrderFormHelper = (props) => {
     const handleModalReply = (e) => {
 
         const reply = e.target.value;
-        console.log(reply);
+        // console.log(reply);
         if (reply == "true") {
             //dispatch success action
             const formData = new FormData();
@@ -175,7 +175,7 @@ const EditOrderFormHelper = (props) => {
             formData.append("HUID", huid);
             formData.append("orderType", oType);
             formData.append("orderStatus", orderStatus);
-            console.log(clientName);
+            // console.log(clientName);
             window.scrollTo(0, 0);
             dispatch(editOrder(formData, orderId));
         } else {

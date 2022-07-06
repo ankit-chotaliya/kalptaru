@@ -26,7 +26,7 @@ function AdminClients() {
             setData(clients.data.client);
         }
     }, [clients])
-    console.log(data)
+    // console.log(data)
 
     const handleClient = (e) => {
         e.preventDefault();

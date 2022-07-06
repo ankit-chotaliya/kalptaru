@@ -6,7 +6,7 @@ const ListView = (props) => {
     const navigate = useNavigate();
 
     const handleiconclick = () => {
-        console.log('icon clicked')
+        // console.log('icon clicked')
     }
 
     return (

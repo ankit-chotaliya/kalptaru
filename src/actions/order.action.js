@@ -106,7 +106,7 @@ export const emptyOrderConfirm=()=>{
 
 //edit order actions
 export const editOrder=(dataObj,orderId)=>{
-    console.log("dataObj",dataObj);
+    // console.log("dataObj",dataObj);
     return async (dispatch)=>{
         dispatch({
             type:orderConstant.EDIT_ORDER_REQ

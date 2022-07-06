@@ -58,7 +58,7 @@ const App = () => {
       dispatch(preLoginusingToken({accesstoken:token}));
       
     }else if(localStorage.getItem('accessToken2') && !admin.authenticate){
-        console.log("here");
+        // console.log("here");
         const token=localStorage.getItem('accessToken2').split(" ")[0];
         dispatch(preadminloginusingToken({accesstoken:token}));
     }

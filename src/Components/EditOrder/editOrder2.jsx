@@ -19,7 +19,7 @@ function editOrder2() {
     const [viewModal, setViewModal] = useState(false);
     const handleModalReply = (e) => {
         const reply = e.target.value;
-        console.log(reply);
+        // console.log(reply);
         if (reply == "true") {
             alert("updated successfully!");
         } else {
@@ -62,7 +62,7 @@ function editOrder2() {
             }
         ]
     };
-    console.log(config);
+    // console.log(config);
     if (window.innerWidth < 600) {
         const config = {
             dots: true,
@@ -71,7 +71,7 @@ function editOrder2() {
             slidesToShow: 1,
             slidesToScroll: 1
         };
-        console.log("hello");
+        // console.log("hello");
     }
     else {
         const config = {
@@ -104,8 +104,8 @@ function editOrder2() {
             title: 'Ring5',
         }
     ]
-    console.log(window.innerHeight);
-    console.log(window.innerWidth);
+    // console.log(window.innerHeight);
+    // console.log(window.innerWidth);
 
     const hadnleUpdateOrder = (e) => {
         e.preventDefault();

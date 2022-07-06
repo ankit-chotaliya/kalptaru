@@ -15,7 +15,7 @@ const OrderStatusCard = (props) => {
     const dispatch=useDispatch();
     const handleModalReply=(e)=>{
         const reply=e.target.value;
-        console.log(reply);
+        // console.log(reply);
         if(reply == "true"){
             let dataObj={};
             if(props.label=='4'){

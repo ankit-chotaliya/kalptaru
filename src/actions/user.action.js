@@ -45,7 +45,7 @@ export const login=(dataObj)=>{
             localStorage.removeItem('accessToken2');
         }
         const res=await axios.post('/user/signin',dataObj);
-        console.log(res);
+        // console.log(res);
         if(res.status==200){
             localStorage.setItem("accessToken1",res.data.accesstoken+" kalptaru");
             // localStorage.setItem("enc","");

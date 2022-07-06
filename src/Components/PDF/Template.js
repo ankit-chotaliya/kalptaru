@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
 });
 
 export function PdfDocument(props) {
-  console.log("pdf props", props.data);
+  // console.log("pdf props", props.data);
   const QRCODE="https://shreekalptaru-backend.herokuapp.com/uploads/qrcode/";
   const ORDERIMG="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/";
   const LOGOIMG="https://shreekalptaru-backend.herokuapp.com/uploads/logo.png";

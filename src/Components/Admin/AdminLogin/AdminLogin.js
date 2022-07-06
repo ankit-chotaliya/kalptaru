@@ -29,9 +29,9 @@ function AdminLogin() {
             password: password
         }
         dispatch(adminLogin(dataObj)).then(()=>{
-           console.log('here');
+        //    console.log('here');
         }).catch(()=>{
-            console.log('Error');
+            // console.log('Error');
         });
     }
     const handlepassword = (e) => {

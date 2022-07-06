@@ -5,5 +5,5 @@ import thunk from 'redux-thunk'
 const store = createStore(rootreducer,composeWithDevTools(
     applyMiddleware(thunk)
     ));
-window.store=store;
+// window.store=store;
 export default store

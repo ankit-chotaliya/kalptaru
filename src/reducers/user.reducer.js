@@ -119,7 +119,7 @@ export default (state = intialState, action) => {
         case userConstant.USER_OFFLINE_REQ: {
             return {
                 ...state,
-                loading: true,
+                loading: false,
                 success: false,
                 otpVerified: false, passwordOTPVerified: false,
             }

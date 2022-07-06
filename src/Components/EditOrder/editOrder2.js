@@ -26,7 +26,7 @@ function EditOrder2() {
     const {orderId}=useParams()
     const handleModalReply = (e) => {
         const reply = e.target.value;
-        console.log(reply);
+        // console.log(reply);
         if (reply == "true") {
             alert("deleted successfully!");
         } else {
@@ -214,7 +214,7 @@ function EditOrder2() {
       },[order.data.orders,client.data.client,category.data.categories])
     
       useEffect(()=>{
-        console.log("hii");
+        // console.log("hii");
         setOrderDataSpecific(orderData);
       },[orderData])
 
@@ -241,10 +241,7 @@ function EditOrder2() {
                     }
                     
                     </div>
-{
-    console.log(orderDataSpecific)
-}
-                    
+                
         	        {
                         orderDataSpecific.length>0?<div className='eo2-container mt-4'>
                         <p className='clienttitle'>Client Details</p>

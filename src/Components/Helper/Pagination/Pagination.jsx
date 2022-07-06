@@ -24,7 +24,7 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
                 {
                     pageNumbers.map((pgNumber) => {
                     if((pgNumber==currentPage-1) || (pgNumber==currentPage+1) || (pgNumber==currentPage)){
-                        {/* console.log("hello"); */}
+                       
                         return <li key={pgNumber} 
                         className= {`page-item ${currentPage == pgNumber ? 'active activePage' : ''} `} >
 

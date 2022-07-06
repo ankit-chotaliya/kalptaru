@@ -78,16 +78,14 @@ const dateFormat=(d)=>{
             </div>
 
             <div className='eo-container mt-4'>
-            {
-              console.log("orderData",orderData)
-            }
+
 
                 {
                   
                   loading?<Loader msg="Data is Processing..."/>:
                   orderData && orderData.length<1?<div>No Order's are available</div>:orderData.map((ele,index)=>{
                     // count++
-                    {/* console.log(index); */}
+                    
                     return <div key={index}>
                     <ListView
                     indexnum={index+1}

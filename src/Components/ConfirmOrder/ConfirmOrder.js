@@ -60,8 +60,8 @@ const ConfirmOrder = () => {
                 </div>
                 {
                     orderConfirm.data && clientBlob.length>0 && orderConfirm.data.map((ele,index)=>{
-                        console.log("count",count);
-                        console.log(ele);
+                        // console.log("count",count);
+                        // console.log(ele);
                         return <div key={index}>
                             <div className='mt-2'>Order #{index+1}</div>
                             <PDF key={index} orderId={ele} inRow={false}/>

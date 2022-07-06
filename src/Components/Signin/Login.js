@@ -42,9 +42,9 @@ const LogIn = () => {
             password: password
         }
         dispatch(login(dataObj)).then(() => {
-            console.log("here");
+            // console.log("here");
         }).catch(() => {
-            console.log("err here");
+            // console.log("err here");
         });
         setidToast(idToast + 1);
     }

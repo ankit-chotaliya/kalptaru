@@ -98,7 +98,7 @@ const OrderStatus = () => {
     }else if(activeTab=='5'){
         DeliveryPendingclick();
     }else if(activeTab=='6'){
-        console.log("hii 2");
+        // console.log("hii 2");
         deliveredclick();
     }else{
         newOrderclick();
@@ -194,7 +194,7 @@ const OrderStatus = () => {
         }else if(activeTab=='5'){
             DeliveryPendingclick();
         }else if(activeTab=='6'){
-            console.log("hii 2");
+            // console.log("hii 2");
             deliveredclick();
         }else{
             newOrderclick();

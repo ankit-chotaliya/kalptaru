@@ -119,7 +119,7 @@ function CompletedOrder() {
   },[order.data.orders,client.data.client,category.data.categories])
 
   useEffect(()=>{
-    console.log("hii");
+    // console.log("hii");
     setOrderDataSpecific(orderData);
   },[orderData])
   return (
