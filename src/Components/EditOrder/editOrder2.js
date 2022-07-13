@@ -16,7 +16,8 @@ import PDF from '../PDF/PDF';
 
 function EditOrder2() {
     const navigate=useNavigate();
-    const serverURL="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/"
+    // const serverURL="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/"
+    const serverURL="https://sakshijain.in/uploads/orderImage/"
     const [viewModal, setViewModal] = useState(false);
     const [orderData,setOrderData]=useState([]);
     const [orderDataSpecific,setOrderDataSpecific]=useState([]);

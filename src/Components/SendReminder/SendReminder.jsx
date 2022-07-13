@@ -192,7 +192,7 @@ function SendReminder() {
                 property2="Category:"
                 property3="Delivery Date:"
                 propertyLabel="Priority:"
-                value1={!ele.clientName?"None":ele.orderClient}
+                value1={!ele.orderClient?"None":ele.orderClient}
                 value2={!ele.orderCategory?"None":ele.orderCategory}
                 value3={!ele.orderDeliveryDate?"None":ele.orderDeliveryDate}
                 valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}

@@ -147,7 +147,7 @@ function CompletedOrder() {
               property2="Category:"
               property3="Delivery Date:"
               propertyLabel="Priority:"
-              value1={ele.orderClient==""|| !ele.clientName?"None":ele.orderClient}
+              value1={ele.orderClient==""|| !ele.orderClient?"None":ele.orderClient}
               value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
               value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":ele.orderDeliveryDate}
               valueLabel={ele.orderPriority=="" || !ele.orderPriority?"Not Decided":ele.orderPriority}

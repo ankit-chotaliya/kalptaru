@@ -17,7 +17,8 @@ const OrderStatus = () => {
     const order=useSelector(state=>state.order);
     const client=useSelector(state=>state.client);
     const category=useSelector(state=>state.category);
-    const serverUrl="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/"
+    // const serverUrl="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/"
+    const serverUrl="https://sakshijain.in/uploads/orderImage/"
     const [orderData,setOrderData]=useState([]);
     const [orderDataSpecific,setOrderDataSpecific]=useState([]);
     const [newOrder,setnewOrder]=useState(true);

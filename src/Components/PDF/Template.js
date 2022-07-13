@@ -161,9 +161,14 @@ const styles = StyleSheet.create({
 
 export function PdfDocument(props) {
   // console.log("pdf props", props.data);
-  const QRCODE="https://shreekalptaru-backend.herokuapp.com/uploads/qrcode/";
-  const ORDERIMG="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/";
-  const LOGOIMG="https://shreekalptaru-backend.herokuapp.com/uploads/logo.png";
+  // const QRCODE="https://shreekalptaru-backend.herokuapp.com/uploads/qrcode/";
+  // const ORDERIMG="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/";
+  // const LOGOIMG="https://shreekalptaru-backend.herokuapp.com/uploads/logo.png";
+
+  
+  const QRCODE="https://sakshijain.in/uploads/qrcode/"
+  const ORDERIMG="https://sakshijain.in/uploads/orderImage/"
+  const LOGOIMG="https://sakshijain.in/uploads/logo.png"
   return (
     <Document>
       <Page style={styles.page}>
