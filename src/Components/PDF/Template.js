@@ -161,14 +161,14 @@ const styles = StyleSheet.create({
 
 export function PdfDocument(props) {
   // console.log("pdf props", props.data);
-  // const QRCODE="https://shreekalptaru-backend.herokuapp.com/uploads/qrcode/";
-  // const ORDERIMG="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/";
-  // const LOGOIMG="https://shreekalptaru-backend.herokuapp.com/uploads/logo.png";
+  // const QRCODE="http://localhost:8080/uploads/qrcode/";
+  // const ORDERIMG="http://localhost:8080/uploads/orderImage/";
+  // const LOGOIMG="http://localhost:8080/uploads/logo.png";
 
   
-  const QRCODE="https://sakshijain.in/uploads/qrcode/"
-  const ORDERIMG="https://sakshijain.in/uploads/orderImage/"
-  const LOGOIMG="https://sakshijain.in/uploads/logo.png"
+  const QRCODE="https://api.shreekalptaru.com/uploads/qrcode/"
+  const ORDERIMG="https://api.shreekalptaru.com/uploads/orderImage/"
+  const LOGOIMG="https://api.shreekalptaru.com/uploads/logo.png"
   return (
     <Document>
       <Page style={styles.page}>
@@ -186,10 +186,24 @@ export function PdfDocument(props) {
                     </View>
                 </View>
                 <View style={styles.headingMiddle}>
-                    <Image style={styles.logoImg} source={LOGOIMG?LOGOIMG:"150.jpg"}/>
+                    <Image 
+                    style={styles.logoImg} 
+                    src={LOGOIMG?LOGOIMG:"150.jpg"} 
+                    source={{
+                      header: {
+                        'Access-Control-Allow-Origin': '*'
+                     }
+                    }}/>
                 </View>
                 <View style={styles.headingRight}>
-                <Image style={styles.qrCodeImg} source={QRCODE+props.data._id+"_qr.png"?QRCODE+props.data._id+"_qr.png":"150.jpg"}/>
+                <Image 
+                style={styles.qrCodeImg} 
+                src={QRCODE+props.data._id+"_qr.png"?QRCODE+props.data._id+"_qr.png":"150.jpg"}
+                source={{
+                  header: {
+                    'Access-Control-Allow-Origin': '*'
+                 }
+                }}/>
                 </View>
             </View>
             <View style={styles.contentClass}>

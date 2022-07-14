@@ -431,6 +431,7 @@ const UrgentOrders=()=> {
           {
             orderForthisWeek && orderForthisWeek.length>0?orderForthisWeek.map((ele,index)=>{
               return <ListView
+              mobile={true}
               indexnum={index+1}
               property1="Client Name:"
               property2="Category:"
@@ -457,6 +458,7 @@ const UrgentOrders=()=> {
         {
           orderForthisMonth && orderForthisMonth.length>0?orderForthisMonth.map((ele,index)=>{
             return <ListView
+            mobile={true}
             indexnum={index+1}
             property1="Client Name:"
             property2="Category:"
@@ -484,6 +486,7 @@ const UrgentOrders=()=> {
         {
           orderForthisOther && orderForthisOther.length>0?orderForthisOther.map((ele,index)=>{
             return <ListView
+            mobile={true}
             indexnum={index+1}
             property1="Client Name:"
             property2="Category:"

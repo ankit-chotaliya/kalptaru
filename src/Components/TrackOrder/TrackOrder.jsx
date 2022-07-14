@@ -518,6 +518,7 @@ const TrackOrder=()=> {
           {
             orderForthisWeek && orderForthisWeek.length>0?orderForthisWeek.map((ele,index)=>{
               return <ListView
+              mobile={true}
               indexnum={index+1}
               property1="Client Name:"
               property2="Category:"
@@ -527,8 +528,8 @@ const TrackOrder=()=> {
               value2={!ele.orderCategory?"None":ele.orderCategory}
               value3={!ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
               valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}
-              icon={<GrFormView className='app-icon' onClick={()=>{handleopenEditForm(ele.orderId)}} />}
-              icon1={<AiOutlineCloudDownload className='app-icon' onClick={()=>handleDownload(ele.orderId)}/>}
+              icon={<GrFormView onClick={()=>{handleopenEditForm(ele.orderId)}} />}
+              icon1={<AiOutlineCloudDownload onClick={()=>handleDownload(ele.orderId)}/>}
             />
             }):<div className='text-center'><h2>No Delivery Orderes were available in this week!</h2></div>
           }
@@ -544,6 +545,7 @@ const TrackOrder=()=> {
         {
           orderForthisMonth && orderForthisMonth.length>0?orderForthisMonth.map((ele,index)=>{
             return <ListView
+            mobile={true}
             indexnum={index+1}
             property1="Client Name:"
             property2="Category:"
@@ -553,8 +555,8 @@ const TrackOrder=()=> {
             value2={!ele.orderCategory?"None":ele.orderCategory}
             value3={!ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
             valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}
-            icon={<GrFormView className='app-icon' onClick={()=>{handleopenEditForm(ele.orderId)}} />}
-            icon1={<AiOutlineCloudDownload className='app-icon' onClick={()=>handleDownload(ele.orderId)}/>}
+            icon={<GrFormView onClick={()=>{handleopenEditForm(ele.orderId)}} />}
+            icon1={<AiOutlineCloudDownload onClick={()=>handleDownload(ele.orderId)}/>}
           />
           }):<div className='text-center'><h2>No Delivery Orderes were available in this Month!</h2></div>
         }
@@ -571,6 +573,7 @@ const TrackOrder=()=> {
         {
           orderForthisOther && orderForthisOther.length>0?orderForthisOther.map((ele,index)=>{
             return <ListView
+            mobile={true}
             indexnum={index+1}
             property1="Client Name:"
             property2="Category:"

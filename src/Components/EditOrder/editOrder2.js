@@ -16,8 +16,8 @@ import PDF from '../PDF/PDF';
 
 function EditOrder2() {
     const navigate=useNavigate();
-    // const serverURL="https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/"
-    const serverURL="https://sakshijain.in/uploads/orderImage/"
+    // const serverURL="http://localhost:8080/uploads/orderImage/"
+    const serverURL="https://api.shreekalptaru.com/uploads/orderImage/"
     const [viewModal, setViewModal] = useState(false);
     const [orderData,setOrderData]=useState([]);
     const [orderDataSpecific,setOrderDataSpecific]=useState([]);
@@ -29,7 +29,7 @@ function EditOrder2() {
         const reply = e.target.value;
         // console.log(reply);
         if (reply == "true") {
-            alert("deleted successfully!");
+            alert("functionality not integrate");
         } else {
             alert("Not Updated!");
         }
@@ -228,7 +228,7 @@ function EditOrder2() {
         <>
             <Navbar />
 
-            <div className="container no-main no-border pageview">
+            <div className="container no-main no-border pageview mb-5">
 
                     <div className='eo2-heading no-heading'>
                     <div className='eo2-editorder'>
@@ -278,13 +278,17 @@ function EditOrder2() {
                                 })
                                 }
                                 {
-                                    orderDataSpecific[0].orderImg.length==1?<><div className="img-card">
+                                    orderDataSpecific[0].orderImg.length==1?<div className="img-card">
                                     <img className="img" src={serverURL+orderDataSpecific[0].orderImg[0].img}   alt="Order Image"/>
-                                </div>   
-                                    <div className="img-card">
-                                        <img className="img" src={serverURL+orderDataSpecific[0].orderImg[0].img}   alt="Order Image"/>
-                                    </div></>:null
+                                    </div>   
+                                    :null
                                 
+                                }
+                                {
+                                    orderDataSpecific[0].orderImg.length==1?<div className="img-card">
+                                    <img className="img" src={serverURL+orderDataSpecific[0].orderImg[0].img}   alt="Order Image"/>
+                                    </div>   
+                                    :null
                                 }
                                 {
                                         orderDataSpecific[0].orderImg.length==2?   

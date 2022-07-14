@@ -62,11 +62,16 @@ const OrderStatusCard = (props) => {
   return (
     <>
                     <div className='os-card mb-3'>
-                    <div className='os-card-index mb-3'>
-                     {props.index+1}
-                    </div>
+                            <div className='os-card-index mb-3'>
+                            {props.index+1}
+                            </div>
                         <div className='os-card-img'>
+                            <div className='os-card-index-mobile mb-3'>
+                            {props.index+1}
+                            </div>
+                            <div className='os-card-img-div'>
                             <img src={props.orderImage}/>
+                            </div>
                         </div>
                         <div className='os-card-detail mx-2'>
                             <div className='os-card-detail-title'>

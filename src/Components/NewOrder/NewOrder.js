@@ -48,7 +48,8 @@ const NewOrder = () => {
   const category=useSelector(state=>state.category);
   const order=useSelector(state=>state.order);
   const orderConfirm=useSelector(state=>state.orderConfirm);
-  const [errFlag,seterrFlag]=useState(true);
+  // const [errFlag,seterrFlag]=useState(false);
+  // const [errMsg,seterrMsg]=useState("");
   const dispatch=useDispatch();
 
   const handleChange=(i,e)=>{
@@ -78,60 +79,65 @@ const NewOrder = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  //   formValues.forEach(ele => {
-  //     if (ele.clientName=="") {
-  //         // alert("Client Not Selected");
-  //         seterrFlag(true);
-  //       }
-  //     if (ele.karigarName=="") {
-  //         // alert("Karigar Not Selected");
-  //         seterrFlag(true);
-  //       }
-  //     if (ele.category=="") {
-  //         // alert("Category Not Selected");
-  //         // seterrFlag(true);
-  //       }
-  //     if (ele.qty=="") {
-  //         // alert("Please Enter Quantity");
-  //         seterrFlag(true);
-  //       }
-  //     if (ele.weightFrom=="") {
-  //         // alert("Please Enter weight From");
-  //         seterrFlag(true);
-  //       }
-  //     if (ele.weightTo=="") {
-  //         // alert("Please Enter weight To");
-  //         seterrFlag(true);
-  //       }
-  //     if (ele.dDate=="") {
-  //         // alert("Please Enter delivery date");
-  //         seterrFlag(true);
-  //       }
-  //     if (ele.melting=="") {
-  //         // alert("Please Select Melting Point");
-  //         seterrFlag(true);
-  //       }
-  //     if (ele.priority=="") {
-  //         // alert("Please Select Priority");
-  //         seterrFlag(true);
-  //       }
-  //     if (ele.img=="") {
-  //         // alert("Please Upload Images");
-  //         seterrFlag(true);
-  //       }
-  //     if (ele.huid=="") {
-  //       // alert("Please select HUID");
-  //       seterrFlag(true);
-  //     }
-  //     if (ele.oType=="") {
-  //       // alert("Please select HUID");
-  //       seterrFlag(true);
-  //     }
-  //  });
-  //  if(errFlag){
-  //   alert("All the information is required!!");
-  //   return;
-  //  }
+    let errmsg="";
+    let errFlag=false;
+    formValues.forEach(ele => {
+      
+      
+      if (ele.oType=="") {
+        errmsg="Please select Order Type"
+        errFlag=true;
+      }
+      if (ele.huid=="") {
+        errmsg="Please select HUID"
+        errFlag=true;
+      }
+      if (ele.img=="") {
+        errmsg="Please Upload Images"
+        errFlag=true;
+      }
+      if (ele.priority=="") {
+        errmsg="Please Select Priority"
+        errFlag=true;
+      }
+      
+      if (ele.melting=="") {
+          errmsg="Please Select Melting Point"
+          errFlag=true;
+        }
+      if (ele.dDate=="") {
+        errmsg="Please Enter delivery date"
+        errFlag=true;
+      }
+      if (ele.weightTo=="") {
+        errmsg="Please Enter weight To"
+        errFlag=true;
+      }
+      if (ele.weightFrom=="") {
+        errmsg="Please Enter weight From"
+        errFlag=true;
+      }
+      if (ele.qty=="") {
+        errmsg="Please Enter Quantity"
+        errFlag=true;
+      }
+      if (ele.category=="") {
+        errmsg="Category Not Selected"
+        errFlag=true;
+      }
+      if (ele.karigarName=="") {
+        errmsg="Karigar Not Selected"
+        errFlag=true;
+      }
+      if (ele.clientName=="") {
+        errmsg="Client Not Selected";
+        errFlag=true;
+      }
+   });
+   if(errFlag){
+    alert(errmsg);
+    return;
+   }
     // if(karigar=="" || pCategory=="" || melting=="" || refNum=="" || qty=="" || weightFrom=="" || weightTo=="" || dDate=="" || priority=="" || huid=="" || oType==""){
     //   alert("All the Information Required 2!")
     //   return;
@@ -186,7 +192,7 @@ const NewOrder = () => {
     <>
         <NavBar/>
         {
-          order.loading?<Loader msg="Generating PDF..."/>:<div className='container no-main no-border pageview'>
+          order.loading?<Loader msg="Generating PDF..."/>:<div className='container no-main no-border pageview mb-5'>
           <div className='no-heading'>
             <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> New Order
           </div>

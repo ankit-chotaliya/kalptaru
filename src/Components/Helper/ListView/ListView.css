@@ -19,7 +19,7 @@
 }
 
 .lv-icon{
-    width: 10% !important;
+    /* width: 10% !important; */
     text-align: right !important;
     display: flex;
     align-items: center;
@@ -44,13 +44,39 @@
     margin-right: 3px;
     font-size: 1.5rem;
 }
-
+.lv-list-mob{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid var(--textColor);
+    transition: all 0.3s linear 0.5s;
+}
+.lv-list-mob-top{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+.lv-list-mob-bottom{
+    display: flex;
+}
 @media only screen and (max-width: 600px) {
     .lv-list{
         margin: 0 15px;
     }
+    .lv-list-mob{
+        margin: 0 15px;
+        flex-direction: column;
+    }
+    .lv-list-mob-bottom{
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    .lv-list-mob-top{
+        width: 100%;
+        margin: 10px 0;
+    }
     .lv-property{
-        width: 35% !important;
+        width: 40% !important;
     }
     .lv-value{
         width: 55% !important;
@@ -58,5 +84,5 @@
     .lv-value-label{
         max-width: 50%!important;
     }
-    
+
   }

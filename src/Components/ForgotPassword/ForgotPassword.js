@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './ForgotPassword.css';
 import Navbar from '../NavBar/Navbar';
+import logo from '../Signin/logo.png';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiEdit3 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
@@ -36,7 +37,12 @@ const ForgotPassword = () => {
     },[user])
   return (
     <>
-    <Navbar/>
+        <div className='navbar'>
+                <div className="container">
+                    <img className='m-2' src={logo} />
+                    <p className='nav_logotext'>Shree Kalptaru</p>
+                </div>
+            </div>
         <div className='container no-main no-border pageview'>
             <div className='no-heading'>
               <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate("/")}/> Forgot Password

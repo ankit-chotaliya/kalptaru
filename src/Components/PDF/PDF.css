@@ -34,4 +34,7 @@
     .pdf-btn{
         flex-direction: column;
     }
+    .pdf-btn-specific{
+        width: 280px;
+    }
   }

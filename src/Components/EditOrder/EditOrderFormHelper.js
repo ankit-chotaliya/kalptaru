@@ -142,8 +142,9 @@ const EditOrderFormHelper = (props) => {
 
     //Major Action Calling...
     const handleModalReply = (e) => {
-
+        // console.log("hiii")
         const reply = e.target.value;
+        // console.log(reply);
         // console.log(reply);
         if (reply == "true") {
             //dispatch success action
@@ -229,8 +230,8 @@ const EditOrderFormHelper = (props) => {
                 setDdate(res.data.order[0].deliveryDate);
                 setOrderStatus(res.data.order[0].orderStatus);
                 setPriority(res.data.order[0].priority);
-                // const url = "https://shreekalptaru-backend.herokuapp.com/uploads/orderImage/"
-                const url="https://sakshijain.in/uploads/orderImage/"
+                // const url = "http://localhost:8080/uploads/orderImage/"
+                const url="https://api.shreekalptaru.com/uploads/orderImage/"
 
                 if(imgurls.length > 0){
                     setImg([]);
@@ -615,16 +616,17 @@ const EditOrderFormHelper = (props) => {
                 <div className='row eof-mob'>
                     <div className='col-md-12 col-sm-12 mt-4'>
                         <button type="submit" className='no-sub-btn' onClick={(e)=>hadnleUpdateOrder(e)}>Update Order</button>
-                        <ModalHelper
-                            show={viewModal}
-                            onHide={() => setViewModal(false)}
-                            icon={<GrDocumentUpdate />}
-                            text="Are you sure do you want to edit this order?"
-                            onReply={(e)=>handleModalReply(e)}
-                        />
+                        
                     </div>
                 </div>
             </form>
+            <ModalHelper
+                            show={viewModal}
+                            onHide={() => setViewModal(false)}
+                            icon={<GrDocumentUpdate />}
+                            text="Are you sure do you want to edit this order!!?"
+                            reply={(e)=>handleModalReply(e)}
+                        />
         </>
     )
 }

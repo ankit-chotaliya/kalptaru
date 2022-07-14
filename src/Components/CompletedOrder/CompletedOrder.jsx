@@ -142,6 +142,7 @@ function CompletedOrder() {
           {
             orderDataSpecific.length>0?orderDataSpecific.map((ele,index)=>{
               return <ListView
+              mobile={true}
               indexnum={index+1}
               property1="Client Name:"
               property2="Category:"

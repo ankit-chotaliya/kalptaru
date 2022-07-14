@@ -13,7 +13,7 @@ const EditOrderForm = () => {
     return (
         <>
         <NavBar/>
-          { order.loading?<Loader msg="Please Wait.."/>:<div className='container no-main no-border pageview'>
+          { order.loading?<Loader msg="Please Wait.."/>:<div className='container no-main no-border pageview mb-5'>
           <div className='no-heading'>
             <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Edit Order
           </div>
