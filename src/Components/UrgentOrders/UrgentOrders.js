@@ -492,7 +492,7 @@ const UrgentOrders=()=> {
             property2="Category:"
             property3="Delivery Date:"
             propertyLabel="Order Status:"
-            value1={ele.orderClient==""|| !ele.clientName?"None":ele.orderClient}
+            value1={ele.orderClient==""|| !ele.orderClient?"None":ele.orderClient}
             value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
             value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
             valueLabel={ele.orderStatus=="" || !ele.orderStatus?"Not Decided":ele.orderStatus}

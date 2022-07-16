@@ -26,7 +26,7 @@ function SendReminder() {
   const orderDatacreate=()=>{
     if(order.data.orders && order.data.orders.length>0){
       order.data.orders.map((ele,index)=>{
-        if(ele.orderStatus!=6 || ele.orderStatus!=5 || ele.orderStatus!=4){
+        if(ele.orderStatus!=6 && ele.orderStatus!=5 && ele.orderStatus!=4){
           let data={
             orderId:"",
             orderClient:"",
@@ -113,6 +113,8 @@ function SendReminder() {
   },[orderData])
   const handlesend=()=>{
     const dataObj={
+      //whenever updates need for contact just do this
+      //contact:change with karigar contact
       contact:"8866140344",
       text:"hi how are you"
     }

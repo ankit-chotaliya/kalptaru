@@ -615,7 +615,10 @@ const EditOrderFormHelper = (props) => {
                 </div>
                 <div className='row eof-mob'>
                     <div className='col-md-12 col-sm-12 mt-4'>
-                        <button type="submit" className='no-sub-btn' onClick={(e)=>hadnleUpdateOrder(e)}>Update Order</button>
+                        {
+                            orderStatus==6?<div className='no-sub-btn d-flex align-items-center justify-content-center'>Completed Order</div>:<button type="submit" className='no-sub-btn' onClick={(e)=>hadnleUpdateOrder(e)}>Update Order</button>
+                        }
+                        
                         
                     </div>
                 </div>

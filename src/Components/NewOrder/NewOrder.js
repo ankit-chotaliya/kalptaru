@@ -81,7 +81,7 @@ const NewOrder = () => {
     e.preventDefault();
     let errmsg="";
     let errFlag=false;
-    formValues.forEach(ele => {
+    formValues.forEach((ele,i) => {
       
       
       if (ele.oType=="") {
@@ -117,6 +117,10 @@ const NewOrder = () => {
         errmsg="Please Enter weight From"
         errFlag=true;
       }
+      if(Number(ele.weightTo)<=Number(ele.weightFrom)){
+        errmsg="Weight can not be less from First weight"
+        errFlag=true;
+      }
       if (ele.qty=="") {
         errmsg="Please Enter Quantity"
         errFlag=true;
@@ -129,7 +133,7 @@ const NewOrder = () => {
         errmsg="Karigar Not Selected"
         errFlag=true;
       }
-      if (ele.clientName=="") {
+      if (i==0 && ele.clientName=="") {
         errmsg="Client Not Selected";
         errFlag=true;
       }

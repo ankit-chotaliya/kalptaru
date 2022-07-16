@@ -79,8 +79,12 @@ const OrderStatusCard = (props) => {
                                 Client Name : {props.orderClient?props.orderClient:"None"}
                                 </div>
                                 <div className='os-card-btns'>
-                                    <RiExchangeBoxLine className='os-card-btn' onClick={()=>hadnleUpdateOrder(props.orderId)}/>
-                                    <FiEdit2 className='os-card-btn' onClick={()=>handleopenEditForm(props.orderId)}/>
+                                    {
+                                        props.label==6?null:<RiExchangeBoxLine className='os-card-btn' onClick={()=>hadnleUpdateOrder(props.orderId)}/>
+                                    }
+                                    {
+                                        props.label==6?null:<FiEdit2 className='os-card-btn' onClick={()=>handleopenEditForm(props.orderId)}/>
+                                    }
                                 </div>
                             </div>
                             <div className='os-card-detail-desc'>

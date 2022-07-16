@@ -12,6 +12,14 @@ const AddCategory = (props) => {
     const dispatch=useDispatch();
     const AddCategorySubmit=(e)=>{
         e.preventDefault();
+        if(categoryName==""){
+          alert("Name required!");
+          return;
+        }
+        if(categoryref==""){
+          alert("ref required!");
+          return;
+        }
         const cateObj={
             name:categoryName,
             ref:categoryref

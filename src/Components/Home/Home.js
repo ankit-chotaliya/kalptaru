@@ -19,7 +19,7 @@ function Home() {
   const dispatch=useDispatch();
   const [online, isOnline] = useState(navigator.onLine);
   let count = 0;
-
+  let totalCount=0;
   const setOnline = () => {
     // console.log('We are online!');
     isOnline(true);
@@ -82,6 +82,9 @@ function Home() {
         //   </div>
         // })
       }
+      {
+     
+      }
       <div className="container-fluid bg-home">
         <div className="row">
           <div className="col-md-2"></div>
@@ -112,14 +115,13 @@ function Home() {
                         Order Status
                       </h5>
                       {
-                          order.data.orders && order.data.orders.map((o, index, orders) => {
-
-                            if (index + 1 == orders.length) {
-                              return <p className="total-count">({orders.length})</p>
-                            }
-       
-                          })
+                        order.data.orders && order.data.orders.map((o,index) => {
+                          if(o.orderStatus!=6){
+                            totalCount++;
+                          }
+                        })
                         }
+                        <p className="total-count">({totalCount})</p>
                     </div>
                   </div>
                   </Link>

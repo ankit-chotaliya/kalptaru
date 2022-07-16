@@ -87,7 +87,6 @@ const Settings = () => {
     return (
         <>
             <Navbar />
-
             {
                 (clients.loading || karigars.loading) ? <Loader /> : <div className='container no-main no-border pageview'>
                     <div className='no-heading'>

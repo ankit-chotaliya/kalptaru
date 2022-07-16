@@ -159,6 +159,7 @@ function EditOrder2() {
                 orderhuid:"",
                 orderPlacedBy:"",
                 orderDueIn:"",
+                orderStatus:"",
               }
               data.orderId=ele._id;
               var clientName,clientContact,clientEmail;
@@ -188,6 +189,7 @@ function EditOrder2() {
               data.orderMelting=ele.melting;
               data.orderImg=ele.orderImg;
               data.orderhuid=ele.HUID;
+              data.orderStatus=ele.orderStatus;
               data.orderType=ele.orderType+" Order";
               data.orderPlacedBy=user.data.user.name || user.data.user.fullname;
               data.orderCreateDate=dateFormat(ele.createdAt);
@@ -235,7 +237,7 @@ function EditOrder2() {
                     <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Order View
                     </div>
                     {
-                        orderDataSpecific.length>0?<div className='eo2-btns'>
+                        (orderDataSpecific.length>0 && orderDataSpecific[0].orderStatus!=6)?<div className='eo2-btns'>
                         <button className='eo2-btn app-icon' onClick={()=>hadnleUpdateOrder(orderDataSpecific[0].orderId)} ><HiOutlineTrash  id='deleteicon' /></button>
                         <button className='eo2-btn app-icon' onClick={()=>{navigate("/EditOrderForm/"+orderDataSpecific[0].orderId)}}><VscEdit  id='deleteicon' /></button>
                         </div>:null

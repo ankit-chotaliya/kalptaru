@@ -31,6 +31,7 @@ const orderDatacreate=()=>{
   if(order.data.orders && order.data.orders.length>0){
     setLoading(true);
     order.data.orders.map((ele,index)=>{
+      if(ele.orderStatus!=6){
       let data={
         orderId:"",
         orderClient:"",
@@ -58,6 +59,7 @@ const orderDatacreate=()=>{
       data.orderDeliveryDate=dateFormat(ele.deliveryDate);
       data.orderCreatedDate=dateFormat(ele.createdAt);
       setOrderData(pstate=>[...pstate,data]);
+      }
     })
     
     setLoading(false)
