@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import store from '../store';
 const axiosinstance=axios.create({
-    baseURL:'http://localhost:8080/'
-    // baseURL:'https://api.shreekalptaru.com/'
+    // baseURL:'http://localhost:8080/'
+    baseURL:'https://api.shreekalptaru.com/'
 })
 
 axiosinstance.interceptors.request.use((req)=>{
