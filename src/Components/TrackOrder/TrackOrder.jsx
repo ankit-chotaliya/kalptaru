@@ -528,8 +528,8 @@ const TrackOrder=()=> {
               value2={!ele.orderCategory?"None":ele.orderCategory}
               value3={!ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
               valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}
-              icon={<GrFormView onClick={()=>{handleopenEditForm(ele.orderId)}} />}
-              icon1={<AiOutlineCloudDownload onClick={()=>handleDownload(ele.orderId)}/>}
+              icon={<GrFormView className='app-icon' onClick={()=>{handleopenEditForm(ele.orderId)}} />}
+              icon1={<AiOutlineCloudDownload className='app-icon' onClick={()=>handleDownload(ele.orderId)}/>}
             />
             }):<div className='text-center'><h2>No Delivery Orderes were available in this week!</h2></div>
           }
@@ -555,8 +555,8 @@ const TrackOrder=()=> {
             value2={!ele.orderCategory?"None":ele.orderCategory}
             value3={!ele.orderDeliveryDate?"None":dateFormat(ele.orderDeliveryDate)}
             valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}
-            icon={<GrFormView onClick={()=>{handleopenEditForm(ele.orderId)}} />}
-            icon1={<AiOutlineCloudDownload onClick={()=>handleDownload(ele.orderId)}/>}
+            icon={<GrFormView className='app-icon' onClick={()=>{handleopenEditForm(ele.orderId)}} />}
+            icon1={<AiOutlineCloudDownload className='app-icon' onClick={()=>handleDownload(ele.orderId)}/>}
           />
           }):<div className='text-center'><h2>No Delivery Orderes were available in this Month!</h2></div>
         }

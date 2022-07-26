@@ -41,7 +41,7 @@ const AddUser = (props) => {
       alert("Password does not match with confirm password!");
       return;
     }
-    else if(userLocation != "Mumbai" && userLocation != "Bangalore")
+    else if(userLocation != "Mumbai" && userLocation != "Secunderabad")
     {
       alert("Please Select Valid Location!");
       return;
@@ -143,7 +143,7 @@ const AddUser = (props) => {
                       active && (
                         <div className='dropdown-content '>
                           <div className='options ' onClick={(e) => { setUserLocation("Mumbai"); }}>Mumbai</div>
-                          <div className='options ' onClick={(e) => { setUserLocation("Bangalore"); }}>Bangalore</div>
+                          <div className='options ' onClick={(e) => { setUserLocation("Secunderabad"); }}>Secunderabad</div>
                         </div>
                       )
                     }

@@ -83,7 +83,7 @@ const UrgentOrders=()=> {
   const orderDatacreate=()=>{
     if(order.data.orders && order.data.orders.length>0){
       order.data.orders.map((ele,index)=>{
-        if(ele.orderStatus!=6){
+        if(ele.orderStatus!=6 && ele.priority=="Urgent"){
           let data={
             orderId:"",
             orderClient:"",

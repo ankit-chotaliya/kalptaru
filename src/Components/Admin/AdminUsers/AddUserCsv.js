@@ -73,7 +73,7 @@ const AddUserCsv = (props) => {
                     alert("Please Enter the Storng Password!");
                     return;
                 }
-                else if (data.location != "Mumbai" && data.location != "Bangalore") {
+                else if (data.location != "Mumbai" && data.location != "Secunderabad") {
                     alert("Please Select Valid Location!");
                     return;
                 }

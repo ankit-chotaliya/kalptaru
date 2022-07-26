@@ -35,15 +35,16 @@ const AddClient = (props) => {
       return;
     }
 
-    if (clientEmail == "" || !RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(clientEmail)) {
+    if (clientEmail != "" && !RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(clientEmail)) {
       alert("Email is not valid");
       return;
     }
 
-    if (clientMobile.length < 10 || clientMobile.length > 10) {
+    if (clientMobile.length < 10 || clientMobile.length > 10 || !RegExp(/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/).test(clientMobile)) {
       alert("Mobile No. is not valid!");
       return;
     }
+    
     if (clientPincode.length < 6 || clientPincode.length > 6) {
       alert("Pincode is not valid!");
       return;
@@ -146,7 +147,7 @@ const AddClient = (props) => {
             </div>
             <div className=' row'>
               <div className="col-md-6 col-sm-12 mt-4">
-                <label >Client Email*:</label>
+                <label >Client Email:</label>
                 <div className='d-flex justify-content-start'>
                   <input
                     type="text"

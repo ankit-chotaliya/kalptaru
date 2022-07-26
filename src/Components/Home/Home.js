@@ -20,6 +20,7 @@ function Home() {
   const [online, isOnline] = useState(navigator.onLine);
   let count = 0;
   let totalCount=0;
+  let urgentCount=0;
   const setOnline = () => {
     // console.log('We are online!');
     isOnline(true);
@@ -204,12 +205,12 @@ function Home() {
                       <h5 className="card-title boxname-home">Urgent Orders</h5>
                       {
                           order.data.orders && order.data.orders.map((o, index, orders) => {
-                              if(o.priority=="Urgent"){
-                                count++;
+                              if(o.priority=="Urgent" && o.orderStatus!=6){
+                                urgentCount++;
                               }
                             })
                       }
-                      <p className="total-count">({count})</p>
+                      <p className="total-count">({urgentCount})</p>
                     </div>
                   </div>
                   </Link>

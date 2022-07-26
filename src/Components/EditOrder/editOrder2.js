@@ -16,8 +16,8 @@ import PDF from '../PDF/PDF';
 
 function EditOrder2() {
     const navigate=useNavigate();
-    // const serverURL="http://localhost:8080/uploads/orderImage/"
-    const serverURL="https://api.shreekalptaru.com/uploads/orderImage/"
+    const serverURL="http://localhost:8080/uploads/orderImage/"
+    // const serverURL="https://api.shreekalptaru.com/uploads/orderImage/"
     const [viewModal, setViewModal] = useState(false);
     const [orderData,setOrderData]=useState([]);
     const [orderDataSpecific,setOrderDataSpecific]=useState([]);

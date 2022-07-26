@@ -83,7 +83,7 @@ export default function PDF(props) {
     {show && (
         <PDFDownloadLink
           document={<PdfDocument isClient={true} data={data} />}
-          fileName="client.pdf"
+          fileName={"client_"+data.createdAt+"_"+data.referenceNo}
           className={!props.isRow?"pdf-btn-specific mt-2":"pdf-btn-specific mt-2 pdf-btn-specific-d"}
           style={{
             textDecoration: "none",
@@ -101,7 +101,7 @@ export default function PDF(props) {
       showKarigar && (
         <PDFDownloadLink
           document={<PdfDocument isClient={false} data={data} />}
-          fileName="karigar.pdf"
+          fileName={"karigar_"+data.createdAt+"_"+data.referenceNo}
           className={!props.isRow?"pdf-btn-specific mt-2":"pdf-btn-specific mt-2 pdf-btn-specific-d"}
           style={{
             textDecoration: "none",
