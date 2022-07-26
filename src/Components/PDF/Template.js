@@ -161,14 +161,13 @@ const styles = StyleSheet.create({
 
 export function PdfDocument(props) {
   // console.log("pdf props", props.data);
-  // const QRCODE="http://localhost:8080/uploads/qrcode/";
-  const ORDERIMG="http://localhost:8080/uploads/orderImage/";
-  const LOGOIMG="http://localhost:8080/uploads/logo.png";
+  
+  // const ORDERIMG="http://localhost:8080/uploads/orderImage/";
+  // const LOGOIMG="http://localhost:8080/uploads/logo.png";
 
   
-  // const QRCODE="https://api.shreekalptaru.com/uploads/qrcode/"
-  // const ORDERIMG="https://api.shreekalptaru.com/uploads/orderImage/"
-  // const LOGOIMG="https://api.shreekalptaru.com/uploads/logo.png"
+  const ORDERIMG="https://api.shreekalptaru.com/uploads/orderImage/"
+  const LOGOIMG="https://api.shreekalptaru.com/uploads/logo.png"
 
   //future ref
   // <View style={styles.headingRight}>
