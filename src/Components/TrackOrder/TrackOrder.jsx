@@ -62,7 +62,9 @@ const TrackOrder=()=> {
       return false;
     }));
     setOrderForthisOther(orderData.filter((x)=>{
-      if(x.orderPriority=='Urgent'){
+      const isMonth=dueinmonth(x.orderDeliveryDate);
+      let duedays=duein(x.orderDeliveryDate);
+      if(!isMonth && duedays>7 && x.orderPriority=='Urgent'){
         return true;
       }
       return false;
@@ -89,7 +91,9 @@ const TrackOrder=()=> {
     }));
     
     setOrderForthisOther(orderData.filter((x)=>{
-      if(x.orderPriority=='Fast'){
+      const isMonth=dueinmonth(x.orderDeliveryDate);
+      let duedays=duein(x.orderDeliveryDate);
+      if(!isMonth && duedays>7 && x.orderPriority=='Fast'){
         return true;
       }
       return false;
@@ -116,7 +120,9 @@ const TrackOrder=()=> {
       return false;
     }));
     setOrderForthisOther(orderData.filter((x)=>{
-      if( x.orderPriority=='Normal'){
+      const isMonth=dueinmonth(x.orderDeliveryDate);
+      let duedays=duein(x.orderDeliveryDate);
+      if(!isMonth && duedays>7 && x.orderPriority=='Normal'){
         return true;
       }
       return false;
@@ -295,7 +301,12 @@ const TrackOrder=()=> {
     let obj=[];
     if(orderData.length>0){
     orderData.forEach(item => {
-      obj.push(item);
+      //not in week or not in due month then other
+      const isMonth=dueinmonth(item.orderDeliveryDate);
+      let duedays=duein(item.orderDeliveryDate);
+      if(!isMonth && duedays>7){
+        obj.push(item);
+      }
     });
     }
     if(filterClientId){
@@ -351,6 +362,7 @@ const TrackOrder=()=> {
     handlethisweek(orderData);
     handlethismonth(orderData);
     handlethisother(orderData);
+    handleDefault();
     setFilterModal(false);
   }
 
@@ -360,7 +372,9 @@ const TrackOrder=()=> {
     setFilterClientId("");
     setFilterCategoryId("");
     setIssorting('0');
+    handleDefault();
     // setFilterModal(false);
+   
   }
   return (
     <>

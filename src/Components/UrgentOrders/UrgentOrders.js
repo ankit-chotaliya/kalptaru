@@ -252,7 +252,11 @@ const UrgentOrders=()=> {
     let obj=[];
     if(orderData.length>0){
     orderData.forEach(item => {
-      obj.push(item);
+      const isMonth=dueinmonth(item.orderDeliveryDate);
+      let duedays=duein(item.orderDeliveryDate);
+      if(!isMonth && duedays>7){
+        obj.push(item);
+      }
     });
     }
     if(filterClientId){
