@@ -17,6 +17,7 @@ function SendReminder() {
   const [isNormal,setIsNormal]=useState(false);
   const [isDefault,setIsDefault]=useState(true);
   const [orderUpdateId,setOrderUpdateId]=useState("");
+  const [sendRemainderKarigarId,setSendRemainderKarigarId]=useState("");
   const order=useSelector(state=>state.order);
   const client=useSelector(state=>state.client);
   const karigar=useSelector(state=>state.karigar);
@@ -56,6 +57,7 @@ function SendReminder() {
               return;
             }
           })
+          data.orderKarigarId=ele.karigarId;
           data.orderKarigar=KarigarName;
           data.orderClient=clientName;
           data.orderCategory=categoryName;
@@ -115,14 +117,15 @@ function SendReminder() {
     const dataObj={
       //whenever updates need for contact just do this
       //contact:change with karigar contact
-      contact:"8866140344",
-      text:"hi how are you"
+      karigarId:sendRemainderKarigarId,
+      orderId:orderUpdateId,
     }
     dispatch(sendRemainder(dataObj));
     setRemainderModal(false);
   }
-  const handlesendRemainder=(orderId)=>{
+  const handlesendRemainder=(orderId,karigarId)=>{
     setOrderUpdateId(orderId);
+    setSendRemainderKarigarId(karigarId);
     setRemainderModal(true);
   }
   return (
@@ -198,7 +201,7 @@ function SendReminder() {
                 value2={!ele.orderCategory?"None":ele.orderCategory}
                 value3={!ele.orderDeliveryDate?"None":ele.orderDeliveryDate}
                 valueLabel={!ele.orderPriority?"Not Decided":ele.orderPriority}
-                icon={<FiSend className='sr-icon-remainder' onClick={()=>{handlesendRemainder(ele.orderId)}} />}
+                icon={<FiSend className='sr-icon-remainder' onClick={()=>{handlesendRemainder(ele.orderId,ele.orderKarigarId)}} />}
               />
               }):<div className='text-center'><h2>No Orders right now for sending remainders</h2></div>
             }
