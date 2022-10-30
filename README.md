@@ -4,5 +4,5 @@ It is an order tracking and management system developed in MERN Stack. It helps 
 
 #URLs
 
-server:api.shreekalptaru.com
-client:shreekalptaru.com
+https://server:api.shreekalptaru.com
+https://client:shreekalptaru.com
