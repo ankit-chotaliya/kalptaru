@@ -20,6 +20,9 @@ export const orderConstant={
     SEND_REM_REQ:"SEND_REM_REQ",
     SEND_REM_SUC:"SEND_REM_SUC",
     SEND_REM_FAILURE:"SEND_REM_FAILURE",
+    DELETE_ORD_REQ:"DELETE_ORD_REQ",
+    DELETE_ORD_SUC:"DELETE_ORD_SUC",
+    DELETE_ORD_FAILURE:"DELETE_ORD_FAILURE",
 }
 
 export const userConstant={

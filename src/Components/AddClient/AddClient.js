@@ -45,10 +45,10 @@ const AddClient = (props) => {
       return;
     }
     
-    if (clientPincode.length < 6 || clientPincode.length > 6) {
-      alert("Pincode is not valid!");
-      return;
-    }
+    // if (clientPincode.length < 6 || clientPincode.length > 6) {
+    //   alert("Pincode is not valid!");
+    //   return;
+    // }
 
     //   console.log("Details Have Been Submitted");
     //   console.log(clientID);
@@ -301,7 +301,7 @@ const AddClient = (props) => {
                 </div>
               </div>
               <div className="col-md-6 col-sm-12 mt-4">
-                <label htmlFor="qty">Pincode*:</label>
+                <label htmlFor="qty">Pincode:</label>
                 <div className='d-flex justify-content-start'>
                   <input
                     type="number"

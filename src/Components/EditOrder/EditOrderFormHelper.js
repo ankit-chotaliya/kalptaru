@@ -10,6 +10,7 @@ import { GrDocumentUpdate } from 'react-icons/gr'
 import Loader from '../Helper/Loader/Loader';
 import './editOrder.css'
 import { editOrder } from '../../actions/order.action';
+import ImageView from '../Helper/ImageView/ImageView';
 const EditOrderFormHelper = (props) => {
     const [imglen, setImglen] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -45,6 +46,8 @@ const EditOrderFormHelper = (props) => {
     const [imgobj, setImgObj] = useState([]);
     const [huid, setHuid] = useState("");
     const [oType, setOtype] = useState("");
+    const [remarks,setRemarks]=useState("");
+    const [imgArray,setImageArray]=useState([]);
     const { orderId } = useParams();
     const [viewModal, setViewModal] = useState(false);
     //Form Trackers
@@ -92,7 +95,9 @@ const EditOrderFormHelper = (props) => {
     const handleimgChange = (e) => {
         e.preventDefault();
         setImg("");
-        setImgObj(e.target.files);
+        Array.from(e.target.files).map(e=>{
+            setImgObj(p=>[...p,e]);
+        })
     }
     const handleDdateChange = (e) => {
         e.preventDefault();
@@ -105,6 +110,10 @@ const EditOrderFormHelper = (props) => {
     const handleorderStatusChange = (e) => {
         e.preventDefault();
         setOrderStatus(e.target.value);
+    }
+    const handleRemarkschange=(e)=>{
+        e.preventDefault();
+        setRemarks(e.target.value);
     }
     const handleZIndex = (active) => {
 
@@ -120,22 +129,19 @@ const EditOrderFormHelper = (props) => {
     }
     const handleImgShow = (e) => {
         const files = e.target.files;
-        // console.log(files);
-        var htmlData = "";
-        Array.from(files).forEach(f => {
-            var imgsrc = URL.createObjectURL(f);
-            htmlData += `<img className="no-img" src=${imgsrc} width="150px" height="150px" style="margin:10px" alt="img"/>`
-        })
         const MAX_LENGTH = 5;
-        if (Array.from(e.target.files).length > MAX_LENGTH) {
+        if (Array.from(e.target.files).length > MAX_LENGTH || Number(imgArray.length)+Number(files.length)>MAX_LENGTH) {
             e.preventDefault();
-            // alert(`Cannot upload files more than ${MAX_LENGTH}`);
             dispatch(setToastMsg(`Cannot upload files more than ${MAX_LENGTH}`, true))
             return;
         }
+        Array.from(files).forEach(f => {
+            var imgsrc = URL.createObjectURL(f);
+        // imgArray=[{id,component},{id,component}]
 
-        const ele = document.getElementById("img");
-        ele.innerHTML = htmlData;
+        setImageArray(event=>
+            [...event,[<ImageView imgsrc={imgsrc} id={f.name} handleremoveImg={handleremoveImg}/>,f.name]]);
+        })
         handleimgChange(e);
     }
 
@@ -160,6 +166,9 @@ const EditOrderFormHelper = (props) => {
                 Array.from(imgobj).forEach(ele => {
                     formData.append("orderImg", ele);
                 })
+            }else{
+                dispatch(setToastMsg("Images should be not empty!",true));
+                return;
             }
 
             //   console.log(ele.ref);
@@ -176,6 +185,7 @@ const EditOrderFormHelper = (props) => {
             formData.append("HUID", huid);
             formData.append("orderType", oType);
             formData.append("orderStatus", orderStatus);
+            formData.append("remarks",remarks)
             // console.log(clientName);
             window.scrollTo(0, 0);
             dispatch(editOrder(formData, orderId));
@@ -190,7 +200,19 @@ const EditOrderFormHelper = (props) => {
         setViewModal(true);
     }
     //userEffect call
-
+    const handleremoveImg=(id,index)=>{
+        setImageArray(items=>items.filter(x=>x[1]!=id));
+            setImgObj(items=>items.filter(e=>e.name!=id));
+    }
+    const createFile=async(url,imgname)=>{
+        let response = await fetch(url);
+        let data = await response.blob();
+        let metadata = {
+          type: 'image/jpeg'
+        };
+        let file = new File([data], imgname, metadata);
+        return file;
+      }
     useEffect(() => {
         setLoading(true);
         axiosinstance.get(`order/getOrder/${orderId}`).then(res => {
@@ -230,14 +252,23 @@ const EditOrderFormHelper = (props) => {
                 setDdate(res.data.order[0].deliveryDate);
                 setOrderStatus(res.data.order[0].orderStatus);
                 setPriority(res.data.order[0].priority);
+                setRemarks(res.data.order[0].remarks?res.data.order[0].remarks:null);
                 // const url = "http://localhost:8080/uploads/orderImage/"
                 const url="https://api.shreekalptaru.com/uploads/orderImage/"
 
-                if(imgurls.length > 0){
-                    setImg([]);
+                if(imgArray.length > 0){
+                    setImageArray([]);
                 }
+                
                 res.data.order[0].orderImg.map(ele => {
-                    setImg(pstate => [...pstate, url + ele.img]);
+                    const imgsrc=url+ele.img;
+                    createFile(imgsrc,ele.img)
+                    .then(fileObj=>{
+                        setImgObj(e=>[...e,fileObj]);
+                        setImageArray(event=>
+                            [...event,[<ImageView imgsrc={imgsrc} id={ele.img} handleremoveImg={handleremoveImg}/>,ele.img]]);
+                    })
+                    
                 })
             } else if (res.status == 203) {
                 navigate('/');
@@ -547,8 +578,9 @@ const EditOrderFormHelper = (props) => {
                     <div className="col-md-6 col-sm-12 mt-4">
                         <label htmlFor="select-img">Attach upto 5 images</label>
                         <div className='d-flex justify-content-start'>
-                            {imglen > 0 ? <span className='no-browse-text'>{imglen} Files Uploaded <ImAttachment className='no-browse-icon' /></span>
-                                : <span className='no-browse-text'>Browse Now <AiOutlineUpload className='no-browse-icon' /></span>}
+                            {
+                            imgArray && imgArray.length > 0 ? imgArray.length==5?<span className='no-browse-text'>5 File Uploaded<ImAttachment className='no-browse-icon' /></span>:<span className='no-browse-text'>Add More<ImAttachment className='no-browse-icon' /></span>
+                            : <span className='no-browse-text'>Browse Now <AiOutlineUpload className='no-browse-icon' /></span>}
 
                             <input onChange={handleImgShow} className='no-browse' id='select-img' type='file' multiple accept="image/png, image/gif, image/jpeg" />
                         </div>
@@ -560,21 +592,36 @@ const EditOrderFormHelper = (props) => {
 
                     </div>
                     {
-                        imgobj ? <div className="col-md-12 col-sm-12 mt-4">
+                        imgobj ? <div className="col-md-12 col-sm-12 mt-4 d-flex">
                             {
-                                imgurls && imgurls.map(ele => {
-                                    {/* console.log(imgurls); */}
-                                    return <img src={ele} width="150px" height="150px" alt="Order Image" />
+                                imgArray && imgArray.map(ele => {
+                                    return ele[0]
                                 })
                             }
                             {
-                                imgurls && imgurls.length == 0 ? <p>*No Images for this order</p> : null
+                                imgArray && imgArray.length == 0 ? <p>*No Images for this order</p> : null
                             }
                         </div> : null
                     }
 
                 </div>
-
+                <div className='row'>
+                    <div className="col-md-12 col-sm-12 mt-4">
+                        <label htmlFor="remarks">Remarks:</label>
+                        <div className='d-flex justify-content-start'>
+                            <textarea
+                                type="text"
+                                rows={3}
+                                className="form-control no-input-textarea"
+                                placeholder="Remarsk (if any)"
+                                id="remarks"
+                                name="remarks"
+                                value={remarks}
+                                onChange={handleRemarkschange}
+                            />
+                        </div>
+                    </div>
+                </div>                     
                 <div className='row'>
                     <div className="col-md-6 col-sm-12 mt-4">
                         <label htmlFor="huid">HUID</label>

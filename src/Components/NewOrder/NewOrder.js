@@ -27,7 +27,7 @@ order:[
 */
 const NewOrder = () => {
   const navigate = useNavigate();
-  //form-variables
+  //form-variables [{},{}]
   let variableObject={ 
     clientName: "", 
     karigarName : "",
@@ -39,7 +39,8 @@ const NewOrder = () => {
     dDate:"",
     melting:"",
     priority:"",
-    img:"",
+    img:[],
+    remarks:"",
     huid:"",
     oType:"",
   }
@@ -57,13 +58,26 @@ const NewOrder = () => {
     const targetName=e.target.name.split(" ")[0];
 
         if(e.target.type=="file"){
-          newFormValues[i][e.target.name] = e.target.files;
+          if(newFormValues[i][e.target.name] && newFormValues[i][e.target.name].length>0){
+            Array.from(e.target.files).forEach(file=>{
+              newFormValues[i][e.target.name].push(file);
+            })
+          }else{
+            Array.from(e.target.files).forEach(file=>{
+              newFormValues[i][e.target.name].push(file);
+            })
+          }
         }else if(e.target.type=="radio" || targetName=="melting"){
           newFormValues[i][targetName] = e.target.value;
         }else{
           newFormValues[i][e.target.name] = e.target.value;
         }
         setFormValues(newFormValues);
+  }
+  const handleremoveImg=(id,index)=>{
+    let newFormValues=[...formValues];
+    newFormValues[index]['img']=newFormValues[index]['img'].filter(item=>item.name!=id);
+    setFormValues(newFormValues);
   }
   const addFormFields = (e) => {
     e.preventDefault();
@@ -158,7 +172,7 @@ const NewOrder = () => {
       });
 
 
-      Array.from(ele.img).forEach(ele=>{
+      ele.img.forEach(ele=>{
         formData.append("orderImg",ele);
       })
       // console.log(ele.ref);
@@ -175,7 +189,7 @@ const NewOrder = () => {
       formData.append("HUID",ele.huid);
       formData.append("orderType",ele.oType);
       formData.append("orderStatus",1);
-      
+      formData.append("remarks",ele.remarks);
       formData.append("createdby",user.data.user._id);
       dispatch(createNewOrder(formData));
     })
@@ -212,6 +226,7 @@ const NewOrder = () => {
                 orderNumber={index+1}
                 ele={element}
                 handleChange={handleChange}
+                handleremoveImg={handleremoveImg}
                 removeFormFields={removeFormFields}
                 />
                ) 

@@ -152,7 +152,7 @@ function CompletedOrder() {
               value2={ele.orderCategory=="" || !ele.orderCategory?"None":ele.orderCategory}
               value3={ele.orderDeliveryDate=="" || !ele.orderDeliveryDate?"None":ele.orderDeliveryDate}
               valueLabel={ele.orderPriority=="" || !ele.orderPriority?"Not Decided":ele.orderPriority}
-              icon={<FiRepeat onClick={()=>{hadnleUpdateOrder(ele.orderId)}} />}
+              // icon={<FiRepeat onClick={()=>{hadnleUpdateOrder(ele.orderId)}} />}
               icon1={<GrFormView style={{fontSize:"2.5rem"}} onClick={()=>handleOrderView(ele.orderId)}/>}
             />
             }):<div className='text-center'><h2>No Completed Orders right now</h2></div>

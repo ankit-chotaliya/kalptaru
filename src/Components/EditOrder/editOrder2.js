@@ -12,6 +12,8 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PdfDocument } from "../PDF/Template";
 import { useDispatch, useSelector } from 'react-redux';
 import PDF from '../PDF/PDF';
+import { deleteOrderByID, getAllOrders } from '../../actions';
+import { setToastMsg } from '../../actions/toast.action';
 
 
 function EditOrder2() {
@@ -28,10 +30,12 @@ function EditOrder2() {
     const handleModalReply = (e) => {
         const reply = e.target.value;
         // console.log(reply);
+        console.log(orderId)
         if (reply == "true") {
-            alert("functionality not integrate");
+            dispatch(deleteOrderByID(orderId));
+            dispatch(getAllOrders());
         } else {
-            alert("Not Updated!");
+            dispatch(setToastMsg("Delete Cancel",false));
         }
         setViewModal(false);
     }
@@ -40,6 +44,12 @@ function EditOrder2() {
     const category=useSelector(state=>state.category);
     const user=useSelector(state=>state.user);
     const dispatch=useDispatch();
+
+    useEffect(() => {
+        if (order.success && order.isdelete) {
+        navigate(-1);
+        }
+    }, [order.success])
 
     const config = {
         dots: true,
@@ -228,143 +238,152 @@ function EditOrder2() {
       },[])
     return (
         <>
-            <Navbar />
+            {orderDataSpecific.length>0?<><Navbar />
 
-            <div className="container no-main no-border pageview mb-5">
+<div className="container no-main no-border pageview mb-5">
 
-                    <div className='eo2-heading no-heading'>
-                    <div className='eo2-editorder'>
-                    <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Order View
-                    </div>
+        <div className='eo2-heading no-heading'>
+        <div className='eo2-editorder'>
+        <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Order View
+        </div>
+        {
+            (orderDataSpecific.length>0 && orderDataSpecific[0].orderStatus!=6)?<div className='eo2-btns'>
+            <button className='eo2-btn app-icon' onClick={()=>hadnleUpdateOrder(orderDataSpecific[0].orderId)} ><HiOutlineTrash  id='deleteicon' /></button>
+            <button className='eo2-btn app-icon' onClick={()=>{navigate("/EditOrderForm/"+orderDataSpecific[0].orderId)}}><VscEdit  id='deleteicon' /></button>
+            </div>:null
+        }
+        
+        </div>
+    
+        {
+            orderDataSpecific.length>0?<div className='eo2-container mt-4'>
+            <p className='clienttitle'>Client Details</p>
+            <div className='table-responsive-md clientdata'>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td className='twidth'>Name:</td>
+                            <td className='twidth'>{orderDataSpecific[0].orderClient?orderDataSpecific[0].orderClient:"Not Exist"}</td>
+                        </tr>
+                        <tr>
+                            <td className='twidth'>Phone no:</td>
+                            <td className='twidth'>{orderDataSpecific[0].orderClientContact?orderDataSpecific[0].orderClientContact:"Not Exist"}</td>
+                        </tr>
+                        <tr>
+                            <td className='twidth'>Email Id:</td>
+                            <td className='twidth'>{orderDataSpecific[0].orderClientEmail?orderDataSpecific[0].orderClientEmail:"Not Exist"}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr />
+
+            <p className='clienttitle'>Order Details</p>
+
+            <div className='slider'>
+                <Slider {...config}>
                     {
-                        (orderDataSpecific.length>0 && orderDataSpecific[0].orderStatus!=6)?<div className='eo2-btns'>
-                        <button className='eo2-btn app-icon' onClick={()=>hadnleUpdateOrder(orderDataSpecific[0].orderId)} ><HiOutlineTrash  id='deleteicon' /></button>
-                        <button className='eo2-btn app-icon' onClick={()=>{navigate("/EditOrderForm/"+orderDataSpecific[0].orderId)}}><VscEdit  id='deleteicon' /></button>
-                        </div>:null
+                        orderDataSpecific[0].orderImg.map((x, i) => {
+                        return <div key={i} className="img-card">
+                            <img className="img" src={serverURL+x.img}  alt="Order Image"/>
+                        </div>
+                    })
                     }
+                    {
+                        orderDataSpecific[0].orderImg.length==1?<div className="img-card">
+                        <img className="img" src={serverURL+orderDataSpecific[0].orderImg[0].img}   alt="Order Image"/>
+                        </div>   
+                        :null
                     
-                    </div>
-                
-        	        {
-                        orderDataSpecific.length>0?<div className='eo2-container mt-4'>
-                        <p className='clienttitle'>Client Details</p>
-                        <div className='table-responsive-md clientdata'>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td className='twidth'>Name:</td>
-                                        <td className='twidth'>{orderDataSpecific[0].orderClient?orderDataSpecific[0].orderClient:"Not Exist"}</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='twidth'>Phone no:</td>
-                                        <td className='twidth'>{orderDataSpecific[0].orderClientContact?orderDataSpecific[0].orderClientContact:"Not Exist"}</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='twidth'>Email Id:</td>
-                                        <td className='twidth'>{orderDataSpecific[0].orderClientEmail?orderDataSpecific[0].orderClientEmail:"Not Exist"}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <hr />
-
-                        <p className='clienttitle'>Order Details</p>
-
-                        <div className='slider'>
-                            <Slider {...config}>
-                                {
-                                    orderDataSpecific[0].orderImg.map((x, i) => {
-                                    return <div key={i} className="img-card">
-                                        <img className="img" src={serverURL+x.img}  alt="Order Image"/>
-                                    </div>
-                                })
-                                }
-                                {
-                                    orderDataSpecific[0].orderImg.length==1?<div className="img-card">
-                                    <img className="img" src={serverURL+orderDataSpecific[0].orderImg[0].img}   alt="Order Image"/>
-                                    </div>   
-                                    :null
-                                
-                                }
-                                {
-                                    orderDataSpecific[0].orderImg.length==1?<div className="img-card">
-                                    <img className="img" src={serverURL+orderDataSpecific[0].orderImg[0].img}   alt="Order Image"/>
-                                    </div>   
-                                    :null
-                                }
-                                {
-                                        orderDataSpecific[0].orderImg.length==2?   
-                                        <div className="img-card">
-                                            <img className="img" src={serverURL+orderDataSpecific[0].orderImg[0].img}   alt="Order Image"/>
-                                        </div>:null
-                                    
-                                }
-                            </Slider>
-                        </div>
-
-                        <div className='table-responsive-md mt-5 clientdata'>
-                            <table>
-                                <tr>
-                                    <td className='bwidth'>Order Reference no:</td>
-                                    <td className='bwidth'>{orderDataSpecific[0].orderRefNo?orderDataSpecific[0].orderRefNo:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Order Date:</td>
-                                    <td>{orderDataSpecific[0].orderCreateDate?orderDataSpecific[0].orderCreateDate:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Placed By:</td>
-                                    <td>{orderDataSpecific[0].orderPlacedBy?orderDataSpecific[0].orderPlacedBy:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Category:</td>
-                                    <td>{orderDataSpecific[0].orderCategory?orderDataSpecific[0].orderCategory:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Quantity:</td>
-                                    <td>{orderDataSpecific[0].orderQty?orderDataSpecific[0].orderQty:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Weight:</td>
-                                    <td>{orderDataSpecific[0].orderWeight?orderDataSpecific[0].orderWeight:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Due Date:</td>
-                                    <td>{orderDataSpecific[0].orderDeliveryDate?orderDataSpecific[0].orderDeliveryDate:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Due In:</td>
-                                    <td>{orderDataSpecific[0].orderDueIn?orderDataSpecific[0].orderDueIn:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Melting:</td>
-                                    <td>{orderDataSpecific[0].orderMelting?<>{orderDataSpecific[0].orderMelting} &#8451;</>:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Priority:</td>
-                                    <td>{orderDataSpecific[0].orderPriority?orderDataSpecific[0].orderPriority:"Not Exist"}</td>
-                                </tr>
-                                <tr>
-                                    <td>Order Type:</td>
-                                    <td>{orderDataSpecific[0].orderType?orderDataSpecific[0].orderType:"Not Exist"}</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <PDF orderId={orderId} isRow={true}/>
-                    </div>:<div className='mt-5 text-center'><h2>Order Details were not found!</h2></div>
                     }
-                    <ModalHelper
-                    show={viewModal}
-                    onHide={() => setViewModal(false)}
-                    icon={<HiOutlineTrash onClick={hadnleUpdateOrder} />}
-                    text="Are you sure you want to delete this Order?"
-                    reply={handleModalReply}
-                     />
-                    
-                    
+                    {
+                        orderDataSpecific[0].orderImg.length==1?<div className="img-card">
+                        <img className="img" src={serverURL+orderDataSpecific[0].orderImg[0].img}   alt="Order Image"/>
+                        </div>   
+                        :null
+                    }
+                    {
+                            orderDataSpecific[0].orderImg.length==2?   
+                            <div className="img-card">
+                                <img className="img" src={serverURL+orderDataSpecific[0].orderImg[0].img}   alt="Order Image"/>
+                            </div>:null
+                        
+                    }
+                </Slider>
             </div>
 
-          
+            <div className='table-responsive-md mt-5 clientdata'>
+                <table>
+                    <tr>
+                        <td className='bwidth'>Order Reference no:</td>
+                        <td className='bwidth'>{orderDataSpecific[0].orderRefNo?orderDataSpecific[0].orderRefNo:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Order Date:</td>
+                        <td>{orderDataSpecific[0].orderCreateDate?orderDataSpecific[0].orderCreateDate:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Placed By:</td>
+                        <td>{orderDataSpecific[0].orderPlacedBy?orderDataSpecific[0].orderPlacedBy:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Category:</td>
+                        <td>{orderDataSpecific[0].orderCategory?orderDataSpecific[0].orderCategory:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity:</td>
+                        <td>{orderDataSpecific[0].orderQty?orderDataSpecific[0].orderQty:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Weight:</td>
+                        <td>{orderDataSpecific[0].orderWeight?orderDataSpecific[0].orderWeight:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Due Date:</td>
+                        <td>{orderDataSpecific[0].orderDeliveryDate?orderDataSpecific[0].orderDeliveryDate:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Due In:</td>
+                        <td>{orderDataSpecific[0].orderDueIn?orderDataSpecific[0].orderDueIn:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Melting:</td>
+                        <td>{orderDataSpecific[0].orderMelting?<>{orderDataSpecific[0].orderMelting} &#8451;</>:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Priority:</td>
+                        <td>{orderDataSpecific[0].orderPriority?orderDataSpecific[0].orderPriority:"Not Exist"}</td>
+                    </tr>
+                    <tr>
+                        <td>Order Type:</td>
+                        <td>{orderDataSpecific[0].orderType?orderDataSpecific[0].orderType:"Not Exist"}</td>
+                    </tr>
+                </table>
+            </div>
+            <PDF orderId={orderId} isRow={true}/>
+        </div>:<div className='mt-5 text-center'><h2>Order Details were not found!</h2></div>
+        }
+        <ModalHelper
+        show={viewModal}
+        onHide={() => setViewModal(false)}
+        icon={<HiOutlineTrash/>}
+        text="Are you sure you want to delete this Order?"
+        reply={(e)=>handleModalReply(e)}
+         />
+        
+        
+</div></>:<><Navbar />
+
+    <div className="container no-main no-border pageview mb-5">
+        <div className='eo2-heading no-heading'>
+            <div className='eo2-editorder'>
+                <AiOutlineArrowLeft style={{cursor:"pointer"}} onClick={()=>navigate(-1)}/> Order View
+            </div>           
+        </div>
+        <div>No Order Found</div>
+    </div>
+        </>
+        }
         </>
     )
 }

@@ -10,9 +10,10 @@ import { Country, State, City } from 'country-state-city';
 import imgtest from '../EditOrder/ring.jpg';
 import { getAllCategory, getAllClient, getAllKarigar } from '../../actions';
 import { setToastMsg } from '../../actions/toast.action';
+import ImageView from '../Helper/ImageView/ImageView';
 const NewOrderComponent = (props) => {
 
-    const [imglen, setImglen] = useState(0);
+    let imglen=0;
     const [addClientModal, setAddClientModal] = useState(false);
     const [addClient, setAddClient] = useState("");
     const [activeClient, setActiveClient] = useState(false);
@@ -22,6 +23,7 @@ const NewOrderComponent = (props) => {
     const [addCategory, setAddCategory] = useState("");
     const [activeCategory, setActiveCategory] = useState(false);
     const [addCategoryModal, setAddCategoryModal] = useState(false);
+    const [imgArray,setImageArray]=useState([]);
     const clients = useSelector(state => state.client);
     const karigars = useSelector(state => state.karigar);
     const category = useSelector(state => state.category);
@@ -36,7 +38,7 @@ const NewOrderComponent = (props) => {
     const today = year + "-" + month + "-" + day;
     const dispatch = useDispatch();
     const handleimgchange = (e) => {
-        setImglen(e.target.files.length);
+        imglen=e.target.files.length;
         props.handleimg(e);
     }
 
@@ -88,25 +90,25 @@ const NewOrderComponent = (props) => {
         });
         props.handleChange(i, e);
     }
-
+    const handleremoveImg=(id,index)=>{
+        setImageArray(items=>items.filter(x=>x[1]!=id));
+        props.handleremoveImg(id,index);
+    }
     const handleImgShow = (i, e) => {
         const files = e.target.files;
-        // console.log(files);
-        var htmlData = "";
-        Array.from(files).forEach(f => {
-            var imgsrc = URL.createObjectURL(f);
-            htmlData += `<img className="no-img" src=${imgsrc} width="150px" height="150px" style="margin:10px" alt="img"/>`
-        })
         const MAX_LENGTH = 5;
-        if (Array.from(e.target.files).length > MAX_LENGTH) {
+        if (Array.from(e.target.files).length > MAX_LENGTH || Number(imgArray.length)+Number(files.length)>MAX_LENGTH) {
             e.preventDefault();
-            // alert(`Cannot upload files more than ${MAX_LENGTH}`);
             dispatch(setToastMsg(`Cannot upload files more than ${MAX_LENGTH}`, true))
             return;
         }
+        Array.from(files).forEach(f => {
+            var imgsrc = URL.createObjectURL(f);
+        // imgArray=[{id,component},{id,component}]
 
-        const ele = document.getElementById("img " + i);
-        ele.innerHTML = htmlData;
+        setImageArray(event=>
+            [...event,[<ImageView imgsrc={imgsrc} id={f.name} index={props.index} handleremoveImg={handleremoveImg}/>,f.name,props.index]]);
+        })
         props.handleChange(props.index, e)
     }
 
@@ -398,19 +400,40 @@ const NewOrderComponent = (props) => {
                 <div className="col-md-6 col-sm-12 mt-4">
                     <label htmlFor="select-img">Attach upto 5 images*:</label>
                     <div className='d-flex justify-content-start'>
-                        {imglen > 0 ? <span className='no-browse-text'>{imglen} Files Uploaded <ImAttachment className='no-browse-icon' /></span>
+                        {imgArray && imgArray.length > 0 ? imgArray.length==5?<span className='no-browse-text'>5 File Uploaded<ImAttachment className='no-browse-icon' /></span>:<span className='no-browse-text'>Add More<ImAttachment className='no-browse-icon' /></span>
                             : <span className='no-browse-text'>Browse Now <AiOutlineUpload className='no-browse-icon' /></span>}
 
-                        <input name="img" onChange={e => handleImgShow(props.index, e)} className='no-browse' id='select-img' type='file' multiple accept="image/png, image/gif, image/jpeg" />
+                        <input name="img" onChange={e => handleImgShow(props.index, e)} className='no-browse' id='select-img' type='file' multiple accept="image/png, image/gif, image/jpeg" disabled={imgArray.length==5?true:false}/>
                     </div>
                 </div>
             </div>
-
             <div className="row">
-                <div className="col-md-12 col-sm-12 mt-4" id={"img" + " " + props.index}>
-
+                <div className="col-md-12 col-sm-12 mt-4 d-flex" id={"img" + " " + props.index}>
+               {
+                imgArray && imgArray.length>0?imgArray.map((e,i)=>{
+                    return e[0]
+                }):null
+               }
+                
                 </div>
             </div>
+            <div className='row'>
+                <div className="col-md-12 col-sm-12 mt-4">
+                    <label htmlFor="remarks">Remarks:</label>
+                    <div className='d-flex justify-content-start'>
+                        <textarea
+                            type="text"
+                            rows={3}
+                            className="form-control no-input-textarea"
+                            placeholder="Remarsk (if any)"
+                            id="remarks"
+                            name="remarks"
+                            onChange={e => props.handleChange(props.index, e)}
+                        />
+                    </div>
+                </div>
+            </div>            
+            
             <div className='row'>
                 <div className="col-md-6 col-sm-12 mt-4">
                     <label htmlFor="huid">HUID*:</label>

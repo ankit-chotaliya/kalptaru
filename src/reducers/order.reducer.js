@@ -15,6 +15,7 @@ export default (state=intialState,action)=>{
                 success:false,
                 isPDFset:false,
                 editsuccess:false,
+                isdelete:false,
                 data:action.data
             }
         }
@@ -25,6 +26,7 @@ export default (state=intialState,action)=>{
                 isPDFset:false,
                 success:true,
                 editsuccess:false,
+                isdelete:false,
                 dataAdded:0,
                 data:action.payload
             }
@@ -36,6 +38,7 @@ export default (state=intialState,action)=>{
                 isPDFset:false,
                 success:false,
                 editsuccess:false,
+                isdelete:false,
                 dataAdded:0,
                 err:action.payload
             }
@@ -47,6 +50,7 @@ export default (state=intialState,action)=>{
                 isPDFset:false,
                 success:false,
                 editsuccess:false,
+                isdelete:false,
                 dataAdded:0,
                 data:action.data
             }
@@ -57,6 +61,7 @@ export default (state=intialState,action)=>{
                 loading:false,
                 isPDFset:false,
                 editsuccess:false,
+                isdelete:false,
                 success:true,
                 dataAdded:state.dataAdded+1,
                 data:action.payload
@@ -69,6 +74,7 @@ export default (state=intialState,action)=>{
                 isPDFset:false,
                 success:false,
                 editsuccess:false,
+                isdelete:false,
                 dataAdded:0,
                 err:action.payload
             }
@@ -79,6 +85,7 @@ export default (state=intialState,action)=>{
                 loading:true,
                 success:false,
                 editsuccess:false,
+                isdelete:false,
                 isPDFset:false,
                 
                 data:action.data
@@ -89,6 +96,7 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 editsuccess:false,
+                isdelete:false,
                 success:true,
                 isPDFset:true,
              
@@ -101,6 +109,7 @@ export default (state=intialState,action)=>{
                 loading:false,
                 success:false,
                 editsuccess:false,
+                isdelete:false,
                 isPDFset:false,
                 
                 err:action.payload
@@ -111,7 +120,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:true,
                 success:false,
-                editsuccess:false
+                editsuccess:false,
+                isdelete:false
             }
         }
         case orderConstant.EDIT_ORDER_SUC:{
@@ -119,7 +129,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 success:true,
-                editsuccess:true
+                editsuccess:true,
+                isdelete:false
             }
         }
         case orderConstant.EDIT_ORDER_FAILURE:{
@@ -127,7 +138,36 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 success:false,
-                editsuccess:false
+                editsuccess:false,
+                isdelete:false
+            }
+        }
+        case orderConstant.DELETE_ORD_REQ:{
+            return {
+                ...state,
+                loading:true,
+                success:false,
+                editsuccess:false,
+                isdelete:false,
+                
+            }
+        }
+        case orderConstant.DELETE_ORD_SUC:{
+            return {
+                ...state,
+                loading:false,
+                success:true,
+                editsuccess:false,
+                isdelete:true
+            }
+        }
+        case orderConstant.DELETE_ORD_FAILURE:{
+            return {
+                ...state,
+                loading:false,
+                success:false,
+                editsuccess:false,
+                isdelete:false
             }
         }
         case orderConstant.REPEAT_ORDER_REQ:{
@@ -135,7 +175,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:true,
                 success:false,
-                editsuccess:false
+                editsuccess:false,
+                isdelete:false
             }
         }
         case orderConstant.REPEAT_ORDER_SUC:{
@@ -143,7 +184,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 success:true,
-                editsuccess:false
+                editsuccess:false,
+                isdelete:false
             }
         }
         case orderConstant.REPEAT_ORDER_FAILURE:{
@@ -151,7 +193,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 success:false,
-                editsuccess:false
+                editsuccess:false,
+                isdelete:false
             }
         }
         case orderConstant.CHANGE_ORDER_STATUS_REQ:{
@@ -159,7 +202,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:true,
                 success:false,
-                editsuccess:false
+                editsuccess:false,
+                isdelete:false
             }
         }
         case orderConstant.CHANGE_ORDER_STATUS_SUC:{
@@ -167,7 +211,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 success:true,
-                editsuccess:false
+                editsuccess:false,
+                isdelete:false
             }
         }
         case orderConstant.CHANGE_ORDER_STATUS_FAILURE:{
@@ -175,7 +220,8 @@ export default (state=intialState,action)=>{
                 ...state,
                 loading:false,
                 success:false,
-                editsuccess:false
+                editsuccess:false,
+                isdelete:false
             }
         }
         case adminOrderConstant.GET_ADMIN_ALL_ORDER_REQ:{

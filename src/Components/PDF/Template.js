@@ -264,6 +264,10 @@ export function PdfDocument(props) {
                     <Text style={styles.tableProperty}>Order Type</Text>
                     <Text style={styles.tableValue}>{props.data.orderType?props.data.orderType+" Order":"Not Exist"}</Text>
                   </View>
+                  <View style={styles.tableRow}>
+                    <Text style={styles.tableProperty}>Remarks(if any)</Text>
+                    <Text style={styles.tableValue}>{props.data.remarks?props.data.remarks:"Not Exist"}</Text>
+                  </View>
               </View>
             </View>
             {props.isClient?

@@ -52,6 +52,7 @@ export default function PDF(props) {
       }).then((res)=>{
         if(res.status==200){
           setData(res.data.data);
+          // console.log(res.data.data.remarks);
           setHide(true);
           setHideKarigar(true);
           setLoading1(false);
@@ -71,7 +72,7 @@ export default function PDF(props) {
         }
       })
     }else{
-      dispatch(setToastMsg("PDF orderId cant find!",true));
+      dispatch(setToastMsg("PDF orderId can't find!",true));
       navigate("/");
     }
     

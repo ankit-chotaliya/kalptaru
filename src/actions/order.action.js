@@ -201,3 +201,25 @@ export const sendRemainder=(dataObj)=>{
         }
     }
 }
+
+export const deleteOrderByID=(dataObj)=>{
+    return async (dispatch)=>{
+        dispatch({
+            type:orderConstant.DELETE_ORD_REQ
+        })
+        const res=await axios.delete('order/deleteorder/'+dataObj);
+        if(res.status==200){
+            dispatch(getAllOrders());
+            dispatch({
+                type:orderConstant.DELETE_ORD_SUC
+            })
+            dispatch(setToastMsg(res.data.message,false));
+        }else{
+            dispatch(getAllOrders());
+            dispatch({
+                type:orderConstant.DELETE_ORD_FAILURE
+            })
+            dispatch(setToastMsg(res.data.message,true));
+        }
+    }
+}

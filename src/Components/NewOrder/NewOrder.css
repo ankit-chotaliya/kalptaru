@@ -67,6 +67,14 @@
 .no-input[type="color"]:focus{
     box-shadow: none !important;
 }
+.no-input-textarea{
+    border: 0.3px solid var(--textColor) !important;
+    margin-top: 5px !important;
+    border-radius: 0px !important;
+}
+.no-input-textarea[type="text"]:focus{
+    box-shadow: none !important;
+}
 .no-validity{
     justify-content: center;
     align-items: center;
@@ -99,6 +107,29 @@ content: '✖';
     align-items: center;
     justify-content: center;
     margin-right: 25px;
+}
+.img-add-more-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    font-size: 3rem;
+    background-color: var(--lightGreen);
+}
+.add-img-icon{
+    /* border: 2px solid black; */
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s linear all;
+    background-color: rgba(161, 161, 161, 0.4);
+}
+input[type="file"]:disabled{
+    cursor:not-allowed;
 }
 .form-check{
     padding-left: 0 !important;
@@ -136,6 +167,7 @@ content: '✖';
     position:absolute;
     height: 44px !important;
     opacity: 0;
+    cursor: pointer;
 }
 .no-browse-icon{
     font-size: 1.5rem;
@@ -179,6 +211,30 @@ content: '✖';
 }
 .no-img{
     margin: 10px;
+    transition: 0.2s all linear;
+    border: 2px solid var(--textColor);
+}
+.no-img-div{
+    position: relative;
+}
+.no-img-div span{
+    /* display: none; */
+    position:absolute;
+    cursor: pointer;
+    top: -8px;
+    left: 120px;
+    color: red;
+    padding: 4px;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 0;
+    background-color: transparent;
+    transition: 0.2s all linear;
+    /* box-shadow: 0 0.2px 0 0 black; */
+}
+
+.no-img:hover+span{
+    display:unset;
 }
 @keyframes animateblur {
     0% {

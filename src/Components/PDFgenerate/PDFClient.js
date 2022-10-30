@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 const PDFGenerate=()=>{
-    const serverURL="http://localhost:8080/"
+    const serverURL="https://api.shreekalptaru.com/"
+    // const serverURL="http://localhost:8080/"
     const orderId="";
     axios.post(serverURL+"order/getPDF/"+orderId)
     .then((res)=>{
