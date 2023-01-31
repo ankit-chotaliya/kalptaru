@@ -199,12 +199,7 @@ export function PdfDocument(props) {
                 <View style={styles.headingMiddle}>
                     <Image 
                     style={styles.logoImg} 
-                    src={LOGOIMG?LOGOIMG:"150.jpg"} 
-                    source={{
-                      header: {
-                        'Access-Control-Allow-Origin': '*'
-                     }
-                    }}/>
+                    source={{ uri:LOGOIMG?LOGOIMG+'?noCache=' + Math.random().toString():"150.jpg"}}/>
                 </View>
                 
             </View>
@@ -216,7 +211,7 @@ export function PdfDocument(props) {
                   <View style={styles.orderImgaes}>
                     {
                       props.data.orderImg.map((ImgObj,index) => {
-                        return <Image key={index} style={styles.orderImg} source={ORDERIMG+ImgObj.img?ORDERIMG+ImgObj.img:"150.jpg"}/>
+                        return <Image key={index} style={styles.orderImg} source={ORDERIMG+ImgObj.img?ORDERIMG+ImgObj.img+'?noCache=' + Math.random().toString():"150.jpg"}/>
                       })
                     }
                   </View>
@@ -318,7 +313,7 @@ export function PdfDocument(props) {
           <Text style={styles.PageTitleSecond}>Order Images:</Text>
           {
             props.data.orderImg.map((ImgObj,index) => {
-              return <Image key={index} style={styles.orderImgBig} source={ORDERIMG+ImgObj.img?ORDERIMG+ImgObj.img:"150.jpg"}/>
+              return <Image key={index} style={styles.orderImgBig} source={ORDERIMG+ImgObj.img?ORDERIMG+ImgObj.img+'?noCache=' + Math.random().toString():"150.jpg"}/>
             })
           }
           </View>
